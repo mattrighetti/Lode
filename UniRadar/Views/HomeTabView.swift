@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HomeTabView: View {
     
-    @State private var showLandingView: Bool = true
+    @State private var showLandingView: Bool = false
     
     var body: some View {
         TabView {
@@ -30,7 +30,7 @@ struct HomeTabView: View {
                 Text("Marks")
             }
             
-            Text("Reminders").tabItem {
+            ReminderView().tabItem {
                 Image(systemName: "calendar.badge.plus")
                 Text("Reminders")
             }
@@ -54,10 +54,6 @@ struct HomeTabView_Previews: PreviewProvider {
             HomeTabView()
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
                 .previewDisplayName("iPhone 11")
-            
-            HomeTabView()
-            .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)"))
-            .previewDisplayName("iPad Pro")
         }
     }
 }

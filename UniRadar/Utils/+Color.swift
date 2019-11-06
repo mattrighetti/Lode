@@ -12,5 +12,6 @@ extension Color {
     public static let flatBlack: Color = Color(red: 28/255, green: 28/255, blue: 29/255)
     public static let flatLightRed: Color = Color(red: 215/255, green: 51/255, blue: 88/255)
     public static let flatDarkRed: Color = Color(red: 207/255, green: 23/255, blue: 47/255)
-    public static let flatGray: Color = Color(red: 150/255, green: 150/255, blue: 150/255)
+    public static let flatGray: Color = Color(red: 241/255, green: 243/255, blue: 244/255)
+    public static let flatDarkBlue: Color = Color(red: 47/255, green: 54/255, blue: 78/255)
 }

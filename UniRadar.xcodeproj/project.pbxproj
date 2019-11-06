@@ -19,6 +19,10 @@
 		1367C6DF2372F0F0002DAAA9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367C6DE2372F0F0002DAAA9 /* HomeView.swift */; };
 		1367C6E12372FB36002DAAA9 /* RoundProgressBarCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367C6E02372FB36002DAAA9 /* RoundProgressBarCard.swift */; };
 		13B75226234CCF2F009FD2FE /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75225234CCF2F009FD2FE /* HomeTabView.swift */; };
+		13BD5C042373549D00B44A26 /* HorizontalCapsuleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C032373549D00B44A26 /* HorizontalCapsuleGraph.swift */; };
+		13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C0523735A5E00B44A26 /* +Utils.swift */; };
+		13BD5C0823737AE500B44A26 /* RemiderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C0723737AE500B44A26 /* RemiderCard.swift */; };
+		13BD5C0A2373829A00B44A26 /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C092373829A00B44A26 /* ReminderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		1367C6DE2372F0F0002DAAA9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1367C6E02372FB36002DAAA9 /* RoundProgressBarCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundProgressBarCard.swift; sourceTree = "<group>"; };
 		13B75225234CCF2F009FD2FE /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		13BD5C032373549D00B44A26 /* HorizontalCapsuleGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCapsuleGraph.swift; sourceTree = "<group>"; };
+		13BD5C0523735A5E00B44A26 /* +Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Utils.swift"; sourceTree = "<group>"; };
+		13BD5C0723737AE500B44A26 /* RemiderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemiderCard.swift; sourceTree = "<group>"; };
+		13BD5C092373829A00B44A26 /* ReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 				133256562350A1DD00A01CB2 /* View Components */,
 				1341A2002371B48F00E87E22 /* LoginView.swift */,
 				1367C6DE2372F0F0002DAAA9 /* HomeView.swift */,
+				13BD5C092373829A00B44A26 /* ReminderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -113,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				1312EF7723722DC100650D18 /* +Color.swift */,
+				13BD5C0523735A5E00B44A26 /* +Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -121,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				1367C6E02372FB36002DAAA9 /* RoundProgressBarCard.swift */,
+				13BD5C032373549D00B44A26 /* HorizontalCapsuleGraph.swift */,
+				13BD5C0723737AE500B44A26 /* RemiderCard.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -198,13 +210,17 @@
 			files = (
 				1341A2012371B48F00E87E22 /* LoginView.swift in Sources */,
 				1301E0FC23428D2D0038ACA9 /* UniRadar.xcdatamodeld in Sources */,
+				13BD5C0823737AE500B44A26 /* RemiderCard.swift in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
+				13BD5C042373549D00B44A26 /* HorizontalCapsuleGraph.swift in Sources */,
 				1367C6E12372FB36002DAAA9 /* RoundProgressBarCard.swift in Sources */,
+				13BD5C0A2373829A00B44A26 /* ReminderView.swift in Sources */,
 				1301E0FE23428D2D0038ACA9 /* LandingView.swift in Sources */,
 				13B75226234CCF2F009FD2FE /* HomeTabView.swift in Sources */,
 				1367C6DF2372F0F0002DAAA9 /* HomeView.swift in Sources */,
 				1312EF7823722DC100650D18 /* +Color.swift in Sources */,
 				1301E0F923428D2D0038ACA9 /* SceneDelegate.swift in Sources */,
+				13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

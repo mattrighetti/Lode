@@ -11,20 +11,39 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         
-        VStack {
-            
-            Header()
-            
-            ScrollView {
+        GeometryReader { screen in
+            VStack {
                 
-                HStack {
-                    RoundProgressBarCard(title: "CFU", cfu: 20, totalCfu: 120, width: 160, height: 160)
-                    RoundProgressBarCard(title: "Exams", cfu: 2, totalCfu: 26, width: 160, height: 160)
+                Header()
+                
+                ScrollView {
+                    
+                    HStack {
+                        RoundProgressBarCard(title: "CFU", cfu: 20, totalCfu: 120, width: screen.size.width / 2.8, height: screen.size.width / 3, color: .flatDarkRed).padding(.vertical, 10)
+                        
+                        RoundProgressBarCard(title: "Exams", cfu: 2, totalCfu: 26, width: screen.size.width / 2.8, height: screen.size.width / 3, color: .flatDarkBlue).padding(.vertical, 10)
+                    }
+                    
+                    HorizontalCapsuleGraph(title: "Media",
+                                value: 22.47,
+                                maxValue: 30,
+                                aimedValue: 28,
+                                width: screen.size.width - 130,
+                                height: 20
+                    ).padding(5)
+                    
+                    HorizontalCapsuleGraph(title: "Voto Laurea",
+                                value: (22.47 * 11) / 3,
+                                maxValue: 110,
+                                aimedValue: (28 * 11) / 3,
+                                width: screen.size.width - 130,
+                                height: 20
+                    ).padding(5)
+                    
                 }
                 
-            }.edgesIgnoringSafeArea(.bottom)
-            
-        }.edgesIgnoringSafeArea(.top)
+            }.edgesIgnoringSafeArea(.top)
+        }
         
     }
     
@@ -38,18 +57,19 @@ struct Header: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .shadow(radius: 25)
+                .offset(x: 0, y: -20)
             
             VStack(alignment: .leading) {
                 
                 Text("Welcome,")
                     .foregroundColor(Color.white)
-                    .font(.custom("Avenir Next Regular", size: 30.0))
+                    .font(.custom("Avenir Next Regular", size: 20.0))
                 
                 
                 
-                Text("Mario Rossi")
+                Text("Mario Draghi")
                     .foregroundColor(Color.white)
-                    .font(.custom("Avenir Next Bold", size: 50.0))
+                    .font(.custom("Avenir Next Bold", size: 40.0))
                 
             }.padding(.horizontal)
         }

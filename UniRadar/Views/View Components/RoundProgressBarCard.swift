@@ -15,30 +15,27 @@ struct RoundProgressBarCard: View {
     var totalCfu: Int
     var width: CGFloat
     var height: CGFloat
+    var color: Color
 
     var body: some View {
 
         VStack(alignment: .leading) {
 
             Text("\(title)")
-                .font(.custom("Avenir Next Bold", size: 30.0))
+                .font(.custom("Avenir Next Bold", size: 23.0))
                 .foregroundColor(.flatBlack)
                 .padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 0))
 
             ZStack(alignment: .center) {
 
                 Circle()
-                    .stroke(Color.flatGray.opacity(0.1), style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                    .stroke(color.opacity(0.5), style: StrokeStyle(lineWidth: 12, lineCap: .round))
                     .rotationEffect(.degrees(-90))
-                    .frame(width: self.width, height: self.height)
+                    .frame(width: self.width - 30, height: self.height - 30)
 
                 Circle()
                     .trim(from: 1 - (CGFloat(self.cfu) / CGFloat(self.totalCfu)), to: 1)
-                    .stroke(LinearGradient(
-                        gradient: Gradient(colors: [.black, .flatDarkRed]),
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing),
-                        style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                    .stroke(color ,style: StrokeStyle(lineWidth: 6, lineCap: .round))
                     .rotationEffect(.degrees(-90))
                     .frame(width: self.width, height: self.height)
                     .padding()
@@ -46,14 +43,12 @@ struct RoundProgressBarCard: View {
                 VStack {
 
                     Text("\(cfuPercentage())%")
-                        .font(.custom("Avenir Next Bold", size: 25.0))
+                        .font(.custom("Avenir Next Bold", size: 20.0))
                         .foregroundColor(.flatBlack)
-                        .padding(.horizontal, 30)
 
                     Text("\(self.cfu)/\(self.totalCfu)")
                         .font(.custom("Avenir Next Regular", size: 10.0))
                         .foregroundColor(.flatBlack)
-                        .padding(.horizontal, 30)
                 }
 
             }
@@ -62,7 +57,7 @@ struct RoundProgressBarCard: View {
         .cornerRadius(20)
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color(.sRGB, red: 150 / 255, green: 150 / 255, blue: 150 / 255, opacity: 0.1), lineWidth: 2)
+                .stroke(Color(.sRGB, red: 150 / 255, green: 150 / 255, blue: 150 / 255, opacity: 0.1), lineWidth: 1)
         )
 
     }
@@ -79,6 +74,6 @@ struct RoundProgressBarCard_Previews: PreviewProvider {
     static var totalCfu = 150
     
     static var previews: some View {
-        RoundProgressBarCard(title: "Test", cfu: cfu, totalCfu: totalCfu, width: 200, height: 200)
+        RoundProgressBarCard(title: "Test", cfu: cfu, totalCfu: totalCfu, width: 200, height: 200, color: .flatDarkRed)
     }
 }
