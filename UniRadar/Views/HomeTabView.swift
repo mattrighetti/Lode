@@ -15,7 +15,7 @@ struct HomeTabView: View {
     var body: some View {
         TabView {
             
-            Text("Home Tab").tabItem {
+            HomeView().tabItem {
                 Image(systemName: "house")
                 Text("Home")
             }
@@ -39,7 +39,7 @@ struct HomeTabView: View {
                 Image(systemName: "doc.plaintext")
                 Text("Info")
             }
-        }
+        }.edgesIgnoringSafeArea(.top)
         
         .sheet(isPresented: $showLandingView, content: {
             LandingView(isCardShown: self.$showLandingView)
@@ -55,9 +55,9 @@ struct HomeTabView_Previews: PreviewProvider {
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
                 .previewDisplayName("iPhone 11")
             
-//            HomeTabView()
-//            .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)"))
-//            .previewDisplayName("iPad Pro")
+            HomeTabView()
+            .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)"))
+            .previewDisplayName("iPad Pro")
         }
     }
 }

@@ -76,7 +76,9 @@ struct LoginView: View {
                         .font(.custom("Avenir Next Regular", size: 24.0))
                         .foregroundColor(Color.white)
                         .background(
-                            Color(red: 28/255, green: 28/255, blue: 29/255)
+                            LinearGradient(gradient: Gradient(colors: [Color.flatBlack.opacity(0.9), Color.flatBlack]),
+                                           startPoint: UnitPoint(x: 0.5, y: 0.0),
+                                           endPoint: UnitPoint(x: 0.5, y: 1.0))
                         )
                         .cornerRadius(18)
                         
@@ -90,7 +92,7 @@ struct LoginView: View {
                         .resizable()
                         .frame(width: 60, height: 60)
                         .foregroundColor(
-                            Color.flatBlack
+                            Color.flatBlack.opacity(0.8)
                         )
                     
                 }.padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
