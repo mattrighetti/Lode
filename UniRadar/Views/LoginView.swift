@@ -34,6 +34,7 @@ struct LoginView: View {
                     Text("Welcome to")
                         .font(.custom("Avenir Next Regular", size: 55))
                         .foregroundColor(.gray)
+                    
                     Text("UniRadar")
                         .font(.custom("Avenir Next Regular", size: 55))
                         .foregroundColor(.gray)
@@ -71,17 +72,16 @@ struct LoginView: View {
                     ZStack {
                         
                         Text("Log in")
-                        .padding(.horizontal, 90)
-                        .padding(.vertical)
-                        .font(.custom("Avenir Next Regular", size: 24.0))
-                        .foregroundColor(Color.white)
-                        .background(
-                            LinearGradient(gradient: Gradient(colors: [Color.flatBlack.opacity(0.9), Color.flatBlack]),
-                                           startPoint: UnitPoint(x: 0.5, y: 0.0),
-                                           endPoint: UnitPoint(x: 0.5, y: 1.0))
-                        )
-                        .cornerRadius(18)
-                        
+                            .padding(.horizontal, 90)
+                            .padding(.vertical)
+                            .font(.custom("Avenir Next Regular", size: 24.0))
+                            .foregroundColor(Color.white)
+                            .background(
+                                LinearGradient(gradient: Gradient(colors: [Color.flatBlack.opacity(0.9), Color.flatBlack]),
+                                    startPoint: UnitPoint(x: 0.5, y: 0.0),
+                                    endPoint: UnitPoint(x: 0.5, y: 1.0))
+                            )
+                            .cornerRadius(18)
                     }
                     
                 }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))

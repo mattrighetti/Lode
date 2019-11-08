@@ -30,11 +30,11 @@ struct LandingView: View {
         VStack {
     
             if landingViewIndex == 0 {
-                LandingPage(title: titles[0], headline: headlines[0], imageName: "radar")
+                LandingPage(title: titles[0], headline: headlines[0], imageName: "")
             } else if landingViewIndex == 1 {
-                LandingPage(title: titles[1], headline: headlines[1], imageName: "radar")
+                LandingPage(title: titles[1], headline: headlines[1], imageName: "")
             } else if landingViewIndex == 2 {
-                LandingPage(title: titles[2], headline: headlines[2], imageName: "radar")
+                LandingPage(title: titles[2], headline: headlines[2], imageName: "")
             }
             
             DotProgressBar(biggerCircleIndex: $landingViewIndex, isCardShown: $isCardShown)

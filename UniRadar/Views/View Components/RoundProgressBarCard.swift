@@ -10,6 +10,9 @@ import SwiftUI
 
 struct RoundProgressBarCard: View {
     
+    @State private var stateCfu: Int = 0
+    @State private var stateTotalCfu: Int = 1
+    
     var title: String
     var cfu: Int
     var totalCfu: Int
@@ -34,7 +37,7 @@ struct RoundProgressBarCard: View {
                     .frame(width: self.width - 30, height: self.height - 30)
 
                 Circle()
-                    .trim(from: 1 - (CGFloat(self.cfu) / CGFloat(self.totalCfu)), to: 1)
+                    .trim(from: 1 - (CGFloat(self.stateCfu) / CGFloat(self.stateTotalCfu)), to: 1)
                     .stroke(color ,style: StrokeStyle(lineWidth: 6, lineCap: .round))
                     .rotationEffect(.degrees(-90))
                     .frame(width: self.width, height: self.height)

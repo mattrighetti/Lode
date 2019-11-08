@@ -57,12 +57,10 @@ struct CapsuleProgressBar: View {
                     .foregroundColor(.flatDarkBlue)
                     .opacity(0.4)
                     .frame(width: (CGFloat(aimedValue) / CGFloat(maxValue)) * self.width, height: self.height)
-                    .animation(.easeIn(duration: 2))
                 
                 Capsule()
                     .foregroundColor(.flatDarkBlue)
                     .frame(width: (CGFloat(value) / CGFloat(maxValue)) * self.width, height: self.height)
-                    .animation(.easeIn(duration: 2))
                 
             }
             
