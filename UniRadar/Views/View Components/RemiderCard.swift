@@ -53,16 +53,7 @@ struct RemiderCard: View {
                         .lineLimit(3)
                         .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
                 }
-            }.overlay(RoundedRectangle(cornerRadius: 20)
-                    .stroke(
-                        Color(.sRGB,
-                            red: 150 / 255,
-                            green: 150 / 255,
-                            blue: 150 / 255,
-                            opacity: 0.1),
-                        lineWidth: 1
-                    )
-            )
+            }.modifier(Card())
 
             Spacer()
 

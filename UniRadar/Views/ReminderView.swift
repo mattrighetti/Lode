@@ -48,7 +48,7 @@ struct ReminderView: View {
                     .font(.headline)
                 }
         )}.sheet(isPresented: $showReminderForm) {
-            ReminderFormView()
+            ReminderFormView(showReminderForm: self.$showReminderForm)
         }
     }
 }

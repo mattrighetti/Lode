@@ -10,8 +10,8 @@ import SwiftUI
 
 struct RoundProgressBarCard: View {
     
-    @State private var stateCfu: Int = 0
-    @State private var stateTotalCfu: Int = 1
+    @State private var stateCfu: Int = 34
+    @State private var stateTotalCfu: Int = 50
     
     var title: String
     var cfu: Int
@@ -37,7 +37,7 @@ struct RoundProgressBarCard: View {
                     .frame(width: self.width - 30, height: self.height - 30)
 
                 Circle()
-                    .trim(from: 1 - (CGFloat(self.stateCfu) / CGFloat(self.stateTotalCfu)), to: 1)
+                    .trim(from: 1 - (CGFloat(self.cfu) / CGFloat(self.totalCfu)), to: 1)
                     .stroke(color ,style: StrokeStyle(lineWidth: 6, lineCap: .round))
                     .rotationEffect(.degrees(-90))
                     .frame(width: self.width, height: self.height)
@@ -57,11 +57,7 @@ struct RoundProgressBarCard: View {
             }
 
         }
-        .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(Color(.sRGB, red: 150 / 255, green: 150 / 255, blue: 150 / 255, opacity: 0.1), lineWidth: 1)
-        )
+        .modifier(Card())
 
     }
     
@@ -74,7 +70,7 @@ struct RoundProgressBarCard: View {
 struct RoundProgressBarCard_Previews: PreviewProvider {
     
     static var cfu = 100
-    static var totalCfu = 150
+    static var totalCfu = 190
     
     static var previews: some View {
         RoundProgressBarCard(title: "Test", cfu: cfu, totalCfu: totalCfu, width: 200, height: 200, color: .flatDarkRed)

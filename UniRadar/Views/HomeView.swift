@@ -15,16 +15,16 @@ struct HomeView: View {
             VStack {
                 
                 Header()
+                    .frame(width: screen.size.width, height: screen.size.height / 2)
                 
-                ScrollView {
-                    
+                VStack {
                     HStack {
                         RoundProgressBarCard(title: "CFU", cfu: 20, totalCfu: 120, width: screen.size.width / 2.8, height: screen.size.width / 3, color: .flatDarkRed).padding(.vertical, 10)
                         
                         RoundProgressBarCard(title: "Exams", cfu: 2, totalCfu: 26, width: screen.size.width / 2.8, height: screen.size.width / 3, color: .flatDarkBlue).padding(.vertical, 10)
                     }
                     
-                    HorizontalCapsuleGraph(title: "Media",
+                    HorizontalCapsuleGraph(title: "Mean",
                                 value: 22.47,
                                 maxValue: 30,
                                 aimedValue: 28,
@@ -32,7 +32,7 @@ struct HomeView: View {
                                 height: 20
                     ).padding(5)
                     
-                    HorizontalCapsuleGraph(title: "Voto Laurea",
+                    HorizontalCapsuleGraph(title: "Final Score",
                                 value: (22.47 * 11) / 3,
                                 maxValue: 110,
                                 aimedValue: (28 * 11) / 3,
@@ -40,9 +40,9 @@ struct HomeView: View {
                                 height: 20
                     ).padding(5)
                     
-                }
-                
-            }.edgesIgnoringSafeArea(.top)
+                }.offset(x: 0, y: -(screen.size.height / 6))
+                               
+            }
         }
         
     }
@@ -51,27 +51,27 @@ struct HomeView: View {
 
 struct Header: View {
     var body: some View {
-        ZStack(alignment: .leading) {
+        ZStack(alignment: .center) {
             
-            Image("ur_background")
+            Image("ur-background")
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .shadow(radius: 25)
-                .offset(x: 0, y: -20)
+                .aspectRatio(contentMode: .fill)
             
-            VStack(alignment: .leading) {
+            HStack {
+                VStack(alignment: .leading) {
+                    
+                    Text("Welcome,")
+                        .foregroundColor(Color.white)
+                        .font(.custom("Avenir Next Regular", size: 20.0))
+                    
+                    Text("Matt")
+                        .foregroundColor(Color.white)
+                        .font(.custom("Avenir Next Bold", size: 40.0))
+                    
+                }.padding(.horizontal)
                 
-                Text("Welcome,")
-                    .foregroundColor(Color.white)
-                    .font(.custom("Avenir Next Regular", size: 20.0))
-                
-                
-                
-                Text("Matt")
-                    .foregroundColor(Color.white)
-                    .font(.custom("Avenir Next Bold", size: 40.0))
-                
-            }.padding(.horizontal)
+                Spacer()
+            }
         }
     }
 }

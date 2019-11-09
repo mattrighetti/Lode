@@ -19,6 +19,7 @@
 		1367C6DF2372F0F0002DAAA9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367C6DE2372F0F0002DAAA9 /* HomeView.swift */; };
 		1367C6E12372FB36002DAAA9 /* RoundProgressBarCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367C6E02372FB36002DAAA9 /* RoundProgressBarCard.swift */; };
 		1382C6982375CFA7007F0818 /* ReminderFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1382C6972375CFA7007F0818 /* ReminderFormView.swift */; };
+		13A7EF742376E20B00EC32A2 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A7EF732376E20B00EC32A2 /* Modifiers.swift */; };
 		13B75226234CCF2F009FD2FE /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75225234CCF2F009FD2FE /* HomeTabView.swift */; };
 		13BD5C042373549D00B44A26 /* HorizontalCapsuleGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C032373549D00B44A26 /* HorizontalCapsuleGraph.swift */; };
 		13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C0523735A5E00B44A26 /* +Utils.swift */; };
@@ -41,6 +42,7 @@
 		1367C6DE2372F0F0002DAAA9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1367C6E02372FB36002DAAA9 /* RoundProgressBarCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundProgressBarCard.swift; sourceTree = "<group>"; };
 		1382C6972375CFA7007F0818 /* ReminderFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderFormView.swift; sourceTree = "<group>"; };
+		13A7EF732376E20B00EC32A2 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		13B75225234CCF2F009FD2FE /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		13BD5C032373549D00B44A26 /* HorizontalCapsuleGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCapsuleGraph.swift; sourceTree = "<group>"; };
 		13BD5C0523735A5E00B44A26 /* +Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Utils.swift"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				1367C6DE2372F0F0002DAAA9 /* HomeView.swift */,
 				13BD5C092373829A00B44A26 /* ReminderView.swift */,
 				1382C6972375CFA7007F0818 /* ReminderFormView.swift */,
+				13A7EF732376E20B00EC32A2 /* Modifiers.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				1341A2012371B48F00E87E22 /* LoginView.swift in Sources */,
 				1301E0FC23428D2D0038ACA9 /* UniRadar.xcdatamodeld in Sources */,
 				13BD5C0823737AE500B44A26 /* RemiderCard.swift in Sources */,
+				13A7EF742376E20B00EC32A2 /* Modifiers.swift in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
 				13BD5C042373549D00B44A26 /* HorizontalCapsuleGraph.swift in Sources */,
 				1367C6E12372FB36002DAAA9 /* RoundProgressBarCard.swift in Sources */,

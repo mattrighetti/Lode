@@ -14,6 +14,8 @@ struct ReminderFormView: View {
     @State private var description: String = ""
     @State private var date: Date = Date()
     @State private var excludeLast: Bool = false
+    
+    @Binding var showReminderForm: Bool
 
     var body: some View {
         NavigationView {
@@ -51,7 +53,7 @@ struct ReminderFormView: View {
                     Spacer()
                     
                     Button(action: {
-                        print("Pressed")
+                        self.showReminderForm.toggle()
                     }) {
                         
                         Text("Add")
@@ -73,23 +75,18 @@ struct ReminderFormView: View {
 
                 Spacer()
 
-            }.padding()
+            }
+            .padding()
             .navigationBarTitle(Text("New Reminder"))
         }
     }
 }
 
-struct RoundedGrayTextField: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .padding()
-            .background(Color.flatGray)
-            .clipShape(RoundedRectangle(cornerRadius: 5.0))
-    }
-}
-
 struct ReminderFormView_Previews: PreviewProvider {
+    
+    @State static private var showForm: Bool = false
+    
     static var previews: some View {
-        ReminderFormView()
+        ReminderFormView(showReminderForm: $showForm)
     }
 }

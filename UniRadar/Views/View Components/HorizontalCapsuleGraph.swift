@@ -27,11 +27,7 @@ struct HorizontalCapsuleGraph: View {
             CapsuleProgressBar(value: self.value, maxValue: self.maxValue, aimedValue: self.aimedValue, width: self.width, height: self.height)
                 .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             
-            
-        }.overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(Color(.sRGB, red: 150 / 255, green: 150 / 255, blue: 150 / 255, opacity: 0.1), lineWidth: 1)
-        )
+        }.modifier(Card())
     }
 }
 
