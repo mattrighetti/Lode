@@ -20,7 +20,7 @@ struct HomeTabView: View {
                 Text("Home")
             }
             
-            Text("Statistics").tabItem {
+            StatisticsView().tabItem {
                 Image(systemName: "square.stack.3d.down.right")
                 Text("Statistics")
             }
