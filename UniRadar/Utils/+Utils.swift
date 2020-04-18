@@ -7,9 +7,26 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct Constants {
+    static let iconMinWidth: CGFloat = 36
+    static let sfSymbolSize: CGFloat = 22
+    static let navBarIcons: CGFloat = 24
+    static let pickerMaxWidth: CGFloat = 256
+}
 
 extension Double {
     var twoDecimalPrecision : String {
         return String(format: "%.2f", self)
+    }
+}
+
+extension Image {
+    func iconModifier() -> some View {
+        self
+            .font(.system(size: Constants.sfSymbolSize))
+            .frame(minWidth: Constants.iconMinWidth)
+            .accessibility(hidden: true)
     }
 }
