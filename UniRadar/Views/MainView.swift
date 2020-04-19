@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State var introduced: Bool = false
+    @State var introduced: Bool = true
     @State var showSplashscreen: Bool = false
     
     var body: some View {
@@ -30,11 +30,13 @@ struct MainView: View {
                     Image(systemName: "function")
                     Text("Stats")
                 }
+        }.sheet(isPresented: $showSplashscreen) {
+            SplashScreenView()
         }.onAppear {
             if !self.introduced {
                 self.showSplashscreen.toggle()
             }
-        }.sheet(isPresented: $showSplashscreen, content: { SplashScreenView() })
+        }
     }
 }
 

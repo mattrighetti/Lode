@@ -87,6 +87,7 @@ struct SplashScreenFeatureView: View {
             
             Text(splashscreenFeature.featureDescription)
                 .fontWeight(.regular)
+                .multilineTextAlignment(.center)
         }
     }
 }
