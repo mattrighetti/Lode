@@ -50,7 +50,7 @@ struct HomeView: View {
                         ZStack {
                             Color("cardBackground")
                             VStack {
-                                NavigationLink(destination: EmptyView(), isActive: self.$markViewActive) {
+                                NavigationLink(destination: MarksView(), isActive: self.$markViewActive) {
                                     ListRow(title: "Marks", iconName: "rosette")
                                         .padding(EdgeInsets(top: 15, leading: 5, bottom: 5, trailing: 5))
                                 }.buttonStyle(PlainButtonStyle())

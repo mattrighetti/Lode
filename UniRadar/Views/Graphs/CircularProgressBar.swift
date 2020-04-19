@@ -16,7 +16,7 @@ struct CircularProgressBar: View {
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.outlineRed, lineWidth: 20)
+                .stroke(Color("background"), lineWidth: 20)
             
             Circle()
                 .trim(from: 0, to: progress)
@@ -25,7 +25,7 @@ struct CircularProgressBar: View {
                         gradient: Gradient(colors: colors),
                         center: .center,
                         startAngle: .degrees(0),
-                        endAngle: .degrees(360)
+                        endAngle: .degrees(350)
                     ),
                     style: StrokeStyle(lineWidth: 20, lineCap: .round)
             ).rotationEffect(.degrees(-90))
@@ -34,7 +34,7 @@ struct CircularProgressBar: View {
 }
 
 struct CircularProgressBar_Previews: PreviewProvider {
-    @State public static var progress: CGFloat = 0.3
+    @State public static var progress: CGFloat = 1
     static var previews: some View {
         CircularProgressBar(progress: $progress)
     }

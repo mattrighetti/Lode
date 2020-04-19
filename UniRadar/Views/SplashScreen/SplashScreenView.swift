@@ -33,6 +33,10 @@ struct SplashScreenView: View {
     
     var body: some View {
         VStack {
+            Image(systemName: "chevron.compact.down")
+                .font(.title)
+                .foregroundColor(.flatLightGray)
+                .padding()
             
             Spacer()
             

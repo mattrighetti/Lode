@@ -21,6 +21,8 @@
 		C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E762448C4FD00C3EF9C /* DataCard.swift */; };
 		C9A52E792448C9D900C3EF9C /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */; };
 		C9CED55F243E6E7000FDE90C /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */; };
+		C9D2A9F5244BEDB600CA8AAE /* MarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F4244BEDB600CA8AAE /* MarksView.swift */; };
+		C9D2A9F7244BFAA300CA8AAE /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F6244BFAA300CA8AAE /* Mark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		C9A52E762448C4FD00C3EF9C /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
 		C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		C9D2A9F4244BEDB600CA8AAE /* MarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksView.swift; sourceTree = "<group>"; };
+		C9D2A9F6244BFAA300CA8AAE /* Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Mark.swift; path = UniRadar/Views/Home/HomeViews/Mark.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 		1301E10D23428D410038ACA9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C9D2A9F6244BFAA300CA8AAE /* Mark.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 		C9766D0F2443DB9C0056726D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C9D2A9F3244BED9B00CA8AAE /* HomeViews */,
 				C9766D102443DBB40056726D /* HomeView.swift */,
 			);
 			path = Home;
@@ -153,6 +159,14 @@
 				C9A52E762448C4FD00C3EF9C /* DataCard.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C9D2A9F3244BED9B00CA8AAE /* HomeViews */ = {
+			isa = PBXGroup;
+			children = (
+				C9D2A9F4244BEDB600CA8AAE /* MarksView.swift */,
+			);
+			path = HomeViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,9 +247,11 @@
 				1301E0FC23428D2D0038ACA9 /* UniRadar.xcdatamodeld in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
 				1312EF7823722DC100650D18 /* +Color.swift in Sources */,
+				C9D2A9F5244BEDB600CA8AAE /* MarksView.swift in Sources */,
 				C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */,
 				1301E0F923428D2D0038ACA9 /* SceneDelegate.swift in Sources */,
 				13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */,
+				C9D2A9F7244BFAA300CA8AAE /* Mark.swift in Sources */,
 				C9A52E792448C9D900C3EF9C /* CircularProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
