@@ -11,38 +11,44 @@ import SwiftUI
 struct DataCard<Content: View>: View {
     
     var headerTitle: String
-    var cardColor: Color
+    var description: String
     let content: () -> Content
     
     var body: some View {
-        GeometryReader { screen in
-            ZStack(alignment: .topLeading) {
-                self.cardColor
+        ZStack {
+            Color("cardBackground")
+            VStack {
+                content()
                 
-                VStack(alignment: .leading) {
-                    Text(self.headerTitle)
-                        .font(.system(size: screen.size.width / 8))
-                        .fontWeight(.medium)
-                        .foregroundColor(.white)
+                VStack {
+                    Text("\(headerTitle)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.bottom)
                     
-                    self.content()
-                    
-                }.padding(screen.size.width / 10)
+                    Text("\(description)")
+                        .font(.body)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom)
+                }
                 
-            }.clipShape(RoundedRectangle(cornerRadius: 25))
-        }
+            }
+            
+        }.cornerRadius(45)
     }
 }
 
 struct DataCard_Previews: PreviewProvider {
+    @State private static var progress: CGFloat = 0.5
     static var previews: some View {
         Group {
-            DataCard(headerTitle: "EXAMS", cardColor: .flatDarkBlue) {
-                CircularProgressBar(currentValue: 10, maxValue: 100, color: .flatDarkGray)
-            }
+            DataCard(headerTitle: "EXAMS", description: "Good Boy") {
+                CircularProgressBar(progress: $progress)
+            }.environment(\.colorScheme, .dark)
             
-            DataCard(headerTitle: "BarChart", cardColor: .flatDarkBlue) {
-                BarChartView(arrayValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 20], color: .flatDarkRed)
+            DataCard(headerTitle: "BarChart", description: "Bang dude") {
+                EmptyView()
             }
         }
     }

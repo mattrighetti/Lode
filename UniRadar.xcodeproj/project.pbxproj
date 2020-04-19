@@ -133,6 +133,7 @@
 		C9356633244A6E49006B1164 /* Graphs */ = {
 			isa = PBXGroup;
 			children = (
+				C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */,
 				C9356634244A6E6E006B1164 /* BarShape.swift */,
 			);
 			path = Graphs;
@@ -150,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				C9A52E762448C4FD00C3EF9C /* DataCard.swift */,
-				C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
