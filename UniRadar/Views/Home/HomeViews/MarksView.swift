@@ -67,12 +67,13 @@ struct MarkCard: View {
                 HStack {
                     VStack(alignment: .leading, spacing: 10) {
                         Text(mark.subjectName).font(.headline).fontWeight(.bold)
-                        Text("Passed on\n" + mark.datePassedString).font(.subheadline)
+                        Text(mark.datePassedString).font(.subheadline)
                     }
                     Spacer()
                     VStack {
                         Text(mark.finalMark != nil ? String(mark.finalMark!) : String(mark.expectedMark)).font(.title)
                         Image(systemName: markIcon()).foregroundColor(markIconColor())
+                        Text(mark.finalMark != nil ? "Passed" : "Expected")
                     }.padding(.trailing, 5)
                     Divider()
                     Image(systemName: "chevron.right").padding(20)
@@ -111,6 +112,8 @@ struct MarkCard: View {
 
 struct MarksView_Previews: PreviewProvider {
     static var previews: some View {
-        MarksView().environment(\.colorScheme, .dark)
+        MarksView()
+            .previewDevice("iPhone 11")
+            .environment(\.colorScheme, .light)
     }
 }

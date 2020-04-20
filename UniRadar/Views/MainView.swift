@@ -20,7 +20,7 @@ struct MainView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            Text("Another Tab")
+            RemindersView()
                 .tabItem {
                     Image(systemName: "pin")
                     Text("Reminders")

@@ -29,6 +29,8 @@ struct HomeView: View {
             ZStack {
                 Color("background").edgesIgnoringSafeArea(.all)
                 ScrollView(.vertical, showsIndicators: false) {
+                    
+                    //MARK: - CardDeck Section
                     HomeSection(sectionTitle: "Your Info") {
                         ZStack {
                             DataCard(headerTitle: "Your cfu", description: "Completion percentage of \n your CFUs") {
@@ -46,6 +48,7 @@ struct HomeView: View {
                         }
                     }
                     
+                    //MARK: - Categories Section
                     HomeSection(sectionTitle: "Categories") {
                         ZStack {
                             Color("cardBackground")
@@ -55,7 +58,7 @@ struct HomeView: View {
                                         .padding(EdgeInsets(top: 15, leading: 5, bottom: 5, trailing: 5))
                                 }.buttonStyle(PlainButtonStyle())
                                 Divider()
-                                NavigationLink(destination: EmptyView(), isActive: self.$statsViewActive) {
+                                NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
                                     ListRow(title: "Statistichs", iconName: "x.squareroot")
                                         .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
                                 }.buttonStyle(PlainButtonStyle())
@@ -130,6 +133,8 @@ struct ListRow: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environment(\.colorScheme, .dark)
+        HomeView()
+            .previewDevice("iPhone 11")
+            .environment(\.colorScheme, .dark)
     }
 }
