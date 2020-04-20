@@ -22,6 +22,7 @@ struct RemindersView: View {
         UITableView.appearance().separatorColor = UIColor(named: "background")
         // Set List background color
         UITableView.appearance().backgroundColor = UIColor(named: "background")
+        UIPickerView.appearance().backgroundColor = UIColor(named: "background")
     }
     
     @State var showForm: Bool = false
@@ -45,10 +46,9 @@ struct RemindersView: View {
                         ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 7).listRowBackground(Color("background"))
                         ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 1).listRowBackground(Color("background"))
                     }
-
-                    .navigationBarTitle("Reminders")
-                    .navigationBarItems(leading: EditButton(), trailing: Button(action: { self.showForm.toggle() }, label: { Image(systemName: "plus.circle") }))
                 }
+                .navigationBarTitle("Reminders")
+                .navigationBarItems(leading: EditButton(), trailing: Button(action: { self.showForm.toggle() }, label: { Image(systemName: "plus.circle") }))
             }
         }.sheet(isPresented: $showForm) {
             ReminderForm()
