@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		1312EF7823722DC100650D18 /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312EF7723722DC100650D18 /* +Color.swift */; };
 		13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C0523735A5E00B44A26 /* +Utils.swift */; };
 		C9356635244A6E6E006B1164 /* BarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9356634244A6E6E006B1164 /* BarShape.swift */; };
+		C9555B6D2450E6820031933D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C9555B6C2450E6820031933D /* Lottie */; };
+		C9555B6F2450E8340031933D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9555B6E2450E8340031933D /* LottieView.swift */; };
 		C9766D0E2443D6260056726D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9766D0D2443D6260056726D /* MainView.swift */; };
 		C9766D112443DBB40056726D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9766D102443DBB40056726D /* HomeView.swift */; };
 		C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E762448C4FD00C3EF9C /* DataCard.swift */; };
@@ -26,6 +28,7 @@
 		C9D2A9F9244C0CD800CA8AAE /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */; };
 		C9D2A9FC244D0D6500CA8AAE /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */; };
 		C9D2A9FE244D1F5200CA8AAE /* ReminderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FD244D1F5200CA8AAE /* ReminderForm.swift */; };
+		C9FDD70D244E56ED003A31CF /* ExamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD70C244E56ED003A31CF /* ExamsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,7 @@
 		1312EF7723722DC100650D18 /* +Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Color.swift"; sourceTree = "<group>"; };
 		13BD5C0523735A5E00B44A26 /* +Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Utils.swift"; sourceTree = "<group>"; };
 		C9356634244A6E6E006B1164 /* BarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarShape.swift; sourceTree = "<group>"; };
+		C9555B6E2450E8340031933D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		C9766D0D2443D6260056726D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C9766D102443DBB40056726D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C9A52E762448C4FD00C3EF9C /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
@@ -50,6 +54,7 @@
 		C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
 		C9D2A9FD244D1F5200CA8AAE /* ReminderForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderForm.swift; sourceTree = "<group>"; };
+		C9FDD70C244E56ED003A31CF /* ExamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9555B6D2450E6820031933D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +121,7 @@
 		1301E10E23428D450038ACA9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C9FDD70B244E56DF003A31CF /* Exams */,
 				C9D2A9FA244D0D4300CA8AAE /* Reminders */,
 				C9356633244A6E49006B1164 /* Graphs */,
 				C9A52E752448C4EB00C3EF9C /* Components */,
@@ -164,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A52E762448C4FD00C3EF9C /* DataCard.swift */,
+				C9555B6E2450E8340031933D /* LottieView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -186,6 +194,14 @@
 			path = Reminders;
 			sourceTree = "<group>";
 		};
+		C9FDD70B244E56DF003A31CF /* Exams */ = {
+			isa = PBXGroup;
+			children = (
+				C9FDD70C244E56ED003A31CF /* ExamsView.swift */,
+			);
+			path = Exams;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -202,6 +218,9 @@
 			dependencies = (
 			);
 			name = UniRadar;
+			packageProductDependencies = (
+				C9555B6C2450E6820031933D /* Lottie */,
+			);
 			productName = UniRadar;
 			productReference = 1301E0F323428D2D0038ACA9 /* UniRadar.app */;
 			productType = "com.apple.product-type.application";
@@ -230,6 +249,9 @@
 				Base,
 			);
 			mainGroup = 1301E0EA23428D2D0038ACA9;
+			packageReferences = (
+				C9555B6B2450E6820031933D /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 1301E0F423428D2D0038ACA9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -268,7 +290,9 @@
 				1312EF7823722DC100650D18 /* +Color.swift in Sources */,
 				C9D2A9F5244BEDB600CA8AAE /* MarksView.swift in Sources */,
 				C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */,
+				C9555B6F2450E8340031933D /* LottieView.swift in Sources */,
 				1301E0F923428D2D0038ACA9 /* SceneDelegate.swift in Sources */,
+				C9FDD70D244E56ED003A31CF /* ExamsView.swift in Sources */,
 				13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */,
 				C9D2A9F7244BFAA300CA8AAE /* Mark.swift in Sources */,
 				C9D2A9F9244C0CD800CA8AAE /* StatsView.swift in Sources */,
@@ -323,6 +347,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -383,6 +408,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -409,6 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"UniRadar/Preview Content\"";
 				DEVELOPMENT_TEAM = H89RFW5UZ6;
 				ENABLE_PREVIEWS = YES;
@@ -429,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"UniRadar/Preview Content\"";
 				DEVELOPMENT_TEAM = H89RFW5UZ6;
 				ENABLE_PREVIEWS = YES;
@@ -466,6 +494,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C9555B6B2450E6820031933D /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C9555B6C2450E6820031933D /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9555B6B2450E6820031933D /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1301E0FA23428D2D0038ACA9 /* UniRadar.xcdatamodeld */ = {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A573a" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Course" representedClassName="Course" syncable="YES" codeGenerationType="class">
         <attribute name="cfu" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -7,11 +7,14 @@
         <relationship name="courseId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exam" inverseName="courseId" inverseEntity="Exam"/>
     </entity>
     <entity name="Exam" representedClassName="Exam" syncable="YES" codeGenerationType="class">
+        <attribute name="difficulty" optional="YES" attributeType="Decimal" defaultValueString="0"/>
         <attribute name="examId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="iconName" optional="YES" attributeType="String" defaultValueString="pencil"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="courseId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="courseId" inverseEntity="Course"/>
     </entity>
     <elements>
-        <element name="Exam" positionX="-86.3203125" positionY="63" width="128" height="73"/>
         <element name="Course" positionX="215.859375" positionY="47.86328125" width="128" height="103"/>
+        <element name="Exam" positionX="-86.3203125" positionY="63" width="128" height="118"/>
     </elements>
 </model>

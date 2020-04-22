@@ -64,38 +64,43 @@ struct ReminderRow: View {
     var colors: [Color] = [.flatDarkRed, .flatLightRed]
     
     var body: some View {
-        HStack {
-            ZStack(alignment: .center) {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: colors),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
+        ZStack{
+            Color("cardBackground")
+            HStack {
+                ZStack(alignment: .center) {
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: colors),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
                         )
-                    )
+                    
+                    VStack {
+                        Text("\(daysLeft)").foregroundColor(.white).fontWeight(.bold)
+                        Text("missing").foregroundColor(.white)
+                    }
+                }.frame(width: 100, height: 80, alignment: .center)
                 
-                VStack {
-                    Text("\(daysLeft)").foregroundColor(.white).fontWeight(.bold)
-                    Text("missing").foregroundColor(.white)
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .padding(.bottom)
+                    
+                    Text(description)
+                        .font(.caption)
+                        .lineLimit(2)
+                    
+                    isDueSoon()
                 }
-            }.frame(width: 100, height: 80, alignment: .center)
-            
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .padding(.bottom)
                 
-                Text(description)
-                    .font(.subheadline)
-                    .lineLimit(2)
-                
-                isDueSoon()
+                Spacer()
             }
-            
-            Spacer()
+            .padding()
         }
+        .clipShape(RoundedRectangle(cornerRadius: 25.0))
     }
     
     func isDueSoon() -> some View {
@@ -104,7 +109,10 @@ struct ReminderRow: View {
                 HStack {
                     Image(systemName: "exclamationmark.circle")
                     Text("Due soon")
-                }.foregroundColor(.red)
+                }
+                .padding(10)
+                .background(Color.flatLightRed)
+                .clipShape(RoundedRectangle(cornerRadius: 8.0))
             )
         } else {
             return AnyView(
