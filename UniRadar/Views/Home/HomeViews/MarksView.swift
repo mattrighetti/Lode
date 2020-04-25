@@ -18,13 +18,6 @@ struct MarksView: View {
         Mark(subjectName: "Computer Graphics", expectedMark: 28, difficulty: 3, datePassed: Date())
     ]
     
-    init() {
-        // Make Dividers the same color as the background to make them disappear
-        UITableView.appearance().separatorColor = UIColor(named: "background")
-        // Set List background color
-        UITableView.appearance().backgroundColor = UIColor(named: "background")
-    }
-    
     var body: some View {
         List {
             ForEach(marks, id: \.id) { mark in

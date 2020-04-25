@@ -7,21 +7,32 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ExamsView: View {
     
-    init() {
-        // Make Dividers the same color as the background to make them disappear
-        UITableView.appearance().separatorColor = UIColor(named: "background")
-        // Set List background color
-        UITableView.appearance().backgroundColor = UIColor(named: "background")
-    }
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: Exam.entity(),
+        sortDescriptors: []
+    ) var exams: FetchedResults<Exam>
+    
+    @State private var addExamModalShown: Bool = false
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color("background").edgesIgnoringSafeArea(.all)
-                VStack {
+            List {
+                ForEach(exams, id: \.self) { exam in
+                    ExamRow(exam: exam)
+                        .listRowBackground(Color("background"))
+                }.onDelete { (indexSet) in
+                    print("Deleted")
+                }
+            }
+            .navigationBarTitle("Exams")
+            .navigationBarItems(
+                leading: EditButton(),
+                center: AnyView(
                     Picker(selection: .constant(1), label: Text("Picker")) {
                         Text("Upcoming").tag(1)
                         Text("Past").tag(2)
@@ -29,16 +40,29 @@ struct ExamsView: View {
                     .foregroundColor(Color.blue)
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
-                    
-                    List {
-                        ExamRow(exam: Exam()).listRowBackground(Color("background"))
-                    }
-                }
-                .navigationBarTitle("Exams")
-                .navigationBarItems(leading: EditButton(), trailing: Button(action: {  }, label: { Image(systemName: "plus.circle") }))
-            }
+                ),
+                trailing: Button(action: { self.addExamModalShown.toggle() }) { Image(systemName: "plus") }
+            )
+        }.sheet(isPresented: $addExamModalShown) {
+            ExamForm(modalDismissed: self.$addExamModalShown)
         }
     }
+    
+    // MARK: - Methods
+    
+    func addExam() {
+        let exam = Exam(context: managedObjectContext)
+        exam.examId = UUID()
+        exam.title = "Title"
+        exam.difficulty = 3
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print("Could not save file")
+        }
+    }
+    
 }
 
 // TODO do not force unwrap values
@@ -59,16 +83,16 @@ struct ExamRow: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                    Image(systemName: "pencil").font(.system(size: 30))
+                    Image(systemName: exam.iconName ?? "pencil").font(.system(size: 30))
                 }.frame(width: 70, height: 70, alignment: .center)
                 
                 VStack(alignment: .leading) {
-                    Text("Anal 1")
+                    Text(exam.title ?? "No name")
                         .font(.headline)
                         .fontWeight(.semibold)
                         .padding(.bottom)
                     
-                    Text("Difficulty: 1").font(.caption)
+                    Text("Difficulty: \(exam.difficulty)").font(.caption)
                 }
                 
                 Spacer()
@@ -78,13 +102,18 @@ struct ExamRow: View {
                     Text("24").font(.system(size: 20, weight: .regular, design: .monospaced))
                     Text("Dec").font(.system(size: 20, weight: .regular, design: .monospaced))
                 }
-            }.padding()
-        }.clipShape(RoundedRectangle(cornerRadius: 25))
+            }
+            .padding()
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 25))
     }
 }
 
 struct ExamsView_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var exam = Exam(context: context)
+    
     static var previews: some View {
-        ExamsView().environment(\.colorScheme, .dark)
+        ExamsView().environment(\.colorScheme, .dark).environment(\.managedObjectContext, context)
     }
 }

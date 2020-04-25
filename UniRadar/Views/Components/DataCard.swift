@@ -32,9 +32,7 @@ struct DataCard<Content: View>: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom)
                 }
-                
             }
-            
         }.cornerRadius(45)
     }
 }

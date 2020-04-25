@@ -25,7 +25,7 @@ struct MainView: View {
                     Image(systemName: "pin")
                     Text("Reminders")
                 }
-            Text("The Last Tab")
+            ExamsView()
                 .tabItem {
                     Image(systemName: "function")
                     Text("Stats")

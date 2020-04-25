@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct Reminder: Identifiable {
     let id: UUID = UUID()
@@ -17,22 +18,21 @@ struct Reminder: Identifiable {
 
 struct RemindersView: View {
     
-    init() {
-        // Make Dividers the same color as the background to make them disappear
-        UITableView.appearance().separatorColor = UIColor(named: "background")
-        // Set List background color
-        UITableView.appearance().backgroundColor = UIColor(named: "background")
-        UIPickerView.appearance().backgroundColor = UIColor(named: "background")
-    }
-    
     @State var showForm: Bool = false
     @State var pickerData = []
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color("background").edgesIgnoringSafeArea(.all)
-                VStack {
+            List {
+                ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 3).listRowBackground(Color("background"))
+                ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 7).listRowBackground(Color("background"))
+                ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 1).listRowBackground(Color("background"))
+            }
+            
+            .navigationBarTitle("Assignments")
+            .navigationBarItems(
+                leading: EditButton(),
+                center: AnyView(
                     Picker(selection: .constant(1), label: Text("Picker")) {
                         Text("Current").tag(1)
                         Text("Past").tag(2)
@@ -40,17 +40,11 @@ struct RemindersView: View {
                     .foregroundColor(Color.blue)
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
-                    
-                    List {
-                        ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 3).listRowBackground(Color("background"))
-                        ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 7).listRowBackground(Color("background"))
-                        ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 1).listRowBackground(Color("background"))
-                    }
-                }
-                .navigationBarTitle("Reminders")
-                .navigationBarItems(leading: EditButton(), trailing: Button(action: { self.showForm.toggle() }, label: { Image(systemName: "plus.circle") }))
-            }
-        }.sheet(isPresented: $showForm) {
+                ),
+                trailing: Button(action: { self.showForm.toggle() }, label: { Image(systemName: "plus.circle") })
+            )
+        }
+        .sheet(isPresented: $showForm) {
             ReminderForm()
         }
     }
@@ -78,8 +72,12 @@ struct ReminderRow: View {
                         )
                     
                     VStack {
-                        Text("\(daysLeft)").foregroundColor(.white).fontWeight(.bold)
-                        Text("missing").foregroundColor(.white)
+                        Text("\(daysLeft)")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                        
+                        Text("missing")
+                            .foregroundColor(.white)
                     }
                 }.frame(width: 100, height: 80, alignment: .center)
                 
@@ -110,6 +108,7 @@ struct ReminderRow: View {
                     Image(systemName: "exclamationmark.circle")
                     Text("Due soon")
                 }
+                .foregroundColor(.white)
                 .padding(10)
                 .background(Color.flatLightRed)
                 .clipShape(RoundedRectangle(cornerRadius: 8.0))

@@ -10,9 +10,10 @@ import SwiftUI
 
 struct ReminderForm: View {
     
-    @State var title: String = ""
-    @State var description: String =  ""
-    @State var selectedDate: Date = Date()
+    @State private var title: String = ""
+    @State private var description: String =  ""
+    @State private var selectedDate: Date = Date()
+    @State private var gradientIndex: Int = 0
     // Does automatically the job to get the dismiss Bool of the View that launches this as sheet
     @Environment(\.presentationMode) var presentationMode
     
@@ -22,8 +23,22 @@ struct ReminderForm: View {
                 Color("background").edgesIgnoringSafeArea(.top)
                 Form {
                     Section(header: Text("Infos")) {
-                        TextField("Reminder title", text: $title)
-                        TextField("Reminder description", text: $title)
+                        TextField("Assignment title", text: $title)
+                        TextField("Assignment description", text: $title)
+                    }
+                    
+                    Section(header: Text("Color")) {
+                        HStack {
+                            Text("Color")
+                            Spacer()
+                            
+                            RoundedRectangle(cornerRadius: 5)
+                                .frame(width: 35, height: 35)
+                                .padding(.horizontal)
+                            
+                            Image(systemName: "chevron.right")
+                        }
+                        .padding(.vertical, 5)
                     }
                     
                     Section(header: Text("Date")) {

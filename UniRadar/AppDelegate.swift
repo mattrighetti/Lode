@@ -12,10 +12,21 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Make NavigationView the same color as the background
+//        UINavigationBar.appearance().backgroundColor = UIColor(named: "background")
+        // Make NavigationView the same color as the background
+        // NB: This was needed because the largeTitle wasn't updating after applying the code above
+//        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "text")!]
+        
+        // Make Dividers the same color as the background to make them disappear
+        UITableView.appearance().separatorColor = UIColor(named: "background")
+        // Set List background color
+        UITableView.appearance().backgroundColor = UIColor(named: "background")
+        UIPickerView.appearance().backgroundColor = UIColor(named: "cardBackground")
+        
         return true
     }
 

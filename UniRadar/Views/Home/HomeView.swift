@@ -16,14 +16,6 @@ struct HomeView: View {
     @State var statsViewActive: Bool = false
     @State var otherViewActive: Bool = false
     
-    init() {
-        // Make NavigationView the same color as the background
-        UINavigationBar.appearance().backgroundColor = UIColor(named: "background")
-        // Make NavigationView the same color as the background
-        // NB: This was needed because the largeTitle wasn't updating after applying the code above
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "text")!]
-    }
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -59,12 +51,12 @@ struct HomeView: View {
                                 }.buttonStyle(PlainButtonStyle())
                                 Divider()
                                 NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
-                                    ListRow(title: "Statistichs", iconName: "x.squareroot")
+                                    ListRow(title: "Statistics", iconName: "x.squareroot")
                                         .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
                                 }.buttonStyle(PlainButtonStyle())
                                 Divider()
                                 NavigationLink(destination: EmptyView(), isActive: self.$otherViewActive) {
-                                    ListRow(title: "Statistichs", iconName: "x.squareroot")
+                                    ListRow(title: "Whatever", iconName: "function")
                                         .padding(EdgeInsets(top: 5, leading: 5, bottom: 15, trailing: 5))
                                 }.buttonStyle(PlainButtonStyle())
                             }
@@ -96,7 +88,7 @@ struct HomeView: View {
     }
 }
 
-struct HomeSection<Content: View>: View {
+struct HomeSection<Content>: View where Content: View {
     
     var sectionTitle: String
     var content: () -> Content

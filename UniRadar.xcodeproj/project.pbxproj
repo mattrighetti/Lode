@@ -28,6 +28,10 @@
 		C9D2A9F9244C0CD800CA8AAE /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */; };
 		C9D2A9FC244D0D6500CA8AAE /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */; };
 		C9D2A9FE244D1F5200CA8AAE /* ReminderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FD244D1F5200CA8AAE /* ReminderForm.swift */; };
+		C9EF67F424535944005A2CA0 /* ExamForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F324535944005A2CA0 /* ExamForm.swift */; };
+		C9EF67F6245362A6005A2CA0 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F5245362A6005A2CA0 /* +View.swift */; };
+		C9EF67F82453A92B005A2CA0 /* GradientPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F72453A92B005A2CA0 /* GradientPickerView.swift */; };
+		C9EF67FA2453CA93005A2CA0 /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F92453CA93005A2CA0 /* +Date.swift */; };
 		C9FDD70D244E56ED003A31CF /* ExamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD70C244E56ED003A31CF /* ExamsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +58,10 @@
 		C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
 		C9D2A9FD244D1F5200CA8AAE /* ReminderForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderForm.swift; sourceTree = "<group>"; };
+		C9EF67F324535944005A2CA0 /* ExamForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamForm.swift; sourceTree = "<group>"; };
+		C9EF67F5245362A6005A2CA0 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
+		C9EF67F72453A92B005A2CA0 /* GradientPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPickerView.swift; sourceTree = "<group>"; };
+		C9EF67F92453CA93005A2CA0 /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
 		C9FDD70C244E56ED003A31CF /* ExamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +145,8 @@
 			children = (
 				1312EF7723722DC100650D18 /* +Color.swift */,
 				13BD5C0523735A5E00B44A26 /* +Utils.swift */,
+				C9EF67F5245362A6005A2CA0 /* +View.swift */,
+				C9EF67F92453CA93005A2CA0 /* +Date.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -172,6 +182,7 @@
 			children = (
 				C9A52E762448C4FD00C3EF9C /* DataCard.swift */,
 				C9555B6E2450E8340031933D /* LottieView.swift */,
+				C9EF67F72453A92B005A2CA0 /* GradientPickerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -198,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				C9FDD70C244E56ED003A31CF /* ExamsView.swift */,
+				C9EF67F324535944005A2CA0 /* ExamForm.swift */,
 			);
 			path = Exams;
 			sourceTree = "<group>";
@@ -283,6 +295,8 @@
 				C9356635244A6E6E006B1164 /* BarShape.swift in Sources */,
 				C9D2A9FC244D0D6500CA8AAE /* RemindersView.swift in Sources */,
 				C9766D0E2443D6260056726D /* MainView.swift in Sources */,
+				C9EF67F6245362A6005A2CA0 /* +View.swift in Sources */,
+				C9EF67F424535944005A2CA0 /* ExamForm.swift in Sources */,
 				C9766D112443DBB40056726D /* HomeView.swift in Sources */,
 				1301E0FC23428D2D0038ACA9 /* UniRadar.xcdatamodeld in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
@@ -296,7 +310,9 @@
 				13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */,
 				C9D2A9F7244BFAA300CA8AAE /* Mark.swift in Sources */,
 				C9D2A9F9244C0CD800CA8AAE /* StatsView.swift in Sources */,
+				C9EF67FA2453CA93005A2CA0 /* +Date.swift in Sources */,
 				C9A52E792448C9D900C3EF9C /* CircularProgressBar.swift in Sources */,
+				C9EF67F82453A92B005A2CA0 /* GradientPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +463,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.UniRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -468,7 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.UniRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
