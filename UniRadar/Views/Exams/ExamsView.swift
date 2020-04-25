@@ -26,6 +26,7 @@ struct ExamsView: View {
                     print("Deleted")
                 }
             }
+
             .navigationBarTitle("Exams")
             .navigationBarItems(
                 leading: EditButton(),

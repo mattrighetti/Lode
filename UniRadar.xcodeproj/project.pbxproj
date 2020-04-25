@@ -20,6 +20,8 @@
 		C9555B6F2450E8340031933D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9555B6E2450E8340031933D /* LottieView.swift */; };
 		C9766D0E2443D6260056726D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9766D0D2443D6260056726D /* MainView.swift */; };
 		C9766D112443DBB40056726D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9766D102443DBB40056726D /* HomeView.swift */; };
+		C9844BFE24549F0200345A26 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844BFD24549F0200345A26 /* CardStack.swift */; };
+		C9844C012454B0F400345A26 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844C002454B0F400345A26 /* Deck.swift */; };
 		C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E762448C4FD00C3EF9C /* DataCard.swift */; };
 		C9A52E792448C9D900C3EF9C /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */; };
 		C9CED55F243E6E7000FDE90C /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */; };
@@ -50,6 +52,8 @@
 		C9555B6E2450E8340031933D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		C9766D0D2443D6260056726D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C9766D102443DBB40056726D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C9844BFD24549F0200345A26 /* CardStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStack.swift; sourceTree = "<group>"; };
+		C9844C002454B0F400345A26 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C9A52E762448C4FD00C3EF9C /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
 		C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -177,9 +181,27 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		C9844BFC24549EE700345A26 /* CardStack */ = {
+			isa = PBXGroup;
+			children = (
+				C9844BFF2454B0E400345A26 /* Model */,
+				C9844BFD24549F0200345A26 /* CardStack.swift */,
+			);
+			path = CardStack;
+			sourceTree = "<group>";
+		};
+		C9844BFF2454B0E400345A26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C9844C002454B0F400345A26 /* Deck.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C9A52E752448C4EB00C3EF9C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C9844BFC24549EE700345A26 /* CardStack */,
 				C9A52E762448C4FD00C3EF9C /* DataCard.swift */,
 				C9555B6E2450E8340031933D /* LottieView.swift */,
 				C9EF67F72453A92B005A2CA0 /* GradientPickerView.swift */,
@@ -322,7 +344,9 @@
 				1301E0FC23428D2D0038ACA9 /* UniRadar.xcdatamodeld in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
 				C9D2A9FE244D1F5200CA8AAE /* ReminderForm.swift in Sources */,
+				C9844BFE24549F0200345A26 /* CardStack.swift in Sources */,
 				1312EF7823722DC100650D18 /* +Color.swift in Sources */,
+				C9844C012454B0F400345A26 /* Deck.swift in Sources */,
 				C9D2A9F5244BEDB600CA8AAE /* MarksView.swift in Sources */,
 				C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */,
 				C9555B6F2450E8340031933D /* LottieView.swift in Sources */,
