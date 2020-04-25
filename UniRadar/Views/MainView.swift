@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct MainView: View {
-    
+
     @State var introduced: Bool = true
     @State var showSplashscreen: Bool = true
-    
+
     var body: some View {
         TabView {
             HomeView()

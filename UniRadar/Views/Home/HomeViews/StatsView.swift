@@ -13,7 +13,7 @@ struct StatsView: View {
         ZStack {
             Color("background").edgesIgnoringSafeArea(.all)
             ScrollView(.vertical, showsIndicators: false) {
-                
+
                 HomeSection(sectionTitle: "Main Info") {
                     ZStack {
                         Color("cardBackground")
@@ -34,7 +34,7 @@ struct StatsView: View {
                     .cornerRadius(15)
                     .padding(.horizontal, 20)
                 }
-                
+
                 HomeSection(sectionTitle: "Current statistics") {
                     ZStack {
                         Color("cardBackground")
@@ -55,7 +55,7 @@ struct StatsView: View {
                     .cornerRadius(15)
                     .padding(.horizontal, 20)
                 }
-                
+
                 HomeSection(sectionTitle: "Exams Passed") {
                     ZStack {
                         Color("cardBackground")
@@ -68,40 +68,44 @@ struct StatsView: View {
                             Divider()
                             MainInfoRow(infoName: "Worse than expected", iconName: "nul", value: 22)
                                 .padding(EdgeInsets(top: 5, leading: 10, bottom: 15, trailing: 10))
-                                
+
                         }
                     }
                     .cornerRadius(15)
                     .padding(.horizontal, 20)
                 }
-                
+
                 HomeSection(sectionTitle: "Latest Marks") {
                     ZStack {
                         Color("cardBackground")
-                        BarChartView(arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatDarkRed).padding()
+                        BarChartView(
+                            arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatDarkRed
+                        ).padding()
                     }.frame(height: 300, alignment: .center)
                 }
-                
+
                 HomeSection(sectionTitle: "Average Path") {
                     ZStack {
                         Color("cardBackground")
-                        BarChartView(arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatDarkRed).padding()
+                        BarChartView(
+                            arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatDarkRed
+                        ).padding()
                     }.frame(height: 300, alignment: .center)
                 }
-                
+
             }
-                
+
             .navigationBarTitle("Statistics")
         }
     }
 }
 
 struct MainInfoRow: View {
-    
+
     var infoName: String
     var iconName: String
     var value: Int
-    
+
     var body: some View {
         HStack {
             Image(systemName: "book")

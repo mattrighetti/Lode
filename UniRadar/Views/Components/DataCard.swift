@@ -9,23 +9,23 @@
 import SwiftUI
 
 struct DataCard<Content: View>: View {
-    
+
     var headerTitle: String
     var description: String
     let content: () -> Content
-    
+
     var body: some View {
         ZStack {
             Color("cardBackground")
             VStack {
                 content()
-                
+
                 VStack {
                     Text("\(headerTitle)")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(.bottom)
-                    
+
                     Text("\(description)")
                         .font(.body)
                         .lineLimit(2)
@@ -44,7 +44,7 @@ struct DataCard_Previews: PreviewProvider {
             DataCard(headerTitle: "EXAMS", description: "Good Boy") {
                 CircularProgressBar(progress: $progress)
             }.environment(\.colorScheme, .dark)
-            
+
             DataCard(headerTitle: "BarChart", description: "Bang dude") {
                 EmptyView()
             }

@@ -14,27 +14,27 @@ public struct GridIndex {
 }
 
 struct GradientPickerView: View {
-    
+
     @Binding var gradientIndex: GridIndex
     @Binding var iconName: String
-    
+
     @State private var pickerSelection: [String] = []
-    
+
     var body: some View {
         VStack(spacing: 0) {
             VStack {
                 Spacer()
-                
+
                 ZStack {
                     Color.gradientsPalette[gradientIndex.row][gradientIndex.column]
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    .frame(width: 100, height: 100, alignment: .center)
-                    
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .frame(width: 100, height: 100, alignment: .center)
+
                     Image(systemName: "pencil")
                         .font(.system(size: 60))
                         .foregroundColor(.white)
                 }
-                
+
                 Spacer()
                 Divider().padding(0)
                 Picker(selection: .constant(1), label: Text("Picker")) {
@@ -44,9 +44,9 @@ struct GradientPickerView: View {
                 .foregroundColor(Color.blue)
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.horizontal, 50)
-                
+
                 Divider().padding(0)
-                
+
                 GridStack(rows: 3, columns: 5) { row, column in
                     CircleColorPickerElement(
                         row: row,
@@ -66,7 +66,7 @@ struct GridStack<Content: View>: View {
     let rows: Int
     let columns: Int
     let content: (Int, Int) -> Content
-    
+
     var body: some View {
         VStack {
             ForEach(0..<rows, id: \.self) { row in
@@ -81,12 +81,12 @@ struct GridStack<Content: View>: View {
 }
 
 struct CircleColorPickerElement: View {
-    
+
     var row: Int
     var col: Int
-    
+
     @Binding var currentIndex: GridIndex
-    
+
     var body: some View {
         ZStack {
             Circle()
@@ -95,7 +95,7 @@ struct CircleColorPickerElement: View {
             generateSelection()
         }
     }
-    
+
     func generateSelection() -> AnyView {
         if currentIndex.column == col && currentIndex.row == row {
             return AnyView(
@@ -113,7 +113,7 @@ struct CircleColorPickerElement: View {
 struct GradientPickerView_Previews: PreviewProvider {
     @State private static var iconName: String = "pencil"
     @State private static var index: GridIndex = GridIndex(row: 1, column: 1)
-    
+
     static var previews: some View {
         GradientPickerView(gradientIndex: $index, iconName: $iconName).colorScheme(.dark)
     }

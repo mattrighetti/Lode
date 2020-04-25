@@ -16,33 +16,33 @@ struct Mark: Identifiable {
     var difficulty: Int
     var datePassedString: String = "No date"
     var datePassed: Date
-    
+
     init(subjectName: String, expectedMark: Int, difficulty: Int, datePassed: Date) {
         self.subjectName = subjectName
         self.expectedMark = expectedMark
         self.finalMark = nil
         self.difficulty = difficulty
         self.datePassed = datePassed
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: "en_US")
         datePassedString = dateFormatter.string(from: datePassed)
     }
-    
+
     init(subjectName: String, expectedMark: Int, finalMark: Int, difficulty: Int, datePassed: Date) {
         self.subjectName = subjectName
         self.expectedMark = expectedMark
         self.finalMark = finalMark
         self.difficulty = difficulty
         self.datePassed = datePassed
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: "en_US")
         datePassedString = dateFormatter.string(from: datePassed)
     }
-    
+
 }

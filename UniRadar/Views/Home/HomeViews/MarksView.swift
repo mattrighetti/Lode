@@ -9,15 +9,17 @@
 import SwiftUI
 
 struct MarksView: View {
-    
+
     @State var marks: [Mark] = [
-        Mark(subjectName: "Analisi 1", expectedMark: 28, finalMark: 27, difficulty: 3, datePassed: Date()),
-        Mark(subjectName: "Analisi 2", expectedMark: 28, finalMark: 29, difficulty: 3, datePassed: Date()),
+        Mark(
+            subjectName: "Analisi 1", expectedMark: 28, finalMark: 27, difficulty: 3, datePassed: Date()),
+        Mark(
+            subjectName: "Analisi 2", expectedMark: 28, finalMark: 29, difficulty: 3, datePassed: Date()),
         Mark(subjectName: "ACA", expectedMark: 28, difficulty: 3, datePassed: Date()),
         Mark(subjectName: "AAPP", expectedMark: 28, difficulty: 3, datePassed: Date()),
         Mark(subjectName: "Computer Graphics", expectedMark: 28, difficulty: 3, datePassed: Date())
     ]
-    
+
     var body: some View {
         List {
             ForEach(marks, id: \.id) { mark in
@@ -25,30 +27,31 @@ struct MarksView: View {
                     .listRowBackground(Color("background"))
             }.onDelete(perform: removeItems)
         }
-        
+
         .navigationBarTitle("Marks")
-        .navigationBarItems(trailing:
-            HStack {
-                EditButton()
-                Button(action: {
-                    print("Add mark")
-                }) {
-                    Image("plus.circle")
+        .navigationBarItems(
+            trailing:
+                HStack {
+                    EditButton()
+                    Button(action: {
+                        print("Add mark")
+                    }, label: {
+                        Image("plus.circle")
+                    })
                 }
-            }
         )
     }
-    
+
     func removeItems(at offsets: IndexSet) {
         marks.remove(atOffsets: offsets)
     }
-    
+
 }
 
 struct MarkCard: View {
-    
+
     var mark: Mark
-    
+
     var body: some View {
         ZStack {
             Color("cardBackground")
@@ -64,7 +67,8 @@ struct MarkCard: View {
                     }
                     Spacer()
                     VStack {
-                        Text(mark.finalMark != nil ? String(mark.finalMark!) : String(mark.expectedMark)).font(.title)
+                        Text(mark.finalMark != nil ? String(mark.finalMark!) : String(mark.expectedMark)).font(
+                            .title)
                         Image(systemName: markIcon()).foregroundColor(markIconColor())
                         Text(mark.finalMark != nil ? "Passed" : "Expected")
                     }.padding(.trailing, 5)
@@ -74,33 +78,33 @@ struct MarkCard: View {
             }.padding()
         }.cornerRadius(25)
     }
-    
+
     func markIcon() -> String {
         guard let finalMark = mark.finalMark else {
             return "questionmark.circle"
         }
-        
+
         if finalMark >= mark.expectedMark {
             return "checkmark.seal"
         }
-        
+
         return "xmark.seal"
     }
-    
+
     func markIconColor() -> Color {
         let markIconValue = markIcon()
-        
+
         if markIconValue == "questionmark.circle" {
             return Color.orange
         }
-        
+
         if markIconValue == "checkmark.seal" {
             return Color.green
         }
-        
+
         return Color.red
     }
-    
+
 }
 
 struct MarksView_Previews: PreviewProvider {

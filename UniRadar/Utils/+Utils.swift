@@ -17,7 +17,7 @@ struct Constants {
 }
 
 extension Double {
-    var twoDecimalPrecision : String {
+    var twoDecimalPrecision: String {
         return String(format: "%.2f", self)
     }
 }

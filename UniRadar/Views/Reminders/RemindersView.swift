@@ -6,8 +6,8 @@
 //  Copyright © 2020 Mattia Righetti. All rights reserved.
 //
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct Reminder: Identifiable {
     let id: UUID = UUID()
@@ -17,18 +17,24 @@ struct Reminder: Identifiable {
 }
 
 struct RemindersView: View {
-    
+
     @State var showForm: Bool = false
     @State var pickerData = []
-    
+
     var body: some View {
         NavigationView {
             List {
-                ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 3).listRowBackground(Color("background"))
-                ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 7).listRowBackground(Color("background"))
-                ReminderRow(title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 1).listRowBackground(Color("background"))
+                ReminderRow(
+                    title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 3
+                ).listRowBackground(Color("background"))
+                ReminderRow(
+                    title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 7
+                ).listRowBackground(Color("background"))
+                ReminderRow(
+                    title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 1
+                ).listRowBackground(Color("background"))
             }
-            
+
             .navigationBarTitle("Assignments")
             .navigationBarItems(
                 leading: EditButton(),
@@ -41,7 +47,8 @@ struct RemindersView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                 ),
-                trailing: Button(action: { self.showForm.toggle() }, label: { Image(systemName: "plus.circle") })
+                trailing: Button(
+                    action: { self.showForm.toggle() }, label: { Image(systemName: "plus.circle") })
             )
         }
         .sheet(isPresented: $showForm) {
@@ -51,14 +58,14 @@ struct RemindersView: View {
 }
 
 struct ReminderRow: View {
-    
+
     var title: String
     var description: String
     var daysLeft: Int
     var colors: [Color] = [.flatDarkRed, .flatLightRed]
-    
+
     var body: some View {
-        ZStack{
+        ZStack {
             Color("cardBackground")
             HStack {
                 ZStack(alignment: .center) {
@@ -70,37 +77,37 @@ struct ReminderRow: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                    
+
                     VStack {
                         Text("\(daysLeft)")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
-                        
+
                         Text("missing")
                             .foregroundColor(.white)
                     }
                 }.frame(width: 100, height: 80, alignment: .center)
-                
+
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.headline)
                         .fontWeight(.bold)
                         .padding(.bottom)
-                    
+
                     Text(description)
                         .font(.caption)
                         .lineLimit(2)
-                    
+
                     isDueSoon()
                 }
-                
+
                 Spacer()
             }
             .padding()
         }
         .clipShape(RoundedRectangle(cornerRadius: 25.0))
     }
-    
+
     func isDueSoon() -> some View {
         if daysLeft < 5 {
             return AnyView(
@@ -119,13 +126,13 @@ struct ReminderRow: View {
             )
         }
     }
-    
+
 }
 
 struct RemindersView_Previews: PreviewProvider {
     static var previews: some View {
         RemindersView()
-        .previewDevice("iPhone 11")
+            .previewDevice("iPhone 11")
             .environment(\.colorScheme, .dark)
     }
 }

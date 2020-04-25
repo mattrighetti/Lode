@@ -9,28 +9,30 @@
 import SwiftUI
 
 extension View {
-    func navigationBarItems<L, C, T>(leading: L, center: C, trailing: T) -> some View where L: View, C: View, T: View {
-        self.navigationBarItems(leading:
-            HStack{
+    func navigationBarItems<L, C, T>(leading: L, center: C, trailing: T) -> some View
+    where L: View, C: View, T: View {
+        self.navigationBarItems(
+            leading:
                 HStack {
-                    leading
+                    HStack {
+                        leading
+                    }
+                    .frame(width: 50, alignment: .leading)
+                    Spacer()
+                    HStack {
+                        center
+                    }
+                    .frame(width: 200, alignment: .center)
+                    Spacer()
+                    HStack {
+                        //Text("asdasd")
+                        trailing
+                    }
+                    //.background(Color.blue)
+                    .frame(width: 50, alignment: .trailing)
                 }
-                .frame(width: 50, alignment: .leading)
-                Spacer()
-                HStack {
-                    center
-                }
-                .frame(width: 200, alignment: .center)
-                Spacer()
-                HStack {
-                    //Text("asdasd")
-                    trailing
-                }
-                //.background(Color.blue)
-                .frame(width: 50, alignment: .trailing)
-            }
-            //.background(Color.yellow)
-            .frame(width: UIScreen.main.bounds.size.width - 32)
+                //.background(Color.yellow)
+                .frame(width: UIScreen.main.bounds.size.width - 32)
 
         )
 
