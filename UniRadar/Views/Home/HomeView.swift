@@ -19,9 +19,8 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
-
                 // MARK: - CardDeck Section
-                HomeSection(sectionTitle: "Your Info") {
+                HomeSection(sectionTitle: "Main Info") {
                     CardStack()
                         .padding(.horizontal, 25)
                 }
@@ -30,32 +29,27 @@ struct HomeView: View {
                 
                 // MARK: - Categories Section
                 HomeSection(sectionTitle: "Categories") {
-                    ZStack {
-                        Color("cardBackground")
-                        VStack {
-                            NavigationLink(destination: MarksView(), isActive: self.$markViewActive) {
-                                ListRow(title: "Marks", iconName: "rosette")
-                                    .padding(EdgeInsets(top: 15, leading: 5, bottom: 5, trailing: 5))
-                            }.buttonStyle(PlainButtonStyle())
-                            Divider()
-                            NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
-                                ListRow(title: "Statistics", iconName: "x.squareroot")
-                                    .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
-                            }.buttonStyle(PlainButtonStyle())
-                            Divider()
-                            NavigationLink(destination: EmptyView(), isActive: self.$otherViewActive) {
-                                ListRow(title: "Whatever", iconName: "function")
-                                    .padding(EdgeInsets(top: 5, leading: 5, bottom: 15, trailing: 5))
-                            }.buttonStyle(PlainButtonStyle())
-                        }
-                    }
+                    VStack {
+                        NavigationLink(destination: MarksView(), isActive: self.$markViewActive) {
+                            ListRow(title: "Marks", iconName: "rosette")
+                                .padding(EdgeInsets(top: 15, leading: 5, bottom: 5, trailing: 5))
+                        }.buttonStyle(PlainButtonStyle())
+                        Divider()
+                        NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
+                            ListRow(title: "Statistics", iconName: "x.squareroot")
+                                .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
+                        }.buttonStyle(PlainButtonStyle())
+                        Divider()
+                        NavigationLink(destination: EmptyView(), isActive: self.$otherViewActive) {
+                            ListRow(title: "Whatever", iconName: "function")
+                                .padding(EdgeInsets(top: 5, leading: 5, bottom: 15, trailing: 5))
+                        }.buttonStyle(PlainButtonStyle())
+                    }.background(Color("cardBackground"))
                     .cornerRadius(15)
                     .padding(.horizontal, 20)
                 }
                 .padding(.bottom)
             }
-            .padding(.top)
-            .background(Color("background").edgesIgnoringSafeArea(.all))
 
             .navigationBarTitle("Home", displayMode: .automatic)
             .navigationBarItems(
