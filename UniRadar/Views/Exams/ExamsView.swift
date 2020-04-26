@@ -76,7 +76,7 @@ struct ExamsView: View {
                     trailing: Button(action: { self.addExamModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
                 )
         }.sheet(isPresented: $addExamModalShown) {
-            ExamForm(modalDismissed: self.$addExamModalShown)
+            ExamForm()
                 .environment(\.managedObjectContext, self.managedObjectContext)
         }
     }

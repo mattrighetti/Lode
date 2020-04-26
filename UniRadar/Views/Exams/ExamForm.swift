@@ -10,9 +10,8 @@ import SwiftUI
 
 struct ExamForm: View {
 
+    @Environment(\.presentationMode) var presentatitonMode
     @Environment(\.managedObjectContext) var managedObjectContext
-
-    @Binding var modalDismissed: Bool
 
     @State private var title: String = ""
     @State private var iconName: String = "pencil"
@@ -71,7 +70,7 @@ struct ExamForm: View {
                 trailing:
                     Button(action: {
                         self.addExam()
-                        self.modalDismissed.toggle()
+                        self.presentatitonMode.wrappedValue.dismiss()
                     }, label: {
                         Text("Done")
                     })
@@ -98,9 +97,8 @@ struct ExamForm: View {
 
 struct ExamForm_Previews: PreviewProvider {
     @State private static var title: String = "title"
-    @State private static var shown = false
 
     static var previews: some View {
-        ExamForm(modalDismissed: $shown).colorScheme(.dark)
+        ExamForm().colorScheme(.dark)
     }
 }

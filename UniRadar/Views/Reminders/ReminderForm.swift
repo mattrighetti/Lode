@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ReminderForm: View {
     
+    // Does automatically the job to get the dismiss Bool of the View that launches this as sheet
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
 
     @State private var title: String = ""
@@ -18,8 +20,6 @@ struct ReminderForm: View {
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 3)
     @State private var iconName: String = ""
     @State private var activeColorNavigationLink: Bool = false
-    // Does automatically the job to get the dismiss Bool of the View that launches this as sheet
-    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
