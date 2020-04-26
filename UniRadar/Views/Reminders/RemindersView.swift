@@ -42,9 +42,11 @@ struct RemindersView: View {
                 }, label: {
                     HStack {
                         VStack(alignment: .leading, spacing: 10) {
-                            Image(systemName: "plus.circle")
+                            Image(systemName: "plus.circle").foregroundColor(Color("bw"))
                             Spacer()
-                            Text("Add reminder").fontWeight(.bold)
+                            Text("Add reminder")
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("bw"))
                         }
                         Spacer()
                     }
@@ -60,7 +62,7 @@ struct RemindersView: View {
                                 dash: [7]
                             )
                         )
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("bw"))
                 ).listRowBackground(Color("background"))
             }
 

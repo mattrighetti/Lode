@@ -39,9 +39,11 @@ struct ExamsView: View {
                 }, label: {
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
-                                Image(systemName: "plus.circle")
+                                Image(systemName: "plus.circle").foregroundColor(Color("bw"))
                                 Spacer()
-                                Text("Add exam").fontWeight(.bold)
+                                Text("Add exam")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color("bw"))
                             }
                             Spacer()
                         }
@@ -57,24 +59,24 @@ struct ExamsView: View {
                                     dash: [7]
                                 )
                             )
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("bw"))
                     ).listRowBackground(Color("background"))
-                }
+            }
 
-                .navigationBarTitle("Exams")
-                .navigationBarItems(
-                    leading: EditButton(),
-                    center: AnyView(
-                        Picker(selection: .constant(1), label: Text("Picker")) {
-                            Text("Upcoming").tag(1)
-                            Text("Past").tag(2)
-                        }
-                        .foregroundColor(Color.blue)
-                        .pickerStyle(SegmentedPickerStyle())
-                        .padding()
-                    ),
-                    trailing: Button(action: { self.addExamModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
-                )
+            .navigationBarTitle("Exams")
+            .navigationBarItems(
+                leading: EditButton(),
+                center: AnyView(
+                    Picker(selection: .constant(1), label: Text("Picker")) {
+                        Text("Upcoming").tag(1)
+                        Text("Past").tag(2)
+                    }
+                    .foregroundColor(Color.blue)
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                ),
+                trailing: Button(action: { self.addExamModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
+            )
         }.sheet(isPresented: $addExamModalShown) {
             ExamForm()
                 .environment(\.managedObjectContext, self.managedObjectContext)
@@ -124,11 +126,10 @@ struct ExamRow: View {
 }
 
 struct ExamsView_Previews: PreviewProvider {
-    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
         .viewContext
-    var exam = Exam(context: context)
 
     static var previews: some View {
-        ExamsView().environment(\.colorScheme, .dark).environment(\.managedObjectContext, context)
+        ExamsView().environment(\.colorScheme, .dark).environment(\.managedObjectContext, context!)
     }
 }
