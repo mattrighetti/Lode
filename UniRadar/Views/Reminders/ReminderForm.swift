@@ -16,14 +16,14 @@ struct ReminderForm: View {
 
     @State private var title: String = ""
     @State private var description: String = ""
-    @State private var selectedDate: Date = Date()
+    @State private var date: Date = Date()
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 3)
     @State private var iconName: String = ""
     @State private var activeColorNavigationLink: Bool = false
 
     var body: some View {
         NavigationView {
-            VStack {
+            ScrollView {
                 NavigationLink(
                     destination: GradientPickerView(gradientIndex: $colorIndex, iconName: $iconName),
                     isActive: $activeColorNavigationLink
@@ -45,19 +45,48 @@ struct ReminderForm: View {
                     }.padding(.top, 50)
                 }
                 
-                Form {
-                    Section(header: Text("Infos")) {
-                        TextField("Assignment title", text: $title)
-                        TextField("Assignment description", text: $title)
-                    }
-
-                    Section(header: Text("Date")) {
-                        DatePicker(selection: $selectedDate, in: Date()..., displayedComponents: .date) {
-                            Text("Due date")
-                        }
-                    }
+                HStack {
+                    Text("Info").font(.headline).fontWeight(.bold)
+                    Spacer()
                 }
+                .padding(.top)
+                
+                TextField("Assignment title", text: $title)
+                    .padding()
+                    .background(Color("cardBackground"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+                TextField("Assignment description", text: $title)
+                    .padding()
+                    .background(Color("cardBackground"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Exam Date").font(.headline).fontWeight(.bold).padding(.bottom, 15)
+                        HStack {
+                            Spacer()
+                            Text(date.textDateRappresentation)
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                            Spacer()
+                        }
+                        .padding()
+                        .background(Color("cardBackground"))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    Spacer()
+                }
+                .padding(.top)
+
+                DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
+                    EmptyView()
+                }
+                .labelsHidden().padding(.horizontal)
+                .background(Color("cardBackground"))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
             }
+            .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
             .navigationBarTitle("Add reminder", displayMode: .inline)
             .navigationBarItems(

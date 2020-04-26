@@ -22,7 +22,7 @@ struct ExamForm: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            ScrollView(showsIndicators: false) {
                 NavigationLink(
                     destination: GradientPickerView(gradientIndex: $colorIndex, iconName: $iconName),
                     isActive: $activeColorNavigationLink
@@ -43,37 +43,72 @@ struct ExamForm: View {
                         
                     }.padding(.top, 50)
                 }
-
-                Form {
-                    Section(header: Text("Infos")) {
-                        TextField("Exam title", text: $title)
-                        HStack {
-                            Text("Difficulty").padding(.trailing, 100)
-                            Picker(selection: $difficulty, label: Text("")) {
-                                Text("1").tag(1)
-                                Text("2").tag(2)
-                                Text("3").tag(3)
-                            }
-                            .pickerStyle(SegmentedPickerStyle())
-                        }
-                        DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
-                            Text(date.textDateRappresentation)
-                        }
+                
+                HStack {
+                    Text("Info").font(.headline).fontWeight(.bold)
+                    Spacer()
+                }
+                .padding(.top)
+                
+                TextField("Exam title", text: $title)
+                    .padding()
+                    .background(Color("cardBackground"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Difficulty").font(.headline).fontWeight(.bold).padding(.bottom, 0)
+                        Text("").font(.subheadline)
                     }
-                }.background(Color("background"))
-                    .padding(.top)
+                    Spacer()
+                }
+                .padding(.top)
+                
+                Picker(selection: $difficulty, label: Text("")) {
+                    Text("1").tag(1)
+                    Text("2").tag(2)
+                    Text("3").tag(3)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Exam Date").font(.headline).fontWeight(.bold).padding(.bottom, 15)
+                        HStack {
+                            Spacer()
+                            Text(date.textDateRappresentation)
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                            Spacer()
+                        }
+                        .padding()
+                        .background(Color("cardBackground"))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    Spacer()
+                }
+                .padding(.top)
+
+                DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
+                    EmptyView()
+                }
+                .labelsHidden().padding(.horizontal)
+                .background(Color("cardBackground"))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                
             }
+            .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
 
             .navigationBarTitle("Add exam", displayMode: .inline)
             .navigationBarItems(
-                trailing:
-                    Button(action: {
+                leading: Button("Cancel") {
+                    self.presentatitonMode.wrappedValue.dismiss()
+                },
+                trailing: Button("Done") {
                         self.addExam()
                         self.presentatitonMode.wrappedValue.dismiss()
-                    }, label: {
-                        Text("Done")
-                    })
+                    }
             )
         }
     }
