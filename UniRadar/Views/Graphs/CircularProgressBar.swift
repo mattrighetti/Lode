@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct CircularProgressBar: View {
-    @Binding var progress: CGFloat
-
+    
+    var progress: CGFloat
     var colors: [Color] = [Color.lightRed, Color.darkRed]
 
     var body: some View {
@@ -34,8 +34,8 @@ struct CircularProgressBar: View {
 }
 
 struct CircularProgressBar_Previews: PreviewProvider {
-    @State public static var progress: CGFloat = 1
+    static var progress: CGFloat = 1
     static var previews: some View {
-        CircularProgressBar(progress: $progress)
+        CircularProgressBar(progress: progress)
     }
 }

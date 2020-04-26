@@ -22,25 +22,12 @@ struct HomeView: View {
 
                 // MARK: - CardDeck Section
                 HomeSection(sectionTitle: "Your Info") {
-//                    ZStack {
-//                        DataCard(
-//                            headerTitle: "Your cfu", description: "Completion percentage of \n your CFUs"
-//                        ) {
-//                            CircularProgressBar(progress: self.$progress).padding()
-//                        }
-//                        .opacity(0.6)
-//                        .scaleEffect(0.85)
-//                        .offset(x: 0.0, y: 35.0)
-//                        .frame(width: 300, height: 300, alignment: .center)
-//
-//                        DataCard(headerTitle: "Exams", description: "You got few exams left") {
-//                            CircularProgressBar(progress: self.$progress).padding()
-//                        }
-//                        .frame(width: 300, height: 300, alignment: .center)
-//                    }
                     CardStack()
-                }.frame(height: 400, alignment: .center)
-
+                        .padding(.horizontal, 25)
+                }
+                .padding(.bottom)
+                .frame(height: 450)
+                
                 // MARK: - Categories Section
                 HomeSection(sectionTitle: "Categories") {
                     ZStack {
@@ -67,9 +54,10 @@ struct HomeView: View {
                 }
                 .padding(.bottom)
             }
+            .padding(.top)
             .background(Color("background").edgesIgnoringSafeArea(.all))
 
-            .navigationBarTitle("Home")
+            .navigationBarTitle("Home", displayMode: .automatic)
             .navigationBarItems(
                 leading:
                     HStack {
@@ -106,7 +94,7 @@ struct HomeSection<Content>: View where Content: View {
                     .padding(EdgeInsets(top: 20, leading: 20, bottom: 10, trailing: 0))
                 Spacer()
             }
-
+            
             content()
         }
     }
@@ -130,7 +118,7 @@ struct ListRow: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .previewDevice("iPhone 11")
+            .previewDevice("iPhone 8")
             .environment(\.colorScheme, .dark)
     }
 }

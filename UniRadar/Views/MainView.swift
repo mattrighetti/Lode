@@ -11,7 +11,7 @@ import SwiftUI
 struct MainView: View {
 
     @State var introduced: Bool = true
-    @State var showSplashscreen: Bool = true
+    @State var showSplashscreen: Bool = false
 
     var body: some View {
         TabView {

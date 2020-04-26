@@ -27,20 +27,13 @@ class Deck: ObservableObject {
     
 }
 
-struct InfoCard: View, Identifiable, Equatable {
+struct InfoCard: Identifiable, Equatable {
     
     var id: String {
-        return text
+        return title
     }
     
-    var text: String
-    var color: Color
-    
-    var body: some View {
-        ZStack {
-            color
-            Text(text)
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 15))
-    }
+    var title: String
+    var description: String
+    var progress: CGFloat
 }
