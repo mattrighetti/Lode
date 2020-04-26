@@ -27,8 +27,8 @@ struct GradientPickerView: View {
 
                 ZStack {
                     Color.gradientsPalette[gradientIndex.row][gradientIndex.column]
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .frame(width: 100, height: 100, alignment: .center)
+                        .clipShape(Circle())
+                        .frame(width: 150, height: 150, alignment: .center)
 
                     Image(systemName: "pencil")
                         .font(.system(size: 60))

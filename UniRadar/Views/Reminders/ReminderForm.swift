@@ -9,36 +9,46 @@
 import SwiftUI
 
 struct ReminderForm: View {
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
 
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var selectedDate: Date = Date()
-    @State private var gradientIndex: Int = 0
+    @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 3)
+    @State private var iconName: String = ""
+    @State private var activeColorNavigationLink: Bool = false
     // Does automatically the job to get the dismiss Bool of the View that launches this as sheet
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
-            ZStack {
-                Color("background").edgesIgnoringSafeArea(.top)
+            VStack {
+                NavigationLink(
+                    destination: GradientPickerView(gradientIndex: $colorIndex, iconName: $iconName),
+                    isActive: $activeColorNavigationLink
+                ) {
+                    ZStack {
+                        Circle()
+                            .stroke()
+                            .fill(Color.blue)
+                            .frame(width: 105, height: 105, alignment: .center)
+
+                        Circle()
+                            .fill(Color.gradientsPalette[colorIndex.row][colorIndex.column])
+                            .frame(width: 100, height: 100, alignment: .center)
+
+                        Image(systemName: iconName)
+                            .font(.system(size: 50))
+                            .foregroundColor(.white)
+                        
+                    }.padding(.top, 50)
+                }
+                
                 Form {
                     Section(header: Text("Infos")) {
                         TextField("Assignment title", text: $title)
                         TextField("Assignment description", text: $title)
-                    }
-
-                    Section(header: Text("Color")) {
-                        HStack {
-                            Text("Color")
-                            Spacer()
-
-                            RoundedRectangle(cornerRadius: 5)
-                                .frame(width: 35, height: 35)
-                                .padding(.horizontal)
-
-                            Image(systemName: "chevron.right")
-                        }
-                        .padding(.vertical, 5)
                     }
 
                     Section(header: Text("Date")) {
@@ -48,6 +58,7 @@ struct ReminderForm: View {
                     }
                 }
             }
+            .background(Color("background").edgesIgnoringSafeArea(.all))
             .navigationBarTitle("Add reminder", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(

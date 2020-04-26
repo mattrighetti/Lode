@@ -18,15 +18,15 @@ struct ExamForm: View {
     @State private var iconName: String = "pencil"
     @State private var difficulty: Int = 1
     @State private var date: Date = Date()
-    @State private var colorIndex: GridIndex = GridIndex(row: 1, column: 1)
-    @State private var activeColorNL: Bool = false
+    @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 1)
+    @State private var activeColorNavigationLink: Bool = false
 
     var body: some View {
         NavigationView {
             VStack {
                 NavigationLink(
                     destination: GradientPickerView(gradientIndex: $colorIndex, iconName: $iconName),
-                    isActive: $activeColorNL
+                    isActive: $activeColorNavigationLink
                 ) {
                     ZStack {
                         Circle()
@@ -41,12 +41,22 @@ struct ExamForm: View {
                         Image(systemName: iconName)
                             .font(.system(size: 50))
                             .foregroundColor(.white)
+                        
                     }.padding(.top, 50)
                 }
 
                 Form {
                     Section(header: Text("Infos")) {
                         TextField("Exam title", text: $title)
+                        HStack {
+                            Text("Difficulty").padding(.trailing, 100)
+                            Picker(selection: $difficulty, label: Text("")) {
+                                Text("1").tag(1)
+                                Text("2").tag(2)
+                                Text("3").tag(3)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                        }
                         DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
                             Text(date.textDateRappresentation)
                         }
@@ -74,11 +84,12 @@ struct ExamForm: View {
         newExam.title = title.isEmpty ? "No title" : title
         newExam.iconName = iconName
         newExam.difficulty = 3
-
+        newExam.colorRowIndex = Int16(colorIndex.row)
+        newExam.colorColIndex = Int16(colorIndex.column)
+        
         do {
             try managedObjectContext.save()
         } catch {
-            print("Error here")
             print(error)
         }
     }

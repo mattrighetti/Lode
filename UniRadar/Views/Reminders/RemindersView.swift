@@ -18,6 +18,9 @@ struct Reminder: Identifiable {
 
 struct RemindersView: View {
 
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity:Exam.entity(),sortDescriptors:[]) var exams: FetchedResults<Exam>
+    
     @State var showForm: Bool = false
     @State var pickerData = []
 
@@ -32,6 +35,32 @@ struct RemindersView: View {
                 ).listRowBackground(Color("background"))
                 ReminderRow(
                     title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 1
+                ).listRowBackground(Color("background"))
+                
+                Button(action: {
+                    self.showForm.toggle()
+                }) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Image(systemName: "plus.circle")
+                            Spacer()
+                            Text("Add reminder").fontWeight(.bold)
+                        }
+                        Spacer()
+                    }
+                }
+                .foregroundColor(.white)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 25)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 25)
+                        .strokeBorder(
+                            style: StrokeStyle(
+                                lineWidth: 2,
+                                dash: [7]
+                            )
+                        )
+                        .foregroundColor(.white)
                 ).listRowBackground(Color("background"))
             }
 
@@ -52,7 +81,7 @@ struct RemindersView: View {
             )
         }
         .sheet(isPresented: $showForm) {
-            ReminderForm()
+            ReminderForm().environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }

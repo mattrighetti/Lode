@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set List background color
         UITableView.appearance().backgroundColor = UIColor(named: "background")
         UIPickerView.appearance().backgroundColor = UIColor(named: "cardBackground")
+        UITextField.appearance().backgroundColor = UIColor(named: "background")
         UIScrollView.appearance().backgroundColor = UIColor(named: "background")
 
         return true

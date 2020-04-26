@@ -12,7 +12,7 @@ import SwiftUI
 struct ExamsView: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity:Exam.entity(),sortDescriptors:[]) var exams: FetchedResults<Exam>
+    @FetchRequest(entity: Exam.entity(), sortDescriptors: []) var exams: FetchedResults<Exam>
 
     @State private var addExamModalShown: Bool = false
 
@@ -22,52 +22,70 @@ struct ExamsView: View {
                 ForEach(exams, id: \.self) { exam in
                     ExamRow(exam: exam)
                         .listRowBackground(Color("background"))
-                }.onDelete { _ in
-                    print("Deleted")
-                }
-            }
-
-            .navigationBarTitle("Exams")
-            .navigationBarItems(
-                leading: EditButton(),
-                center: AnyView(
-                    Picker(selection: .constant(1), label: Text("Picker")) {
-                        Text("Upcoming").tag(1)
-                        Text("Past").tag(2)
+                }.onDelete { IndexSet in
+                    let deletedItem = self.exams[IndexSet.first!]
+                    self.managedObjectContext.delete(deletedItem)
+                    
+                    do {
+                        try self.managedObjectContext.save()
+                    } catch {
+                        print(error)
                     }
-                    .foregroundColor(Color.blue)
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding()
-                ),
-                trailing: Button(action: { self.addExamModalShown.toggle() }, label: { Image(systemName: "plus") })
-            )
+                    
+                }
+                
+                Button(action: {
+                        self.addExamModalShown.toggle()
+                    }) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Image(systemName: "plus.circle")
+                                Spacer()
+                                Text("Add exam").fontWeight(.bold)
+                            }
+                            Spacer()
+                        }
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 25)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            .strokeBorder(
+                                style: StrokeStyle(
+                                    lineWidth: 2,
+                                    dash: [7]
+                                )
+                            )
+                            .foregroundColor(.white)
+                    ).listRowBackground(Color("background"))
+                }
+
+                .navigationBarTitle("Exams")
+                .navigationBarItems(
+                    leading: EditButton(),
+                    center: AnyView(
+                        Picker(selection: .constant(1), label: Text("Picker")) {
+                            Text("Upcoming").tag(1)
+                            Text("Past").tag(2)
+                        }
+                        .foregroundColor(Color.blue)
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                    ),
+                    trailing: Button(action: { self.addExamModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
+                )
         }.sheet(isPresented: $addExamModalShown) {
             ExamForm(modalDismissed: self.$addExamModalShown)
+                .environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
-
-    // MARK: - Methods
-
-    func addExam() {
-        let exam = Exam(context: managedObjectContext)
-        exam.examId = UUID()
-        exam.title = "Title"
-        exam.difficulty = 3
-
-        do {
-            try self.managedObjectContext.save()
-        } catch {
-            print("Could not save file")
-        }
-    }
-
 }
 
-// TODO do not force unwrap values
 struct ExamRow: View {
 
     var exam: Exam
-
+    
     var body: some View {
         ZStack {
             Color("cardBackground")
@@ -103,7 +121,9 @@ struct ExamRow: View {
             }
             .padding()
         }
+        .background(Color("cardBackground"))
         .clipShape(RoundedRectangle(cornerRadius: 25))
+        .padding()
     }
 }
 
