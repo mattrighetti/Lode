@@ -20,6 +20,7 @@ struct ReminderForm: View {
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 3)
     @State private var iconName: String = ""
     @State private var activeColorNavigationLink: Bool = false
+    @State private var isShowingDatePicker: Bool = false
 
     var body: some View {
         NavigationView {
@@ -63,31 +64,41 @@ struct ReminderForm: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Exam Date").font(.headline).fontWeight(.bold).padding(.bottom, 15)
+                        Text("Date").font(.headline).fontWeight(.bold).padding(.bottom, 15)
+                        Button(action: {
+                            withAnimation {
+                                self.isShowingDatePicker.toggle()
+                            }
+                        }, label: {
+                            HStack {
+                                Text(date.textDateRappresentation)
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                            }
+                            .padding()
+                            .background(Color("cardBackground"))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        })
+                        
                         HStack {
                             Spacer()
-                            Text(date.textDateRappresentation)
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                            Spacer()
+                            if self.isShowingDatePicker {
+                                DatePicker(selection: self.$date, in: Date()..., displayedComponents: .date) {
+                                    EmptyView()
+                                }.labelsHidden()
+                            }
                         }
-                        .padding()
                         .background(Color("cardBackground"))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .transition(.scale)
                     }
                     Spacer()
                 }
                 .padding(.top)
-
-                DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
-                    EmptyView()
-                }
-                .labelsHidden().padding(.horizontal)
-                .background(Color("cardBackground"))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
+                
             .navigationBarTitle("Add reminder", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(
@@ -96,7 +107,8 @@ struct ReminderForm: View {
                     },
                     label: {
                         Text("Cancel")
-                    }),
+                    }
+                ),
                 trailing: Button(
                     action: {
                         print("Saving")
@@ -104,7 +116,9 @@ struct ReminderForm: View {
                     },
                     label: {
                         Text("Save")
-                    }))
+                    }
+                )
+            )
         }
     }
 }

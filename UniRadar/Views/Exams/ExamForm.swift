@@ -19,6 +19,7 @@ struct ExamForm: View {
     @State private var date: Date = Date()
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 1)
     @State private var activeColorNavigationLink: Bool = false
+    @State private var isShowingDatePicker: Bool = false
 
     var body: some View {
         NavigationView {
@@ -70,31 +71,40 @@ struct ExamForm: View {
                     Text("3").tag(3)
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                
+
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Exam Date").font(.headline).fontWeight(.bold).padding(.bottom, 15)
+                        Text("Date").font(.headline).fontWeight(.bold).padding(.bottom, 15)
+                        Button(action: {
+                            withAnimation {
+                                self.isShowingDatePicker.toggle()
+                            }
+                        }, label: {
+                            HStack {
+                                Text(date.textDateRappresentation)
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                            }
+                            .padding()
+                            .background(Color("cardBackground"))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        })
+                        
                         HStack {
                             Spacer()
-                            Text(date.textDateRappresentation)
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                            Spacer()
+                            if self.isShowingDatePicker {
+                                DatePicker(selection: self.$date, in: Date()..., displayedComponents: .date) {
+                                    EmptyView()
+                                }.labelsHidden()
+                            }
                         }
-                        .padding()
                         .background(Color("cardBackground"))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .transition(.scale)
                     }
                     Spacer()
                 }
                 .padding(.top)
-
-                DatePicker(selection: $date, in: Date()..., displayedComponents: .date) {
-                    EmptyView()
-                }
-                .labelsHidden().padding(.horizontal)
-                .background(Color("cardBackground"))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
                 
             }
             .padding(.horizontal)

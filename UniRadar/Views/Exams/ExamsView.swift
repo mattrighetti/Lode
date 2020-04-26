@@ -36,7 +36,7 @@ struct ExamsView: View {
                 
                 Button(action: {
                         self.addExamModalShown.toggle()
-                    }) {
+                }, label: {
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
                                 Image(systemName: "plus.circle")
@@ -45,7 +45,7 @@ struct ExamsView: View {
                             }
                             Spacer()
                         }
-                    }
+                    })
                     .foregroundColor(.white)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 25)
@@ -87,43 +87,39 @@ struct ExamRow: View {
     var exam: Exam
     
     var body: some View {
-        ZStack {
-            Color("cardBackground")
-            HStack {
-                ZStack(alignment: .center) {
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                gradient: Gradient(colors: [.red, .flatLightRed]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
+        HStack {
+            ZStack(alignment: .center) {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.red, .flatLightRed]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
                         )
-                    Image(systemName: exam.iconName ?? "pencil").font(.system(size: 30))
-                }.frame(width: 70, height: 70, alignment: .center)
+                    )
+                Image(systemName: exam.iconName ?? "pencil").font(.system(size: 30))
+            }.frame(width: 70, height: 70, alignment: .center)
 
-                VStack(alignment: .leading) {
-                    Text(exam.title ?? "No name")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                        .padding(.bottom)
+            VStack(alignment: .leading) {
+                Text(exam.title ?? "No name")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .padding(.bottom)
 
-                    Text("Difficulty: \(exam.difficulty)").font(.caption)
-                }
-
-                Spacer()
-
-                VStack(alignment: .leading) {
-                    Text("Fri").font(.system(size: 20, weight: .regular, design: .monospaced))
-                    Text("24").font(.system(size: 20, weight: .regular, design: .monospaced))
-                    Text("Dec").font(.system(size: 20, weight: .regular, design: .monospaced))
-                }
+                Text("Difficulty: \(exam.difficulty)").font(.caption)
             }
-            .padding()
+
+            Spacer()
+
+            VStack(alignment: .leading) {
+                Text("Fri").font(.system(size: 20, weight: .regular, design: .monospaced))
+                Text("24").font(.system(size: 20, weight: .regular, design: .monospaced))
+                Text("Dec").font(.system(size: 20, weight: .regular, design: .monospaced))
+            }
         }
+        .padding()
         .background(Color("cardBackground"))
         .clipShape(RoundedRectangle(cornerRadius: 25))
-        .padding()
     }
 }
 

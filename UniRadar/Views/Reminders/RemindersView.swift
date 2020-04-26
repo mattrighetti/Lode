@@ -39,7 +39,7 @@ struct RemindersView: View {
                 
                 Button(action: {
                     self.showForm.toggle()
-                }) {
+                }, label: {
                     HStack {
                         VStack(alignment: .leading, spacing: 10) {
                             Image(systemName: "plus.circle")
@@ -48,7 +48,7 @@ struct RemindersView: View {
                         }
                         Spacer()
                     }
-                }
+                })
                 .foregroundColor(.white)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 25)
