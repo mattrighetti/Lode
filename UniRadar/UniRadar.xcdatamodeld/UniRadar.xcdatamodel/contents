@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Assignment" representedClassName="Assignment" syncable="YES" codeGenerationType="class">
         <attribute name="caption" optional="YES" attributeType="String"/>
+        <attribute name="cfu" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="colorColIndex" optional="YES" attributeType="String"/>
         <attribute name="colorRowIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -18,7 +19,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="Assignment" positionX="-90" positionY="72" width="128" height="148"/>
         <element name="Exam" positionX="-86.3203125" positionY="63" width="128" height="148"/>
-        <element name="Assignment" positionX="-90" positionY="72" width="128" height="133"/>
     </elements>
 </model>

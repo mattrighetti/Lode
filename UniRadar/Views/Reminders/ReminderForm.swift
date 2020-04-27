@@ -71,9 +71,11 @@ struct ReminderForm: View {
                             }
                         }, label: {
                             HStack {
+                                Spacer()
                                 Text(date.textDateRappresentation)
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
+                                Spacer()
                             }
                             .padding()
                             .background(Color("cardBackground"))
