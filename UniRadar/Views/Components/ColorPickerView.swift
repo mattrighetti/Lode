@@ -13,12 +13,12 @@ public struct GridIndex {
     let column: Int
 }
 
-struct GradientPickerView: View {
+struct ColorPickerView: View {
 
-    @Binding var gradientIndex: GridIndex
-    @Binding var iconName: String
+    @Binding var colorIndex: GridIndex
+    @Binding var glyphIndex: GridIndex
 
-    @State private var pickerSelection: [String] = []
+    @State private var pickerSelection: Int = 1
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,18 +26,19 @@ struct GradientPickerView: View {
                 Spacer()
 
                 ZStack {
-                    Color.gradientsPalette[gradientIndex.row][gradientIndex.column]
+                    Color.gradientsPalette[colorIndex.row][colorIndex.column]
                         .clipShape(Circle())
                         .frame(width: 150, height: 150, alignment: .center)
 
-                    Image(systemName: "pencil")
+                    Image(systemName: Glyph.glyphArray[glyphIndex.row][glyphIndex.column])
                         .font(.system(size: 60))
                         .foregroundColor(.white)
                 }
 
                 Spacer()
                 Divider().padding(0)
-                Picker(selection: .constant(1), label: Text("Picker")) {
+                
+                Picker(selection: $pickerSelection, label: Text("Picker")) {
                     Text("Color").tag(1)
                     Text("Glyph").tag(2)
                 }
@@ -48,13 +49,24 @@ struct GradientPickerView: View {
                 Divider().padding(0)
 
                 GridStack(rows: 3, columns: 5) { row, column in
-                    CircleColorPickerElement(
-                        row: row,
-                        col: column,
-                        currentIndex: self.$gradientIndex
-                    ).onTapGesture {
-                        print("Tapped \(row) \(column)")
-                        self.gradientIndex = GridIndex(row: row, column: column)
+                    Group {
+                        if self.$pickerSelection.wrappedValue == 1 {
+                            CircleColorPickerElement(
+                                row: row,
+                                col: column,
+                                currentIndex: self.$colorIndex
+                            ).onTapGesture {
+                                self.colorIndex = GridIndex(row: row, column: column)
+                            }
+                        } else {
+                            GlyphColorPickerElement(
+                                row: row,
+                                col: column,
+                                currentIndex: self.$glyphIndex
+                            ).onTapGesture {
+                                self.glyphIndex = GridIndex(row: row, column: column)
+                            }
+                        }
                     }
                 }.padding(.vertical)
             }
@@ -110,11 +122,40 @@ struct CircleColorPickerElement: View {
     }
 }
 
+struct GlyphColorPickerElement: View {
+
+    var row: Int
+    var col: Int
+
+    @Binding var currentIndex: GridIndex
+
+    var body: some View {
+        ZStack {
+            Image(systemName: Glyph.glyphArray[row][col])
+            .frame(width: 50, height: 50)
+            generateSelection()
+        }
+    }
+
+    func generateSelection() -> AnyView {
+        if currentIndex.column == col && currentIndex.row == row {
+            return AnyView(
+                Circle()
+                    .stroke()
+                    .fill(Color.gradientsPalette[row][col])
+                    .frame(width: 45, height: 45)
+            )
+        } else {
+            return AnyView(EmptyView())
+        }
+    }
+}
+
 struct GradientPickerView_Previews: PreviewProvider {
     @State private static var iconName: String = "pencil"
     @State private static var index: GridIndex = GridIndex(row: 1, column: 1)
 
     static var previews: some View {
-        GradientPickerView(gradientIndex: $index, iconName: $iconName).colorScheme(.dark)
+        ColorPickerView(colorIndex: $index, glyphIndex: $index).colorScheme(.dark)
     }
 }

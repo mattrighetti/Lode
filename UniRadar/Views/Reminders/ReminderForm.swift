@@ -18,7 +18,7 @@ struct ReminderForm: View {
     @State private var description: String = ""
     @State private var date: Date = Date()
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 3)
-    @State private var iconName: String = ""
+    @State private var iconIndex: GridIndex = GridIndex(row: 0, column: 3)
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
 
@@ -26,7 +26,7 @@ struct ReminderForm: View {
         NavigationView {
             ScrollView {
                 NavigationLink(
-                    destination: GradientPickerView(gradientIndex: $colorIndex, iconName: $iconName),
+                    destination: ColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
                     isActive: $activeColorNavigationLink
                 ) {
                     ZStack {
@@ -39,7 +39,7 @@ struct ReminderForm: View {
                             .fill(Color.gradientsPalette[colorIndex.row][colorIndex.column])
                             .frame(width: 100, height: 100, alignment: .center)
 
-                        Image(systemName: iconName)
+                        Image(systemName: Glyph.glyphArray[iconIndex.row][iconIndex.column])
                             .font(.system(size: 50))
                             .foregroundColor(.white)
                         
@@ -62,41 +62,39 @@ struct ReminderForm: View {
                     .background(Color("cardBackground"))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 
+                Header(title: "Date").padding(.top)
+                
+                Button(action: {
+                    withAnimation {
+                        self.isShowingDatePicker.toggle()
+                    }
+                }, label: {
+                    HStack {
+                        Spacer()
+                        Text(date.textDateRappresentation)
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        Spacer()
+                    }
+                    .padding()
+                    .background(Color("cardBackground"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                })
+                .padding(.top)
+
                 HStack {
-                    VStack(alignment: .leading) {
-                        Text("Date").font(.headline).fontWeight(.bold).padding(.bottom, 15)
-                        Button(action: {
-                            withAnimation {
-                                self.isShowingDatePicker.toggle()
-                            }
-                        }, label: {
-                            HStack {
-                                Spacer()
-                                Text(date.textDateRappresentation)
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                Spacer()
-                            }
-                            .padding()
-                            .background(Color("cardBackground"))
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                        })
-                        
-                        HStack {
-                            Spacer()
-                            if self.isShowingDatePicker {
-                                DatePicker(selection: self.$date, in: Date()..., displayedComponents: .date) {
-                                    EmptyView()
-                                }.labelsHidden()
-                            }
-                        }
-                        .background(Color("cardBackground"))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .transition(.scale)
+                    Spacer()
+                    if self.isShowingDatePicker {
+                        DatePicker(selection: self.$date, in: Date()..., displayedComponents: .date) {
+                            EmptyView()
+                        }.labelsHidden()
                     }
                     Spacer()
                 }
-                .padding(.top)
+                .background(Color("cardBackground"))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .transition(.scale)
+                
             }
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))

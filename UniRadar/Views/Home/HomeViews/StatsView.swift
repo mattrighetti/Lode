@@ -79,7 +79,7 @@ struct StatsView: View {
                     ZStack {
                         Color("cardBackground")
                         BarChartView(
-                            arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatDarkRed
+                            arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatRed
                         ).padding()
                     }.frame(height: 300, alignment: .center)
                 }
@@ -88,7 +88,7 @@ struct StatsView: View {
                     ZStack {
                         Color("cardBackground")
                         BarChartView(
-                            arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatDarkRed
+                            arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatRed
                         ).padding()
                     }.frame(height: 300, alignment: .center)
                 }

@@ -41,7 +41,7 @@ struct SplashScreenView: View {
         VStack {
             Image(systemName: "chevron.compact.down")
                 .font(.title)
-                .foregroundColor(.flatLightGray)
+                .foregroundColor(.flatAirForceBlue)
                 .padding()
 
             Spacer()
@@ -56,15 +56,15 @@ struct SplashScreenView: View {
 
             HStack {
                 Circle()
-                    .foregroundColor(featureIndex == 0 ? .flatDarkGray : .flatLightGray)
+                    .foregroundColor(featureIndex == 0 ? .flatHurricane : .flatHurricane)
                     .frame(width: 10, height: 10, alignment: .center)
 
                 Circle()
-                    .foregroundColor(featureIndex == 1 ? .flatDarkGray : .flatLightGray)
+                    .foregroundColor(featureIndex == 1 ? .flatHurricane : .flatHurricane)
                     .frame(width: 10, height: 10, alignment: .center)
 
                 Circle()
-                    .foregroundColor(featureIndex == 2 ? .flatDarkGray : .flatLightGray)
+                    .foregroundColor(featureIndex == 2 ? .flatHurricane : .flatHurricane)
                     .frame(width: 10, height: 10, alignment: .center)
             }
         }.gesture(

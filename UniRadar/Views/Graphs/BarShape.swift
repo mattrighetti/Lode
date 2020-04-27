@@ -39,6 +39,6 @@ struct BarChartView_Previews: PreviewProvider {
             arrayValues: [
                 1.0, 2.0, 3.0, 4.0, 5.0, 9.0, 1.0, 2.0, 3.0, 4.0, 5.0, 9.0, 1.0, 2.0, 3.0, 4.0, 5.0, 9.0,
                 1.0, 2.0, 3.0, 4.0, 5.0
-            ], color: .flatDarkRed)
+            ], color: .flatRed)
     }
 }

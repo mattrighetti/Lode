@@ -93,7 +93,7 @@ struct ReminderRow: View {
     var title: String
     var description: String
     var daysLeft: Int
-    var colors: [Color] = [.flatDarkRed, .flatLightRed]
+    var colors: [Color] = [.flatRed, .flatLightRed]
 
     var body: some View {
         ZStack {

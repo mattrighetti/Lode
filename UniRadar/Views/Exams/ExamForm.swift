@@ -14,10 +14,10 @@ struct ExamForm: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 
     @State private var title: String = ""
-    @State private var iconName: String = "pencil"
     @State private var difficulty: Int = 1
     @State private var date: Date = Date()
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 1)
+    @State private var iconIndex: GridIndex = GridIndex(row: 0, column: 1)
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
     @State private var isExamPassed: Bool = false
@@ -30,7 +30,7 @@ struct ExamForm: View {
                 
                 Group {
                     NavigationLink(
-                        destination: GradientPickerView(gradientIndex: $colorIndex, iconName: $iconName),
+                        destination: ColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
                         isActive: $activeColorNavigationLink,
                         label: {
                             ZStack {
@@ -43,7 +43,7 @@ struct ExamForm: View {
                                     .fill(Color.gradientsPalette[colorIndex.row][colorIndex.column])
                                     .frame(width: 100, height: 100, alignment: .center)
 
-                                Image(systemName: iconName)
+                                Image(systemName: Glyph.glyphArray[iconIndex.row][iconIndex.column])
                                     .font(.system(size: 50))
                                     .foregroundColor(.white)
 
@@ -152,7 +152,7 @@ struct ExamForm: View {
     func addExam() {
         let newExam = Exam(context: managedObjectContext)
         newExam.title = title.isEmpty ? "No title" : title
-        newExam.iconName = iconName
+        newExam.iconName = Glyph.glyphArray[iconIndex.row][iconIndex.column]
         newExam.difficulty = 3
         newExam.colorRowIndex = Int16(colorIndex.row)
         newExam.colorColIndex = Int16(colorIndex.column)
