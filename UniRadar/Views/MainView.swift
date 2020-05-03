@@ -7,9 +7,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MainView: View {
 
+    @ObservedObject var viewModel: ViewModel
+    
     @State var introduced: Bool = true
     @State var showSplashscreen: Bool = false
 
@@ -25,7 +28,7 @@ struct MainView: View {
                     Image(systemName: "pin")
                     Text("Reminders")
                 }
-            ExamsView()
+            ExamsView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "function")
                     Text("Stats")
@@ -41,7 +44,8 @@ struct MainView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
+    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     static var previews: some View {
-        MainView().environment(\.colorScheme, .light)
+        MainView(viewModel: ViewModel(context: moc)).colorScheme(.dark).accentColor(Color.red)
     }
 }

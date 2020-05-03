@@ -12,18 +12,19 @@ import SwiftUI
 struct ExamsView: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity: Exam.entity(), sortDescriptors: []) var exams: FetchedResults<Exam>
+    
+    @ObservedObject var viewModel: ViewModel
 
     @State private var addExamModalShown: Bool = false
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(exams, id: \.self) { exam in
+                ForEach(viewModel.exams, id: \.self) { exam in
                     ExamRow(exam: exam)
                         .listRowBackground(Color("background"))
                 }.onDelete { IndexSet in
-                    let deletedItem = self.exams[IndexSet.first!]
+                    let deletedItem = self.viewModel.exams[IndexSet.first!]
                     self.managedObjectContext.delete(deletedItem)
                     
                     do {
@@ -92,13 +93,7 @@ struct ExamRow: View {
         HStack {
             ZStack(alignment: .center) {
                 Circle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [.red, .flatLightRed]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .fill(Color.gradientsPalette[Int(exam.colorRowIndex)][Int(exam.colorColIndex)])
                 Image(systemName: exam.iconName ?? "pencil").font(.system(size: 30))
             }.frame(width: 70, height: 70, alignment: .center)
 
@@ -106,17 +101,16 @@ struct ExamRow: View {
                 Text(exam.title ?? "No name")
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .padding(.bottom)
-
-                Text("Difficulty: \(exam.difficulty)").font(.caption)
+                    .padding(.bottom, 5)
+                
+                Text("CFU: 5")
+                Text("23 Jan 2020")
             }
 
             Spacer()
-
-            VStack(alignment: .leading) {
-                Text("Fri").font(.system(size: 20, weight: .regular, design: .monospaced))
-                Text("24").font(.system(size: 20, weight: .regular, design: .monospaced))
-                Text("Dec").font(.system(size: 20, weight: .regular, design: .monospaced))
+            
+            ForEach(0..<3) { _ in 
+                Image(systemName: "exclamationmark").padding(0)
             }
         }
         .padding()
@@ -130,6 +124,6 @@ struct ExamsView_Previews: PreviewProvider {
         .viewContext
 
     static var previews: some View {
-        ExamsView().environment(\.colorScheme, .dark).environment(\.managedObjectContext, context!)
+        ExamRow(exam: Exam(context: context!)).environment(\.colorScheme, .dark)
     }
 }

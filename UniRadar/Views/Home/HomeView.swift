@@ -15,6 +15,7 @@ struct HomeView: View {
     @State var markViewActive: Bool = false
     @State var statsViewActive: Bool = false
     @State var otherViewActive: Bool = false
+    @State var isActionSheetPresented: Bool = false
 
     var body: some View {
         NavigationView {
@@ -58,18 +59,25 @@ struct HomeView: View {
                         Button(action: {
                             print("Added element")
                         }, label: {
-                            Image(systemName: "gear")
+                            Image(systemName: "gear").font(.system(size: 20))
                         })
                     },
                 trailing: HStack {
                     Button(action: {
-                        print("Added element")
+                        self.isActionSheetPresented.toggle()
                     }, label: {
-                        Image(systemName: "plus.circle")
+                        Image(systemName: "plus.circle").font(.system(size: 20))
                     })
 
                 }
             )
+        }.actionSheet(isPresented: $isActionSheetPresented) {
+            ActionSheet(title: Text("Choose an action").font(.title), message: nil, buttons: [
+                // TODO add actions
+                .default(Text("Add Exam"), action: { print("Add Exam") }),
+                .default(Text("Add Reminder"), action: { print("Add Reminder") }),
+                .cancel()
+            ])
         }
     }
 }
@@ -112,7 +120,7 @@ struct ListRow: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .previewDevice("iPhone 8")
+            .previewDevice("iPhone Xs")
             .environment(\.colorScheme, .dark)
     }
 }

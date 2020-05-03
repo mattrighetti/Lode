@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Assignment" representedClassName=".Assignment" syncable="YES" codeGenerationType="class">
+        <attribute name="caption" optional="YES" attributeType="String"/>
+        <attribute name="cfu" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="colorColIndex" optional="YES" attributeType="String"/>
+        <attribute name="colorRowIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Course" representedClassName=".Course" syncable="YES" codeGenerationType="class">
+        <attribute name="cfu" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="examId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exam" inverseName="courseId" inverseEntity="Exam"/>
+        <relationship name="professorId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Professor" inverseName="courseId" inverseEntity="Professor"/>
+    </entity>
+    <entity name="Exam" representedClassName=".Exam" syncable="YES" codeGenerationType="class">
+        <attribute name="colorColIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="colorRowIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="difficulty" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="iconName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="courseId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="examId" inverseEntity="Course"/>
+    </entity>
+    <entity name="Professor" representedClassName=".Professor" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastame" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="courseId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="professorId" inverseEntity="Course"/>
+    </entity>
+    <elements>
+        <element name="Assignment" positionX="-124.31640625" positionY="-27.7109375" width="186.29296875" height="148"/>
+        <element name="Course" positionX="189.05859375" positionY="-349.9296875" width="128" height="118"/>
+        <element name="Exam" positionX="252.953125" positionY="-24.2109375" width="128" height="163"/>
+        <element name="Professor" positionX="-123.6875" positionY="-224.69140625" width="128" height="103"/>
+    </elements>
+</model>

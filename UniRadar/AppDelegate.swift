@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "text")!]
 
         // Make Dividers the same color as the background to make them disappear
-        UITableView.appearance().separatorColor = UIColor(named: "background")
+        UITableView.appearance().separatorStyle = .none
         // Set List background color
         UITableView.appearance().backgroundColor = UIColor(named: "background")
         UIPickerView.appearance().backgroundColor = UIColor(named: "cardBackground")
