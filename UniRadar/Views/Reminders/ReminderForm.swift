@@ -127,7 +127,7 @@ struct ReminderForm: View {
         newAssignment.id = UUID()
         newAssignment.title = title.isEmpty ? "No title" : title
         newAssignment.caption = description
-        newAssignment.colorColIndex = Int16(colorIndex.column)
+        newAssignment.colorColumnIndex = Int16(colorIndex.column)
         newAssignment.colorRowIndex = Int16(colorIndex.row)
         newAssignment.dueDate = date
         

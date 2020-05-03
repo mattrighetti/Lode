@@ -114,7 +114,7 @@ struct ReminderRow: View {
             HStack {
                 ZStack(alignment: .center) {
                     Circle()
-                        .fill(Color.gradientsPalette[Int(assignment.colorRowIndex)][Int(assignment.colorColIndex)])
+                        .fill(Color.gradientsPalette[Int(assignment.colorRowIndex)][Int(assignment.colorColumnIndex)])
 
                     VStack {
                         Text("\(assignment.daysLeft)")

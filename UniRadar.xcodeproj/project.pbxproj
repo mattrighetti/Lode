@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1301E0F623428D2D0038ACA9 /* AppDelegate.swift */; };
 		1301E0F923428D2D0038ACA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1301E0F823428D2D0038ACA9 /* SceneDelegate.swift */; };
-		1301E0FC23428D2D0038ACA9 /* UniRadar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1301E0FA23428D2D0038ACA9 /* UniRadar.xcdatamodeld */; };
 		1301E10023428D2E0038ACA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1301E0FF23428D2E0038ACA9 /* Assets.xcassets */; };
 		1301E10323428D2E0038ACA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1301E10223428D2E0038ACA9 /* Preview Assets.xcassets */; };
 		1301E10623428D2E0038ACA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1301E10423428D2E0038ACA9 /* LaunchScreen.storyboard */; };
@@ -27,6 +26,7 @@
 		C97D1C41245E6DF700C04342 /* CourseForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C40245E6DF700C04342 /* CourseForm.swift */; };
 		C9844BFE24549F0200345A26 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844BFD24549F0200345A26 /* CardStack.swift */; };
 		C9844C012454B0F400345A26 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844C002454B0F400345A26 /* Deck.swift */; };
+		C984E88A245EA2F3003FF668 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C984E888245EA2F3003FF668 /* DataModel.xcdatamodeld */; };
 		C9A1E4F32456F83E006604B2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4F22456F83E006604B2 /* ViewModel.swift */; };
 		C9A1E4F524570DCD006604B2 /* +Exam.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4F424570DCD006604B2 /* +Exam.swift */; };
 		C9A1E4F724570E8C006604B2 /* +Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4F624570E8C006604B2 /* +Assignment.swift */; };
@@ -50,7 +50,6 @@
 		1301E0F323428D2D0038ACA9 /* UniRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1301E0F623428D2D0038ACA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1301E0F823428D2D0038ACA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1301E0FB23428D2D0038ACA9 /* UniRadar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniRadar.xcdatamodel; sourceTree = "<group>"; };
 		1301E0FF23428D2E0038ACA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1301E10223428D2E0038ACA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1301E10523428D2E0038ACA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		C97D1C40245E6DF700C04342 /* CourseForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseForm.swift; sourceTree = "<group>"; };
 		C9844BFD24549F0200345A26 /* CardStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStack.swift; sourceTree = "<group>"; };
 		C9844C002454B0F400345A26 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		C984E889245EA2F3003FF668 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		C9A1E4F22456F83E006604B2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = UniRadar/Utils/ViewModel.swift; sourceTree = SOURCE_ROOT; };
 		C9A1E4F424570DCD006604B2 /* +Exam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "+Exam.swift"; path = "UniRadar/Model/CoreDataModel/+Exam.swift"; sourceTree = SOURCE_ROOT; };
 		C9A1E4F624570E8C006604B2 /* +Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "+Assignment.swift"; path = "UniRadar/Model/CoreDataModel/+Assignment.swift"; sourceTree = SOURCE_ROOT; };
@@ -232,7 +232,7 @@
 		C9A1E4FC24571063006604B2 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				1301E0FA23428D2D0038ACA9 /* UniRadar.xcdatamodeld */,
+				C984E888245EA2F3003FF668 /* DataModel.xcdatamodeld */,
 				C9A1E4F424570DCD006604B2 /* +Exam.swift */,
 				C9A1E4F624570E8C006604B2 /* +Assignment.swift */,
 				C9A1E4FA24570F35006604B2 /* +Course.swift */,
@@ -377,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C984E88A245EA2F3003FF668 /* DataModel.xcdatamodeld in Sources */,
 				C9CED55F243E6E7000FDE90C /* SplashScreenView.swift in Sources */,
 				C9356635244A6E6E006B1164 /* BarShape.swift in Sources */,
 				C9D2A9FC244D0D6500CA8AAE /* RemindersView.swift in Sources */,
@@ -391,7 +392,6 @@
 				C9766D112443DBB40056726D /* HomeView.swift in Sources */,
 				C97D1C3C245E533600C04342 /* AppState.swift in Sources */,
 				C97D1C41245E6DF700C04342 /* CourseForm.swift in Sources */,
-				1301E0FC23428D2D0038ACA9 /* UniRadar.xcdatamodeld in Sources */,
 				C9A1E4FB24570F35006604B2 /* +Course.swift in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
 				C96801C924566A9200B7F9BB /* +Glyph.swift in Sources */,
@@ -628,13 +628,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		1301E0FA23428D2D0038ACA9 /* UniRadar.xcdatamodeld */ = {
+		C984E888245EA2F3003FF668 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1301E0FB23428D2D0038ACA9 /* UniRadar.xcdatamodel */,
+				C984E889245EA2F3003FF668 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 1301E0FB23428D2D0038ACA9 /* UniRadar.xcdatamodel */;
-			path = UniRadar.xcdatamodeld;
+			currentVersion = C984E889245EA2F3003FF668 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
