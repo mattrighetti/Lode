@@ -19,7 +19,7 @@ struct CoursesView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.courses, id: \.self) { course in
+                ForEach(viewModel.courses, id: \.id) { course in
                     CourseRow(course: course)
                         .listRowBackground(Color("background"))
                 }.onDelete { IndexSet in

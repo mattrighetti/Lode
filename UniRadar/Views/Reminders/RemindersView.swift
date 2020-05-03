@@ -29,10 +29,18 @@ struct RemindersView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.assignments, id: \.self) { assignment in
-                    ReminderRow(
-                        title: assignment.title ?? "No title", description: assignment.description, daysLeft: 3
-                    ).listRowBackground(Color("background"))
+                ForEach(viewModel.assignments, id: \.id) { assignment in
+                    ReminderRow(assignment: assignment).listRowBackground(Color("background"))
+                }.onDelete { IndexSet in
+                    let deletedItem = self.viewModel.assignments[IndexSet.first!]
+                    self.managedObjectContext.delete(deletedItem)
+                    
+                    do {
+                        try self.managedObjectContext.save()
+                    } catch {
+                        print(error)
+                    }
+                    
                 }
                 
                 Button(action: {
@@ -90,17 +98,15 @@ struct RemindersView: View {
             )
         }
         .sheet(isPresented: $showForm) {
-            ReminderForm().environment(\.managedObjectContext, self.managedObjectContext)
+            ReminderForm()
+                .environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }
 
 struct ReminderRow: View {
 
-    var title: String
-    var description: String
-    var daysLeft: Int
-    var colors: [Color] = [.flatRed, .flatLightRed]
+    var assignment: Assignment
 
     var body: some View {
         ZStack {
@@ -108,16 +114,10 @@ struct ReminderRow: View {
             HStack {
                 ZStack(alignment: .center) {
                     Circle()
-                        .fill(
-                            LinearGradient(
-                                gradient: Gradient(colors: colors),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                        .fill(Color.gradientsPalette[Int(assignment.colorRowIndex)][Int(assignment.colorColIndex)])
 
                     VStack {
-                        Text("\(daysLeft)")
+                        Text("\(assignment.daysLeft)")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
 
@@ -127,12 +127,12 @@ struct ReminderRow: View {
                 }.frame(width: 100, height: 80, alignment: .center)
 
                 VStack(alignment: .leading) {
-                    Text(title)
+                    Text(assignment.title ?? "No title")
                         .font(.headline)
                         .fontWeight(.bold)
                         .padding(.bottom)
 
-                    Text(description)
+                    Text(assignment.caption ?? "No description")
                         .font(.caption)
                         .lineLimit(2)
 
@@ -147,7 +147,7 @@ struct ReminderRow: View {
     }
 
     func isDueSoon() -> some View {
-        if daysLeft < 5 {
+        if assignment.daysLeft < 5 {
             return AnyView(
                 HStack {
                     Image(systemName: "exclamationmark.circle")

@@ -20,7 +20,7 @@ struct ExamsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.exams, id: \.self) { exam in
+                ForEach(viewModel.exams, id: \.id) { exam in
                     ExamRow(exam: exam)
                         .listRowBackground(Color("background"))
                 }.onDelete { IndexSet in

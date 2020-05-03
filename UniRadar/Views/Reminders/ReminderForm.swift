@@ -57,7 +57,7 @@ struct ReminderForm: View {
                     .background(Color("cardBackground"))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 
-                TextField("Assignment description", text: $title)
+                TextField("Assignment description", text: $description)
                     .padding()
                     .background(Color("cardBackground"))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -111,16 +111,37 @@ struct ReminderForm: View {
                 ),
                 trailing: Button(
                     action: {
-                        print("Saving")
+                        self.addReminder()
                         self.presentationMode.wrappedValue.dismiss()
                     },
                     label: {
-                        Text("Save")
+                        Text("Done")
                     }
                 )
             )
         }
     }
+    
+    func addReminder() {
+        let newAssignment = Assignment(context: managedObjectContext)
+        newAssignment.id = UUID()
+        newAssignment.title = title.isEmpty ? "No title" : title
+        newAssignment.caption = description
+        newAssignment.colorColIndex = Int16(colorIndex.column)
+        newAssignment.colorRowIndex = Int16(colorIndex.row)
+        newAssignment.dueDate = date
+        
+        saveContext()
+    }
+    
+    func saveContext() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print(error)
+        }
+    }
+    
 }
 
 struct ReminderForm_Previews: PreviewProvider {
