@@ -19,23 +19,21 @@ struct Reminder: Identifiable {
 struct RemindersView: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity:Exam.entity(),sortDescriptors:[]) var exams: FetchedResults<Exam>
+    
+    @ObservedObject var viewModel: ViewModel
     
     @State var showForm: Bool = false
+    @State var addReminderPressed: Bool = false
     @State var pickerData = []
 
     var body: some View {
         NavigationView {
             List {
-                ReminderRow(
-                    title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 3
-                ).listRowBackground(Color("background"))
-                ReminderRow(
-                    title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 7
-                ).listRowBackground(Color("background"))
-                ReminderRow(
-                    title: "AAPP assignment", description: "Make the OpenMP algorithm challenge", daysLeft: 1
-                ).listRowBackground(Color("background"))
+                ForEach(viewModel.assignments, id: \.self) { assignment in
+                    ReminderRow(
+                        title: assignment.title ?? "No title", description: assignment.description, daysLeft: 3
+                    ).listRowBackground(Color("background"))
+                }
                 
                 Button(action: {
                     self.showForm.toggle()
@@ -54,16 +52,25 @@ struct RemindersView: View {
                 .foregroundColor(.white)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 25)
+                .onLongPressGesture(
+                    minimumDuration: 0.0001,
+                    maximumDistance: .infinity,
+                    pressing: { pressing in
+                        self.addReminderPressed.toggle()
+                    },
+                    perform: {  }
+                )
                 .overlay(
                     RoundedRectangle(cornerRadius: 25)
                         .strokeBorder(
                             style: StrokeStyle(
-                                lineWidth: 2,
+                                lineWidth: 1,
                                 dash: [7]
                             )
                         )
-                        .foregroundColor(Color("bw"))
-                ).listRowBackground(Color("background"))
+                        .foregroundColor(addReminderPressed ? .red : Color("bw"))
+                )
+                .listRowBackground(Color("background"))
             }
 
             .navigationBarTitle("Assignments")
@@ -161,8 +168,10 @@ struct ReminderRow: View {
 }
 
 struct RemindersView_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
     static var previews: some View {
-        RemindersView()
+        RemindersView(viewModel: ViewModel(context: context!))
             .previewDevice("iPhone 11")
             .environment(\.colorScheme, .dark)
     }

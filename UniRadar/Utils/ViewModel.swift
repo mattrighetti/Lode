@@ -23,43 +23,37 @@ class ViewModel: ObservableObject {
     
     init(context: NSManagedObjectContext) {
         self.managedObjectContext = context
+        self.subs()
     }
     
     func subs() {
+        
         FetchedResultsPublisher(request: Exam.fetchRequest(), context: managedObjectContext)
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print("Fetched new data")
-                print("\($0)")
+            .sink(receiveCompletion: { _ in
+                print("Fetched new exams")
             }, receiveValue: { newExams in
                 self.exams = newExams
             })
             .store(in: &cancellables)
+        
+        FetchedResultsPublisher(request: Assignment.fetchRequest(), context: managedObjectContext)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in
+                print("Fetched new assignments")
+            }, receiveValue: { newAssignments in
+                self.assignments = newAssignments
+            })
+            .store(in: &cancellables)
+        
+        FetchedResultsPublisher(request: Course.fetchRequest(), context: managedObjectContext)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in
+                print("Fetched new data")
+            }, receiveValue: { newCourses in
+                self.courses = newCourses
+            })
+            .store(in: &cancellables)
     }
     
-//    func subscribeToPublishers() {
-//        // Exams CoreData Publisher
-//        CoreDataPublisher(request: Exam.fetchRequest(), context: self.managedObjectContext)
-//            .receive(on: DispatchQueue.main)
-//            .sink { [weak self] newExams in
-//                self?.exams = newExams
-//            }
-//            .store(in: &cancellables)
-//
-//        // Assignments CoreData Publisher
-//        CoreDataPublisher(request: Assignment.fetchRequest(), context: self.managedObjectContext)
-//            .receive(on: DispatchQueue.main)
-//            .sink { [weak self] newAssignments in
-//                self?.assignments = newAssignments
-//            }
-//            .store(in: &cancellables)
-//
-//        // Assignments CoreData Publisher
-//        CoreDataPublisher(request: Course.fetchRequest(), context: self.managedObjectContext)
-//            .receive(on: DispatchQueue.main)
-//            .sink{ [weak self] newCourses in
-//                self?.courses = newCourses
-//            }
-//            .store(in: &cancellables)
-//    }
 }

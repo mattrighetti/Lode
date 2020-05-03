@@ -56,7 +56,7 @@ struct ExamsView: View {
                         RoundedRectangle(cornerRadius: 25)
                             .strokeBorder(
                                 style: StrokeStyle(
-                                    lineWidth: 2,
+                                    lineWidth: 1,
                                     dash: [7]
                                 )
                             )
@@ -120,10 +120,10 @@ struct ExamRow: View {
 }
 
 struct ExamsView_Previews: PreviewProvider {
-    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-        .viewContext
-
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        ExamRow(exam: Exam(context: context!)).environment(\.colorScheme, .dark)
+        ExamsView(viewModel: ViewModel(context: context!))
+            .environment(\.managedObjectContext, context!)
+            .environment(\.colorScheme, .dark)
     }
 }

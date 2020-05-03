@@ -10,8 +10,9 @@ import SwiftUI
 
 struct HomeView: View {
 
+    @ObservedObject var viewModel: ViewModel
+    
     @State var progress: CGFloat = 0.4
-
     @State var markViewActive: Bool = false
     @State var statsViewActive: Bool = false
     @State var otherViewActive: Bool = false
@@ -118,8 +119,9 @@ struct ListRow: View {
 }
 
 struct HomeView_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        HomeView()
+        HomeView(viewModel: ViewModel(context: context!))
             .previewDevice("iPhone Xs")
             .environment(\.colorScheme, .dark)
     }

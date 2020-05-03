@@ -18,20 +18,28 @@ struct MainView: View {
 
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            RemindersView()
+            
+            CoursesView(viewModel: viewModel)
                 .tabItem {
-                    Image(systemName: "pin")
-                    Text("Reminders")
+                    Image(systemName: "function")
+                    Text("Courses")
                 }
+            
             ExamsView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "function")
-                    Text("Stats")
+                    Text("Exams")
+                }
+            
+            RemindersView(viewModel: viewModel)
+                .tabItem {
+                    Image(systemName: "pin")
+                    Text("Reminders")
                 }
         }.sheet(isPresented: $showSplashscreen) {
             SplashScreenView()

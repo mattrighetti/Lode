@@ -22,12 +22,14 @@
 		C9766D0E2443D6260056726D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9766D0D2443D6260056726D /* MainView.swift */; };
 		C9766D112443DBB40056726D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9766D102443DBB40056726D /* HomeView.swift */; };
 		C97D1C3A245E480D00C04342 /* FetchedResultsPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C39245E480D00C04342 /* FetchedResultsPublisher.swift */; };
+		C97D1C3C245E533600C04342 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C3B245E533600C04342 /* AppState.swift */; };
+		C97D1C3F245E6BE300C04342 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C3E245E6BE300C04342 /* CoursesView.swift */; };
+		C97D1C41245E6DF700C04342 /* CourseForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C40245E6DF700C04342 /* CourseForm.swift */; };
 		C9844BFE24549F0200345A26 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844BFD24549F0200345A26 /* CardStack.swift */; };
 		C9844C012454B0F400345A26 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844C002454B0F400345A26 /* Deck.swift */; };
 		C9A1E4F32456F83E006604B2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4F22456F83E006604B2 /* ViewModel.swift */; };
 		C9A1E4F524570DCD006604B2 /* +Exam.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4F424570DCD006604B2 /* +Exam.swift */; };
 		C9A1E4F724570E8C006604B2 /* +Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4F624570E8C006604B2 /* +Assignment.swift */; };
-		C9A1E4F924570F08006604B2 /* +Professor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4F824570F08006604B2 /* +Professor.swift */; };
 		C9A1E4FB24570F35006604B2 /* +Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4FA24570F35006604B2 /* +Course.swift */; };
 		C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E762448C4FD00C3EF9C /* DataCard.swift */; };
 		C9A52E792448C9D900C3EF9C /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */; };
@@ -61,12 +63,14 @@
 		C9766D0D2443D6260056726D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C9766D102443DBB40056726D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C97D1C39245E480D00C04342 /* FetchedResultsPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsPublisher.swift; sourceTree = "<group>"; };
+		C97D1C3B245E533600C04342 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		C97D1C3E245E6BE300C04342 /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
+		C97D1C40245E6DF700C04342 /* CourseForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseForm.swift; sourceTree = "<group>"; };
 		C9844BFD24549F0200345A26 /* CardStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStack.swift; sourceTree = "<group>"; };
 		C9844C002454B0F400345A26 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C9A1E4F22456F83E006604B2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = UniRadar/Utils/ViewModel.swift; sourceTree = SOURCE_ROOT; };
 		C9A1E4F424570DCD006604B2 /* +Exam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "+Exam.swift"; path = "UniRadar/Model/CoreDataModel/+Exam.swift"; sourceTree = SOURCE_ROOT; };
 		C9A1E4F624570E8C006604B2 /* +Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "+Assignment.swift"; path = "UniRadar/Model/CoreDataModel/+Assignment.swift"; sourceTree = SOURCE_ROOT; };
-		C9A1E4F824570F08006604B2 /* +Professor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "+Professor.swift"; path = "UniRadar/Model/CoreDataModel/+Professor.swift"; sourceTree = SOURCE_ROOT; };
 		C9A1E4FA24570F35006604B2 /* +Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "+Course.swift"; path = "UniRadar/Model/CoreDataModel/+Course.swift"; sourceTree = SOURCE_ROOT; };
 		C9A52E762448C4FD00C3EF9C /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
 		C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 				C9A1E4FC24571063006604B2 /* CoreDataModel */,
 				C9D2A9F6244BFAA300CA8AAE /* Mark.swift */,
 				C9A1E4F22456F83E006604B2 /* ViewModel.swift */,
+				C97D1C3B245E533600C04342 /* AppState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,10 +153,10 @@
 		1301E10E23428D450038ACA9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C97D1C3D245E6BCC00C04342 /* Courses */,
+				C9A52E752448C4EB00C3EF9C /* Components */,
 				C9FDD70B244E56DF003A31CF /* Exams */,
 				C9D2A9FA244D0D4300CA8AAE /* Reminders */,
-				C9356633244A6E49006B1164 /* Graphs */,
-				C9A52E752448C4EB00C3EF9C /* Components */,
 				C9766D0F2443DB9C0056726D /* Home */,
 				C908406A242968F700259918 /* SplashScreen */,
 				C9766D0D2443D6260056726D /* MainView.swift */,
@@ -198,6 +203,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		C97D1C3D245E6BCC00C04342 /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				C97D1C3E245E6BE300C04342 /* CoursesView.swift */,
+				C97D1C40245E6DF700C04342 /* CourseForm.swift */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
 		C9844BFC24549EE700345A26 /* CardStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +235,6 @@
 				1301E0FA23428D2D0038ACA9 /* UniRadar.xcdatamodeld */,
 				C9A1E4F424570DCD006604B2 /* +Exam.swift */,
 				C9A1E4F624570E8C006604B2 /* +Assignment.swift */,
-				C9A1E4F824570F08006604B2 /* +Professor.swift */,
 				C9A1E4FA24570F35006604B2 /* +Course.swift */,
 			);
 			path = CoreDataModel;
@@ -230,6 +243,7 @@
 		C9A52E752448C4EB00C3EF9C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C9356633244A6E49006B1164 /* Graphs */,
 				C9844BFC24549EE700345A26 /* CardStack */,
 				C9A52E762448C4FD00C3EF9C /* DataCard.swift */,
 				C9555B6E2450E8340031933D /* LottieView.swift */,
@@ -371,10 +385,12 @@
 				C9EF67F6245362A6005A2CA0 /* +View.swift in Sources */,
 				C9A1E4F524570DCD006604B2 /* +Exam.swift in Sources */,
 				C9EF67F424535944005A2CA0 /* ExamForm.swift in Sources */,
+				C97D1C3F245E6BE300C04342 /* CoursesView.swift in Sources */,
 				C9A1E4F32456F83E006604B2 /* ViewModel.swift in Sources */,
 				C9A1E4F724570E8C006604B2 /* +Assignment.swift in Sources */,
 				C9766D112443DBB40056726D /* HomeView.swift in Sources */,
-				C9A1E4F924570F08006604B2 /* +Professor.swift in Sources */,
+				C97D1C3C245E533600C04342 /* AppState.swift in Sources */,
+				C97D1C41245E6DF700C04342 /* CourseForm.swift in Sources */,
 				1301E0FC23428D2D0038ACA9 /* UniRadar.xcdatamodeld in Sources */,
 				C9A1E4FB24570F35006604B2 /* +Course.swift in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
