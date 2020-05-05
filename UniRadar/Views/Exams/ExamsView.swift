@@ -39,30 +39,30 @@ struct ExamsView: View {
                 Button(action: {
                         self.addExamModalShown.toggle()
                 }, label: {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Image(systemName: "plus.circle").foregroundColor(Color("bw"))
-                                Spacer()
-                                Text("Add exam")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color("bw"))
-                            }
+                    HStack {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Image(systemName: "plus.circle").foregroundColor(Color("bw"))
                             Spacer()
+                            Text("Add exam")
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("bw"))
                         }
-                    })
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 25)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 25)
-                            .strokeBorder(
-                                style: StrokeStyle(
-                                    lineWidth: 1,
-                                    dash: [7]
-                                )
+                        Spacer()
+                    }
+                })
+                .foregroundColor(.white)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 25)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 25)
+                        .strokeBorder(
+                            style: StrokeStyle(
+                                lineWidth: 1,
+                                dash: [7]
                             )
-                            .foregroundColor(Color("bw"))
-                    ).listRowBackground(Color("background"))
+                        )
+                        .foregroundColor(Color("bw"))
+                ).listRowBackground(Color("background"))
             }
 
             .navigationBarTitle("Exams")

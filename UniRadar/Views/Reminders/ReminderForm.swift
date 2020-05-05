@@ -26,7 +26,7 @@ struct ReminderForm: View {
         NavigationView {
             ScrollView {
                 NavigationLink(
-                    destination: ColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
+                    destination: IconColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
                     isActive: $activeColorNavigationLink
                 ) {
                     ZStack {

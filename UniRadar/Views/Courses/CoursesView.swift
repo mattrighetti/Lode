@@ -20,13 +20,13 @@ struct CoursesView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.courses, id: \.id) { course in
+                ForEach(coursesFiltered(withTag: pickerSelection), id: \.id) { course in
                     CourseRow(course: course)
                         .listRowBackground(Color("background"))
                 }.onDelete { IndexSet in
                     let deletedItem = self.viewModel.courses[IndexSet.first!]
                     self.managedObjectContext.delete(deletedItem)
-                    
+                
                     do {
                         try self.managedObjectContext.save()
                     } catch {
@@ -86,9 +86,8 @@ struct CoursesView: View {
     }
     
     private func coursesFiltered(withTag tag: Int) -> [Course] {
-        // TODO - This is not a good closure, recheck
-        let activeFilter: (Course) -> Bool = { Int($0.mark) > 17 }
-        let passedFilter: (Course) -> Bool = { Int($0.mark) < 17 }
+        let activeFilter: (Course) -> Bool = { $0.mark != nil ? false : true }
+        let passedFilter: (Course) -> Bool = { $0.mark != nil ? true : false }
         
         switch tag {
         case 0:

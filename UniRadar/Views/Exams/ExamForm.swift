@@ -16,7 +16,6 @@ struct ExamForm: View {
     @State private var name: String = ""
     @State private var course: String = ""
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 1)
-    @State private var iconIndex: GridIndex = GridIndex(row: 0, column: 1)
     @State private var date: Date = Date()
     
     @State private var activeColorNavigationLink: Bool = false
@@ -28,7 +27,7 @@ struct ExamForm: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 NavigationLink(
-                    destination: ColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
+                    destination: ColorPickerView(colorIndex: $colorIndex),
                     isActive: $activeColorNavigationLink,
                     label: {
                         ZStack {
@@ -40,10 +39,6 @@ struct ExamForm: View {
                             Circle()
                                 .fill(Color.gradientsPalette[colorIndex.row][colorIndex.column])
                                 .frame(width: 100, height: 100, alignment: .center)
-
-                            Image(systemName: Glyph.glyphArray[iconIndex.row][iconIndex.column])
-                                .font(.system(size: 50))
-                                .foregroundColor(.white)
 
                         }
                         .padding(.top, 50)

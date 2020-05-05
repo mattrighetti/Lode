@@ -12,12 +12,10 @@
         <attribute name="cfu" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="colorColIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="colorRowIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="expectedMark" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="iconColIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="expectedMark" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="iconName" optional="YES" attributeType="String"/>
-        <attribute name="iconRowIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="mark" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mark" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Exam" representedClassName=".Exam" syncable="YES" codeGenerationType="class">
@@ -29,7 +27,7 @@
     </entity>
     <elements>
         <element name="Assignment" positionX="-18" positionY="27" width="128" height="133"/>
-        <element name="Course" positionX="-36" positionY="9" width="128" height="193"/>
+        <element name="Course" positionX="-36" positionY="9" width="128" height="163"/>
         <element name="Exam" positionX="-54" positionY="-9" width="128" height="118"/>
     </elements>
 </model>

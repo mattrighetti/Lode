@@ -19,8 +19,8 @@ struct CourseForm: View {
     @State private var courseMark: Int = 25
     @State private var courseCfu: Int = 5
     @State private var isPassed: Bool = false
-    @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 1)
-    @State private var iconIndex: GridIndex = GridIndex(row: 0, column: 1)
+    @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 0)
+    @State private var iconIndex: GridIndex = GridIndex(row: 0, column: 0)
     
     // View Data
     @State private var activeColorNavigationLink: Bool = false
@@ -32,7 +32,7 @@ struct CourseForm: View {
                 
                 Group {
                     NavigationLink(
-                        destination: ColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
+                        destination: IconColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
                         isActive: $activeColorNavigationLink,
                         label: {
                             ZStack {
@@ -124,8 +124,7 @@ struct CourseForm: View {
         newCourse.cfu = Int16(courseCfu)
         newCourse.colorRowIndex = Int16(colorIndex.row)
         newCourse.colorColIndex = Int16(colorIndex.column)
-        newCourse.iconColIndex = Int16(iconIndex.column)
-        newCourse.iconRowIndex = Int16(iconIndex.row)
+        newCourse.iconName = Glyph.glyphArray[iconIndex.row][iconIndex.column]
         
         if isPassed {
             newCourse.mark = Int16(courseMark)
