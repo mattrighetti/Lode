@@ -230,6 +230,6 @@ struct ExamForm_Previews: PreviewProvider {
     @State private static var title: String = "title"
 
     static var previews: some View {
-        ExamForm().colorScheme(.dark)
+        CourseForm().colorScheme(.dark)
     }
 }

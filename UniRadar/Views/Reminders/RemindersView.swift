@@ -24,12 +24,12 @@ struct RemindersView: View {
     
     @State var showForm: Bool = false
     @State var addReminderPressed: Bool = false
-    @State var pickerData = []
+    @State var pickerSelection: Int = 0
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.assignments, id: \.id) { assignment in
+                ForEach(assignmentsFiltered(withTag: pickerSelection), id: \.id) { assignment in
                     ReminderRow(assignment: assignment).listRowBackground(Color("background"))
                 }.onDelete { IndexSet in
                     let deletedItem = self.viewModel.assignments[IndexSet.first!]
@@ -85,9 +85,9 @@ struct RemindersView: View {
             .navigationBarItems(
                 leading: EditButton(),
                 center: AnyView(
-                    Picker(selection: .constant(1), label: Text("Picker")) {
-                        Text("Current").tag(1)
-                        Text("Past").tag(2)
+                    Picker(selection: $pickerSelection, label: Text("Picker")) {
+                        Text("Current").tag(0)
+                        Text("Past").tag(1)
                     }
                     .foregroundColor(Color.blue)
                     .pickerStyle(SegmentedPickerStyle())
@@ -100,6 +100,20 @@ struct RemindersView: View {
         .sheet(isPresented: $showForm) {
             ReminderForm()
                 .environment(\.managedObjectContext, self.managedObjectContext)
+        }
+    }
+    
+    private func assignmentsFiltered(withTag tag: Int) -> [Assignment] {
+        let upcomingFilter: (Assignment) -> Bool = { $0.dueDate! > Date() }
+        let pastFilter: (Assignment) -> Bool = { $0.dueDate! <= Date() }
+        
+        switch tag {
+        case 0:
+            return viewModel.assignments.filter(upcomingFilter)
+        case 1:
+            return viewModel.assignments.filter(pastFilter)
+        default:
+            return viewModel.assignments
         }
     }
 }

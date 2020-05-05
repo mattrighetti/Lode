@@ -15,6 +15,7 @@ struct CoursesView: View {
     @ObservedObject var viewModel: ViewModel
     
     @State var addCourseModalShown: Bool = false
+    @State var pickerSelection: Int = 0
     
     var body: some View {
         NavigationView {
@@ -66,6 +67,15 @@ struct CoursesView: View {
             .navigationBarTitle("Courses")
             .navigationBarItems(
                 leading: EditButton(),
+                center: AnyView(
+                    Picker(selection: $pickerSelection, label: Text("Picker")) {
+                        Text("Active").tag(0)
+                        Text("Passed").tag(1)
+                    }
+                    .foregroundColor(Color.blue)
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                ),
                 trailing: Button(action: { self.addCourseModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
             )
             .sheet(isPresented: $addCourseModalShown) {
@@ -74,6 +84,22 @@ struct CoursesView: View {
             }
         }
     }
+    
+    private func coursesFiltered(withTag tag: Int) -> [Course] {
+        // TODO - This is not a good closure, recheck
+        let activeFilter: (Course) -> Bool = { Int($0.mark) > 17 }
+        let passedFilter: (Course) -> Bool = { Int($0.mark) < 17 }
+        
+        switch tag {
+        case 0:
+            return viewModel.courses.filter(activeFilter)
+        case 1:
+            return viewModel.courses.filter(passedFilter)
+        default:
+            return viewModel.courses
+        }
+    }
+    
 }
 
 struct CourseRow: View {
@@ -114,6 +140,6 @@ struct CourseRow: View {
 struct CoursesView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        CourseRow(course: Course(context: context!)).colorScheme(.dark)
+        CoursesView(viewModel: ViewModel(context: context!)).colorScheme(.dark)
     }
 }

@@ -16,11 +16,12 @@ struct ExamsView: View {
     @ObservedObject var viewModel: ViewModel
 
     @State private var addExamModalShown: Bool = false
+    @State private var examPickerSelection: Int = 0
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.exams, id: \.id) { exam in
+                ForEach(examsFiltered(withTag: examPickerSelection), id: \.id) { exam in
                     ExamRow(exam: exam)
                         .listRowBackground(Color("background"))
                 }.onDelete { IndexSet in
@@ -68,9 +69,9 @@ struct ExamsView: View {
             .navigationBarItems(
                 leading: EditButton(),
                 center: AnyView(
-                    Picker(selection: .constant(1), label: Text("Picker")) {
-                        Text("Upcoming").tag(1)
-                        Text("Past").tag(2)
+                    Picker(selection: $examPickerSelection, label: Text("Picker")) {
+                        Text("Upcoming").tag(0)
+                        Text("Past").tag(1)
                     }
                     .foregroundColor(Color.blue)
                     .pickerStyle(SegmentedPickerStyle())
@@ -83,6 +84,21 @@ struct ExamsView: View {
                 .environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
+    
+    func examsFiltered(withTag tag: Int) -> [Exam] {
+        let upcomingFilter: (Exam) -> Bool = { $0.date! > Date() }
+        let pastFilter: (Exam) -> Bool = { $0.date! <= Date() }
+        
+        switch tag {
+        case 0:
+            return viewModel.exams.filter(upcomingFilter)
+        case 1:
+            return viewModel.exams.filter(pastFilter)
+        default:
+            return viewModel.exams
+        }
+    }
+    
 }
 
 struct ExamRow: View {

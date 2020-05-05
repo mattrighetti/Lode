@@ -97,7 +97,7 @@ struct ExamForm: View {
                 HStack {
                     Spacer()
                     if self.isShowingDatePicker {
-                        DatePicker(selection: self.$date, in: Date()..., displayedComponents: .date) {
+                        DatePicker(selection: self.$date, displayedComponents: .date) {
                             EmptyView()
                         }.labelsHidden()
                     }
@@ -128,9 +128,10 @@ struct ExamForm: View {
     }
     
     private func addExam() {
-        let newExam = Course(context: managedObjectContext)
+        let newExam = Exam(context: managedObjectContext)
         newExam.id = UUID()
-        newExam.name = name.isEmpty ? "No title" : name
+        newExam.title = name.isEmpty ? "No title" : name
+        newExam.date = date
         newExam.colorColIndex = Int16(colorIndex.column)
         newExam.colorRowIndex = Int16(colorIndex.row)
         
@@ -149,6 +150,6 @@ struct ExamForm: View {
 
 struct CourseForm_Previews: PreviewProvider {
     static var previews: some View {
-        CourseForm().colorScheme(.dark).accentColor(.darkRed)
+        ExamForm().colorScheme(.dark).accentColor(.darkRed)
     }
 }
