@@ -94,7 +94,6 @@ struct ExamRow: View {
             ZStack(alignment: .center) {
                 Circle()
                     .fill(Color.gradientsPalette[Int(exam.colorRowIndex)][Int(exam.colorColIndex)])
-                Image(systemName: exam.iconName ?? "pencil").font(.system(size: 30))
             }.frame(width: 70, height: 70, alignment: .center)
 
             VStack(alignment: .leading) {

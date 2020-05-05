@@ -14,6 +14,7 @@
 		1301E10623428D2E0038ACA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1301E10423428D2E0038ACA9 /* LaunchScreen.storyboard */; };
 		1312EF7823722DC100650D18 /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312EF7723722DC100650D18 /* +Color.swift */; };
 		13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C0523735A5E00B44A26 /* +Utils.swift */; };
+		C91BDFAC2461D54A00AD16DB /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91BDFAB2461D54A00AD16DB /* Mark.swift */; };
 		C9356635244A6E6E006B1164 /* BarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9356634244A6E6E006B1164 /* BarShape.swift */; };
 		C9555B6D2450E6820031933D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C9555B6C2450E6820031933D /* Lottie */; };
 		C9555B6F2450E8340031933D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9555B6E2450E8340031933D /* LottieView.swift */; };
@@ -23,7 +24,7 @@
 		C97D1C3A245E480D00C04342 /* FetchedResultsPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C39245E480D00C04342 /* FetchedResultsPublisher.swift */; };
 		C97D1C3C245E533600C04342 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C3B245E533600C04342 /* AppState.swift */; };
 		C97D1C3F245E6BE300C04342 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C3E245E6BE300C04342 /* CoursesView.swift */; };
-		C97D1C41245E6DF700C04342 /* CourseForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C40245E6DF700C04342 /* CourseForm.swift */; };
+		C97D1C41245E6DF700C04342 /* ExamForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97D1C40245E6DF700C04342 /* ExamForm.swift */; };
 		C9844BFE24549F0200345A26 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844BFD24549F0200345A26 /* CardStack.swift */; };
 		C9844C012454B0F400345A26 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844C002454B0F400345A26 /* Deck.swift */; };
 		C984E88A245EA2F3003FF668 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C984E888245EA2F3003FF668 /* DataModel.xcdatamodeld */; };
@@ -35,11 +36,10 @@
 		C9A52E792448C9D900C3EF9C /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */; };
 		C9CED55F243E6E7000FDE90C /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */; };
 		C9D2A9F5244BEDB600CA8AAE /* MarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F4244BEDB600CA8AAE /* MarksView.swift */; };
-		C9D2A9F7244BFAA300CA8AAE /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F6244BFAA300CA8AAE /* Mark.swift */; };
 		C9D2A9F9244C0CD800CA8AAE /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */; };
 		C9D2A9FC244D0D6500CA8AAE /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */; };
 		C9D2A9FE244D1F5200CA8AAE /* ReminderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FD244D1F5200CA8AAE /* ReminderForm.swift */; };
-		C9EF67F424535944005A2CA0 /* ExamForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F324535944005A2CA0 /* ExamForm.swift */; };
+		C9EF67F424535944005A2CA0 /* CourseForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F324535944005A2CA0 /* CourseForm.swift */; };
 		C9EF67F6245362A6005A2CA0 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F5245362A6005A2CA0 /* +View.swift */; };
 		C9EF67F82453A92B005A2CA0 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F72453A92B005A2CA0 /* ColorPickerView.swift */; };
 		C9EF67FA2453CA93005A2CA0 /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F92453CA93005A2CA0 /* +Date.swift */; };
@@ -56,6 +56,7 @@
 		1301E10723428D2E0038ACA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1312EF7723722DC100650D18 /* +Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Color.swift"; sourceTree = "<group>"; };
 		13BD5C0523735A5E00B44A26 /* +Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Utils.swift"; sourceTree = "<group>"; };
+		C91BDFAB2461D54A00AD16DB /* Mark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
 		C9356634244A6E6E006B1164 /* BarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarShape.swift; sourceTree = "<group>"; };
 		C9555B6E2450E8340031933D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		C96801C824566A9200B7F9BB /* +Glyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Glyph.swift"; sourceTree = "<group>"; };
@@ -64,7 +65,7 @@
 		C97D1C39245E480D00C04342 /* FetchedResultsPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsPublisher.swift; sourceTree = "<group>"; };
 		C97D1C3B245E533600C04342 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		C97D1C3E245E6BE300C04342 /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
-		C97D1C40245E6DF700C04342 /* CourseForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseForm.swift; sourceTree = "<group>"; };
+		C97D1C40245E6DF700C04342 /* ExamForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamForm.swift; sourceTree = "<group>"; };
 		C9844BFD24549F0200345A26 /* CardStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStack.swift; sourceTree = "<group>"; };
 		C9844C002454B0F400345A26 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C984E889245EA2F3003FF668 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -76,11 +77,10 @@
 		C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		C9D2A9F4244BEDB600CA8AAE /* MarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksView.swift; sourceTree = "<group>"; };
-		C9D2A9F6244BFAA300CA8AAE /* Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Mark.swift; path = UniRadar/Views/Home/HomeViews/Mark.swift; sourceTree = SOURCE_ROOT; };
 		C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
 		C9D2A9FD244D1F5200CA8AAE /* ReminderForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderForm.swift; sourceTree = "<group>"; };
-		C9EF67F324535944005A2CA0 /* ExamForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamForm.swift; sourceTree = "<group>"; };
+		C9EF67F324535944005A2CA0 /* CourseForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseForm.swift; sourceTree = "<group>"; };
 		C9EF67F5245362A6005A2CA0 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
 		C9EF67F72453A92B005A2CA0 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		C9EF67F92453CA93005A2CA0 /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
@@ -143,8 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				C9A1E4FC24571063006604B2 /* CoreDataModel */,
-				C9D2A9F6244BFAA300CA8AAE /* Mark.swift */,
 				C9A1E4F22456F83E006604B2 /* ViewModel.swift */,
+				C91BDFAB2461D54A00AD16DB /* Mark.swift */,
 				C97D1C3B245E533600C04342 /* AppState.swift */,
 			);
 			path = Model;
@@ -207,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				C97D1C3E245E6BE300C04342 /* CoursesView.swift */,
-				C97D1C40245E6DF700C04342 /* CourseForm.swift */,
+				C9EF67F324535944005A2CA0 /* CourseForm.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -274,7 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				C9FDD70C244E56ED003A31CF /* ExamsView.swift */,
-				C9EF67F324535944005A2CA0 /* ExamForm.swift */,
+				C97D1C40245E6DF700C04342 /* ExamForm.swift */,
 			);
 			path = Exams;
 			sourceTree = "<group>";
@@ -385,13 +385,14 @@
 				C97D1C3A245E480D00C04342 /* FetchedResultsPublisher.swift in Sources */,
 				C9EF67F6245362A6005A2CA0 /* +View.swift in Sources */,
 				C9A1E4F524570DCD006604B2 /* +Exam.swift in Sources */,
-				C9EF67F424535944005A2CA0 /* ExamForm.swift in Sources */,
+				C91BDFAC2461D54A00AD16DB /* Mark.swift in Sources */,
+				C9EF67F424535944005A2CA0 /* CourseForm.swift in Sources */,
 				C97D1C3F245E6BE300C04342 /* CoursesView.swift in Sources */,
 				C9A1E4F32456F83E006604B2 /* ViewModel.swift in Sources */,
 				C9A1E4F724570E8C006604B2 /* +Assignment.swift in Sources */,
 				C9766D112443DBB40056726D /* HomeView.swift in Sources */,
 				C97D1C3C245E533600C04342 /* AppState.swift in Sources */,
-				C97D1C41245E6DF700C04342 /* CourseForm.swift in Sources */,
+				C97D1C41245E6DF700C04342 /* ExamForm.swift in Sources */,
 				C9A1E4FB24570F35006604B2 /* +Course.swift in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
 				C96801C924566A9200B7F9BB /* +Glyph.swift in Sources */,
@@ -405,7 +406,6 @@
 				1301E0F923428D2D0038ACA9 /* SceneDelegate.swift in Sources */,
 				C9FDD70D244E56ED003A31CF /* ExamsView.swift in Sources */,
 				13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */,
-				C9D2A9F7244BFAA300CA8AAE /* Mark.swift in Sources */,
 				C9D2A9F9244C0CD800CA8AAE /* StatsView.swift in Sources */,
 				C9EF67FA2453CA93005A2CA0 /* +Date.swift in Sources */,
 				C9A52E792448C9D900C3EF9C /* CircularProgressBar.swift in Sources */,
