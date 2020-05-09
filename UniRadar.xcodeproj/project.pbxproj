@@ -14,8 +14,6 @@
 		1301E10623428D2E0038ACA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1301E10423428D2E0038ACA9 /* LaunchScreen.storyboard */; };
 		1312EF7823722DC100650D18 /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312EF7723722DC100650D18 /* +Color.swift */; };
 		13BD5C0623735A5E00B44A26 /* +Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD5C0523735A5E00B44A26 /* +Utils.swift */; };
-		C91BDFAC2461D54A00AD16DB /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91BDFAB2461D54A00AD16DB /* Mark.swift */; };
-		C933066E2462D7350059D49A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C933066D2462D7350059D49A /* CustomTextField.swift */; };
 		C933067024645EE00059D49A /* StringList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C933066F24645EE00059D49A /* StringList.swift */; };
 		C9356635244A6E6E006B1164 /* BarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9356634244A6E6E006B1164 /* BarShape.swift */; };
 		C9555B6D2450E6820031933D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C9555B6C2450E6820031933D /* Lottie */; };
@@ -64,8 +62,6 @@
 		1301E10723428D2E0038ACA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1312EF7723722DC100650D18 /* +Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Color.swift"; sourceTree = "<group>"; };
 		13BD5C0523735A5E00B44A26 /* +Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Utils.swift"; sourceTree = "<group>"; };
-		C91BDFAB2461D54A00AD16DB /* Mark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
-		C933066D2462D7350059D49A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C933066F24645EE00059D49A /* StringList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringList.swift; sourceTree = "<group>"; };
 		C9356634244A6E6E006B1164 /* BarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarShape.swift; sourceTree = "<group>"; };
 		C9555B6E2450E8340031933D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -160,7 +156,6 @@
 			children = (
 				C9A1E4FC24571063006604B2 /* CoreDataModel */,
 				C9A1E4F22456F83E006604B2 /* ViewModel.swift */,
-				C91BDFAB2461D54A00AD16DB /* Mark.swift */,
 				C97D1C3B245E533600C04342 /* AppState.swift */,
 			);
 			path = Model;
@@ -270,7 +265,6 @@
 				C9555B6E2450E8340031933D /* LottieView.swift */,
 				C9EF67F72453A92B005A2CA0 /* IconColorPickerView.swift */,
 				C9AF9D5F24621BA9008B5994 /* ColorPickerView.swift */,
-				C933066D2462D7350059D49A /* CustomTextField.swift */,
 				C933066F24645EE00059D49A /* StringList.swift */,
 			);
 			path = Components;
@@ -420,8 +414,6 @@
 				C9FCE87024660CAE0091371E /* Course+CoreDataClass.swift in Sources */,
 				C97D1C3A245E480D00C04342 /* FetchedResultsPublisher.swift in Sources */,
 				C9EF67F6245362A6005A2CA0 /* +View.swift in Sources */,
-				C933066E2462D7350059D49A /* CustomTextField.swift in Sources */,
-				C91BDFAC2461D54A00AD16DB /* Mark.swift in Sources */,
 				C9FCE87224660CAE0091371E /* Exam+CoreDataClass.swift in Sources */,
 				C9EF67F424535944005A2CA0 /* CourseForm.swift in Sources */,
 				C97D1C3F245E6BE300C04342 /* CoursesView.swift in Sources */,
