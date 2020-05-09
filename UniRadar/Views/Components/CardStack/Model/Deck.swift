@@ -28,6 +28,9 @@ class Deck: ObservableObject {
 }
 
 struct InfoCard: Identifiable, Equatable {
+    static func == (lhs: InfoCard, rhs: InfoCard) -> Bool {
+        lhs.id == rhs.id
+    }
     
     var id: String {
         return title
@@ -35,5 +38,5 @@ struct InfoCard: Identifiable, Equatable {
     
     var title: String
     var description: String
-    var progress: CGFloat
+    var content: ((ViewModel) -> AnyView)
 }

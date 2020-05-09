@@ -8,7 +8,22 @@
 
 import SwiftUI
 
+var cards: [InfoCard] = [
+    InfoCard(title: "Your CFU", description: "", content: { viewModel in AnyView(AverageCard(viewModel: viewModel)) }),
+    InfoCard(title: "Another One", description: "You got few left", content: { viewModel in AnyView(EmptyView()) }),
+    InfoCard(title: "Your CU", description: "You got few left", content: { viewModel in AnyView(EmptyView()) })
+]
+
 struct CardStack: View {
+    
+    @ObservedObject var viewModel: ViewModel
+    @ObservedObject var deck: Deck = Deck(cards: cards)
+    
+    @State var draggingOffset: CGFloat = 0
+    @State var isDragging: Bool = false
+    @State var firstCardScale: CGFloat = Self.cardScaleWhenDraggingDown
+    @State var isPresented: Bool = false
+    @State var shouldDelay: Bool = true
     
     private static let cardTransitionDelay: Double = 0.2
     private static let cardOffset: CGFloat = 20
@@ -17,29 +32,14 @@ struct CardStack: View {
     private static let cardScaleWhenDraggingDown: CGFloat = 1.1
     private static let padding: CGFloat = 5
     
-    var progress1: Double = 0.1
-    var progress2: Double = 0.3
-    var progress3: Double = 0.5
-    var progress4: Double = 0.9
-    
-    @ObservedObject var deck: Deck = Deck(cards: [
-        InfoCard(title: "Your CFU", description: "You got few left", progress: 0.5),
-        InfoCard(title: "Another One", description: "You got few left", progress: 0.7),
-        InfoCard(title: "Your CU", description: "You got few left", progress: 0.1)
-    ])
-    @State var draggingOffset: CGFloat = 0
-    @State var isDragging: Bool = false
-    @State var firstCardScale: CGFloat = Self.cardScaleWhenDraggingDown
-    @State var isPresented: Bool = false
-    @State var shouldDelay: Bool = true
-    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 if self.isPresented {
                     ForEach(self.deck.cards) { card in
-                        DataCard(headerTitle: card.title, description: "Lol Ok", content: {
-                            CircularProgressBar(progress: card.progress).padding()
+                        DataCard(headerTitle: card.title, description: card.description, content: {
+                            card.content(self.viewModel)
+                                .padding()
                         })
                         .opacity(self.opacity(for: card))
                         .offset(x: self.xOffset(for: card), y: self.yOffset(for: card))
@@ -150,7 +150,8 @@ extension AnyTransition {
 }
 
 struct CardStack_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        CardStack()
+        CardStack(viewModel: ViewModel(context: context!)).colorScheme(.dark)
     }
 }

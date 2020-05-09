@@ -13,7 +13,9 @@ struct ExamForm: View {
     @Environment(\.presentationMode) var presentatitonMode
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @State private var name: String = ""
+    var courses: [String]
+    
+    @State private var name: String = "Name"
     @State private var course: String = ""
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 1)
     @State private var date: Date = Date()
@@ -22,6 +24,7 @@ struct ExamForm: View {
     @State private var isShowingDatePicker: Bool = false
     @State private var showAlert: Bool = false
     @State private var showCourses: Bool = false
+    @State private var courseIndex: Int = -1
     
     var body: some View {
         NavigationView {
@@ -48,11 +51,11 @@ struct ExamForm: View {
                 Header(title: "Course").padding(.top)
                 
                 NavigationLink(
-                    destination: Text("ToDo Course List"),
+                    destination: StringList(strings: courses, selectedIndex: $courseIndex),
                     isActive: $showCourses,
                     label: {
                         HStack {
-                            Text(course.isEmpty ? "Course" : course)
+                            Text(courseIndex != -1 ? courses[courseIndex] : "Course")
                             Spacer()
                             Image(systemName: "chevron.right")
                         }
@@ -144,7 +147,8 @@ struct ExamForm: View {
 }
 
 struct CourseForm_Previews: PreviewProvider {
+    @State private var index: Int = -1
     static var previews: some View {
-        ExamForm().colorScheme(.dark).accentColor(.darkRed)
+        ExamForm(courses: ["This", "Other", "One"]).colorScheme(.dark).accentColor(.darkRed)
     }
 }

@@ -23,7 +23,7 @@ struct HomeView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 // MARK: - CardDeck Section
                 HomeSection(sectionTitle: "Main Info") {
-                    CardStack()
+                    CardStack(viewModel: self.viewModel)
                         .padding(.horizontal, 25)
                 }
                 .padding(.bottom)
@@ -32,7 +32,7 @@ struct HomeView: View {
                 // MARK: - Categories Section
                 HomeSection(sectionTitle: "Categories") {
                     VStack {
-                        NavigationLink(destination: MarksView(), isActive: self.$markViewActive) {
+                        NavigationLink(destination: MarksView(courses: self.viewModel.courses), isActive: self.$markViewActive) {
                             ListRow(title: "Marks", iconName: "rosette")
                                 .padding(EdgeInsets(top: 15, leading: 5, bottom: 5, trailing: 5))
                         }.buttonStyle(PlainButtonStyle())

@@ -17,6 +17,7 @@ class ViewModel: ObservableObject {
     @Published var exams: [Exam] = []
     @Published var assignments: [Assignment] = []
     @Published var courses: [Course] = []
+    @Published var gainedCfu: Int = 0
     
     // Subscriptions Pool
     private var cancellables = Set<AnyCancellable>()
@@ -25,6 +26,11 @@ class ViewModel: ObservableObject {
         self.managedObjectContext = context
         self.subs()
     }
+}
+
+// MARK: - Methods
+
+extension ViewModel {
     
     func subs() {
         
@@ -54,6 +60,10 @@ class ViewModel: ObservableObject {
                 self.courses = newCourses
             })
             .store(in: &cancellables)
+        
+        self.$courses.sink(receiveValue: { courses in
+            self.gainedCfu = courses.filter { $0.mark != 0 }.map { Int($0.cfu) }.reduce(0) { $0 + $1 }
+        }).store(in: &cancellables)
+        
     }
-    
 }

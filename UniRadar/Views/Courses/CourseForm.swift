@@ -59,7 +59,7 @@ struct CourseForm: View {
                     TextField("Exam title", text: $title)
                         .padding()
                         .background(Color("cardBackground"))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .cornerRadius(8)
                     
                     HeaderCaption(title: "CFU", caption: "Ore totali: \(self.courseCfu * 25)").padding(.top)
                     
@@ -120,6 +120,7 @@ struct CourseForm: View {
 
     private func addCourse() {
         let newCourse = Course(context: managedObjectContext)
+        newCourse.id = UUID()
         newCourse.name = title.isEmpty ? "No title" : title
         newCourse.cfu = Int16(courseCfu)
         newCourse.colorRowIndex = Int16(colorIndex.row)

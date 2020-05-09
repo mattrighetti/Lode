@@ -10,20 +10,12 @@ import SwiftUI
 
 struct MarksView: View {
 
-    @State var marks: [Mark] = [
-        Mark(
-            subjectName: "Analisi 1", expectedMark: 28, finalMark: 27, difficulty: 3, datePassed: Date()),
-        Mark(
-            subjectName: "Analisi 2", expectedMark: 28, finalMark: 29, difficulty: 3, datePassed: Date()),
-        Mark(subjectName: "ACA", expectedMark: 28, difficulty: 3, datePassed: Date()),
-        Mark(subjectName: "AAPP", expectedMark: 28, difficulty: 3, datePassed: Date()),
-        Mark(subjectName: "Computer Graphics", expectedMark: 28, difficulty: 3, datePassed: Date())
-    ]
+    @State var courses: [Course]
 
     var body: some View {
         List {
-            ForEach(marks, id: \.id) { mark in
-                MarkCard(mark: mark)
+            ForEach(courses, id: \.id) { course in
+                MarkCard(course: course)
                     .listRowBackground(Color("background"))
             }.onDelete(perform: removeItems)
         }
@@ -43,14 +35,14 @@ struct MarksView: View {
     }
 
     func removeItems(at offsets: IndexSet) {
-        marks.remove(atOffsets: offsets)
+        courses.remove(atOffsets: offsets)
     }
 
 }
 
 struct MarkCard: View {
 
-    var mark: Mark
+    var course: Course
 
     var body: some View {
         ZStack {
@@ -62,29 +54,26 @@ struct MarkCard: View {
                 }
                 HStack {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(mark.subjectName).font(.headline).fontWeight(.bold)
-                        Text(mark.datePassedString).font(.subheadline)
+                        Text(course.name!).font(.headline).fontWeight(.bold)
+                        Text("CFU: \(course.cfu)").font(.subheadline)
                     }
                     Spacer()
                     VStack {
-                        Text(mark.finalMark != nil ? String(mark.finalMark!) : String(mark.expectedMark)).font(
-                            .title)
+                        Text(course.mark == 0 ? String(course.expectedMark) : String(course.mark)).font(.title)
                         Image(systemName: markIcon()).foregroundColor(markIconColor())
-                        Text(mark.finalMark != nil ? "Passed" : "Expected")
+                        Text(course.mark != 0 ? "Passed" : "Expected")
                     }.padding(.trailing, 5)
-                    Divider()
-                    Image(systemName: "chevron.right").padding(20)
                 }
             }.padding()
         }.cornerRadius(25)
     }
 
     func markIcon() -> String {
-        guard let finalMark = mark.finalMark else {
+        guard course.mark != 0 else {
             return "questionmark.circle"
         }
 
-        if finalMark >= mark.expectedMark {
+        if course.mark >= course.expectedMark {
             return "checkmark.seal"
         }
 
@@ -108,8 +97,10 @@ struct MarkCard: View {
 }
 
 struct MarksView_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    @ObservedObject static var viewModel: ViewModel = ViewModel(context: context!)
     static var previews: some View {
-        MarksView()
+        MarksView(courses: viewModel.courses)
             .previewDevice("iPhone 11")
             .environment(\.colorScheme, .light)
     }

@@ -80,7 +80,7 @@ struct ExamsView: View {
                 trailing: Button(action: { self.addExamModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
             )
         }.sheet(isPresented: $addExamModalShown) {
-            ExamForm()
+            ExamForm(courses: self.viewModel.courses.map { $0.name! })
                 .environment(\.managedObjectContext, self.managedObjectContext)
         }
     }

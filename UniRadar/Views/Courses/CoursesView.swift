@@ -86,13 +86,15 @@ struct CoursesView: View {
     }
     
     private func coursesFiltered(withTag tag: Int) -> [Course] {
-        let activeFilter: (Course) -> Bool = { $0.mark != nil ? false : true }
-        let passedFilter: (Course) -> Bool = { $0.mark != nil ? true : false }
+        let activeFilter: (Course) -> Bool = { $0.mark != 0 ? false : true }
+        let passedFilter: (Course) -> Bool = { $0.mark != 0 ? true : false }
         
         switch tag {
         case 0:
+            print(viewModel.courses.filter(activeFilter))
             return viewModel.courses.filter(activeFilter)
         case 1:
+            print(viewModel.courses.filter(passedFilter))
             return viewModel.courses.filter(passedFilter)
         default:
             return viewModel.courses
