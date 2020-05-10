@@ -48,7 +48,8 @@ struct ExamForm: View {
                     }
                 )
                 
-                Header(title: "Course").padding(.top)
+                Header(title: "Course")
+                    .padding(.top)
                 
                 NavigationLink(
                     destination: StringList(strings: courses, selectedIndex: $courseIndex),
@@ -67,7 +68,7 @@ struct ExamForm: View {
                 
                 Header(title: "Description").padding(.top)
                 
-                TextField("Course name", text: $name)
+                TextField("Exam description", text: $name)
                     .padding()
                     .background(Color("cardBackground"))
                     .clipShape(RoundedRectangle(cornerRadius: 8))

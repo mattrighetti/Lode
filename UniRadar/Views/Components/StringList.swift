@@ -16,17 +16,19 @@ struct StringList: View {
     
     var body: some View {
         List(strings.indices) { index in
-            Button(action: {
-                self.selectedIndex = index
-            }, label: {
-                HStack {
-                    Text(self.strings[index])
-                    Spacer()
-                    if self.selectedIndex == index {
-                        Image(systemName: "checkmark.circle").foregroundColor(.green)
+            HStack {
+                Button(action: {
+                    self.selectedIndex = index
+                }, label: {
+                    HStack {
+                        Text(self.strings[index])
+                        Spacer()
+                        if self.selectedIndex == index {
+                            Image(systemName: "checkmark.circle").foregroundColor(.green)
+                        }
                     }
-                }
-            })
+                }).buttonStyle(PlainButtonStyle())
+            }.listRowBackground(Color("cardBackground"))
         }
         .background(Color("background"))
         .listStyle(GroupedListStyle())

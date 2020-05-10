@@ -9,6 +9,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    init(viewModel: ViewModel) {
+        UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+        self.viewModel = viewModel
+    }
 
     @ObservedObject var viewModel: ViewModel
     

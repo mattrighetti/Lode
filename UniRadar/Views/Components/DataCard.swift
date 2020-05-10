@@ -29,7 +29,7 @@ struct DataCard<Content>: View, Identifiable, Equatable where Content: View {
 
                 VStack {
                     Text("\(headerTitle)")
-                        .font(.title)
+                        .font(.system(.title, design: .rounded))
                         .fontWeight(.bold)
                         .padding(.bottom)
 

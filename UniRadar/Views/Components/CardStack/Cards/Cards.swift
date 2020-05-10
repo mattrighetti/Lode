@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AverageCard: View {
+struct CfuCard: View {
     
     @ObservedObject var viewModel: ViewModel
     
@@ -22,9 +22,21 @@ struct AverageCard: View {
     }
 }
 
+struct AverageCard: View {
+    
+    @ObservedObject var viewModel: ViewModel
+    
+    var body: some View {
+        ZStack {
+            Text("\(self.viewModel.average.twoDecimalPrecision)").font(.system(size: 50, weight: .bold, design: .rounded))
+        }.background(Color("cardBackground"))
+    }
+}
+
 struct Cards_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
+//        CfuCard(viewModel: ViewModel(context: context!)).colorScheme(.dark)
         AverageCard(viewModel: ViewModel(context: context!)).colorScheme(.dark)
     }
 }
