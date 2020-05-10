@@ -33,10 +33,37 @@ struct AverageCard: View {
     }
 }
 
+struct MainInfoCard: View {
+    
+    @ObservedObject var viewModel: ViewModel
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            HStack {
+                Text("Expected Average").font(.system(.title, design: .rounded))
+                Text(self.viewModel.expectedAverage.twoDecimalPrecision).font(.system(.headline, design: .rounded)).foregroundColor(.green)
+            }
+            HStack {
+                Text("Average").font(.system(.title, design: .rounded))
+                Text(self.viewModel.average.twoDecimalPrecision).font(.system(.headline, design: .rounded)).foregroundColor(.green)
+            }
+            HStack {
+                Text("Upcoming exams").font(.system(.title, design: .rounded))
+                Text(self.viewModel.average.twoDecimalPrecision).font(.system(.headline, design: .rounded)).foregroundColor(.green)
+            }
+            HStack {
+                Text("Active assignments").font(.system(.title, design: .rounded))
+                Text(self.viewModel.average.twoDecimalPrecision).font(.system(.headline, design: .rounded)).foregroundColor(.green)
+            }
+        }.background(Color("cardBackground"))
+    }
+}
+
 struct Cards_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
 //        CfuCard(viewModel: ViewModel(context: context!)).colorScheme(.dark)
-        AverageCard(viewModel: ViewModel(context: context!)).colorScheme(.dark)
+//        AverageCard(viewModel: ViewModel(context: context!)).colorScheme(.dark)
+        MainInfoCard(viewModel: ViewModel(context: context!)).colorScheme(.dark)
     }
 }
