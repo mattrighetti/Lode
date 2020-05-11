@@ -17,6 +17,7 @@ struct CourseForm: View {
     @State private var title: String = ""
     @State private var difficulty: Int = 1
     @State private var courseMark: Int = 25
+    @State private var expectedCourseMark: Int = 25
     @State private var courseCfu: Int = 5
     @State private var isPassed: Bool = false
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 0)
@@ -76,6 +77,13 @@ struct CourseForm: View {
                 
                 }
                 
+                HeaderCaption(
+                    title: "Mark Expected",
+                    caption: "This will be used for further statistics"
+                ).padding(.top)
+                
+                CustomStepper(value: $expectedCourseMark, maxValue: 31, minValue: 18)
+                
                 Button(action: {
                     self.isPassed.toggle()
                 }, label: {
@@ -94,12 +102,18 @@ struct CourseForm: View {
                 })
                 .padding(.top)
                 
-                HeaderCaption(
-                    title: self.isPassed ? "Mark Obtained" : "Mark Expected",
-                    caption: self.isPassed ? "The mark you got" : "This will be used for further statistics"
-                ).padding(.top)
-                
-                CustomStepper(value: $courseMark, maxValue: 31, minValue: 18)
+                VStack {
+                    if self.isPassed {
+                        HeaderCaption(
+                            title: "Mark Obtained",
+                            caption: "The mark you got"
+                        ).padding(.top)
+                        
+                        CustomStepper(value: $courseMark, maxValue: 31, minValue: 18)
+                    } else {
+                        EmptyView()
+                    }
+                }.transition(.scale)
                 
             }
             .padding(.horizontal)
@@ -126,11 +140,12 @@ struct CourseForm: View {
         newCourse.colorRowIndex = Int16(colorIndex.row)
         newCourse.colorColIndex = Int16(colorIndex.column)
         newCourse.iconName = Glyph.glyphArray[iconIndex.row][iconIndex.column]
+        newCourse.expectedMark = Int16(expectedCourseMark)
         
         if isPassed {
             newCourse.mark = Int16(courseMark)
         } else {
-            newCourse.expectedMark = Int16(courseMark)
+            newCourse.mark = 0
         }
         
         saveContext()

@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableView.appearance().separatorStyle = .none
         // Set List background color
         UITableView.appearance().backgroundColor = UIColor(named: "background")
+        UITableViewCell.appearance().backgroundColor = UIColor(named: "background")
         UITableViewCell.appearance().selectionStyle = .none
         UIPickerView.appearance().backgroundColor = UIColor(named: "cardBackground")
 

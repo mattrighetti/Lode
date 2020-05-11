@@ -36,24 +36,18 @@ struct HomeView: View {
                 
                 // MARK: - Categories Section
                 HomeSection(sectionTitle: "Categories") {
-                    VStack {
-                        NavigationLink(destination: MarksView(courses: self.viewModel.courses), isActive: self.$markViewActive) {
-                            ListRow(title: "Marks", iconName: "rosette")
-                                .padding(EdgeInsets(top: 15, leading: 5, bottom: 5, trailing: 5))
-                        }.buttonStyle(PlainButtonStyle())
-                        Divider()
-                        NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
-                            ListRow(title: "Statistics", iconName: "x.squareroot")
-                                .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
-                        }.buttonStyle(PlainButtonStyle())
-                        Divider()
-                        NavigationLink(destination: EmptyView(), isActive: self.$otherViewActive) {
-                            ListRow(title: "Whatever", iconName: "function")
-                                .padding(EdgeInsets(top: 5, leading: 5, bottom: 15, trailing: 5))
-                        }.buttonStyle(PlainButtonStyle())
-                    }.background(Color("cardBackground"))
-                    .cornerRadius(15)
-                    .padding(.horizontal, 20)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            NavigationLink(destination: MarksView(courses: self.viewModel.courses), isActive: self.$markViewActive) {
+                                CategoriesCard(label: "Mark", imageName: "checkmark.seal")
+                            }
+                            
+                            NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
+                                CategoriesCard(label: "Stats", imageName: "checkmark")
+                            }
+                        }
+                        .padding(.horizontal, 25)
+                    }
                 }
                 .padding(.bottom)
             }
@@ -79,7 +73,6 @@ struct HomeView: View {
             )
         }.actionSheet(isPresented: $isActionSheetPresented) {
             ActionSheet(title: Text("Choose an action").font(.title), message: nil, buttons: [
-                // TODO add actions
                 .default(Text("Add Exam"), action: { print("Add Exam") }),
                 .default(Text("Add Reminder"), action: { print("Add Reminder") }),
                 .cancel()
@@ -108,18 +101,24 @@ struct HomeSection<Content>: View where Content: View {
     }
 }
 
-struct ListRow: View {
-
-    var title: String
-    var iconName: String
-
+struct CategoriesCard: View {
+    
+    var label: String
+    var imageName: String
+    
     var body: some View {
-        HStack {
-            Image(systemName: iconName).padding(.horizontal)
-            Text(title).font(.headline)
-            Spacer()
-            Image(systemName: "chevron.right").padding(.trailing)
+        VStack(alignment: .leading) {
+            Image(systemName: imageName)
+                .font(.system(size: 27))
+                .foregroundColor(.green)
+            
+            Text(label)
+                .font(.system(size: 30, weight: .semibold, design: .rounded))
+                .padding(EdgeInsets(top: 30, leading: 0, bottom: 10, trailing: 80))
         }
+        .padding()
+        .background(Color("cardBackground"))
+        .cornerRadius(8)
     }
 }
 
