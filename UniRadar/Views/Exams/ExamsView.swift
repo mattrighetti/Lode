@@ -17,6 +17,7 @@ struct ExamsView: View {
 
     @State private var addExamModalShown: Bool = false
     @State private var examPickerSelection: Int = 0
+    @State private var presentAlert: Bool = false
 
     var body: some View {
         NavigationView {
@@ -37,7 +38,7 @@ struct ExamsView: View {
                 }
                 
                 Button(action: {
-                        self.addExamModalShown.toggle()
+                    self.showModal()
                 }, label: {
                     HStack {
                         VStack(alignment: .leading, spacing: 10) {
@@ -49,20 +50,15 @@ struct ExamsView: View {
                         }
                         Spacer()
                     }
-                })
-                .foregroundColor(.white)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 25)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 25)
-                        .strokeBorder(
-                            style: StrokeStyle(
-                                lineWidth: 1,
-                                dash: [7]
-                            )
-                        )
-                        .foregroundColor(Color("bw"))
-                ).listRowBackground(Color("background"))
+                    })
+                    .modifier(SegmentedButton())
+                    .listRowBackground(Color("background"))
+            }.alert(isPresented: self.$presentAlert) {
+                Alert(
+                    title: Text("No course is present"),
+                    message: Text("You must first add a course before creating exams"),
+                    dismissButton: .cancel(Text("Ok"))
+                )
             }
 
             .navigationBarTitle("Exams")
@@ -77,7 +73,7 @@ struct ExamsView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                 ),
-                trailing: Button(action: { self.addExamModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
+                trailing: Button(action: { self.showModal() }, label: { Image(systemName: "plus.circle") })
             )
         }.sheet(isPresented: $addExamModalShown) {
             ExamForm(courses: self.viewModel.courses.map { $0.name! })
@@ -96,6 +92,14 @@ struct ExamsView: View {
             return viewModel.exams.filter(pastFilter)
         default:
             return viewModel.exams
+        }
+    }
+    
+    private func showModal() {
+        if self.viewModel.courses.isEmpty {
+            self.presentAlert.toggle()
+        } else {
+            self.addExamModalShown.toggle()
         }
     }
     

@@ -110,7 +110,11 @@ struct ExamForm: View {
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Something went wrong"), message: Text("Retry later."), dismissButton: .cancel())
+                Alert(
+                    title: Text("Some fields are not compiled"),
+                    message: Text("You have to compile every field to create a course"),
+                    dismissButton: .cancel(Text("Ok"))
+                )
             }
 
             .navigationBarTitle("Add exam", displayMode: .inline)
@@ -119,10 +123,23 @@ struct ExamForm: View {
                     self.presentatitonMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Done") {
-                    self.addExam()
-                    self.presentatitonMode.wrappedValue.dismiss()
+                    if self.fieldsAreCompiled() {
+                        self.addExam()
+                        self.presentatitonMode.wrappedValue.dismiss()
+                    } else {
+                        self.showAlert.toggle()
+                    }
                 }
             )
+        }
+    }
+    
+    private func fieldsAreCompiled() -> Bool {
+        if self.course.isEmpty || self.name.isEmpty {
+            return false
+            
+        } else {
+            return true
         }
     }
     

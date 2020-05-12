@@ -57,27 +57,7 @@ struct RemindersView: View {
                         Spacer()
                     }
                 })
-                .foregroundColor(.white)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 25)
-                .onLongPressGesture(
-                    minimumDuration: 0.0001,
-                    maximumDistance: .infinity,
-                    pressing: { pressing in
-                        self.addReminderPressed.toggle()
-                    },
-                    perform: {  }
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 25)
-                        .strokeBorder(
-                            style: StrokeStyle(
-                                lineWidth: 1,
-                                dash: [7]
-                            )
-                        )
-                        .foregroundColor(addReminderPressed ? .red : Color("bw"))
-                )
+                .modifier(SegmentedButton())
                 .listRowBackground(Color("background"))
             }
 

@@ -21,17 +21,6 @@ struct MarksView: View {
         }
 
         .navigationBarTitle("Marks")
-        .navigationBarItems(
-            trailing:
-                HStack {
-                    EditButton()
-                    Button(action: {
-                        print("Add mark")
-                    }, label: {
-                        Image("plus.circle")
-                    })
-                }
-        )
     }
 
     func removeItems(at offsets: IndexSet) {

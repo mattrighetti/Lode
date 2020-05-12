@@ -49,19 +49,8 @@ struct CoursesView: View {
                         Spacer()
                     }
                 })
-                .foregroundColor(.white)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 25)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 25)
-                        .strokeBorder(
-                            style: StrokeStyle(
-                                lineWidth: 1,
-                                dash: [7]
-                            )
-                        )
-                        .foregroundColor(Color("bw"))
-                ).listRowBackground(Color("background"))
+                .modifier(SegmentedButton())
+                .listRowBackground(Color("background"))
             }
             
             .navigationBarTitle("Courses")
