@@ -132,9 +132,7 @@ struct ExamRow: View {
                 Image(systemName: "exclamationmark").padding(0)
             }
         }
-        .padding()
-        .background(Color("cardBackground"))
-        .clipShape(RoundedRectangle(cornerRadius: 25))
+        .modifier(CardStyle())
     }
 }
 

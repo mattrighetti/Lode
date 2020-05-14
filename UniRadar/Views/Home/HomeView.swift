@@ -42,7 +42,7 @@ struct HomeView: View {
                                 CategoriesCard(label: "Mark", imageName: "checkmark.seal")
                             }
                             
-                            NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
+                            NavigationLink(destination: StatsView(viewModel: self.viewModel), isActive: self.$statsViewActive) {
                                 CategoriesCard(label: "Stats", imageName: "checkmark")
                             }
                         }
@@ -109,16 +109,14 @@ struct CategoriesCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Image(systemName: imageName)
-                .font(.system(size: 27))
+                .font(.system(size: 20))
                 .foregroundColor(.green)
             
             Text(label)
-                .font(.system(size: 30, weight: .semibold, design: .rounded))
+                .font(.system(size: 20, weight: .semibold, design: .rounded))
                 .padding(EdgeInsets(top: 30, leading: 0, bottom: 10, trailing: 80))
         }
-        .padding()
-        .background(Color("cardBackground"))
-        .cornerRadius(8)
+        .modifier(CardStyle())
     }
 }
 

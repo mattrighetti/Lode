@@ -9,117 +9,94 @@
 import SwiftUI
 
 struct StatsView: View {
+    
+    @ObservedObject var viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+    }
+    
     var body: some View {
-        ZStack {
-            Color("background").edgesIgnoringSafeArea(.all)
-            ScrollView(.vertical, showsIndicators: false) {
-
-                HomeSection(sectionTitle: "Main Info") {
-                    ZStack {
-                        Color("cardBackground")
-                        VStack {
-                            MainInfoRow(infoName: "Total Exams", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 15, leading: 10, bottom: 5, trailing: 10))
-                            Divider()
-                            MainInfoRow(infoName: "Total CFU", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            Divider()
-                            MainInfoRow(infoName: "Expected Average", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            Divider()
-                            MainInfoRow(infoName: "Projected Graduation Score", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 15, trailing: 10))
-                        }
-                    }
-                    .cornerRadius(15)
-                    .padding(.horizontal, 20)
-                }
-
-                HomeSection(sectionTitle: "Current statistics") {
-                    ZStack {
-                        Color("cardBackground")
-                        VStack {
-                            MainInfoRow(infoName: "Passed Exams", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 15, leading: 10, bottom: 5, trailing: 10))
-                            Divider()
-                            MainInfoRow(infoName: "Gained CFU", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            Divider()
-                            MainInfoRow(infoName: "Current Average", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            Divider()
-                            MainInfoRow(infoName: "Current Graduation Score", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 15, trailing: 10))
-                        }
-                    }
-                    .cornerRadius(15)
-                    .padding(.horizontal, 20)
-                }
-
-                HomeSection(sectionTitle: "Exams Passed") {
-                    ZStack {
-                        Color("cardBackground")
-                        VStack {
-                            MainInfoRow(infoName: "As Expected", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 15, leading: 10, bottom: 5, trailing: 10))
-                            Divider()
-                            MainInfoRow(infoName: "More than expected", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            Divider()
-                            MainInfoRow(infoName: "Worse than expected", iconName: "nul", value: 22)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 15, trailing: 10))
-
-                        }
-                    }
-                    .cornerRadius(15)
-                    .padding(.horizontal, 20)
-                }
-
-                HomeSection(sectionTitle: "Latest Marks") {
-                    ZStack {
-                        Color("cardBackground")
-                        BarChartView(
-                            arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatRed
-                        ).padding()
-                    }.frame(height: 300, alignment: .center)
-                }
-
-                HomeSection(sectionTitle: "Average Path") {
-                    ZStack {
-                        Color("cardBackground")
-                        BarChartView(
-                            arrayValues: [18, 19, 30, 28, 22, 22, 25, 26, 28, 28, 26], color: .flatRed
-                        ).padding()
-                    }.frame(height: 300, alignment: .center)
-                }
-
+        List {
+            StatsStringListSection(sectionHeader: "Main Info", strings: [
+                "Total Courses",
+                "Total CFU",
+                "Expected Average",
+                "Projected Graduation Grade"
+            ], values: [
+                Double(self.viewModel.courses.count),
+                Double(self.viewModel.totalCfu),
+                self.viewModel.expectedAverage,
+                self.viewModel.expectedGraduationGrade
+            ])
+            
+            StatsStringListSection(sectionHeader: "Current statistics", strings: [
+                "Passed Exams",
+                "Gained CFU",
+                "Current Average",
+                "Current Graduation Grade"
+            ], values: [
+                Double(self.viewModel.passedExams),
+                Double(self.viewModel.gainedCfu),
+                self.viewModel.average,
+                self.viewModel.projectedGraduationGrade
+            ])
+            
+            StatsStringListSection(sectionHeader: "Exams Passed", strings: [
+                "As Expected",
+                "More than expected",
+                "Worse than expected"
+            ], values: [
+                Double(self.viewModel.passedAsExpected),
+                Double(self.viewModel.passedBetterThanExpected),
+                Double(self.viewModel.passedWorseThanExpected)
+            ])
+            
+            Section(header: Text("Latest Marks").modifier(SectionTitle())) {
+                BarChartView(arrayValues: self.viewModel.courses.map { Double($0.mark) }, color: .red)
+                    .frame(height: 250, alignment: .center)
+                    .padding()
+                    .listRowBackground(Color("cardBackground"))
             }
-
-            .navigationBarTitle("Statistics")
+            
         }
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
+        
+        .navigationBarTitle("Statistics")
     }
 }
 
-struct MainInfoRow: View {
-
-    var infoName: String
-    var iconName: String
-    var value: Int
-
+struct StatsStringListSection: View {
+    
+    var sectionHeader: String
+    var strings: [String]
+    var values: [Double]
+    
     var body: some View {
-        HStack {
-            Image(systemName: "book")
-            VStack {
-                Text(infoName)
+        Section(header: Text(sectionHeader).modifier(SectionTitle())) {
+            ForEach(strings.indices) { index in
+                VStack {
+                    HStack {
+                        Text(self.strings[index])
+                        Spacer()
+                        Text(
+                            self.values[index] == floor(self.values[index]) ?
+                            "\(Int(self.values[index]))" :
+                            "\(self.values[index].twoDecimalPrecision)"
+                        ).padding(10)
+                    }
+                }
+                .listRowBackground(Color("cardBackground"))
             }
-            Spacer()
-            Text("\(value)")
         }
     }
 }
 
 struct StatsView_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        StatsView().environment(\.colorScheme, .dark)
+        StatsView(viewModel: ViewModel(context: context!)).environment(\.colorScheme, .dark)
     }
 }

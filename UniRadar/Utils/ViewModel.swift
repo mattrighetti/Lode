@@ -23,6 +23,10 @@ class ViewModel: ObservableObject {
     @Published var expectedAverage: Double = 0.0
     @Published var projectedGraduationGrade: Double = 0.0
     @Published var expectedGraduationGrade: Double = 0.0
+    @Published var passedExams: Int = 0
+    @Published var passedAsExpected: Int = 0
+    @Published var passedWorseThanExpected: Int = 0
+    @Published var passedBetterThanExpected: Int = 0
     
     // Subscriptions Pool
     private var cancellables = Set<AnyCancellable>()
@@ -78,6 +82,12 @@ extension ViewModel {
             self.projectedGraduationGrade = self.calculateGraduationGrade(withMean: self.average)
             // Update Expected Projected Grad Grade
             self.expectedGraduationGrade = self.calculateGraduationGrade(withMean: self.expectedAverage)
+            // Update Passed Exams
+            self.passedExams = courses.filter { $0.mark != 0 }.count
+            // Other values
+            self.passedAsExpected = courses.filter { $0.mark != 0 && $0.mark == $0.expectedMark }.count
+            self.passedWorseThanExpected = courses.filter { $0.mark != 0 && $0.mark < $0.expectedMark }.count
+            self.passedBetterThanExpected = courses.filter { $0.mark != 0 && $0.mark > $0.expectedMark }.count
         }).store(in: &cancellables)
         
     }
@@ -90,7 +100,7 @@ extension ViewModel {
     
     private func calculateExpectedAverage(withCourses course: [Course]) -> Double {
         var average = courses.compactMap { Double($0.cfu * $0.expectedMark) }.reduce(0, +)
-        average /= courses.reduce(0) { $0 + Double($1.cfu) }
+        average /= courses.reduce((0), { $0 + Double($1.cfu) })
         return average
     }
     

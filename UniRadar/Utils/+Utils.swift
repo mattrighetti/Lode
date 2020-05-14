@@ -20,6 +20,10 @@ extension Double {
     var twoDecimalPrecision: String {
         return String(format: "%.2f", self)
     }
+    
+    var noCommaPrecision: String {
+        return String(format: "%.0f", self)
+    }
 }
 
 extension Image {

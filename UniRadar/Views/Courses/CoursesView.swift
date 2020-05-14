@@ -80,10 +80,8 @@ struct CoursesView: View {
         
         switch tag {
         case 0:
-            print(viewModel.courses.filter(activeFilter))
             return viewModel.courses.filter(activeFilter)
         case 1:
-            print(viewModel.courses.filter(passedFilter))
             return viewModel.courses.filter(passedFilter)
         default:
             return viewModel.courses
@@ -121,9 +119,7 @@ struct CourseRow: View {
                 Image(systemName: "checkmark")
             }
         }
-        .padding()
-        .background(Color("cardBackground"))
-        .clipShape(RoundedRectangle(cornerRadius: 25))
+        .modifier(CardStyle())
     }
 }
 

@@ -74,7 +74,9 @@ struct RemindersView: View {
                     .padding()
                 ),
                 trailing: Button(
-                    action: { self.showForm.toggle() }, label: { Image(systemName: "plus.circle") })
+                    action: { self.showForm.toggle() },
+                    label: { Image(systemName: "plus.circle")
+                })
             )
         }
         .sheet(isPresented: $showForm) {
@@ -135,9 +137,8 @@ struct ReminderRow: View {
 
                 Spacer()
             }
-            .padding()
         }
-        .clipShape(RoundedRectangle(cornerRadius: 25.0))
+        .modifier(CardStyle())
     }
 
     func isDueSoon() -> some View {

@@ -26,3 +26,20 @@ struct SegmentedButton: ViewModifier {
         )
     }
 }
+
+struct CardStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(Color("cardBackground"))
+            .cornerRadius(8)
+    }
+}
+
+struct SectionTitle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .font(.system(size: 20, weight: .bold, design: .rounded))
+    }
+}
