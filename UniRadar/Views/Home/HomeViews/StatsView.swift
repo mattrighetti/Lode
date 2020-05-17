@@ -12,11 +12,6 @@ struct StatsView: View {
     
     @ObservedObject var viewModel: ViewModel
     
-    init(viewModel: ViewModel) {
-        self.viewModel = viewModel
-        UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-    }
-    
     var body: some View {
         List {
             StatsStringListSection(sectionHeader: "Main Info", strings: [

@@ -9,13 +9,6 @@
 import CoreData
 import SwiftUI
 
-struct Reminder: Identifiable {
-    let id: UUID = UUID()
-    let title: String
-    let description: String
-    let expirationDate: Date
-}
-
 struct RemindersView: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
