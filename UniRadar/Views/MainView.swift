@@ -26,13 +26,13 @@ struct MainView: View {
             
             CoursesView(viewModel: viewModel)
                 .tabItem {
-                    Image(systemName: "function")
+                    Image(systemName: "archivebox")
                     Text("Courses")
                 }
             
             ExamsView(viewModel: viewModel)
                 .tabItem {
-                    Image(systemName: "function")
+                    Image(systemName: "doc.plaintext")
                     Text("Exams")
                 }
             

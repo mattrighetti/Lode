@@ -36,6 +36,20 @@ struct CardStyle: ViewModifier {
     }
 }
 
+struct BadgePillStyle: ViewModifier {
+    
+    let color: Color
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 13.0, weight: .regular, design: .rounded))
+            .padding(7)
+            .background(color)
+            .cornerRadius(8)
+            .padding(.bottom, 5)
+    }
+}
+
 struct SectionTitle: ViewModifier {
     func body(content: Content) -> some View {
         content

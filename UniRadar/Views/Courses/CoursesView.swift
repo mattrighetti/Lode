@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct CoursesView: View {
     
@@ -16,6 +17,7 @@ struct CoursesView: View {
     
     @State var addCourseModalShown: Bool = false
     @State var pickerSelection: Int = 0
+    @State private var editMode = EditMode.inactive
     
     var body: some View {
         NavigationView {
@@ -67,6 +69,7 @@ struct CoursesView: View {
                 ),
                 trailing: Button(action: { self.addCourseModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
             )
+            .environment(\.editMode, $editMode)
             .sheet(isPresented: $addCourseModalShown) {
                 CourseForm()
                     .environment(\.managedObjectContext, self.managedObjectContext)
@@ -88,6 +91,10 @@ struct CoursesView: View {
         }
     }
     
+    private func onDelete(offsets: IndexSet) {
+        
+    }
+    
 }
 
 struct CourseRow: View {
@@ -107,16 +114,20 @@ struct CourseRow: View {
                 Text(course.name ?? "No name")
                     .font(.headline)
                     .fontWeight(.semibold)
-                
-                Divider()
+                    .padding(.bottom, 5)
                 
                 Text("CFU: \(course.cfu)")
+                    .modifier(BadgePillStyle(color: .orange))
+                
+                Text("Expected: \(course.expectedMark)")
+                    .modifier(BadgePillStyle(color: .blue))
+            
             }
             Spacer()
-            Divider()
             VStack(alignment: .center) {
-                Text("Passed")
-                Image(systemName: "checkmark")
+                Text(course.mark == 0 ? "Upcoming" :"Passed")
+                Image(systemName: course.mark == 0 ? "xmark.seal" : "checkmark.seal")
+                    .foregroundColor(course.mark == 0 ? .red : .green)
             }
         }
         .modifier(CardStyle())
@@ -126,6 +137,14 @@ struct CourseRow: View {
 struct CoursesView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
+//        let course = Course(context: context!)
+//        course.name = "Advanced Algorithms and Parallel Programming"
+//        course.cfu = 5
+//        course.expectedMark = 28
+//        course.mark = 28
         CoursesView(viewModel: ViewModel(context: context!)).colorScheme(.dark)
+//        return List {
+//            CourseRow(course: course)
+//        }.colorScheme(.dark)
     }
 }
