@@ -18,15 +18,22 @@ struct CoursesView: View {
     @State var addCourseModalShown: Bool = false
     @State var pickerSelection: Int = 0
     @State private var editMode = EditMode.inactive
+    @State private var courseToEdit: Course?
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(coursesFiltered(withTag: pickerSelection), id: \.id) { course in
                     CourseRow(course: course)
+                        .onTapGesture {
+                            if self.editMode == .active {
+                                self.courseToEdit = course
+                                self.addCourseModalShown.toggle()
+                            }
+                        }
                         .listRowBackground(Color("background"))
                 }.onDelete { IndexSet in
-                    let deletedItem = self.viewModel.courses[IndexSet.first!]
+                    let deletedItem = self.coursesFiltered(withTag: self.pickerSelection)[IndexSet.first!]
                     self.managedObjectContext.delete(deletedItem)
                 
                     do {
@@ -70,10 +77,14 @@ struct CoursesView: View {
                 trailing: Button(action: { self.addCourseModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
             )
             .environment(\.editMode, $editMode)
-            .sheet(isPresented: $addCourseModalShown) {
-                CourseForm()
+            .sheet(isPresented: self.$addCourseModalShown, onDismiss: {
+                if self.editMode == .active {
+                    self.editMode = .inactive
+                }
+            }, content: {
+                CourseForm(course: self.editMode == .active ? self.courseToEdit : nil)
                     .environment(\.managedObjectContext, self.managedObjectContext)
-            }
+            })
         }
     }
     

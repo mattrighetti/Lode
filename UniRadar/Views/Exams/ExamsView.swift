@@ -18,15 +18,25 @@ struct ExamsView: View {
     @State private var addExamModalShown: Bool = false
     @State private var examPickerSelection: Int = 0
     @State private var presentAlert: Bool = false
+    @State private var editMode = EditMode.inactive
+    @State private var examToEdit: Exam?
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(examsFiltered(withTag: examPickerSelection), id: \.id) { exam in
                     ExamRow(exam: exam)
+                        .onTapGesture {
+                            print("Pressed")
+                            if self.editMode == .active {
+                                print("Pressed Active")
+                                self.examToEdit = exam
+                                self.addExamModalShown.toggle()
+                            }
+                        }
                         .listRowBackground(Color("background"))
                 }.onDelete { IndexSet in
-                    let deletedItem = self.viewModel.exams[IndexSet.first!]
+                    let deletedItem = self.examsFiltered(withTag: self.examPickerSelection)[IndexSet.first!]
                     self.managedObjectContext.delete(deletedItem)
                     
                     do {
@@ -53,10 +63,18 @@ struct ExamsView: View {
                 })
                 .modifier(SegmentedButton())
                 .listRowBackground(Color("background"))
-            }.alert(isPresented: self.$presentAlert) {
+            }
+            .alert(isPresented: self.$presentAlert) {
                 Alert(
                     title: Text("No course is present"),
                     message: Text("You must first add a course before creating exams"),
+                    dismissButton: .cancel(Text("Ok"))
+                )
+            }
+            .alert(isPresented: self.$presentAlert) {
+                Alert(
+                    title: Text("Passed Exams can't be edited"),
+                    message: Text("If you need to change some exam, delete the wrong one and create a new one"),
                     dismissButton: .cancel(Text("Ok"))
                 )
             }
@@ -75,10 +93,23 @@ struct ExamsView: View {
                 ),
                 trailing: Button(action: { self.showModal() }, label: { Image(systemName: "plus.circle") })
             )
-        }.sheet(isPresented: $addExamModalShown) {
-            ExamForm(courses: self.viewModel.courses.filter { $0.mark == 0 }.map { $0.name! })
-                .environment(\.managedObjectContext, self.managedObjectContext)
+            
+            .environment(\.editMode, $editMode)
         }
+        .sheet(
+            isPresented: $addExamModalShown,
+            onDismiss: {
+                if self.editMode == .active {
+                    self.editMode = .inactive
+                }
+            },
+            content: {
+                ExamForm(
+                    courses: self.viewModel.courses.filter { $0.mark == 0 }.map { $0.name! },
+                    exam: self.editMode == .active ? self.examToEdit : nil
+                )
+                .environment(\.managedObjectContext, self.managedObjectContext)
+        })
     }
     
     func examsFiltered(withTag tag: Int) -> [Exam] {
@@ -114,6 +145,13 @@ struct ExamRow: View {
             ZStack(alignment: .center) {
                 Circle()
                     .fill(Color.gradientsPalette[Int(exam.colorRowIndex)][Int(exam.colorColIndex)])
+                
+                VStack {
+                    Text(exam.dayString)
+                    Text("\(exam.dayInt)")
+                    Text(exam.monthString)
+                }.font(.system(size: 15.0))
+                
             }.frame(width: 70, height: 70, alignment: .center)
 
             VStack(alignment: .leading) {
@@ -122,25 +160,32 @@ struct ExamRow: View {
                     .fontWeight(.semibold)
                     .padding(.bottom, 5)
                 
-                Text("CFU: 5")
-                Text("23 Jan 2020")
+                if exam.daysLeft >= 0 {
+                    Text(exam.daysLeft > 0 ? "In \(exam.daysLeft) days" : "Today")
+                        .modifier(BadgePillStyle(color: .blue))
+                }
             }
 
             Spacer()
             
-            ForEach(0..<3) { _ in 
-                Image(systemName: "exclamationmark").padding(0)
-            }
         }
         .modifier(CardStyle())
     }
+    
 }
 
 struct ExamsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        ExamsView(viewModel: ViewModel(context: context!))
-            .environment(\.managedObjectContext, context!)
+        let exam = Exam(context: context!)
+        exam.date = Date()
+        exam.title = "This is a title"
+        exam.colorColIndex = 0
+        exam.colorRowIndex = 0
+//        ExamsView(viewModel: ViewModel(context: context!))
+        return List {
+            ExamRow(exam: exam)
+        }
             .environment(\.colorScheme, .dark)
     }
 }

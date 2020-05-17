@@ -39,9 +39,7 @@ public final class FetchedResultsPublisher<ResultType>: Publisher where ResultTy
 final class FetchedResultsSubscription<SubscriberType: Subscriber, ResultType: NSFetchRequestResult>: NSObject, Subscription, NSFetchedResultsControllerDelegate
     where SubscriberType.Input == [ResultType], SubscriberType.Failure == NSError {
     
-    init(subscriber: SubscriberType,
-         request: NSFetchRequest<ResultType>,
-         context: NSManagedObjectContext) {
+    init(subscriber: SubscriberType, request: NSFetchRequest<ResultType>, context: NSManagedObjectContext) {
         self.subscriber = subscriber
         self.request = request
         self.context = context

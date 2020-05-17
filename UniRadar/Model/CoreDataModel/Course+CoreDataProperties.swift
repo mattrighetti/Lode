@@ -15,6 +15,13 @@ extension Course {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
         return NSFetchRequest<Course>(entityName: "Course")
     }
+    
+    @nonobjc public class func fetchRequest(withUUID id: UUID) -> NSFetchRequest<Course> {
+        let fetchCourse: NSFetchRequest<Course> = self.fetchRequest()
+        fetchCourse.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+        
+        return fetchCourse
+    }
 
     @NSManaged public var cfu: Int16
     @NSManaged public var colorColIndex: Int16

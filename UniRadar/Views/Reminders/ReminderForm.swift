@@ -18,15 +18,18 @@ struct ReminderForm: View {
     @State private var description: String = ""
     @State private var date: Date = Date()
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 3)
-    @State private var iconIndex: GridIndex = GridIndex(row: 0, column: 3)
+    
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
+    
+    @State private var restoredAssignment: Bool = false
+    var assignment: Assignment?
 
     var body: some View {
         NavigationView {
             ScrollView {
                 NavigationLink(
-                    destination: IconColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
+                    destination: ColorPickerView(colorIndex: $colorIndex),
                     isActive: $activeColorNavigationLink
                 ) {
                     ZStack {
@@ -38,10 +41,6 @@ struct ReminderForm: View {
                         Circle()
                             .fill(Color.gradientsPalette[colorIndex.row][colorIndex.column])
                             .frame(width: 100, height: 100, alignment: .center)
-
-                        Image(systemName: Glyph.glyphArray[iconIndex.row][iconIndex.column])
-                            .font(.system(size: 50))
-                            .foregroundColor(.white)
                         
                     }.padding(.top, 50)
                 }
@@ -98,6 +97,9 @@ struct ReminderForm: View {
             }
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
+            .onAppear {
+                self.restoreAssignment()
+            }
                 
             .navigationBarTitle("Add reminder", displayMode: .inline)
             .navigationBarItems(
@@ -111,7 +113,7 @@ struct ReminderForm: View {
                 ),
                 trailing: Button(
                     action: {
-                        self.addReminder()
+                        self.onDonePressed()
                         self.presentationMode.wrappedValue.dismiss()
                     },
                     label: {
@@ -122,19 +124,59 @@ struct ReminderForm: View {
         }
     }
     
-    func addReminder() {
+    private func onDonePressed() {
+        if self.assignment != nil {
+            updateAssignment()
+        } else {
+            addAssignment()
+        }
+    }
+    
+    private func compile(assignment: Assignment) {
+        assignment.id = UUID()
+        assignment.title = title.isEmpty ? "No title" : title
+        assignment.caption = description
+        assignment.colorColumnIndex = Int16(colorIndex.column)
+        assignment.colorRowIndex = Int16(colorIndex.row)
+        assignment.dueDate = date
+    }
+    
+    private func updateAssignment() {
+        let fetchAssignment = Assignment.fetchRequest(withUUID: self.assignment!.id!)
+        
+        do {
+            if let course = try managedObjectContext.fetch(fetchAssignment).first {
+                compile(assignment: course)
+            }
+            
+            saveContext()
+        } catch {
+            let fetchError = error as NSError
+            debugPrint(fetchError)
+        }
+    }
+    
+    private func addAssignment() {
         let newAssignment = Assignment(context: managedObjectContext)
-        newAssignment.id = UUID()
-        newAssignment.title = title.isEmpty ? "No title" : title
-        newAssignment.caption = description
-        newAssignment.colorColumnIndex = Int16(colorIndex.column)
-        newAssignment.colorRowIndex = Int16(colorIndex.row)
-        newAssignment.dueDate = date
+        compile(assignment: newAssignment)
         
         saveContext()
     }
     
-    func saveContext() {
+    private func restoreAssignment() {
+        if !self.restoredAssignment {
+            if let assignmentToEdit = self.assignment {
+                self.title = assignmentToEdit.title ?? ""
+                self.description = assignmentToEdit.caption ?? ""
+                self.date = assignmentToEdit.dueDate!
+                self.colorIndex = GridIndex(row: Int(assignmentToEdit.colorRowIndex), column: Int(assignmentToEdit.colorColumnIndex))
+            }
+            
+            self.restoredAssignment.toggle()
+        }
+    }
+    
+    private func saveContext() {
         do {
             try managedObjectContext.save()
         } catch {

@@ -15,7 +15,7 @@ struct ExamForm: View {
     
     var courses: [String]
     
-    @State private var name: String = "Name"
+    @State private var name: String = ""
     @State private var course: String = ""
     @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 1)
     @State private var date: Date = Date()
@@ -25,6 +25,9 @@ struct ExamForm: View {
     @State private var showAlert: Bool = false
     @State private var showCourses: Bool = false
     @State private var courseIndex: Int = -1
+    
+    @State private var restoredExam: Bool = false
+    var exam: Exam?
     
     var body: some View {
         NavigationView {
@@ -135,21 +138,39 @@ struct ExamForm: View {
     }
     
     private func fieldsAreCompiled() -> Bool {
-        if self.course.isEmpty || self.name.isEmpty {
+        if self.courseIndex == -1 || self.name.isEmpty {
             return false
-            
         } else {
             return true
         }
     }
     
+    private func compile(exam: Exam) {
+        exam.id = UUID()
+        exam.title = name.isEmpty ? "No title" : name
+        exam.date = date
+        exam.colorColIndex = Int16(colorIndex.column)
+        exam.colorRowIndex = Int16(colorIndex.row)
+    }
+    
+    private func updateExam() {
+        let fetchExam = Exam.fetchRequest(withUUID: self.exam!.id!)
+        
+        do {
+            if let exam = try managedObjectContext.fetch(fetchExam).first {
+                compile(exam: exam)
+            }
+            
+            saveContext()
+        } catch {
+            let fetchError = error as NSError
+            debugPrint(fetchError)
+        }
+    }
+    
     private func addExam() {
         let newExam = Exam(context: managedObjectContext)
-        newExam.id = UUID()
-        newExam.title = name.isEmpty ? "No title" : name
-        newExam.date = date
-        newExam.colorColIndex = Int16(colorIndex.column)
-        newExam.colorRowIndex = Int16(colorIndex.row)
+        compile(exam: newExam)
         
         saveContext()
     }

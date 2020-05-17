@@ -16,19 +16,21 @@ struct StringList: View {
     
     var body: some View {
         List {
-            ForEach(self.strings.indices) { index in
-                Button(action: {
-                    self.selectedIndex = index
-                }, label: {
-                    HStack {
-                        Text(self.strings[index])
-                        Spacer()
-                        if self.selectedIndex == index {
-                            Image(systemName: "checkmark.circle").foregroundColor(.green)
+            Section(header: Text("Select a course").padding(.top, 25)) {
+                ForEach(self.strings.indices) { index in
+                    Button(action: {
+                        self.selectedIndex = index
+                    }, label: {
+                        HStack {
+                            Text(self.strings[index])
+                            Spacer()
+                            if self.selectedIndex == index {
+                                Image(systemName: "checkmark.circle").foregroundColor(.green)
+                            }
                         }
-                    }
-                }).buttonStyle(PlainButtonStyle())
-            }.listRowBackground(Color("cardBackground"))
+                    }).buttonStyle(PlainButtonStyle())
+                }.listRowBackground(Color("cardBackground"))
+            }
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)

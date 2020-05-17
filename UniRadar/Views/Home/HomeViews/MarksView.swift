@@ -17,14 +17,10 @@ struct MarksView: View {
             ForEach(courses, id: \.id) { course in
                 MarkCard(course: course)
                     .listRowBackground(Color("background"))
-            }.onDelete(perform: removeItems)
+            }
         }
 
         .navigationBarTitle("Marks")
-    }
-
-    func removeItems(at offsets: IndexSet) {
-        courses.remove(atOffsets: offsets)
     }
 
 }

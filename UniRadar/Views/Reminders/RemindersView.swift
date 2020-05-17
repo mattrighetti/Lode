@@ -18,14 +18,23 @@ struct RemindersView: View {
     @State var showForm: Bool = false
     @State var addReminderPressed: Bool = false
     @State var pickerSelection: Int = 0
+    @State private var editMode = EditMode.inactive
+    @State private var assignmentToEdit: Assignment?
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(assignmentsFiltered(withTag: pickerSelection), id: \.id) { assignment in
-                    ReminderRow(assignment: assignment).listRowBackground(Color("background"))
+                    ReminderRow(assignment: assignment)
+                        .onTapGesture {
+                            if self.editMode == .active {
+                                self.assignmentToEdit = assignment
+                                self.showForm.toggle()
+                            }
+                        }
+                        .listRowBackground(Color("background"))
                 }.onDelete { IndexSet in
-                    let deletedItem = self.viewModel.assignments[IndexSet.first!]
+                    let deletedItem = self.assignmentsFiltered(withTag: self.pickerSelection)[IndexSet.first!]
                     self.managedObjectContext.delete(deletedItem)
                     
                     do {
@@ -71,11 +80,21 @@ struct RemindersView: View {
                     label: { Image(systemName: "plus.circle")
                 })
             )
+            
+            .environment(\.editMode, $editMode)
         }
-        .sheet(isPresented: $showForm) {
-            ReminderForm()
-                .environment(\.managedObjectContext, self.managedObjectContext)
-        }
+        .sheet(
+            isPresented: $showForm,
+            onDismiss: {
+                if self.editMode == .active {
+                    self.editMode = .inactive
+                }
+            },
+            content: {
+                ReminderForm(assignment: self.editMode == .active ? self.assignmentToEdit : nil)
+                    .environment(\.managedObjectContext, self.managedObjectContext)
+            }
+        )
     }
     
     private func assignmentsFiltered(withTag tag: Int) -> [Assignment] {
@@ -119,11 +138,12 @@ struct ReminderRow: View {
                     Text(assignment.title ?? "No title")
                         .font(.headline)
                         .fontWeight(.bold)
-                        .padding(.bottom)
+                        .layoutPriority(1)
+                        .padding(.bottom, 5)
 
                     Text(assignment.caption ?? "No description")
                         .font(.caption)
-                        .lineLimit(2)
+                        .lineLimit(3)
 
                     isDueSoon()
                 }
@@ -141,10 +161,7 @@ struct ReminderRow: View {
                     Image(systemName: "exclamationmark.circle")
                     Text("Due soon")
                 }
-                .foregroundColor(.white)
-                .padding(10)
-                .background(Color.flatLightRed)
-                .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                .modifier(BadgePillStyle(color: .flatRed))
             )
         } else {
             return AnyView(
@@ -157,10 +174,15 @@ struct ReminderRow: View {
 
 struct RemindersView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-    
     static var previews: some View {
-        RemindersView(viewModel: ViewModel(context: context!))
-            .previewDevice("iPhone 11")
-            .environment(\.colorScheme, .dark)
+        let assignment = Assignment(context: context!)
+        assignment.title = "Start studying Artificial Intelligence"
+        assignment.caption = "Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom"
+        assignment.dueDate = Date()
+//        RemindersView(viewModel: ViewModel(context: context!))
+//            .environment(\.colorScheme, .dark)
+        return List {
+            ReminderRow(assignment: assignment)
+        }.colorScheme(.dark)
     }
 }

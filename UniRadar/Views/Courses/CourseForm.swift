@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct CourseForm: View {
 
@@ -26,7 +27,10 @@ struct CourseForm: View {
     // View Data
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
-
+    
+    @State private var restoredCourse: Bool = false
+    var course: Course?
+    
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
@@ -118,6 +122,23 @@ struct CourseForm: View {
             }
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
+            .onAppear {
+                if !self.restoredCourse {
+                    if let courseToEdit = self.course {
+                        self.title = courseToEdit.name!
+                        self.difficulty = 3
+                        self.courseMark = courseToEdit.mark != 0 ? Int(courseToEdit.mark) : 25
+                        self.expectedCourseMark = Int(courseToEdit.expectedMark)
+                        self.courseCfu = Int(courseToEdit.cfu)
+                        self.isPassed = courseToEdit.mark != 0 ? true : false
+                        self.colorIndex = GridIndex(row: Int(courseToEdit.colorRowIndex), column: Int(courseToEdit.colorColIndex))
+                        // TODO how do you restore this?
+                        self.iconIndex = GridIndex(row: 0, column: 0)
+                    }
+                    
+                    self.restoredCourse.toggle()
+                }
+            }
 
             .navigationBarTitle("Add exam", displayMode: .inline)
             .navigationBarItems(
@@ -125,28 +146,55 @@ struct CourseForm: View {
                     self.presentatitonMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Done") {
-                        self.addCourse()
+                        self.onDonePressed()
                         self.presentatitonMode.wrappedValue.dismiss()
                 }
             )
         }
     }
+    
+    private func onDonePressed() {
+        if self.course != nil {
+            updateCourse()
+        } else {
+            addCourse()
+        }
+    }
+    
+    private func compile(course: Course) {
+        course.id = UUID()
+        course.name = title.isEmpty ? "No title" : title
+        course.cfu = Int16(courseCfu)
+        course.colorRowIndex = Int16(colorIndex.row)
+        course.colorColIndex = Int16(colorIndex.column)
+        course.iconName = Glyph.glyphArray[iconIndex.row][iconIndex.column]
+        course.expectedMark = Int16(expectedCourseMark)
+        
+        if isPassed {
+            course.mark = Int16(courseMark)
+        } else {
+            course.mark = 0
+        }
+    }
+    
+    private func updateCourse() {
+        let fetchCourse: NSFetchRequest<Course> = Course.fetchRequest(withUUID: self.course!.id!)
+        
+        do {
+            if let course = try managedObjectContext.fetch(fetchCourse).first {
+                compile(course: course)
+            }
+            
+            saveContext()
+        } catch {
+            let fetchError = error as NSError
+            debugPrint(fetchError)
+        }
+    }
 
     private func addCourse() {
         let newCourse = Course(context: managedObjectContext)
-        newCourse.id = UUID()
-        newCourse.name = title.isEmpty ? "No title" : title
-        newCourse.cfu = Int16(courseCfu)
-        newCourse.colorRowIndex = Int16(colorIndex.row)
-        newCourse.colorColIndex = Int16(colorIndex.column)
-        newCourse.iconName = Glyph.glyphArray[iconIndex.row][iconIndex.column]
-        newCourse.expectedMark = Int16(expectedCourseMark)
-        
-        if isPassed {
-            newCourse.mark = Int16(courseMark)
-        } else {
-            newCourse.mark = 0
-        }
+        compile(course: newCourse)
         
         saveContext()
     }

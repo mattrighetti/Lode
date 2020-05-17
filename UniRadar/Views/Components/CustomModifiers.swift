@@ -42,6 +42,7 @@ struct BadgePillStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .foregroundColor(.white)
             .font(.system(size: 13.0, weight: .regular, design: .rounded))
             .padding(7)
             .background(color)
@@ -54,6 +55,6 @@ struct SectionTitle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.white)
-            .font(.system(size: 20, weight: .bold, design: .rounded))
+            .font(.system(size: 17, weight: .semibold, design: .default))
     }
 }
