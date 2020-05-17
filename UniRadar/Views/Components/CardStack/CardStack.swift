@@ -60,7 +60,9 @@ struct CardStack: View {
                 }
             }
             .onAppear {
-                self.isPresented.toggle()
+                if !self.isPresented {
+                    self.isPresented.toggle()
+                }
             }
         }
     }

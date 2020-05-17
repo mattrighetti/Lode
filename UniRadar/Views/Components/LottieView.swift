@@ -17,28 +17,27 @@ struct LottieView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView()
         let animationView = AnimationView()
-        animationView.animation = Animation.named(lottieAnimationName)
-        animationView.contentMode = .scaleAspectFit
-        animationView.play()
-
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
-
+        
         NSLayoutConstraint.activate([
             animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
             animationView.heightAnchor.constraint(equalTo: view.heightAnchor)
         ])
-
         return view
     }
 
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
-
+        let animationView = uiView.subviews.first! as! AnimationView
+        animationView.animation = Animation.named(lottieAnimationName)
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.play()
     }
 }
 
 struct LottieView_Previews: PreviewProvider {
     static var previews: some View {
-        LottieView(lottieAnimationName: "ok")
+        LottieView(lottieAnimationName: "swipeup")
     }
 }

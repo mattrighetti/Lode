@@ -151,7 +151,7 @@ struct ExamRow: View {
                     Text(exam.dayString)
                     Text("\(exam.dayInt)")
                     Text(exam.monthString)
-                }.font(.system(size: 15.0))
+                }.foregroundColor(.white).font(.system(size: 15.0))
                 
             }.frame(width: 70, height: 70, alignment: .center)
 

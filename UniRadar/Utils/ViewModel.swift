@@ -81,7 +81,6 @@ extension ViewModel {
         self.$courses.sink(receiveValue: { courses in
             // Update CFU
             self.gainedCfu = courses.filter { $0.mark != 0 }.map { Int($0.cfu) }.reduce(0) { $0 + $1 }
-            self.totalCfu = courses.map { Int($0.cfu) }.reduce(0, { $0 + $1 })
             // Update Average
             self.average = self.calculateAverage(withCourses: courses)
             // Update Expected Average

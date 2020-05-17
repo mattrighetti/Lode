@@ -196,6 +196,6 @@ struct ExamForm: View {
 struct CourseForm_Previews: PreviewProvider {
     @State private var index: Int = -1
     static var previews: some View {
-        ExamForm(courses: ["This", "Other", "One"]).colorScheme(.dark).accentColor(.darkRed)
+        ExamForm(courses: ["This", "Other", "One"], exam: nil).colorScheme(.dark).accentColor(.darkRed)
     }
 }

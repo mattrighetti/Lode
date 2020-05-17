@@ -118,7 +118,7 @@ struct CourseRow: View {
             ZStack(alignment: .center) {
                 Circle()
                     .fill(Color.gradientsPalette[Int(course.colorRowIndex)][Int(course.colorColIndex)])
-                Image(systemName: course.iconName ?? "pencil").font(.system(size: 30))
+                Image(systemName: course.iconName ?? "pencil").foregroundColor(.white).font(.system(size: 30))
             }
             .frame(width: 70, height: 70, alignment: .center)
 

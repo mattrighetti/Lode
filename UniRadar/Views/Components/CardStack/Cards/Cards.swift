@@ -15,7 +15,7 @@ struct CfuCard: View {
     var body: some View {
         ZStack {
             CircularProgressBar(
-                progress: CGFloat(self.viewModel.gainedCfu) / 180
+                progress: CGFloat(self.viewModel.gainedCfu) / CGFloat(self.viewModel.totalCfu)
             )
             Text("\(self.viewModel.gainedCfu)").font(.system(size: 30, weight: .bold, design: .rounded))
         }.background(Color("cardBackground"))
