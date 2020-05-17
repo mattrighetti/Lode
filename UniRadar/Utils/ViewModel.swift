@@ -13,10 +13,12 @@ class ViewModel: ObservableObject {
     // CoreData Context
     private var managedObjectContext: NSManagedObjectContext
     
-    // DataModel
+    // DataModel main elements
     @Published var exams: [Exam] = []
     @Published var assignments: [Assignment] = []
     @Published var courses: [Course] = []
+    
+    // Courses dependent values
     @Published var totalCfu: Int = 0
     @Published var gainedCfu: Int = 0
     @Published var average: Double = 0.0
@@ -27,6 +29,12 @@ class ViewModel: ObservableObject {
     @Published var passedAsExpected: Int = 0
     @Published var passedWorseThanExpected: Int = 0
     @Published var passedBetterThanExpected: Int = 0
+    
+    // Exams dependent values
+    @Published var upcomingExams: Int = 0
+    
+    // Assignments dependent values
+    @Published var dueSoonAssignments: Int = 0
     
     // Subscriptions Pool
     private var cancellables = Set<AnyCancellable>()
@@ -46,7 +54,7 @@ extension ViewModel {
         FetchedResultsPublisher(request: Exam.fetchRequest(), context: managedObjectContext)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { _ in
-                print("Fetched new exams")
+                print("Completed Exams Fetch Request Sub")
             }, receiveValue: { newExams in
                 self.exams = newExams
             })
@@ -55,7 +63,7 @@ extension ViewModel {
         FetchedResultsPublisher(request: Assignment.fetchRequest(), context: managedObjectContext)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { _ in
-                print("Fetched new assignments")
+                print("Completed Assignments Fetch Request Sub")
             }, receiveValue: { newAssignments in
                 self.assignments = newAssignments
             })
@@ -64,7 +72,7 @@ extension ViewModel {
         FetchedResultsPublisher(request: Course.fetchRequest(), context: managedObjectContext)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { _ in
-                print("Fetched new data")
+                print("Completed Course Fetch Request Sub")
             }, receiveValue: { newCourses in
                 self.courses = newCourses
             })
@@ -78,6 +86,7 @@ extension ViewModel {
             self.average = self.calculateAverage(withCourses: courses)
             // Update Expected Average
             self.expectedAverage = self.calculateExpectedAverage(withCourses: courses)
+            print(self.expectedAverage)
             // Update Projected Grad Grade
             self.projectedGraduationGrade = self.calculateGraduationGrade(withMean: self.average)
             // Update Expected Projected Grad Grade
@@ -93,14 +102,23 @@ extension ViewModel {
     }
     
     private func calculateAverage(withCourses courses: [Course]) -> Double {
-        var average = courses.filter { $0.mark != 0 }.compactMap { Double($0.mark * $0.cfu) }.reduce(0, +)
+        var average = courses.filter { $0.mark != 0 }.map { Double($0.mark * $0.cfu) }.reduce(0, { $0 + $1 })
         average /= Double(self.gainedCfu)
+        
+        guard !average.isNaN else { return 0.0 }
+        
         return average
     }
     
-    private func calculateExpectedAverage(withCourses course: [Course]) -> Double {
-        var average = courses.compactMap { Double($0.cfu * $0.expectedMark) }.reduce(0, +)
-        average /= courses.reduce((0), { $0 + Double($1.cfu) })
+    private func calculateExpectedAverage(withCourses courses: [Course]) -> Double {
+        var average = courses.map { Double($0.cfu * $0.expectedMark) }.reduce(0, { $0 + $1 })
+        let totalCfu = courses.map { Double($0.cfu) }.reduce(0, { $0 + $1 })
+        print("Func", average, totalCfu)
+        average /= totalCfu
+        print("Func", average)
+        
+        guard !average.isNaN else { return 0.0 }
+        
         return average
     }
     

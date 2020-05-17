@@ -40,6 +40,8 @@
 		C9D2A9F9244C0CD800CA8AAE /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */; };
 		C9D2A9FC244D0D6500CA8AAE /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */; };
 		C9D2A9FE244D1F5200CA8AAE /* ReminderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FD244D1F5200CA8AAE /* ReminderForm.swift */; };
+		C9E24CC524708A48001B2F08 /* UniRadarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E24CC424708A48001B2F08 /* UniRadarTests.swift */; };
+		C9E24CCD247091C2001B2F08 /* ViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E24CCC247091C2001B2F08 /* ViewModelTest.swift */; };
 		C9EF67F424535944005A2CA0 /* CourseForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F324535944005A2CA0 /* CourseForm.swift */; };
 		C9EF67F6245362A6005A2CA0 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F5245362A6005A2CA0 /* +View.swift */; };
 		C9EF67F82453A92B005A2CA0 /* IconColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF67F72453A92B005A2CA0 /* IconColorPickerView.swift */; };
@@ -52,6 +54,16 @@
 		C9FCE87324660CAE0091371E /* Exam+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FCE86D24660CAE0091371E /* Exam+CoreDataProperties.swift */; };
 		C9FDD70D244E56ED003A31CF /* ExamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD70C244E56ED003A31CF /* ExamsView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C9E24CC724708A48001B2F08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1301E0EB23428D2D0038ACA9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1301E0F223428D2D0038ACA9;
+			remoteInfo = UniRadar;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1301E0F323428D2D0038ACA9 /* UniRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +100,10 @@
 		C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
 		C9D2A9FD244D1F5200CA8AAE /* ReminderForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderForm.swift; sourceTree = "<group>"; };
+		C9E24CC224708A48001B2F08 /* UniRadarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniRadarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9E24CC424708A48001B2F08 /* UniRadarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniRadarTests.swift; sourceTree = "<group>"; };
+		C9E24CC624708A48001B2F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9E24CCC247091C2001B2F08 /* ViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTest.swift; sourceTree = "<group>"; };
 		C9EF67F324535944005A2CA0 /* CourseForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseForm.swift; sourceTree = "<group>"; };
 		C9EF67F5245362A6005A2CA0 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
 		C9EF67F72453A92B005A2CA0 /* IconColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconColorPickerView.swift; sourceTree = "<group>"; };
@@ -110,6 +126,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9E24CBF24708A48001B2F08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -117,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				1301E0F523428D2D0038ACA9 /* UniRadar */,
+				C9E24CC324708A48001B2F08 /* UniRadarTests */,
 				1301E0F423428D2D0038ACA9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				1301E0F323428D2D0038ACA9 /* UniRadar.app */,
+				C9E24CC224708A48001B2F08 /* UniRadarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,6 +324,16 @@
 			path = Reminders;
 			sourceTree = "<group>";
 		};
+		C9E24CC324708A48001B2F08 /* UniRadarTests */ = {
+			isa = PBXGroup;
+			children = (
+				C9E24CC424708A48001B2F08 /* UniRadarTests.swift */,
+				C9E24CC624708A48001B2F08 /* Info.plist */,
+				C9E24CCC247091C2001B2F08 /* ViewModelTest.swift */,
+			);
+			path = UniRadarTests;
+			sourceTree = "<group>";
+		};
 		C9FDD70B244E56DF003A31CF /* Exams */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,18 +367,40 @@
 			productReference = 1301E0F323428D2D0038ACA9 /* UniRadar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C9E24CC124708A48001B2F08 /* UniRadarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9E24CCB24708A48001B2F08 /* Build configuration list for PBXNativeTarget "UniRadarTests" */;
+			buildPhases = (
+				C9E24CBE24708A48001B2F08 /* Sources */,
+				C9E24CBF24708A48001B2F08 /* Frameworks */,
+				C9E24CC024708A48001B2F08 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9E24CC824708A48001B2F08 /* PBXTargetDependency */,
+			);
+			name = UniRadarTests;
+			productName = UniRadarTests;
+			productReference = C9E24CC224708A48001B2F08 /* UniRadarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1301E0EB23428D2D0038ACA9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Mattia Righetti";
 				TargetAttributes = {
 					1301E0F223428D2D0038ACA9 = {
 						CreatedOnToolsVersion = 11.0;
+					};
+					C9E24CC124708A48001B2F08 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 1301E0F223428D2D0038ACA9;
 					};
 				};
 			};
@@ -364,6 +421,7 @@
 			projectRoot = "";
 			targets = (
 				1301E0F223428D2D0038ACA9 /* UniRadar */,
+				C9E24CC124708A48001B2F08 /* UniRadarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -376,6 +434,13 @@
 				1301E10623428D2E0038ACA9 /* LaunchScreen.storyboard in Resources */,
 				1301E10323428D2E0038ACA9 /* Preview Assets.xcassets in Resources */,
 				1301E10023428D2E0038ACA9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9E24CC024708A48001B2F08 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +514,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9E24CBE24708A48001B2F08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9E24CCD247091C2001B2F08 /* ViewModelTest.swift in Sources */,
+				C9E24CC524708A48001B2F08 /* UniRadarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C9E24CC824708A48001B2F08 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1301E0F223428D2D0038ACA9 /* UniRadar */;
+			targetProxy = C9E24CC724708A48001B2F08 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1301E10423428D2E0038ACA9 /* LaunchScreen.storyboard */ = {
@@ -621,6 +703,48 @@
 			};
 			name = Release;
 		};
+		C9E24CC924708A48001B2F08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H89RFW5UZ6;
+				INFOPLIST_FILE = UniRadarTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mattiarighetti.UniRadarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniRadar.app/UniRadar";
+			};
+			name = Debug;
+		};
+		C9E24CCA24708A48001B2F08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H89RFW5UZ6;
+				INFOPLIST_FILE = UniRadarTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mattiarighetti.UniRadarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniRadar.app/UniRadar";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -638,6 +762,15 @@
 			buildConfigurations = (
 				1301E10B23428D2E0038ACA9 /* Debug */,
 				1301E10C23428D2E0038ACA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9E24CCB24708A48001B2F08 /* Build configuration list for PBXNativeTarget "UniRadarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9E24CC924708A48001B2F08 /* Debug */,
+				C9E24CCA24708A48001B2F08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

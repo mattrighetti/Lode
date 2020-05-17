@@ -15,8 +15,8 @@ struct StringList: View {
     @Binding var selectedIndex: Int
     
     var body: some View {
-        List(strings.indices) { index in
-            HStack {
+        List {
+            ForEach(self.strings.indices) { index in
                 Button(action: {
                     self.selectedIndex = index
                 }, label: {
@@ -30,7 +30,6 @@ struct StringList: View {
                 }).buttonStyle(PlainButtonStyle())
             }.listRowBackground(Color("cardBackground"))
         }
-        .background(Color("background"))
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
     }
@@ -39,7 +38,7 @@ struct StringList: View {
 struct StringList_Previews: PreviewProvider {
     @State static var index: Int = 0
     static var previews: some View {
-        StringList(strings: ["Analisi 1", "Analisi 2", "Fisica Tecnica", "Advanced Algorithms"], selectedIndex: $index)
+        StringList(strings: ["Analisi 1", "AAPP", "ACA"], selectedIndex: $index)
             .colorScheme(.dark)
     }
 }

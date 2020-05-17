@@ -50,9 +50,9 @@ struct ExamsView: View {
                         }
                         Spacer()
                     }
-                    })
-                    .modifier(SegmentedButton())
-                    .listRowBackground(Color("background"))
+                })
+                .modifier(SegmentedButton())
+                .listRowBackground(Color("background"))
             }.alert(isPresented: self.$presentAlert) {
                 Alert(
                     title: Text("No course is present"),
@@ -76,7 +76,7 @@ struct ExamsView: View {
                 trailing: Button(action: { self.showModal() }, label: { Image(systemName: "plus.circle") })
             )
         }.sheet(isPresented: $addExamModalShown) {
-            ExamForm(courses: self.viewModel.courses.map { $0.name! })
+            ExamForm(courses: self.viewModel.courses.filter { $0.mark == 0 }.map { $0.name! })
                 .environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
@@ -96,7 +96,7 @@ struct ExamsView: View {
     }
     
     private func showModal() {
-        if self.viewModel.courses.isEmpty {
+        if self.viewModel.courses.filter({ $0.mark == 0 }).map({ $0.name! }).isEmpty {
             self.presentAlert.toggle()
         } else {
             self.addExamModalShown.toggle()

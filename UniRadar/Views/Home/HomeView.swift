@@ -40,11 +40,11 @@ struct HomeView: View {
                         HStack {
                             NavigationLink(destination: MarksView(courses: self.viewModel.courses), isActive: self.$markViewActive) {
                                 CategoriesCard(label: "Mark", imageName: "checkmark.seal")
-                            }
+                            }.buttonStyle(PlainButtonStyle())
                             
                             NavigationLink(destination: StatsView(viewModel: self.viewModel), isActive: self.$statsViewActive) {
                                 CategoriesCard(label: "Stats", imageName: "checkmark")
-                            }
+                            }.buttonStyle(PlainButtonStyle())
                         }
                         .padding(.horizontal, 25)
                     }
