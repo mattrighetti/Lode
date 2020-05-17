@@ -117,7 +117,9 @@ struct CourseForm: View {
                     } else {
                         EmptyView()
                     }
-                }.transition(.scale)
+                }
+                .padding(.bottom, 70)
+                .transition(.scale)
                 
             }
             .padding(.horizontal)

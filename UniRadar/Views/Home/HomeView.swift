@@ -17,6 +17,9 @@ struct HomeView: View {
     @State var statsViewActive: Bool = false
     @State var otherViewActive: Bool = false
     @State var isActionSheetPresented: Bool = false
+    @State var sheetMenu: SheetMenu = .settings
+    @State var sheetMenuShown: Bool = false
+    @State var showAlert: Bool = false
 
     var body: some View {
         NavigationView {
@@ -45,14 +48,18 @@ struct HomeView: View {
                     }
                 }
                 .padding(.bottom)
-            }.background(Color("background").edgesIgnoringSafeArea(.all))
+            }
+            .background(Color("background").edgesIgnoringSafeArea(.all))
+            .sheet(isPresented: self.$sheetMenuShown) {
+                self.sheetMenu.contentView
+            }
 
             .navigationBarTitle("Home", displayMode: .automatic)
             .navigationBarItems(
                 leading:
                     HStack {
                         Button(action: {
-                            print("Added element")
+                            self.toggle(menu: .settings)
                         }, label: {
                             Image(systemName: "gear").font(.system(size: 20))
                         })
@@ -66,12 +73,76 @@ struct HomeView: View {
 
                 }
             )
-        }.actionSheet(isPresented: $isActionSheetPresented) {
+        }
+        .alert(isPresented: self.$showAlert) {
+            Alert(
+                title: Text("No course is present"),
+                message: Text("You must first add a course before creating exams"),
+                dismissButton: .cancel(Text("Ok"))
+            )
+        }
+        .actionSheet(isPresented: $isActionSheetPresented) {
             ActionSheet(title: Text("Choose an action").font(.title), message: nil, buttons: [
-                .default(Text("Add Exam"), action: { print("Add Exam") }),
-                .default(Text("Add Reminder"), action: { print("Add Reminder") }),
+                .default(Text("Add Exam"), action: {
+                    self.toggle(
+                        menu: .examform(courses: self.viewModel.courses.filter({ $0.mark == 0 }).map({ $0.name! }) )
+                    )
+                }),
+                .default(Text("Add Reminder"), action: {
+                    self.toggle(menu: .assignmentform)
+                }),
                 .cancel()
             ])
+        }
+    }
+    
+    private func toggle(menu: SheetMenu) {
+        if menu == .examform(courses: []) {
+            if self.viewModel.courses.filter({ $0.mark == 0 }).map({ $0.name! }).isEmpty {
+                self.showAlert.toggle()
+            } else {
+                self.sheetMenu = menu
+                self.sheetMenuShown.toggle()
+            }
+        } else {
+            self.sheetMenu = menu
+            self.sheetMenuShown.toggle()
+        }
+    }
+    
+    enum SheetMenu: Equatable {
+        case settings
+        case examform(courses: [String])
+        case assignmentform
+        case courseform
+        
+        var contentView: AnyView {
+            switch self {
+            case .settings:
+                return AnyView( EmptyView() )
+            case .examform(let courses):
+                return AnyView( ExamForm(courses: courses) )
+            case .assignmentform:
+                return AnyView( ReminderForm() )
+            case .courseform:
+                return AnyView( CourseForm() )
+            }
+            
+        }
+        
+        static func == (lhs: SheetMenu, rhs: SheetMenu) -> Bool {
+            switch (lhs, rhs) {
+            case (.settings, .settings):
+                return true
+            case (.examform(courses: _), .examform(courses: _)):
+                return true
+            case (.assignmentform, .assignmentform):
+                return true
+            case (.courseform, .courseform):
+                return true
+            default:
+                return false
+            }
         }
     }
 }
