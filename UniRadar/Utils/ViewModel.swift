@@ -113,9 +113,7 @@ extension ViewModel {
     private func calculateExpectedAverage(withCourses courses: [Course]) -> Double {
         var average = courses.map { Double($0.cfu * $0.expectedMark) }.reduce(0, { $0 + $1 })
         let totalCfu = courses.map { Double($0.cfu) }.reduce(0, { $0 + $1 })
-        print("Func", average, totalCfu)
         average /= totalCfu
-        print("Func", average)
         
         guard !average.isNaN else { return 0.0 }
         

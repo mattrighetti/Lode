@@ -80,6 +80,7 @@ struct CoursesView: View {
             .sheet(isPresented: self.$addCourseModalShown, onDismiss: {
                 if self.editMode == .active {
                     self.editMode = .inactive
+                    self.courseToEdit = nil
                 }
             }, content: {
                 CourseForm(course: self.editMode == .active ? self.courseToEdit : nil)

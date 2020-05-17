@@ -114,7 +114,6 @@ struct ReminderForm: View {
                 trailing: Button(
                     action: {
                         self.onDonePressed()
-                        self.presentationMode.wrappedValue.dismiss()
                     },
                     label: {
                         Text("Done")
@@ -130,6 +129,7 @@ struct ReminderForm: View {
         } else {
             addAssignment()
         }
+        self.presentationMode.wrappedValue.dismiss()
     }
     
     private func compile(assignment: Assignment) {

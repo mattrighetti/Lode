@@ -88,6 +88,7 @@ struct RemindersView: View {
             onDismiss: {
                 if self.editMode == .active {
                     self.editMode = .inactive
+                    self.assignmentToEdit = nil
                 }
             },
             content: {

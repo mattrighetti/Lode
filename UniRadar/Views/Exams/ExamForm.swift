@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ExamForm: View {
     
-    @Environment(\.presentationMode) var presentatitonMode
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     
     var courses: [String]
@@ -123,17 +123,25 @@ struct ExamForm: View {
             .navigationBarTitle("Add exam", displayMode: .inline)
             .navigationBarItems(
                 leading: Button("Cancel") {
-                    self.presentatitonMode.wrappedValue.dismiss()
+                    self.presentationMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Done") {
-                    if self.fieldsAreCompiled() {
-                        self.addExam()
-                        self.presentatitonMode.wrappedValue.dismiss()
-                    } else {
-                        self.showAlert.toggle()
-                    }
+                    self.onDonePressed()
                 }
             )
+        }
+    }
+    
+    private func onDonePressed() {
+        if self.fieldsAreCompiled() {
+            if self.exam != nil {
+                self.updateExam()
+            } else {
+                self.addExam()
+            }
+            self.presentationMode.wrappedValue.dismiss()
+        } else {
+            self.showAlert.toggle()
         }
     }
     

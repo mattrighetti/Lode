@@ -49,11 +49,11 @@ struct MainInfoCard: View {
             }
             HStack {
                 Text("Upcoming exams").font(.system(.title, design: .rounded))
-                Text("\(self.viewModel.exams.filter { $0.date! < Date() }.count)").font(.system(.headline, design: .rounded)).foregroundColor(.green)
+                Text("\(self.viewModel.exams.filter { $0.date! >= Date() }.count)").font(.system(.headline, design: .rounded)).foregroundColor(.green)
             }
             HStack {
                 Text("Active assignments").font(.system(.title, design: .rounded))
-                Text("\(self.viewModel.assignments.filter { $0.dueDate! < Date() }.count)").font(.system(.headline, design: .rounded)).foregroundColor(.green)
+                Text("\(self.viewModel.assignments.filter { $0.dueDate! > Date() }.count)").font(.system(.headline, design: .rounded)).foregroundColor(.green)
             }
         }.background(Color("cardBackground"))
     }

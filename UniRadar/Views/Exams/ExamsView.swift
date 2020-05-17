@@ -101,6 +101,7 @@ struct ExamsView: View {
             onDismiss: {
                 if self.editMode == .active {
                     self.editMode = .inactive
+                    self.examToEdit = nil
                 }
             },
             content: {
