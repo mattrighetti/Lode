@@ -28,11 +28,12 @@ struct LottieView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
-        let animationView = uiView.subviews.first! as! AnimationView
-        animationView.animation = Animation.named(lottieAnimationName)
-        animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .loop
-        animationView.play()
+        if let animationView = uiView.subviews.first! as? AnimationView {
+            animationView.animation = Animation.named(lottieAnimationName)
+            animationView.contentMode = .scaleAspectFit
+            animationView.loopMode = .loop
+            animationView.play()
+        }
     }
 }
 

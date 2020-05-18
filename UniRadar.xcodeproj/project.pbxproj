@@ -20,6 +20,7 @@
 		C94FC6A124713E5200287DEF /* swipeup.json in Resources */ = {isa = PBXBuildFile; fileRef = C94FC6A024713E5200287DEF /* swipeup.json */; };
 		C94FC6A324713EE400287DEF /* manwriting.json in Resources */ = {isa = PBXBuildFile; fileRef = C94FC6A224713EE400287DEF /* manwriting.json */; };
 		C94FC6A524713F6A00287DEF /* resting.json in Resources */ = {isa = PBXBuildFile; fileRef = C94FC6A424713F6A00287DEF /* resting.json */; };
+		C94FC6A72471B42000287DEF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94FC6A62471B42000287DEF /* SettingsView.swift */; };
 		C9555B6D2450E6820031933D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C9555B6C2450E6820031933D /* Lottie */; };
 		C9555B6F2450E8340031933D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9555B6E2450E8340031933D /* LottieView.swift */; };
 		C963F9E4246A1D9200B2FBEF /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C963F9E3246A1D9200B2FBEF /* CustomModifiers.swift */; };
@@ -70,7 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1301E0F323428D2D0038ACA9 /* UniRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1301E0F323428D2D0038ACA9 /* Lode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1301E0F623428D2D0038ACA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1301E0F823428D2D0038ACA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1301E0FF23428D2E0038ACA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		C94FC6A024713E5200287DEF /* swipeup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = swipeup.json; sourceTree = "<group>"; };
 		C94FC6A224713EE400287DEF /* manwriting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = manwriting.json; sourceTree = "<group>"; };
 		C94FC6A424713F6A00287DEF /* resting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = resting.json; sourceTree = "<group>"; };
+		C94FC6A62471B42000287DEF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C9555B6E2450E8340031933D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		C963F9E3246A1D9200B2FBEF /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		C96801C824566A9200B7F9BB /* +Glyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Glyph.swift"; sourceTree = "<group>"; };
@@ -150,13 +152,14 @@
 				1301E0F523428D2D0038ACA9 /* UniRadar */,
 				C9E24CC324708A48001B2F08 /* UniRadarTests */,
 				1301E0F423428D2D0038ACA9 /* Products */,
+				C963D38F2472054B0011488B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		1301E0F423428D2D0038ACA9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1301E0F323428D2D0038ACA9 /* UniRadar.app */,
+				1301E0F323428D2D0038ACA9 /* Lode.app */,
 				C9E24CC224708A48001B2F08 /* UniRadarTests.xctest */,
 			);
 			name = Products;
@@ -252,11 +255,19 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		C963D38F2472054B0011488B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C9766D0F2443DB9C0056726D /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				C9D2A9F3244BED9B00CA8AAE /* HomeViews */,
 				C9766D102443DBB40056726D /* HomeView.swift */,
+				C94FC6A62471B42000287DEF /* SettingsView.swift */,
 				C94FC69D2471292900287DEF /* InitialForm.swift */,
 			);
 			path = Home;
@@ -384,7 +395,7 @@
 				C9555B6C2450E6820031933D /* Lottie */,
 			);
 			productName = UniRadar;
-			productReference = 1301E0F323428D2D0038ACA9 /* UniRadar.app */;
+			productReference = 1301E0F323428D2D0038ACA9 /* Lode.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C9E24CC124708A48001B2F08 /* UniRadarTests */ = {
@@ -515,6 +526,7 @@
 				C97D1C41245E6DF700C04342 /* ExamForm.swift in Sources */,
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
 				C96801C924566A9200B7F9BB /* +Glyph.swift in Sources */,
+				C94FC6A72471B42000287DEF /* SettingsView.swift in Sources */,
 				C9FCE87124660CAE0091371E /* Course+CoreDataProperties.swift in Sources */,
 				C963F9E4246A1D9200B2FBEF /* CustomModifiers.swift in Sources */,
 				C9AF9D5E24621AA8008B5994 /* GridIndex.swift in Sources */,
@@ -690,6 +702,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"UniRadar/Preview Content\"";
 				DEVELOPMENT_TEAM = H89RFW5UZ6;
@@ -699,8 +712,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.UniRadar;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.Lode;
+				PRODUCT_NAME = Lode;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -711,6 +725,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"UniRadar/Preview Content\"";
 				DEVELOPMENT_TEAM = H89RFW5UZ6;
@@ -720,8 +735,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.UniRadar;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.Lode;
+				PRODUCT_NAME = Lode;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

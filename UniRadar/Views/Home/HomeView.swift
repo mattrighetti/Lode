@@ -17,7 +17,7 @@ struct HomeView: View {
     @State var statsViewActive: Bool = false
     @State var otherViewActive: Bool = false
     @State var isActionSheetPresented: Bool = false
-    @State var sheetMenu: SheetMenu = .settings
+    @State var sheetMenu: SheetMenu?
     @State var sheetMenuShown: Bool = false
     @State var showAlert: Bool = false
 
@@ -51,7 +51,7 @@ struct HomeView: View {
             }
             .background(Color("background").edgesIgnoringSafeArea(.all))
             .sheet(isPresented: self.$sheetMenuShown) {
-                self.sheetMenu.contentView
+                self.sheetMenu!.contentView
             }
 
             .navigationBarTitle("Home", displayMode: .automatic)
@@ -59,7 +59,7 @@ struct HomeView: View {
                 leading:
                     HStack {
                         Button(action: {
-                            self.toggle(menu: .settings)
+                            self.toggle(menu: .settings(viewModel: self.viewModel))
                         }, label: {
                             Image(systemName: "gear").font(.system(size: 20))
                         })
@@ -111,15 +111,15 @@ struct HomeView: View {
     }
     
     enum SheetMenu: Equatable {
-        case settings
+        case settings(viewModel: ViewModel)
         case examform(courses: [String])
         case assignmentform
         case courseform
         
         var contentView: AnyView {
             switch self {
-            case .settings:
-                return AnyView( EmptyView() )
+            case .settings(let viewModel):
+                return AnyView( SettingsView(viewModel: viewModel) )
             case .examform(let courses):
                 return AnyView( ExamForm(courses: courses) )
             case .assignmentform:
