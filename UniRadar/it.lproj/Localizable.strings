@@ -1,0 +1,81 @@
+/* 
+  Localizable.strings
+  UniRadar
+
+  Created by Mattia Righetti on 18/05/2020.
+  Copyright © 2020 Mattia Righetti. All rights reserved.
+*/
+
+// MARK: - Home View
+"Home" = "Home";
+"Main Info" = "Main Info";
+"Categories" = "Categories";
+"Stats" = "Stats";
+"Your CFU" = "Your CFU";
+"Your Average" = "Your Average";
+"Expected Average" = "Expected Average";
+"Average" = "Average";
+"Upcoming Exams" = "Upcoming Exams";
+"Active Assignments" = "Active Assignments";
+
+// MARK: - Statistics View
+"Statistics" = "Statistics";
+"Current statistics" = "Current statistics";
+"Exams passed" = "Exams passed";
+"Latest marks" = "Latest marks";
+"Total courses" = "Total courses";
+"Projected graduation grade" = "Projected graduation grade";
+"Passed exams" = "Passed exams";
+"Gained CFU" = "Gained CFU";
+"Current average" = "Current average";
+"Current graduation grade" = "Current graduation grade";
+"As expected" = "As expected";
+"More than expected" = "More than expected";
+"Less than expected" = "Less than expected";
+
+// MARK: - Marks View
+"Marks" = "Marks";
+
+// MARK: - Settings View
+"Settings" = "Settings";
+"Total CFU" = "Total CFU";
+"Accent color" = "Accent color";
+"App icon" = "App icon";
+"About" = "About";
+
+// MARK: - Exams View
+"Exams" = "Exams";
+"Add exam" = "Add exam";
+"Title" = "Title";
+"Exam title" = "Exam title";
+"Total hours" = "Total hours";
+"Difficulty" = "Difficulty";
+"Mark expected" = "Mark expected";
+"Mark obtained" = "Mark obtained";
+"This will be used for future statistics" = "This will be used for future statistics";
+"The mark you got" = "The mark you got";
+
+// MARK: - Assignments View
+"Assignments" = "Assignments";
+"Add assignment" = "Add assignment";
+"Assignment title" = "Assignment title";
+"Assignment description" = "Assignment description";
+
+// MARK: - Courses View
+"Courses" = "Courses";
+"Add course" = "Add course";
+
+// MARK: - SegmentedPicker Navbar
+"Past" = "Past";
+"Passed" = "Passed";
+"Current" = "Current";
+"Upcoming" = "Upcoming";
+"Active" = "Active";
+
+// MARK: - Buttons
+"Cancel" = "Cancel";
+"Done" = "Done";
+
+// MARK: - Common words
+"Date" = "Date";
+"Description" = "Description";
