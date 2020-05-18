@@ -8,74 +8,80 @@
 
 // MARK: - Home View
 "Home" = "Home";
-"Main Info" = "Main Info";
-"Categories" = "Categories";
-"Stats" = "Stats";
-"Your CFU" = "Your CFU";
-"Your Average" = "Your Average";
-"Expected Average" = "Expected Average";
-"Average" = "Average";
-"Upcoming Exams" = "Upcoming Exams";
-"Active Assignments" = "Active Assignments";
+"Main Info" = "Infos";
+"Categories" = "Categorie";
+"Stats" = "Statistiche";
+"Your CFU" = "I tuoi CFU";
+"Your Average" = "La tua media";
+"Expected Average" = "Media attesa";
+"Average" = "Media";
+"Upcoming Exams" = "Prossimi esami";
+"Active Assignments" = "Compiti attivi";
 
 // MARK: - Statistics View
-"Statistics" = "Statistics";
-"Current statistics" = "Current statistics";
-"Exams passed" = "Exams passed";
-"Latest marks" = "Latest marks";
-"Total courses" = "Total courses";
-"Projected graduation grade" = "Projected graduation grade";
-"Passed exams" = "Passed exams";
-"Gained CFU" = "Gained CFU";
-"Current average" = "Current average";
-"Current graduation grade" = "Current graduation grade";
-"As expected" = "As expected";
-"More than expected" = "More than expected";
-"Less than expected" = "Less than expected";
+"Statistics" = "Statistiche";
+"Current statistics" = "Statistiche attuali";
+"Exams passed" = "Esami passati";
+"Latest marks" = "Ultimi voti";
+"Total courses" = "Corsi totali";
+"Projected graduation grade" = "Voto di laurea";
+"Passed exams" = "Esami passati";
+"Gained CFU" = "CFU guadagnati";
+"Current average" = "Media attuale";
+"Current graduation grade" = "Voto di laurea attuale";
+"As expected" = "Come atteso";
+"More than expected" = "Più del previsto";
+"Less than expected" = "Meno del previsto";
 
 // MARK: - Marks View
-"Marks" = "Marks";
+"Marks" = "Voti";
 
 // MARK: - Settings View
-"Settings" = "Settings";
-"Total CFU" = "Total CFU";
+"Settings" = "Impostazioni";
+"Total CFU" = "CFU totali";
 "Accent color" = "Accent color";
 "App icon" = "App icon";
 "About" = "About";
 
 // MARK: - Exams View
-"Exams" = "Exams";
-"Add exam" = "Add exam";
-"Title" = "Title";
-"Exam title" = "Exam title";
-"Total hours" = "Total hours";
-"Difficulty" = "Difficulty";
-"Mark expected" = "Mark expected";
-"Mark obtained" = "Mark obtained";
-"This will be used for future statistics" = "This will be used for future statistics";
-"The mark you got" = "The mark you got";
+"Exams" = "Esami";
+"Course" = "Courso";
+"Add exam" = "Aggiungi esame";
+"Exam title" = "Titolo esame";
+"Exam description" = "Descrizione esame";
+"Select a course" = "Seleziona un corso";
 
 // MARK: - Assignments View
-"Assignments" = "Assignments";
-"Add assignment" = "Add assignment";
-"Assignment title" = "Assignment title";
-"Assignment description" = "Assignment description";
+"Assignments" = "Compiti";
+"Add assignment" = "Aggiungi compito";
+"Assignment title" = "Titolo compito";
+"Assignment description" = "Descrizione compito";
 
 // MARK: - Courses View
-"Courses" = "Courses";
-"Add course" = "Add course";
+"Courses" = "Corsi";
+"Add course" = "Aggiungi corso";
+"Course title" = "Titolo corso";
+"Total hours" = "Ore totali";
+"Difficulty" = "Difficoltà";
+"Mark expected" = "Voto atteso";
+"Mark obtained" = "Voto preso";
+"This will be used for future statistics" = "Verrà usato per le statistiche";
+"The mark you got" = "Il voto ottenuto";
 
 // MARK: - SegmentedPicker Navbar
-"Past" = "Past";
-"Passed" = "Passed";
-"Current" = "Current";
-"Upcoming" = "Upcoming";
-"Active" = "Active";
+"Past" = "Passati";
+"Passed" = "Superati";
+"Current" = "Attuali";
+"Upcoming" = "Prossimi";
+"Active" = "Attivi";
 
 // MARK: - Buttons
-"Cancel" = "Cancel";
-"Done" = "Done";
+"Cancel" = "Annulla";
+"Done" = "Fine";
 
 // MARK: - Common words
-"Date" = "Date";
-"Description" = "Description";
+"Date" = "Data";
+"Description" = "Descrizione";
+"Expected" = "Atteso";
+"Color" = "Colore";
+"Glyph" = "Glifo";
