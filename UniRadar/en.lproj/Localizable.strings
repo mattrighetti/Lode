@@ -9,6 +9,7 @@
 // MARK: - Home View
 "Home" = "Home";
 "Main Info" = "Main Info";
+"Main Infos" = "Infos";
 "Categories" = "Categories";
 "Stats" = "Stats";
 "Your CFU" = "Your CFU";
@@ -50,12 +51,14 @@
 "Exam title" = "Exam title";
 "Exam description" = "Exam description";
 "Select a course" = "Select a course";
+"In %d days" = "In %d days";
 
 // MARK: - Assignments View
 "Assignments" = "Assignments";
 "Add assignment" = "Add assignment";
 "Assignment title" = "Assignment title";
 "Assignment description" = "Assignment description";
+"missing" = "mancanti";
 
 // MARK: - Courses View
 "Courses" = "Courses";
@@ -65,12 +68,13 @@
 "Difficulty" = "Difficulty";
 "Mark expected" = "Mark expected";
 "Mark obtained" = "Mark obtained";
-"This will be used for future statistics" = "This will be used for future statistics";
+"This will be used for further statistics" = "This will be used for further statistics";
 "The mark you got" = "The mark you got";
 
 // MARK: - SegmentedPicker Navbar
 "Past" = "Past";
 "Passed" = "Passed";
+"Passed (singular)" = "Passed";
 "Current" = "Current";
 "Upcoming" = "Upcoming";
 "Active" = "Active";
@@ -85,3 +89,30 @@
 "Expected" = "Expected";
 "Color" = "Color";
 "Glyph" = "Glyph";
+"No name" = "No name";
+"Title" = "Title";
+"Today" = "Today";
+
+// MARK: - Initial Setup view
+"Initial setup" = "Initial setup";
+"Total CFUs of your study plan" = "Total CFUs of your study plan";
+
+// MARK: - Alert Messages
+"Some fields are not compiled" = "Some fields are not compiled";
+"You have to compile every field to create a course" = "You have to compile every field to create a course";
+
+"No course is present" = "No course is present";
+"You must first add a course before creating exams" = "You must first add a course before creating exams";
+
+"Choose an action" = "Choose an action";
+
+// MARK: - SplashScreen
+"Keep track of everything" = "Keep track of everything";
+"All in a single place" = "All in a single place";
+"Save your marks, assignments and exams all in this app" = "Save your marks, assignments and exams all in this app";
+"Extremely simple to use" = "Extremely simple to use";
+"Designed with ease of use in mind to get you back to work as soon as possible" = "Designed with ease of use in mind to get you back to work as soon as possible";
+
+// MARK: - Cards
+"Upcoming exams" = "Upcoming exams";
+"Active assignments" = "Active assignments";

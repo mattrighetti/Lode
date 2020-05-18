@@ -9,6 +9,7 @@
 // MARK: - Home View
 "Home" = "Home";
 "Main Info" = "Infos";
+"Main Infos" = "Infos";
 "Categories" = "Categorie";
 "Stats" = "Statistiche";
 "Your CFU" = "I tuoi CFU";
@@ -50,12 +51,14 @@
 "Exam title" = "Titolo esame";
 "Exam description" = "Descrizione esame";
 "Select a course" = "Seleziona un corso";
+"In %d days" = "In %d giorni";
 
 // MARK: - Assignments View
 "Assignments" = "Compiti";
 "Add assignment" = "Aggiungi compito";
 "Assignment title" = "Titolo compito";
 "Assignment description" = "Descrizione compito";
+"missing" = "missing";
 
 // MARK: - Courses View
 "Courses" = "Corsi";
@@ -64,13 +67,14 @@
 "Total hours" = "Ore totali";
 "Difficulty" = "Difficoltà";
 "Mark expected" = "Voto atteso";
-"Mark obtained" = "Voto preso";
-"This will be used for future statistics" = "Verrà usato per le statistiche";
+"Mark obtained" = "Voto ottenuto";
+"This will be used for further statistics" = "Verrà usato per le statistiche";
 "The mark you got" = "Il voto ottenuto";
 
 // MARK: - SegmentedPicker Navbar
 "Past" = "Passati";
 "Passed" = "Superati";
+"Passed (singular)" = "Superato";
 "Current" = "Attuali";
 "Upcoming" = "Prossimi";
 "Active" = "Attivi";
@@ -85,3 +89,30 @@
 "Expected" = "Atteso";
 "Color" = "Colore";
 "Glyph" = "Glifo";
+"No name" = "Nessun nome";
+"Title" = "Titolo";
+"Today" = "Oggi";
+
+// MARK: - Initial Setup view
+"Initial setup" = "Dati iniziali";
+"Total CFUs of your study plan" = "CFU totali del tuo piano";
+
+// MARK: - Alert Messages
+"Some fields are not compiled" = "Compila i campi";
+"You have to compile every field to create a course" = "Ci sono dei campi non compilati, compilali e riprova";
+
+"No course is present" = "Non è presente alcun corso";
+"You must first add a course before creating exams" = "Devi prima aggiungere almeno un corso per poter aggiungere un esame";
+
+"Choose an action" = "Scegli un'opzione";
+
+// MARK: - SplashScreen
+"Keep track of everything" = "Tieni traccia di tutto";
+"All in a single place" = "All in a single place";
+"Save your marks, assignments and exams all in this app" = "Salve i tuoi voti, compiti ed esami";
+"Extremely simple to use" = "Estremamente semplice da usare";
+"Designed with ease of use in mind to get you back to work as soon as possible" = "Pensata per la semplicità d'uso";
+
+// MARK: - Cards
+"Upcoming exams" = "Prossimi esami";
+"Active assignments" = "Compiti attivi";

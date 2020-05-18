@@ -54,6 +54,8 @@ struct ColorPickerView: View {
 struct ColorPickerView_Previews: PreviewProvider {
     @State private static var colorIndex: GridIndex = GridIndex(row: 0, column: 0)
     static var previews: some View {
-        ColorPickerView(colorIndex: $colorIndex).colorScheme(.dark)
+        ColorPickerView(colorIndex: $colorIndex)
+            .environment(\.locale, .init(identifier: "it"))
+            .colorScheme(.dark)
     }
 }

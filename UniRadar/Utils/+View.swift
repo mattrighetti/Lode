@@ -17,7 +17,7 @@ extension View {
                     HStack {
                         leading
                     }
-                    .frame(width: 50, alignment: .leading)
+                    .frame(width: 70, alignment: .leading)
                     Spacer()
                     HStack {
                         center

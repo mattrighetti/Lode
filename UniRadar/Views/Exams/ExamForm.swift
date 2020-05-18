@@ -155,7 +155,7 @@ struct ExamForm: View {
     
     private func compile(exam: Exam) {
         exam.id = UUID()
-        exam.title = name.isEmpty ? "No title" : name
+        exam.title = name.isEmpty ? NSLocalizedString("No name", comment: "") : name
         exam.date = date
         exam.colorColIndex = Int16(colorIndex.column)
         exam.colorRowIndex = Int16(colorIndex.row)

@@ -82,7 +82,7 @@ struct CourseForm: View {
                 }
                 
                 HeaderCaption(
-                    title: "Mark Expected",
+                    title: "Mark expected",
                     caption: "This will be used for further statistics"
                 ).padding(.top)
                 
@@ -92,7 +92,7 @@ struct CourseForm: View {
                     self.isPassed.toggle()
                 }, label: {
                     HStack {
-                        Text("Passed")
+                        Text("Passed (singular)")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                         
@@ -109,7 +109,7 @@ struct CourseForm: View {
                 VStack {
                     if self.isPassed {
                         HeaderCaption(
-                            title: "Mark Obtained",
+                            title: "Mark obtained",
                             caption: "The mark you got"
                         ).padding(.top)
                         
@@ -228,7 +228,7 @@ struct Header: View {
     
     var body: some View {
         HStack {
-            Text(title)
+            Text(NSLocalizedString(title, comment: ""))
                 .font(.headline)
                 .fontWeight(.bold)
             Spacer()
@@ -244,11 +244,11 @@ struct HeaderCaption: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(title).font(.headline)
+                Text(NSLocalizedString(title, comment: "")).font(.headline)
                     .fontWeight(.bold)
                     .padding(.bottom, 5)
                 
-                Text(caption)
+                Text(NSLocalizedString(caption, comment: ""))
                     .font(.caption)
             }
             Spacer()

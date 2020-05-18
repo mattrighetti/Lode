@@ -25,7 +25,7 @@ struct HomeView: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 // MARK: - CardDeck Section
-                HomeSection(sectionTitle: "Main Info") {
+                HomeSection(sectionTitle: NSLocalizedString("Main Info", comment: "")) {
                     CardStack(viewModel: self.viewModel)
                         .padding(.horizontal, 25)
                 }
@@ -33,15 +33,15 @@ struct HomeView: View {
                 .frame(height: 450)
                 
                 // MARK: - Categories Section
-                HomeSection(sectionTitle: "Categories") {
+                HomeSection(sectionTitle: NSLocalizedString("Categories", comment: "")) {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             NavigationLink(destination: MarksView(courses: self.viewModel.courses), isActive: self.$markViewActive) {
-                                CategoriesCard(label: "Mark", imageName: "checkmark.seal")
+                                CategoriesCard(label: NSLocalizedString("Marks", comment: ""), imageName: "checkmark.seal")
                             }.buttonStyle(PlainButtonStyle())
                             
                             NavigationLink(destination: StatsView(viewModel: self.viewModel), isActive: self.$statsViewActive) {
-                                CategoriesCard(label: "Stats", imageName: "checkmark")
+                                CategoriesCard(label: NSLocalizedString("Stats", comment: ""), imageName: "checkmark")
                             }.buttonStyle(PlainButtonStyle())
                         }
                         .padding(.horizontal, 25)
@@ -88,7 +88,7 @@ struct HomeView: View {
                         menu: .examform(courses: self.viewModel.courses.filter({ $0.mark == 0 }).map({ $0.name! }) )
                     )
                 }),
-                .default(Text("Add Reminder"), action: {
+                .default(Text("Add assignment"), action: {
                     self.toggle(menu: .assignmentform)
                 }),
                 .cancel()
@@ -192,5 +192,6 @@ struct HomeView_Previews: PreviewProvider {
         HomeView(viewModel: ViewModel(context: context!))
             .previewDevice("iPhone Xs")
             .environment(\.colorScheme, .dark)
+            .environment(\.locale, .init(identifier: "it"))
     }
 }

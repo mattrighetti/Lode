@@ -52,7 +52,7 @@ struct RemindersView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Image(systemName: "plus.circle").foregroundColor(Color("bw"))
                             Spacer()
-                            Text("Add reminder")
+                            Text("Add assignment")
                                 .fontWeight(.bold)
                                 .foregroundColor(Color("bw"))
                         }
@@ -77,8 +77,8 @@ struct RemindersView: View {
                 ),
                 trailing: Button(
                     action: { self.showForm.toggle() },
-                    label: { Image(systemName: "plus.circle")
-                })
+                    label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
+                )
             )
             
             .environment(\.editMode, $editMode)
@@ -176,14 +176,14 @@ struct ReminderRow: View {
 struct RemindersView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        let assignment = Assignment(context: context!)
-        assignment.title = "Start studying Artificial Intelligence"
-        assignment.caption = "Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom"
-        assignment.dueDate = Date()
-//        RemindersView(viewModel: ViewModel(context: context!))
-//            .environment(\.colorScheme, .dark)
-        return List {
-            ReminderRow(assignment: assignment)
-        }.colorScheme(.dark)
+//        let assignment = Assignment(context: context!)
+//        assignment.title = "Start studying Artificial Intelligence"
+//        assignment.caption = "Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom"
+//        assignment.dueDate = Date()
+        RemindersView(viewModel: ViewModel(context: context!))
+            .environment(\.colorScheme, .dark)
+//        return List {
+//            ReminderRow(assignment: assignment)
+//        }.colorScheme(.dark)
     }
 }

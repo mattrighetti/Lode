@@ -90,5 +90,6 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView(viewModel: ViewModel(context: moc), appState: AppState())
             .colorScheme(.dark).accentColor(Color.red)
+            
     }
 }

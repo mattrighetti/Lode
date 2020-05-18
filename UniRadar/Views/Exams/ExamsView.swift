@@ -27,9 +27,7 @@ struct ExamsView: View {
                 ForEach(examsFiltered(withTag: examPickerSelection), id: \.id) { exam in
                     ExamRow(exam: exam)
                         .onTapGesture {
-                            print("Pressed")
                             if self.editMode == .active {
-                                print("Pressed Active")
                                 self.examToEdit = exam
                                 self.addExamModalShown.toggle()
                             }
@@ -91,7 +89,10 @@ struct ExamsView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                 ),
-                trailing: Button(action: { self.showModal() }, label: { Image(systemName: "plus.circle") })
+                trailing: Button(
+                    action: { self.showModal() },
+                    label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
+                )
             )
             
             .environment(\.editMode, $editMode)
@@ -162,8 +163,12 @@ struct ExamRow: View {
                     .padding(.bottom, 5)
                 
                 if exam.daysLeft >= 0 {
-                    Text(exam.daysLeft > 0 ? "In \(exam.daysLeft) days" : "Today")
-                        .modifier(BadgePillStyle(color: .blue))
+                    Text(
+                        exam.daysLeft > 0 ?
+                            String(format: "In %d days", exam.daysLeft)
+                            : "Today"
+                    )
+                    .modifier(BadgePillStyle(color: .blue))
                 }
             }
 

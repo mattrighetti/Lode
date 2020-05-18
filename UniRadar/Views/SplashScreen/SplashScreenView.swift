@@ -24,14 +24,20 @@ struct SplashScreenView: View {
 
     var features: [SplashscreenFeature] = [
         SplashscreenFeature(
-            withLottie: "manwriting", title: "Keep track of everything",
-            description: "Keep track of everything"),
+            withLottie: "manwriting",
+            title: NSLocalizedString("Keep track of everything", comment: ""),
+            description: NSLocalizedString("Keep track of everything", comment: "")
+        ),
         SplashscreenFeature(
-            withLottie: "swipeup", title: "All in a single place",
-            description: "Save your marks, reminders and exams all in this app"),
+            withLottie: "swipeup",
+            title: NSLocalizedString("All in a single place", comment: ""),
+            description: NSLocalizedString("Save your marks, assignments and exams all in this app", comment: "")
+        ),
         SplashscreenFeature(
-            withLottie: "resting", title: "Extremely simple to use",
-            description: "Designed with ease of use in mind to get you back to work as soon as possible")
+            withLottie: "resting",
+            title: NSLocalizedString("Extremely simple to use", comment: ""),
+            description: NSLocalizedString("Designed with ease of use in mind to get you back to work as soon as possible", comment: "")
+        )
     ]
 
     @State var featureIndex: Int = 0

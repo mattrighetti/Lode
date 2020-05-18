@@ -20,7 +20,7 @@ struct MarksView: View {
             }
         }
 
-        .navigationBarTitle("Marks")
+        .navigationBarTitle( NSLocalizedString("Marks", comment: "") )
     }
 
 }
@@ -34,6 +34,7 @@ struct MarkCard: View {
             Color("cardBackground")
             VStack {
                 HStack {
+                    // TODO change this #01
                     Text("#01").font(.subheadline).fontWeight(.heavy).foregroundColor(.darkRed)
                     Spacer()
                 }
@@ -46,8 +47,10 @@ struct MarkCard: View {
                     VStack {
                         Text(course.mark == 0 ? String(course.expectedMark) : String(course.mark)).font(.title)
                         Image(systemName: markIcon()).foregroundColor(markIconColor())
-                        Text(course.mark != 0 ? "Passed" : "Expected")
-                    }.padding(.trailing, 5)
+                        Text(course.mark != 0 ? NSLocalizedString("Passed", comment: "") : NSLocalizedString("Expected", comment: ""))
+                        
+                    }
+                    .padding(.trailing, 5)
                 }
             }.padding()
         }.cornerRadius(25)

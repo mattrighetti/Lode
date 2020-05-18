@@ -74,7 +74,10 @@ struct CoursesView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                 ),
-                trailing: Button(action: { self.addCourseModalShown.toggle() }, label: { Image(systemName: "plus.circle") })
+                trailing: Button(
+                    action: { self.addCourseModalShown.toggle() },
+                    label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
+                )
             )
             .environment(\.editMode, $editMode)
             .sheet(isPresented: self.$addCourseModalShown, onDismiss: {

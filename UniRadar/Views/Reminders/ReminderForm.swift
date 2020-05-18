@@ -101,7 +101,7 @@ struct ReminderForm: View {
                 self.restoreAssignment()
             }
                 
-            .navigationBarTitle("Add reminder", displayMode: .inline)
+            .navigationBarTitle("Add assignment", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(
                     action: {

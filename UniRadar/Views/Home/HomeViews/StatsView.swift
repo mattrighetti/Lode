@@ -14,11 +14,11 @@ struct StatsView: View {
     
     var body: some View {
         List {
-            StatsStringListSection(sectionHeader: "Main Info", strings: [
-                "Total Courses",
-                "Total CFU",
-                "Expected Average",
-                "Projected Graduation Grade"
+            StatsStringListSection(sectionHeader: NSLocalizedString("Main Info", comment: ""), strings: [
+                NSLocalizedString("Total courses", comment: ""),
+                NSLocalizedString("Total CFU", comment: ""),
+                NSLocalizedString("Expected Average", comment: ""),
+                NSLocalizedString("Projected graduation grade", comment: "")
             ], values: [
                 Double(self.viewModel.courses.count),
                 Double(self.viewModel.totalCfu),
@@ -26,11 +26,11 @@ struct StatsView: View {
                 self.viewModel.expectedGraduationGrade
             ])
             
-            StatsStringListSection(sectionHeader: "Current statistics", strings: [
-                "Passed Exams",
-                "Gained CFU",
-                "Current Average",
-                "Current Graduation Grade"
+            StatsStringListSection(sectionHeader: NSLocalizedString("Current statistics", comment: ""), strings: [
+                NSLocalizedString("Passed exams", comment: ""),
+                NSLocalizedString("Gained CFU", comment: ""),
+                NSLocalizedString("Current average", comment: ""),
+                NSLocalizedString("Current graduation grade", comment: "")
             ], values: [
                 Double(self.viewModel.passedExams),
                 Double(self.viewModel.gainedCfu),
@@ -38,17 +38,17 @@ struct StatsView: View {
                 self.viewModel.projectedGraduationGrade
             ])
             
-            StatsStringListSection(sectionHeader: "Exams Passed", strings: [
-                "As Expected",
-                "More than expected",
-                "Worse than expected"
+            StatsStringListSection(sectionHeader: NSLocalizedString("Exams Passed", comment: ""), strings: [
+                NSLocalizedString("As Expected", comment: ""),
+                NSLocalizedString("More than expected", comment: ""),
+                NSLocalizedString("Less than expected", comment: "")
             ], values: [
                 Double(self.viewModel.passedAsExpected),
                 Double(self.viewModel.passedBetterThanExpected),
                 Double(self.viewModel.passedWorseThanExpected)
             ])
             
-            Section(header: Text("Latest Marks").modifier(SectionTitle())) {
+            Section(header: Text("Latest marks").modifier(SectionTitle())) {
                 BarChartView(arrayValues: self.viewModel.courses.map { Double($0.mark) }, color: .red)
                     .frame(height: 250, alignment: .center)
                     .padding()

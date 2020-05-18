@@ -151,6 +151,8 @@ struct GradientPickerView_Previews: PreviewProvider {
     @State private static var index: GridIndex = GridIndex(row: 1, column: 1)
 
     static var previews: some View {
-        IconColorPickerView(colorIndex: $index, glyphIndex: $index).colorScheme(.dark)
+        IconColorPickerView(colorIndex: $index, glyphIndex: $index)
+            .environment(\.locale, .init(identifier: "it"))
+            .colorScheme(.dark)
     }
 }

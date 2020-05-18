@@ -19,7 +19,7 @@ struct InitialForm: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 
-                Header(title: "Total CFUs of your study plan").padding(.top)
+                Header(title: NSLocalizedString("Total CFUs of your study plan", comment: "")).padding(.top)
                 
                 CustomStepper(value: self.$totalCfu, maxValue: 1000, minValue: 0)
                 
@@ -48,5 +48,6 @@ struct InitialForm: View {
 struct InitialForm_Previews: PreviewProvider {
     static var previews: some View {
         InitialForm().colorScheme(.dark)
+            .environment(\.locale, .init(identifier: "it"))
     }
 }
