@@ -31,6 +31,15 @@ struct CourseForm: View {
     @State private var restoredCourse: Bool = false
     var course: Course?
     
+    var acronym: String {
+        let splitString = self.title
+            .split { $0 == " " }
+            .map(String.init)
+            .filter { $0 != "and" && $0 != "e" }
+        
+        return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
@@ -60,6 +69,20 @@ struct CourseForm: View {
                     )
                     
                     Header(title: "Title").padding(.top)
+                    
+                    if self.title.count > 30 {
+                        withAnimation {
+                            HStack {
+                                Text("Title will be truncated to:")
+                                Text(self.acronym)
+                                Spacer()
+                            }
+                            .foregroundColor(.red)
+                            .font(.caption)
+                            .padding(.top, 5)
+                            .transition(.scale)
+                        }
+                    }
                     
                     TextField("Exam title", text: $title)
                         .padding()

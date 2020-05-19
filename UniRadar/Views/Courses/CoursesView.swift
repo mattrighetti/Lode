@@ -112,54 +112,9 @@ struct CoursesView: View {
     
 }
 
-struct CourseRow: View {
-    
-    var course: Course
-    
-    var body: some View {
-        HStack {
-            ZStack(alignment: .center) {
-                Circle()
-                    .fill(Color.gradientsPalette[Int(course.colorRowIndex)][Int(course.colorColIndex)])
-                Image(systemName: course.iconName ?? "pencil").foregroundColor(.white).font(.system(size: 30))
-            }
-            .frame(width: 70, height: 70, alignment: .center)
-
-            VStack(alignment: .leading) {
-                Text(course.name ?? "No name")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .padding(.bottom, 5)
-                
-                Text("CFU: \(course.cfu)")
-                    .modifier(BadgePillStyle(color: .orange))
-                
-                Text("Expected: \(course.expectedMark)")
-                    .modifier(BadgePillStyle(color: .blue))
-            
-            }
-            Spacer()
-            VStack(alignment: .center) {
-                Text(course.mark == 0 ? "Upcoming" :"Passed")
-                Image(systemName: course.mark == 0 ? "xmark.seal" : "checkmark.seal")
-                    .foregroundColor(course.mark == 0 ? .red : .green)
-            }
-        }
-        .modifier(CardStyle())
-    }
-}
-
 struct CoursesView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-//        let course = Course(context: context!)
-//        course.name = "Advanced Algorithms and Parallel Programming"
-//        course.cfu = 5
-//        course.expectedMark = 28
-//        course.mark = 28
         CoursesView(viewModel: ViewModel(context: context!)).colorScheme(.dark)
-//        return List {
-//            CourseRow(course: course)
-//        }.colorScheme(.dark)
     }
 }
