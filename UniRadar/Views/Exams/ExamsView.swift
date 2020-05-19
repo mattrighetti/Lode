@@ -24,7 +24,7 @@ struct ExamsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(examsFiltered(withTag: examPickerSelection), id: \.id) { exam in
+                ForEach(examsFiltered(withTag: examPickerSelection).sorted(by: { $0.date! < $1.date! }), id: \.id) { exam in
                     ExamRow(exam: exam)
                         .onTapGesture {
                             if self.editMode == .active {

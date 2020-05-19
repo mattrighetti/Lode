@@ -24,7 +24,7 @@ struct RemindersView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(assignmentsFiltered(withTag: pickerSelection), id: \.id) { assignment in
+                ForEach(assignmentsFiltered(withTag: pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! }), id: \.id) { assignment in
                     ReminderRow(assignment: assignment)
                         .onTapGesture {
                             if self.editMode == .active {
