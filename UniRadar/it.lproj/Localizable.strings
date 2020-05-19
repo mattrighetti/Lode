@@ -58,7 +58,7 @@
 "Add assignment" = "Aggiungi compito";
 "Assignment title" = "Titolo compito";
 "Assignment description" = "Descrizione compito";
-"missing" = "missing";
+"missing" = "mancanti";
 
 // MARK: - Courses View
 "Courses" = "Corsi";

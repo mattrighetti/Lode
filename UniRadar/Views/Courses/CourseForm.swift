@@ -34,8 +34,8 @@ struct CourseForm: View {
     var acronym: String {
         let splitString = self.title
             .split { $0 == " " }
-            .map(String.init)
-            .filter { $0 != "and" && $0 != "e" }
+            .map({ String($0).lowercased() })
+            .filter { $0 != "and" && $0 != "e" && $0 != "of" }
         
         return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
     }

@@ -138,60 +138,9 @@ struct ExamsView: View {
     
 }
 
-struct ExamRow: View {
-
-    var exam: Exam
-    
-    var body: some View {
-        HStack {
-            ZStack(alignment: .center) {
-                Circle()
-                    .fill(Color.gradientsPalette[Int(exam.colorRowIndex)][Int(exam.colorColIndex)])
-                
-                VStack {
-                    Text(exam.dayString)
-                    Text("\(exam.dayInt)")
-                    Text(exam.monthString)
-                }.foregroundColor(.white).font(.system(size: 15.0))
-                
-            }.frame(width: 70, height: 70, alignment: .center)
-
-            VStack(alignment: .leading) {
-                Text(exam.title ?? "No name")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .padding(.bottom, 5)
-                
-                if exam.daysLeft >= 0 {
-                    Text(
-                        exam.daysLeft > 0 ?
-                            String(format: "In %d days", exam.daysLeft)
-                            : "Today"
-                    )
-                    .modifier(BadgePillStyle(color: .blue))
-                }
-            }
-
-            Spacer()
-            
-        }
-        .modifier(CardStyle())
-    }
-    
-}
-
 struct ExamsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        let exam = Exam(context: context!)
-        exam.date = Date()
-        exam.title = "This is a title"
-        exam.colorColIndex = 0
-        exam.colorRowIndex = 0
-//        ExamsView(viewModel: ViewModel(context: context!))
-        return List {
-            ExamRow(exam: exam)
-        }
-            .environment(\.colorScheme, .dark)
+        ExamsView(viewModel: ViewModel(context: context!))
     }
 }

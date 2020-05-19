@@ -113,77 +113,10 @@ struct RemindersView: View {
     }
 }
 
-struct ReminderRow: View {
-
-    var assignment: Assignment
-
-    var body: some View {
-        ZStack {
-            Color("cardBackground")
-            HStack {
-                ZStack(alignment: .center) {
-                    Circle()
-                        .fill(Color.gradientsPalette[Int(assignment.colorRowIndex)][Int(assignment.colorColumnIndex)])
-
-                    VStack {
-                        Text("\(assignment.daysLeft)")
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-
-                        Text("missing")
-                            .foregroundColor(.white)
-                    }
-                }.frame(width: 100, height: 80, alignment: .center)
-
-                VStack(alignment: .leading) {
-                    Text(assignment.title ?? "No title")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .layoutPriority(1)
-                        .padding(.bottom, 5)
-
-                    Text(assignment.caption ?? "No description")
-                        .font(.caption)
-                        .lineLimit(3)
-
-                    isDueSoon()
-                }
-
-                Spacer()
-            }
-        }
-        .modifier(CardStyle())
-    }
-
-    func isDueSoon() -> some View {
-        if assignment.daysLeft < 5 {
-            return AnyView(
-                HStack {
-                    Image(systemName: "exclamationmark.circle")
-                    Text("Due soon")
-                }
-                .modifier(BadgePillStyle(color: .flatRed))
-            )
-        } else {
-            return AnyView(
-                EmptyView()
-            )
-        }
-    }
-
-}
-
 struct RemindersView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-//        let assignment = Assignment(context: context!)
-//        assignment.title = "Start studying Artificial Intelligence"
-//        assignment.caption = "Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom"
-//        assignment.dueDate = Date()
         RemindersView(viewModel: ViewModel(context: context!))
             .environment(\.colorScheme, .dark)
-//        return List {
-//            ReminderRow(assignment: assignment)
-//        }.colorScheme(.dark)
     }
 }
