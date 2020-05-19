@@ -40,41 +40,38 @@ struct CourseRow: View {
                     .fontWeight(.semibold)
                     .padding(.bottom, 5)
                 
-                VStack(alignment: .leading) {
-                    HStack {
-                        HStack {
-                            Text("CFU")
-                            Image(systemName: "\(self.course.cfu).circle")
-                                .font(.system(size: 20))
-                        }.modifier(BadgePillWithImageStyle(color: .orange))
-                        
-                        HStack {
-                            Text("Difficulty")
-                            Image(systemName: "3.circle")
-                                .font(.system(size: 20))
-                        }.modifier(BadgePillWithImageStyle(color: .blue))
-                    }
-                    
-                    HStack {
-                        HStack {
-                            Text("Expected")
-                            Image(systemName: "\(self.course.expectedMark).circle")
-                                .font(.system(size: 20))
-                        }.modifier(BadgePillWithImageStyle(color: .blue))
-                        
-                        if self.course.mark != 0 {
-                            HStack {
-                                Text("Final")
-                                Image(systemName: "\(self.course.mark).circle")
-                                    .font(.system(size: 20))
-                            }.modifier(BadgePillWithImageStyle(color: .yellow))
-                        }
+                HStack {
+                    NumberBadge(label: "CFU", value: Int(self.course.cfu), color: .orange)
+                    NumberBadge(label: "Difficulty", value: 3, color: .blue)
+                }
+
+                HStack {
+                    NumberBadge(label: "Expected", value: Int(self.course.expectedMark), color: .blue)
+
+                    if self.course.mark != 0 {
+                        NumberBadge(label: "Final", value: Int(self.course.mark), color: .yellow)
                     }
                 }
-            }
+            }.drawingGroup()
             Spacer()
         }
         .modifier(CardStyle())
+    }
+}
+
+struct NumberBadge: View {
+    
+    var label: String
+    var value: Int
+    var color: Color
+    
+    var body: some View {
+        HStack {
+            Text(label)
+            Image(systemName: "\(self.value).circle")
+                .font(.system(size: 20))
+        }
+        .modifier(BadgePillWithImageStyle(color: color))
     }
 }
 
