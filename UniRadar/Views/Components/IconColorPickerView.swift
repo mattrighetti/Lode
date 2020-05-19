@@ -82,7 +82,7 @@ struct GridStack<Content: View>: View {
                         self.content(row, column)
                     }.padding(.horizontal, 5)
                 }.padding(.vertical, 5)
-            }
+            }.drawingGroup()
         }
     }
 }

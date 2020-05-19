@@ -65,23 +65,27 @@ struct AverageCard: View {
     
     var body: some View {
         VStack {
-            Text("\(self.viewModel.average.twoDecimalPrecision)")
-                .foregroundColor(self.color)
-                .font(.system(size: 50, weight: .bold, design: .rounded))
-                .padding()
-            
-            HStack {
-                Text("\(self.sign) \(self.difference.twoDecimalPrecision)").foregroundColor(self.color)
-                Text("than expected")
-                Text(emoji)
+            if !self.viewModel.courses.isEmpty {
+                Group {
+                    Text("\(self.viewModel.average.twoDecimalPrecision)")
+                        .foregroundColor(self.color)
+                        .font(.system(size: 50, weight: .bold, design: .rounded))
+                        .padding()
+                    
+                    HStack {
+                        Text("\(self.sign) \(self.difference.twoDecimalPrecision)").foregroundColor(self.color)
+                        Text("than expected")
+                        Text(emoji)
+                    }
+                }
+            } else {
+                VStack {
+                    Text("Add a course")
+                    Text("to see something useful 😉")
+                }
             }
         }
-        .padding()
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke()
-                .foregroundColor(self.isAverageBiggerThanExpected ? .green : .red)
-        )
+        .modifier(BorderBox(color: self.isAverageBiggerThanExpected ? .green : .red))
         .background(Color("cardBackground"))
     }
 }

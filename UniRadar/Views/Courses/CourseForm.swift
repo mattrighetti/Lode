@@ -279,6 +279,7 @@ struct HeaderCaption: View {
     }
 }
 
+// TODO this can be simplified a lot
 struct CustomStepper: View {
     
     @Binding var value: Int
@@ -292,7 +293,7 @@ struct CustomStepper: View {
             }, onDecrement: {
                 self.decrementValue()
             }, label: {
-                Text("\(value)")
+                Text(value <= 30 ? "\(value)" : "30L")
                     .font(.title)
             })
             .padding()

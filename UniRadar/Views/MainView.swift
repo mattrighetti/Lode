@@ -45,6 +45,7 @@ struct MainView: View {
         .sheet(
             isPresented: $showSheet,
             onDismiss: {
+                print("Dismissed", !self.appState.firstAccess, self.appState.initialSetup ?? false)
                 if self.appState.firstAccess {
                     self.appState.firstAccess = false
                     self.showSheet.toggle()
@@ -52,6 +53,7 @@ struct MainView: View {
                 }
                 
                 if !self.appState.firstAccess, !self.appState.initialSetup {
+                    self.viewModel.storeInUserDefaults()
                     self.appState.initialSetup = true
                     return
                 }
@@ -73,11 +75,11 @@ struct MainView: View {
     
     func sheetContent() -> AnyView {
         if self.appState.firstAccess {
-            return AnyView(SplashScreenView())
+            return AnyView( SplashScreenView() )
         }
         
         if !self.appState.firstAccess, !self.appState.initialSetup {
-            return AnyView(InitialForm())
+            return AnyView( InitialForm(viewModel: self.viewModel) )
         }
         
         return AnyView(EmptyView())

@@ -42,21 +42,22 @@ struct CourseRow: View {
                 
                 HStack {
                     NumberBadge(label: "CFU", value: Int(self.course.cfu), color: .orange)
-                    NumberBadge(label: "Difficulty", value: 3, color: .blue)
-                }
-
-                HStack {
-                    NumberBadge(label: "Expected", value: Int(self.course.expectedMark), color: .blue)
-
-                    if self.course.mark != 0 {
-                        NumberBadge(label: "Final", value: Int(self.course.mark), color: .yellow)
-                    }
+                    badge()
                 }
             }.drawingGroup()
             Spacer()
         }
         .modifier(CardStyle())
     }
+    
+    private func badge() -> some View {
+        if self.course.mark != 0 {
+            return AnyView( NumberBadge(label: "Final", value: Int(self.course.mark), color: .yellow) )
+        } else {
+            return AnyView( NumberBadge(label: "Expected", value: Int(self.course.expectedMark), color: .blue) )
+        }
+    }
+    
 }
 
 struct NumberBadge: View {
@@ -82,7 +83,7 @@ struct CourseRow_Previews: PreviewProvider {
         course.name = "Advanced Algorithms and Parallel Programming"
         course.cfu = 5
         course.expectedMark = 28
-        course.mark = 28
+        course.mark = 30
         return List {
             CourseRow(course: course)
         }.colorScheme(.dark)

@@ -28,58 +28,56 @@ struct MarksView: View {
 struct MarkCard: View {
 
     var course: Course
+    
+    var markIcon: Color {
+        guard self.course.mark != 0 else {
+            return .orange
+        }
+
+        if self.course.mark >= self.course.expectedMark {
+            return .green
+        }
+
+        return .red
+    }
 
     var body: some View {
         ZStack {
             Color("cardBackground")
-            VStack {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(course.name!).font(.headline).fontWeight(.bold)
+                
                 HStack {
-                    // TODO change this #01
-                    Text("#01").font(.subheadline).fontWeight(.heavy).foregroundColor(.darkRed)
                     Spacer()
-                }
-                HStack {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(course.name!).font(.headline).fontWeight(.bold)
-                        Text("CFU: \(course.cfu)").font(.subheadline)
-                    }
-                    Spacer()
-                    VStack {
-                        Text(course.mark == 0 ? String(course.expectedMark) : String(course.mark)).font(.title)
-                        Image(systemName: markIcon()).foregroundColor(markIconColor())
-                        Text(course.mark != 0 ? NSLocalizedString("Passed", comment: "") : NSLocalizedString("Expected", comment: ""))
+                    HStack {
+                        VStack {
+                            Text(course.mark == 0 ? String(course.expectedMark) : String(course.mark))
+                                .font(.system(.title, design: .rounded))
+                                .fontWeight(.bold)
+                            
+                            Text("Expected").modifier(BadgePillStyle(color: .blue))
+                        }.frame(width: 100)
                         
-                    }
-                    .padding(.trailing, 5)
+                        Divider().background(Color("background"))
+                        
+                        VStack {
+                            content()
+                            
+                            Text("Final").modifier(BadgePillStyle(color: .green))
+                        }.frame(width: 100)
+                    }.modifier(BorderBox(color: Color("background")))
+                    Spacer()
                 }
             }.padding()
         }.cornerRadius(25)
     }
-
-    func markIcon() -> String {
-        guard course.mark != 0 else {
-            return "questionmark.circle"
+    
+    private func content() -> some View {
+        if self.course.mark != 0 {
+            return AnyView( Text(String(course.mark)).font(.system(.title, design: .rounded)).fontWeight(.bold) )
+        } else {
+            return AnyView( Text("?").font(.system(.title, design: .rounded)).fontWeight(.bold) )
         }
-
-        if course.mark >= course.expectedMark {
-            return "checkmark.seal"
-        }
-
-        return "xmark.seal"
-    }
-
-    func markIconColor() -> Color {
-        let markIconValue = markIcon()
-
-        if markIconValue == "questionmark.circle" {
-            return Color.orange
-        }
-
-        if markIconValue == "checkmark.seal" {
-            return Color.green
-        }
-
-        return Color.red
     }
 
 }
@@ -88,8 +86,16 @@ struct MarksView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     @ObservedObject static var viewModel: ViewModel = ViewModel(context: context!)
     static var previews: some View {
-        MarksView(courses: viewModel.courses)
-            .previewDevice("iPhone 11")
-            .environment(\.colorScheme, .light)
+        let course = Course(context: context!)
+        course.name = "Advanced Algorithms and Parallel Programming"
+        course.cfu = 5
+        course.expectedMark = 25
+        course.mark = 0
+        
+        return Group {
+            MarksView(courses: [course]).previewDevice("iPhone 11")
+            MarkCard(course: course).previewDevice("iPhone 11")
+        }
+        .environment(\.colorScheme, .dark)
     }
 }

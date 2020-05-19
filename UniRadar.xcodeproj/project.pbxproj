@@ -47,6 +47,7 @@
 		C9CED55F243E6E7000FDE90C /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */; };
 		C9D01BAC24740D8100DBC8CA /* ExamRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D01BAB24740D8100DBC8CA /* ExamRow.swift */; };
 		C9D01BAE24740F0D00DBC8CA /* ReminderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D01BAD24740F0D00DBC8CA /* ReminderRow.swift */; };
+		C9D01BB0247442AC00DBC8CA /* +Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D01BAF247442AC00DBC8CA /* +Array.swift */; };
 		C9D2A9F5244BEDB600CA8AAE /* MarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F4244BEDB600CA8AAE /* MarksView.swift */; };
 		C9D2A9F9244C0CD800CA8AAE /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */; };
 		C9D2A9FC244D0D6500CA8AAE /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */; };
@@ -120,6 +121,7 @@
 		C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		C9D01BAB24740D8100DBC8CA /* ExamRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamRow.swift; sourceTree = "<group>"; };
 		C9D01BAD24740F0D00DBC8CA /* ReminderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRow.swift; sourceTree = "<group>"; };
+		C9D01BAF247442AC00DBC8CA /* +Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Array.swift"; sourceTree = "<group>"; };
 		C9D2A9F4244BEDB600CA8AAE /* MarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksView.swift; sourceTree = "<group>"; };
 		C9D2A9F8244C0CD800CA8AAE /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		C9D2A9FB244D0D6500CA8AAE /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				C96801C824566A9200B7F9BB /* +Glyph.swift */,
 				C97D1C39245E480D00C04342 /* FetchedResultsPublisher.swift */,
 				C9AF9D5D24621AA8008B5994 /* GridIndex.swift */,
+				C9D01BAF247442AC00DBC8CA /* +Array.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				C9844BFE24549F0200345A26 /* CardStack.swift in Sources */,
 				1312EF7823722DC100650D18 /* +Color.swift in Sources */,
 				C9844C012454B0F400345A26 /* Deck.swift in Sources */,
+				C9D01BB0247442AC00DBC8CA /* +Array.swift in Sources */,
 				C9D2A9F5244BEDB600CA8AAE /* MarksView.swift in Sources */,
 				C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */,
 				C90A796124736DC1008B40EF /* CourseRow.swift in Sources */,
@@ -751,7 +755,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.Lode;
 				PRODUCT_NAME = Lode;
 				SWIFT_VERSION = 5.0;
@@ -774,7 +778,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.Lode;
 				PRODUCT_NAME = Lode;
 				SWIFT_VERSION = 5.0;

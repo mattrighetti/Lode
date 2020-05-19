@@ -18,6 +18,8 @@ class ViewModel: ObservableObject {
     @Published var assignments: [Assignment] = []
     @Published var courses: [Course] = []
     
+    @Published var laudeValue: Int = 30
+    
     // Courses dependent values
     @Published var totalCfu: Int = 0
     @Published var gainedCfu: Int = 0
@@ -121,6 +123,11 @@ extension ViewModel {
     
     private func calculateGraduationGrade(withMean mean: Double) -> Double {
         return mean * 110 / 30
+    }
+    
+    public func storeInUserDefaults() {
+        UserDefaults.standard.set(self.totalCfu, forKey: "totalCfu")
+        UserDefaults.standard.set(self.laudeValue, forKey: "laudeValue")
     }
     
 }

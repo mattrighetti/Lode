@@ -36,6 +36,21 @@ struct CardStyle: ViewModifier {
     }
 }
 
+struct BorderBox: ViewModifier {
+    
+    let color: Color
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke()
+                    .foregroundColor(color)
+            )
+    }
+}
+
 struct BadgePillStyle: ViewModifier {
     
     let color: Color

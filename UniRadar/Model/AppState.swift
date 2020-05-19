@@ -16,18 +16,14 @@ final class AppState: ObservableObject {
     
     init() {
         if UserDefaults.standard.object(forKey: "firstAccess") != nil {
-            print("First access present", UserDefaults.standard.bool(forKey: "firstAccess"))
             self.firstAccess = UserDefaults.standard.bool(forKey: "firstAccess")
         } else {
-            print("Not present")
             self.firstAccess = true
         }
         
         if UserDefaults.standard.object(forKey: "initialSetup") != nil {
-            print("Initial setup present", UserDefaults.standard.bool(forKey: "initialSetup"))
             self.initialSetup = UserDefaults.standard.bool(forKey: "initialSetup")
         } else {
-            print("Not present")
             self.initialSetup = false
         }
         
