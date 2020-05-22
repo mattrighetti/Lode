@@ -17,6 +17,8 @@
 "Average" = "Media";
 "Upcoming Exams" = "Prossimi esami";
 "Active Assignments" = "Compiti attivi";
+"Avg Delta Calculator" = "Calcolo Delta Media";
+"Tools" = "Strumenti";
 
 // MARK: - Statistics View
 "Statistics" = "Statistiche";
@@ -41,16 +43,17 @@
 "Total CFU" = "CFU totali";
 "Accent color" = "Accent color";
 "App icon" = "App icon";
-"About" = "About";
+"About" = "Riferimenti";
+"Accent Color" = "Colore Tinta";
 
 // MARK: - Exams View
 "Exams" = "Esami";
-"Course" = "Courso";
+"Course" = "Corso";
 "Add exam" = "Aggiungi esame";
 "Exam title" = "Titolo esame";
 "Exam description" = "Descrizione esame";
 "Select a course" = "Seleziona un corso";
-"In %d days" = "In %d giorni";
+"In %d days" = "Tra %d giorni";
 
 // MARK: - Assignments View
 "Assignments" = "Compiti";
@@ -58,6 +61,7 @@
 "Assignment title" = "Titolo compito";
 "Assignment description" = "Descrizione compito";
 "missing" = "mancanti";
+"Due soon" = "Scade presto";
 
 // MARK: - Courses View
 "Courses" = "Corsi";
@@ -116,3 +120,6 @@
 // MARK: - Cards
 "Upcoming exams" = "Prossimi esami";
 "Active assignments" = "Compiti attivi";
+"than expected" = "del previsto";
+"Exam" = "Esami";
+"Days to go" = "Giorni mancanti";

@@ -67,7 +67,7 @@ struct ExamForm: View {
                     isActive: $showCourses,
                     label: {
                         HStack {
-                            Text(courseIndex != -1 ? courses[courseIndex] : "Course")
+                            Text(courseIndex != -1 ? courses[courseIndex] : NSLocalizedString("Select a course", comment: ""))
                             Spacer()
                             Image(systemName: "chevron.right")
                         }

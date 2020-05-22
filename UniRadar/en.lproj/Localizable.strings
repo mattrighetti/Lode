@@ -17,6 +17,8 @@
 "Average" = "Average";
 "Upcoming Exams" = "Upcoming Exams";
 "Active Assignments" = "Active Assignments";
+"Avg Delta Calculator" = "Avg Delta Calculator";
+"Tools" = "Tools";
 
 // MARK: - Statistics View
 "Statistics" = "Statistics";
@@ -42,6 +44,7 @@
 "Accent color" = "Accent color";
 "App icon" = "App icon";
 "About" = "About";
+"Accent Color" = "Accent Color";
 
 // MARK: - Exams View
 "Exams" = "Exams";
@@ -58,6 +61,7 @@
 "Assignment title" = "Assignment title";
 "Assignment description" = "Assignment description";
 "missing" = "missing";
+"Due soon" = "Due soon";
 
 // MARK: - Courses View
 "Courses" = "Courses";
@@ -116,3 +120,6 @@
 // MARK: - Cards
 "Upcoming exams" = "Upcoming exams";
 "Active assignments" = "Active assignments";
+"than expected" = "thank expected";
+"Exam" = "Exam";
+"Days to go" = "Days to go";

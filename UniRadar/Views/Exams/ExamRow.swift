@@ -40,7 +40,7 @@ struct ExamRow: View {
                 if exam.daysLeft >= 0 {
                     Text(
                         exam.daysLeft > 0 ?
-                            String(format: "In %d days", exam.daysLeft)
+                            String(format: NSLocalizedString("In %d days", comment: ""), exam.daysLeft)
                             : "Today"
                     )
                     .badgePill(color: .blue)
