@@ -103,7 +103,9 @@ extension ViewModel {
     }
     
     private func calculateAverage(withCourses courses: [Course]) -> Double {
-        var average = courses.filter { $0.mark != 0 }.map { Double($0.mark * $0.cfu) }.reduce(0, { $0 + $1 })
+        var average = courses.filter { $0.mark != 0 }.map {
+            Double($0.cfu) * (Bool(truncating: $0.laude!) ? Double(self.laudeValue) : Double($0.mark))
+        }.reduce(0, { $0 + $1 })
         average /= Double(self.gainedCfu)
         
         guard !average.isNaN else { return 0.0 }
@@ -112,7 +114,10 @@ extension ViewModel {
     }
     
     private func calculateExpectedAverage(withCourses courses: [Course]) -> Double {
-        var average = courses.map { Double($0.cfu * $0.expectedMark) }.reduce(0, { $0 + $1 })
+        var average = courses.map {
+            Double($0.cfu) * (Bool(truncating: $0.expectedLaude!) ? Double(self.laudeValue) : Double($0.expectedMark))
+        }.reduce(0, { $0 + $1 })
+        
         let totalCfu = courses.map { Double($0.cfu) }.reduce(0, { $0 + $1 })
         average /= totalCfu
         

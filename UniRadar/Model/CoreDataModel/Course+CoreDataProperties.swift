@@ -29,6 +29,8 @@ extension Course {
     @NSManaged public var expectedMark: Int16
     @NSManaged public var iconName: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var laude: NSNumber?
+    @NSManaged public var expectedLaude: NSNumber?
     @NSManaged public var mark: Int16
     @NSManaged public var name: String?
 

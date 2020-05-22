@@ -13,8 +13,13 @@ struct AverageCard: View {
     @ObservedObject var viewModel: ViewModel
     
     var expectedAveragePassed: Double {
-        let eAverage = self.viewModel.courses.filter({ $0.mark != 0 }).map({ Double($0.expectedMark * $0.cfu) }).reduce(0, { $0 + $1 })
-        let totalCfuPassed = self.viewModel.courses.filter({ $0.mark != 0 }).map({ Double($0.cfu) }).reduce(0, { $0 + $1 })
+        let eAverage = self.viewModel.courses.filter({ $0.mark != 0 }).map({
+            Double($0.cfu) * (Bool(truncating: $0.expectedLaude!) ? Double(self.viewModel.laudeValue) : Double($0.expectedMark))
+        }).reduce(0, { $0 + $1 })
+        
+        let totalCfuPassed = self.viewModel.courses.filter({ $0.mark != 0 }).map({
+            Double($0.cfu)
+        }).reduce(0, { $0 + $1 })
         return eAverage / totalCfuPassed
     }
     

@@ -86,7 +86,7 @@ struct CourseForm: View {
                     
                     TextField("Exam title", text: $title)
                         .card()
-                    
+                    // TODO translate Ore totali in english
                     HeaderCaption(title: "CFU", caption: "Ore totali: \(self.courseCfu * 25)").padding(.top)
                     
                     CustomStepper(value: $courseCfu, maxValue: 180, minValue: 1)
@@ -182,11 +182,14 @@ struct CourseForm: View {
         course.colorColIndex = Int16(colorIndex.column)
         course.iconName = Glyph.glyphArray[iconIndex.row][iconIndex.column]
         course.expectedMark = Int16(expectedCourseMark)
+        course.expectedLaude = NSNumber(value: (expectedCourseMark == 31))
         
         if isPassed {
             course.mark = Int16(courseMark)
+            course.laude = NSNumber(value: (courseMark == 31))
         } else {
             course.mark = 0
+            course.laude = NSNumber(value: false)
         }
     }
     
