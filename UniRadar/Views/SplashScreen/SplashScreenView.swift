@@ -67,7 +67,7 @@ struct SplashScreenView: View {
                 Button(action: {
                     self.presentatitonMode.wrappedValue.dismiss()
                 }, label: {
-                    Text("Start").padding(.horizontal, 50).padding(.vertical, 20)
+                    Text("Start").padding(.horizontal, 50).card()
                 })
                 .background(Color("cardBackground"))
                 .cornerRadius(8)
@@ -104,7 +104,7 @@ struct SplashScreenFeatureView: View {
     var splashscreenFeature: SplashscreenFeature
     
     var lottieSize: CGFloat {
-        (UIScreen.main.bounds.width / 2) - 32
+        (UIScreen.main.bounds.width / 1.7)
     }
     
     var body: some View {

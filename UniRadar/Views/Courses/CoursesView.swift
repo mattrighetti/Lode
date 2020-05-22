@@ -31,18 +31,8 @@ struct CoursesView: View {
                                 self.addCourseModalShown.toggle()
                             }
                         }
-                        .listRowBackground(Color("background"))
-                }.onDelete { IndexSet in
-                    let deletedItem = self.coursesFiltered(withTag: self.pickerSelection)[IndexSet.first!]
-                    self.managedObjectContext.delete(deletedItem)
-                
-                    do {
-                        try self.managedObjectContext.save()
-                    } catch {
-                        print(error)
-                    }
-                    
-                }
+                        .listRowBackground(Color.background)
+                }.onDelete(perform: self.deleteCourse)
                 
                 Button(action: {
                         self.addCourseModalShown.toggle()
@@ -58,8 +48,7 @@ struct CoursesView: View {
                         Spacer()
                     }
                 })
-                .modifier(SegmentedButton())
-                .listRowBackground(Color("background"))
+                .segmentedButton()
             }
             
             .navigationBarTitle("Courses")
@@ -106,8 +95,15 @@ struct CoursesView: View {
         }
     }
     
-    private func onDelete(offsets: IndexSet) {
-        
+    private func deleteCourse(at offsets: IndexSet) {
+        let deletedItem = self.coursesFiltered(withTag: self.pickerSelection)[offsets.first!]
+        self.managedObjectContext.delete(deletedItem)
+    
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print(error)
+        }
     }
     
 }

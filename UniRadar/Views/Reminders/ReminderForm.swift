@@ -52,14 +52,10 @@ struct ReminderForm: View {
                 .padding(.top)
                 
                 TextField("Assignment title", text: $title)
-                    .padding()
-                    .background(Color("cardBackground"))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .card()
                 
                 TextField("Assignment description", text: $description)
-                    .padding()
-                    .background(Color("cardBackground"))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .card()
                 
                 Header(title: "Date").padding(.top)
                 
@@ -75,9 +71,7 @@ struct ReminderForm: View {
                             .fontWeight(.semibold)
                         Spacer()
                     }
-                    .padding()
-                    .background(Color("cardBackground"))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .card()
                 })
                 .padding(.top)
 

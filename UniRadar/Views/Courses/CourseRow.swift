@@ -38,16 +38,18 @@ struct CourseRow: View {
                 Text(isNameTooLong ? self.courseAcronym : self.course.name ?? "No name")
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .padding(.bottom, 5)
                 
                 HStack {
                     NumberBadge(label: "CFU", value: Int(self.course.cfu), color: .orange)
                     badge()
                 }
-            }.drawingGroup()
+                .padding(.top, 10)
+            }
+            .drawingGroup()
+            
             Spacer()
         }
-        .modifier(CardStyle())
+        .card()
     }
     
     private func badge() -> some View {
@@ -72,7 +74,7 @@ struct NumberBadge: View {
             Image(systemName: "\(self.value).circle")
                 .font(.system(size: 20))
         }
-        .modifier(BadgePillWithImageStyle(color: color))
+        .badgePillWithImage(color: color)
     }
 }
 

@@ -13,19 +13,19 @@ import UIKit
 struct SegmentedButton: ViewModifier {
     func body(content: Content) -> some View {
         content
-        .foregroundColor(.white)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 25)
-        .overlay(
-            RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(
-                    style: StrokeStyle(
-                        lineWidth: 1,
-                        dash: [7]
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 25)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(
+                        style: StrokeStyle(
+                            lineWidth: 1,
+                            dash: [7]
+                        )
                     )
-                )
-                .foregroundColor(Color("bw"))
-        )
+                    .foregroundColor(Color("bw"))
+            )
     }
 }
 

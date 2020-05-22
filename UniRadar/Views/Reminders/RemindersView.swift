@@ -33,17 +33,7 @@ struct RemindersView: View {
                             }
                         }
                         .listRowBackground(Color("background"))
-                }.onDelete { IndexSet in
-                    let deletedItem = self.assignmentsFiltered(withTag: self.pickerSelection)[IndexSet.first!]
-                    self.managedObjectContext.delete(deletedItem)
-                    
-                    do {
-                        try self.managedObjectContext.save()
-                    } catch {
-                        print(error)
-                    }
-                    
-                }
+                }.onDelete(perform: self.deleteAssignment)
                 
                 Button(action: {
                     self.showForm.toggle()
@@ -59,7 +49,7 @@ struct RemindersView: View {
                         Spacer()
                     }
                 })
-                .modifier(SegmentedButton())
+                .segmentedButton()
                 .listRowBackground(Color("background"))
             }
 
@@ -111,6 +101,18 @@ struct RemindersView: View {
             return viewModel.assignments
         }
     }
+    
+    private func deleteAssignment(at offsets: IndexSet) {
+        let deletedItem = self.assignmentsFiltered(withTag: self.pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! })[offsets.first!]
+        self.managedObjectContext.delete(deletedItem)
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print(error)
+        }
+    }
+    
 }
 
 struct RemindersView_Previews: PreviewProvider {

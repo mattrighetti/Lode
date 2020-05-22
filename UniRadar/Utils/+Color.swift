@@ -87,6 +87,16 @@ extension Color {
     public static var flatHurricane: Color {
         return Color(decimalRed: 128, green: 118, blue: 114)
     }
+    
+    // MARK: - ColorSet Utils
+    
+    public static var background: Color {
+        return Color("background")
+    }
+    
+    public static var cardBackground: Color {
+        return Color("cardBackground")
+    }
 
     // MARK: - Gradients
     public static var gradientsPalette: [[Color]] = [

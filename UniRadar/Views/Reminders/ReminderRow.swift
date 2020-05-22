@@ -13,42 +13,38 @@ struct ReminderRow: View {
     var assignment: Assignment
 
     var body: some View {
-        ZStack {
-            Color("cardBackground")
-            HStack {
-                ZStack(alignment: .center) {
-                    Circle()
-                        .fill(Color.gradientsPalette[Int(assignment.colorRowIndex)][Int(assignment.colorColumnIndex)])
+        HStack {
+            ZStack(alignment: .center) {
+                Circle()
+                    .fill(Color.gradientsPalette[Int(assignment.colorRowIndex)][Int(assignment.colorColumnIndex)])
 
-                    VStack {
-                        Text("\(assignment.daysLeft)")
-                            .font(.system(size: 25.0, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
+                VStack {
+                    Text("\(assignment.daysLeft)")
+                        .font(.system(size: 25.0, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
 
-                        Text("missing")
-                            .font(.system(size: 10.0, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
-                    }
-                }.frame(width: 100, height: 80, alignment: .center)
-
-                VStack(alignment: .leading) {
-                    Text(assignment.title ?? "No title")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .layoutPriority(1)
-                        .padding(.bottom, 5)
-
-                    Text(assignment.caption ?? "No description")
-                        .font(.caption)
-                        .lineLimit(3)
-
-                    isDueSoon()
+                    Text("missing")
+                        .font(.system(size: 10.0, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
                 }
+            }.frame(width: 70, height: 70, alignment: .center)
 
-                Spacer()
+            VStack(alignment: .leading) {
+                Text(assignment.title ?? "No title")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .layoutPriority(1)
+                    .padding(.bottom, 5)
+
+                Text(assignment.caption ?? "No description")
+                    .font(.caption)
+                    .lineLimit(3)
+
+                isDueSoon()
             }
-        }
-        .modifier(CardStyle())
+
+            Spacer()
+        }.card()
     }
 
     func isDueSoon() -> some View {

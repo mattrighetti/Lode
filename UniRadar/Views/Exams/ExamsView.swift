@@ -33,17 +33,7 @@ struct ExamsView: View {
                             }
                         }
                         .listRowBackground(Color("background"))
-                }.onDelete { IndexSet in
-                    let deletedItem = self.examsFiltered(withTag: self.examPickerSelection)[IndexSet.first!]
-                    self.managedObjectContext.delete(deletedItem)
-                    
-                    do {
-                        try self.managedObjectContext.save()
-                    } catch {
-                        print(error)
-                    }
-                    
-                }
+                }.onDelete(perform: self.deleteExam)
                 
                 Button(action: {
                     self.showModal()
@@ -59,7 +49,7 @@ struct ExamsView: View {
                         Spacer()
                     }
                 })
-                .modifier(SegmentedButton())
+                .segmentedButton()
                 .listRowBackground(Color("background"))
             }
             .alert(isPresented: self.$presentAlert) {
@@ -133,6 +123,17 @@ struct ExamsView: View {
             self.presentAlert.toggle()
         } else {
             self.addExamModalShown.toggle()
+        }
+    }
+    
+    private func deleteExam(at offsets: IndexSet) {
+        let deletedItem = self.examsFiltered(withTag: self.examPickerSelection).sorted(by: { $0.date! < $1.date! })[offsets.first!]
+        self.managedObjectContext.delete(deletedItem)
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print(error)
         }
     }
     

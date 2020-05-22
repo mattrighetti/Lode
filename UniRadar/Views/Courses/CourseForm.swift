@@ -85,9 +85,7 @@ struct CourseForm: View {
                     }
                     
                     TextField("Exam title", text: $title)
-                        .padding()
-                        .background(Color("cardBackground"))
-                        .cornerRadius(8)
+                        .card()
                     
                     HeaderCaption(title: "CFU", caption: "Ore totali: \(self.courseCfu * 25)").padding(.top)
                     
@@ -114,9 +112,7 @@ struct CourseForm: View {
                         Image(systemName: self.isPassed ? "checkmark.seal" : "xmark.seal" )
                             .foregroundColor(self.isPassed ? Color.green : Color.red)
                     }
-                    .padding()
-                    .background(Color("cardBackground"))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .card()
                 })
                 .padding(.top)
                 
@@ -138,7 +134,7 @@ struct CourseForm: View {
             }
             .scrollViewWithoutBackground()
             .padding(.horizontal)
-            .background(Color("background").edgesIgnoringSafeArea(.all))
+            .background(Color.background.edgesIgnoringSafeArea(.all))
             .onAppear {
                 if !self.restoredCourse {
                     if let courseToEdit = self.course {
@@ -156,7 +152,7 @@ struct CourseForm: View {
                 }
             }
 
-            .navigationBarTitle("Add exam", displayMode: .inline)
+            .navigationBarTitle("Add course", displayMode: .inline)
             .navigationBarItems(
                 leading: Button("Cancel") {
                     self.presentatitonMode.wrappedValue.dismiss()

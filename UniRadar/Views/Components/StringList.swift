@@ -32,6 +32,7 @@ struct StringList: View {
                 }.listRowBackground(Color("cardBackground"))
             }
         }
+        .singleSeparator()
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
     }

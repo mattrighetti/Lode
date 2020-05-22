@@ -71,9 +71,7 @@ struct ExamForm: View {
                             Spacer()
                             Image(systemName: "chevron.right")
                         }
-                        .padding()
-                        .background(Color("cardBackground"))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .card()
                     }
                 )
                 
@@ -91,9 +89,7 @@ struct ExamForm: View {
                             .fontWeight(.semibold)
                         Spacer()
                     }
-                    .padding()
-                    .background(Color("cardBackground"))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .card()
                 })
                 .padding(.top)
 

@@ -36,7 +36,6 @@ struct ExamRow: View {
                 Text(exam.title ?? "No name")
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .padding(.bottom, 5)
                 
                 if exam.daysLeft >= 0 {
                     Text(
@@ -44,14 +43,15 @@ struct ExamRow: View {
                             String(format: "In %d days", exam.daysLeft)
                             : "Today"
                     )
-                    .modifier(BadgePillStyle(color: .blue))
+                    .badgePill(color: .blue)
+                    .padding(.top, 10)
                 }
             }
 
             Spacer()
             
         }
-        .modifier(CardStyle())
+        .card()
     }
     
 }
