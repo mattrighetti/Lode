@@ -20,7 +20,15 @@ struct BarChartView: View {
             array.append(value - 17)
         }
         
-        let remaining = 40 - arrayValues.count
+        var nullValues: Int
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            nullValues = 90
+        } else {
+            nullValues = 40
+        }
+        
+        let remaining = nullValues - arrayValues.count
         
         for _ in 0...remaining {
             array.append(0.0)
@@ -57,14 +65,19 @@ struct BarChartView: View {
                 
                 HStack(alignment: .bottom, spacing: 1) {
                     ForEach(self.adjustedValues, id: \.self) { value in
-                        Capsule()
-                            .fill(self.color)
-                            .frame(
-                                height:
-                                CGFloat(value / self.maxValue) * geometry.size.height >= 0.1 ?
-                                (CGFloat(value / self.maxValue) * geometry.size.height) - 7
-                                : 7.0
+                        ZStack(alignment: .bottom) {
+                            Capsule()
+                                .fill(Color.clear)
+                            
+                            Capsule()
+                                .fill(self.color)
+                                .frame(
+                                    height:
+                                    CGFloat(value / self.maxValue) * geometry.size.height >= 0.1 ?
+                                    (CGFloat(value / self.maxValue) * geometry.size.height) - 7
+                                    : 7.0
                             )
+                        }
                     }
                 }
                 .padding(.horizontal, 20)
@@ -79,7 +92,7 @@ struct BarChartView_Previews: PreviewProvider {
         VStack {
             BarChartView(
                 arrayValues: [
-                    30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0
+                    30.0, 23.0, 19.0, 27.0
                 ],
                 color: .flatRed
             )

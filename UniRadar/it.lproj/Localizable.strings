@@ -8,8 +8,7 @@
 
 // MARK: - Home View
 "Home" = "Home";
-"Main Info" = "Infos";
-"Main Infos" = "Infos";
+"Main Info" = "Info";
 "Categories" = "Categorie";
 "Stats" = "Statistiche";
 "Your CFU" = "I tuoi CFU";
@@ -70,6 +69,7 @@
 "Mark obtained" = "Voto ottenuto";
 "This will be used for further statistics" = "Verrà usato per le statistiche";
 "The mark you got" = "Il voto ottenuto";
+"Final" = "Finale";
 
 // MARK: - SegmentedPicker Navbar
 "Past" = "Passati";

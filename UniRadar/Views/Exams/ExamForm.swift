@@ -25,6 +25,7 @@ struct ExamForm: View {
     @State private var showAlert: Bool = false
     @State private var showCourses: Bool = false
     @State private var courseIndex: Int = -1
+    @State private var bottomPadding: CGFloat = 0
     
     @State private var restoredExam: Bool = false
     var exam: Exam?
@@ -110,6 +111,7 @@ struct ExamForm: View {
                 .transition(.scale)
                 
             }
+            .scrollViewWithoutBackground()
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
             .alert(isPresented: $showAlert) {
@@ -129,6 +131,7 @@ struct ExamForm: View {
                     self.onDonePressed()
                 }
             )
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
     

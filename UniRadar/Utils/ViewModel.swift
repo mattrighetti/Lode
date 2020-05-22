@@ -130,4 +130,28 @@ extension ViewModel {
         UserDefaults.standard.set(self.laudeValue, forKey: "laudeValue")
     }
     
+    public func calculateDeltas(withCfu cfu: Int) -> [Double] {
+        var deltas = [Double]()
+        let average = courses.filter { $0.mark != 0 }.map { Double($0.mark * $0.cfu) }.reduce(0, { $0 + $1 })
+        let gainedCfu = Double(self.gainedCfu) + Double(cfu)
+        
+        guard gainedCfu != 0 else {
+            for mark in 18...30 {
+                deltas.append(Double(mark))
+            }
+            
+            return deltas
+        }
+        
+        var tmp = 0.0
+        for mark in 18...30 {
+            tmp = average
+            tmp += (Double(mark) * Double(cfu))
+            tmp /= gainedCfu
+            deltas.append(tmp)
+        }
+        
+        return deltas
+    }
+    
 }

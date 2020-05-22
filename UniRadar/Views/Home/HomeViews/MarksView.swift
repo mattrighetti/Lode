@@ -51,7 +51,7 @@ struct MarkCard: View {
                     Spacer()
                     HStack {
                         VStack {
-                            Text(course.mark == 0 ? String(course.expectedMark) : String(course.mark))
+                            Text("\(course.expectedMark)")
                                 .font(.system(.title, design: .rounded))
                                 .fontWeight(.bold)
                             

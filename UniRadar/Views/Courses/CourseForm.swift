@@ -145,6 +145,7 @@ struct CourseForm: View {
                 .transition(.scale)
                 
             }
+            .scrollViewWithoutBackground()
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
             .onAppear {
@@ -175,6 +176,7 @@ struct CourseForm: View {
                         self.presentatitonMode.wrappedValue.dismiss()
                 }
             )
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
     

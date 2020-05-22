@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableViewCell.appearance().backgroundColor = UIColor(named: "background")
         UITableViewCell.appearance().selectionStyle = .none
         UIPickerView.appearance().backgroundColor = UIColor(named: "cardBackground")
+        UIScrollView.appearance().backgroundColor = UIColor(named: "background")
 
         return true
     }

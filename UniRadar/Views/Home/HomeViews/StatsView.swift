@@ -49,13 +49,14 @@ struct StatsView: View {
             ])
             
             Section(header: Text("Latest marks").modifier(SectionTitle())) {
-                BarChartView(arrayValues: self.viewModel.courses.map { Double($0.mark) }, color: .red)
+                BarChartView(arrayValues: self.viewModel.courses.filter({ $0.mark != 0 }).map({ Double($0.mark) }), color: .red)
                     .frame(height: 250, alignment: .center)
                     .padding()
                     .listRowBackground(Color("cardBackground"))
             }
             
         }
+        .singleSeparator()
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
         
@@ -92,6 +93,8 @@ struct StatsStringListSection: View {
 struct StatsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        StatsView(viewModel: ViewModel(context: context!)).environment(\.colorScheme, .dark)
+        StatsView(viewModel: ViewModel(context: context!))
+            .environment(\.colorScheme, .dark)
+        .previewDevice("iPad Pro (12.9-inch)")
     }
 }

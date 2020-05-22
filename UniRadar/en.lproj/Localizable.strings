@@ -9,7 +9,6 @@
 // MARK: - Home View
 "Home" = "Home";
 "Main Info" = "Main Info";
-"Main Infos" = "Infos";
 "Categories" = "Categories";
 "Stats" = "Stats";
 "Your CFU" = "Your CFU";
@@ -70,6 +69,7 @@
 "Mark obtained" = "Mark obtained";
 "This will be used for further statistics" = "This will be used for further statistics";
 "The mark you got" = "The mark you got";
+"Final" = "Final";
 
 // MARK: - SegmentedPicker Navbar
 "Past" = "Past";

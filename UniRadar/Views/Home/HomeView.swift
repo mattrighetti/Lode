@@ -15,7 +15,7 @@ struct HomeView: View {
     @State var progress: CGFloat = 0.4
     @State var markViewActive: Bool = false
     @State var statsViewActive: Bool = false
-    @State var otherViewActive: Bool = false
+    @State var toolsViewActive: Bool = false
     @State var isActionSheetPresented: Bool = false
     @State var sheetMenu: SheetMenu?
     @State var sheetMenuShown: Bool = false
@@ -47,9 +47,20 @@ struct HomeView: View {
                         .padding(.horizontal, 25)
                     }
                 }
+                
+                // MARK: - Categories Section
+                HomeSection(sectionTitle: NSLocalizedString("Tools", comment: "")) {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            NavigationLink(destination: AverageDeltaTool(viewModel: self.viewModel), isActive: self.$toolsViewActive) {
+                                CategoriesCard(label: NSLocalizedString("Avg Delta Calculator", comment: ""), imageName: "divide.circle")
+                            }.buttonStyle(PlainButtonStyle())
+                        }
+                        .padding(.horizontal, 25)
+                    }
+                }
                 .padding(.bottom)
             }
-            .background(Color("background").edgesIgnoringSafeArea(.all))
             .sheet(isPresented: self.$sheetMenuShown) {
                 self.sheetMenu!.contentView
             }
@@ -90,6 +101,9 @@ struct HomeView: View {
                 }),
                 .default(Text("Add assignment"), action: {
                     self.toggle(menu: .assignmentform)
+                }),
+                .default(Text("Add course"), action: {
+                    self.toggle(menu: .courseform)
                 }),
                 .cancel()
             ])
@@ -190,7 +204,7 @@ struct HomeView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
         HomeView(viewModel: ViewModel(context: context!))
-            .previewDevice("iPhone Xs")
+            .previewDevice("iPhone 11")
             .environment(\.colorScheme, .dark)
             .environment(\.locale, .init(identifier: "it"))
     }

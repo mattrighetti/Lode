@@ -95,6 +95,7 @@ struct ReminderForm: View {
                 .transition(.scale)
                 
             }
+            .scrollViewWithoutBackground()
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
             .onAppear {
@@ -120,7 +121,8 @@ struct ReminderForm: View {
                     }
                 )
             )
-        }
+            
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func onDonePressed() {

@@ -39,7 +39,7 @@ struct MainView: View {
             RemindersView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "pin")
-                    Text("Reminders")
+                    Text("Assignments")
                 }
         }
         .sheet(

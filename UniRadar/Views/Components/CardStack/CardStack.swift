@@ -74,7 +74,7 @@ extension CardStack {
     
     func dragGestureDidChange(value: DragGesture.Value, card: InfoCard, geometry: GeometryProxy) {
         guard deck.isFirst(card: card) else { return }
-        draggingOffset = value.translation.width * 1.7
+        draggingOffset = value.translation.width * 3.0
         isDragging = true
         firstCardScale = newFirstCardScale(geometry: geometry)
     }
@@ -93,7 +93,7 @@ extension CardStack {
 extension CardStack {
     
     private func cardsSortedAfterTranslation(draggedCard card: InfoCard, xTranslation: CGFloat, geometry: GeometryProxy) -> [InfoCard] {
-        if abs(xTranslation) > 220 {
+        if abs(xTranslation) > 120 {
             draggingOffset = 0
             let newCards = [card] + Array(deck.cards.dropLast())
             return newCards

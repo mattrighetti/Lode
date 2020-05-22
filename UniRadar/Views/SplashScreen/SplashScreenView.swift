@@ -21,6 +21,8 @@ struct SplashscreenFeature {
 }
 
 struct SplashScreenView: View {
+    
+    @Environment(\.presentationMode) var presentatitonMode
 
     var features: [SplashscreenFeature] = [
         SplashscreenFeature(
@@ -61,6 +63,14 @@ struct SplashScreenView: View {
 
                 Spacer()
                 Spacer()
+                
+                Button(action: {
+                    self.presentatitonMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Start").padding(.horizontal, 50).padding(.vertical, 20)
+                })
+                .background(Color("cardBackground"))
+                .cornerRadius(8)
 
                 HStack {
                     Circle()
@@ -74,7 +84,7 @@ struct SplashScreenView: View {
                     Circle()
                         .foregroundColor(featureIndex == 2 ? Color("circleSelected") : Color("circle"))
                         .frame(width: 7, height: 7, alignment: .center)
-                }
+                }.padding()
             }.gesture(
                 DragGesture()
                     .onEnded { action in
@@ -92,11 +102,15 @@ struct SplashScreenView: View {
 struct SplashScreenFeatureView: View {
 
     var splashscreenFeature: SplashscreenFeature
-
+    
+    var lottieSize: CGFloat {
+        (UIScreen.main.bounds.width / 2) - 32
+    }
+    
     var body: some View {
         VStack {
             LottieView(lottieAnimationName: self.splashscreenFeature.lottieName)
-                .frame(width: 300, height: 300, alignment: .center)
+                .frame(width: self.lottieSize, height: self.lottieSize, alignment: .center)
 
             Text(splashscreenFeature.featureTitle)
                 .fontWeight(.heavy)
@@ -117,7 +131,11 @@ struct SplashScreen_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SplashScreenView()
-                .previewDevice("iPhone 11")
+            .previewDevice("iPhone 11")
+            .environment(\.colorScheme, .dark)
+            
+            SplashScreenView()
+                .previewDevice("iPad Pro (12.9-inch)")
                 .environment(\.colorScheme, .dark)
         }
     }
