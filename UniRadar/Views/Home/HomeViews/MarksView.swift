@@ -10,6 +10,8 @@ import SwiftUI
 
 struct MarksView: View {
 
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var courses: [Course]
 
     var body: some View {
@@ -18,6 +20,9 @@ struct MarksView: View {
                 MarkCard(course: course)
                     .listRowBackground(Color("background"))
             }
+        }
+        .onDisappear {
+            self.presentationMode.wrappedValue.dismiss()
         }
 
         .navigationBarTitle( NSLocalizedString("Marks", comment: "") )

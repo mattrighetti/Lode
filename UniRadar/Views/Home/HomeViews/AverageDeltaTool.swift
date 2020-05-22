@@ -10,6 +10,8 @@ import SwiftUI
 
 struct AverageDeltaTool: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @ObservedObject var viewModel: ViewModel
     
     @State var cfu: Int = 5
@@ -75,6 +77,9 @@ struct AverageDeltaTool: View {
         .environment(\.horizontalSizeClass, .regular)
         .onAppear {
             self.deltas = self.viewModel.calculateDeltas(withCfu: self.cfu)
+        }
+        .onDisappear {
+            self.presentationMode.wrappedValue.dismiss()
         }
         
         .navigationBarTitle("Delta Calculator")

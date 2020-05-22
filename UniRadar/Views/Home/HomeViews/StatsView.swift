@@ -10,6 +10,8 @@ import SwiftUI
 
 struct StatsView: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @ObservedObject var viewModel: ViewModel
     
     var body: some View {
@@ -59,6 +61,9 @@ struct StatsView: View {
         .singleSeparator()
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
+        .onDisappear {
+            self.presentationMode.wrappedValue.dismiss()
+        }
         
         .navigationBarTitle("Statistics")
     }
