@@ -158,8 +158,7 @@ struct CourseForm: View {
                         self.courseCfu = Int(courseToEdit.cfu)
                         self.isPassed = courseToEdit.mark != 0 ? true : false
                         self.colorIndex = GridIndex(row: Int(courseToEdit.colorRowIndex), column: Int(courseToEdit.colorColIndex))
-                        // TODO how do you restore this?
-                        self.iconIndex = GridIndex(row: 0, column: 0)
+                        self.iconIndex = Glyph.gridIndex(ofGlyph: courseToEdit.iconName!)!
                     }
                     
                     self.restoredCourse.toggle()
