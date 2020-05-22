@@ -52,6 +52,13 @@ struct ExamForm: View {
                     }
                 )
                 
+                Header(title: "Description").padding(.top)
+                
+                TextField("Exam description", text: $name)
+                    .padding()
+                    .background(Color("cardBackground"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
                 Header(title: "Course")
                     .padding(.top)
                 
@@ -69,13 +76,6 @@ struct ExamForm: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                 )
-                
-                Header(title: "Description").padding(.top)
-                
-                TextField("Exam description", text: $name)
-                    .padding()
-                    .background(Color("cardBackground"))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
                 
                 Header(title: "Date").padding(.top)
                 
@@ -109,6 +109,7 @@ struct ExamForm: View {
                 .background(Color("cardBackground"))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .transition(.scale)
+                .padding(.bottom, 50)
                 
             }
             .scrollViewWithoutBackground()

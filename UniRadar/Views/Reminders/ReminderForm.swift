@@ -93,6 +93,7 @@ struct ReminderForm: View {
                 .background(Color("cardBackground"))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .transition(.scale)
+                .padding(.bottom, 50)
                 
             }
             .scrollViewWithoutBackground()

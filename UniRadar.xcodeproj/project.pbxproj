@@ -44,6 +44,8 @@
 		C9AF9D5E24621AA8008B5994 /* GridIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AF9D5D24621AA8008B5994 /* GridIndex.swift */; };
 		C9AF9D6024621BA9008B5994 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AF9D5F24621BA9008B5994 /* ColorPickerView.swift */; };
 		C9B32C3224773BC100C37942 /* AverageDeltaTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B32C3124773BC100C37942 /* AverageDeltaTool.swift */; };
+		C9B32C352477716800C37942 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B32C342477716800C37942 /* AboutView.swift */; };
+		C9B32C38247773C300C37942 /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = C9B32C37247773C300C37942 /* main.png */; };
 		C9B8F12A24729B1000E7AE69 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9B8F12C24729B1000E7AE69 /* Localizable.strings */; };
 		C9CD9218246635AF003499BF /* CfuCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CD9217246635AF003499BF /* CfuCards.swift */; };
 		C9CED55F243E6E7000FDE90C /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CED55E243E6E7000FDE90C /* SplashScreenView.swift */; };
@@ -119,6 +121,8 @@
 		C9AF9D5D24621AA8008B5994 /* GridIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridIndex.swift; sourceTree = "<group>"; };
 		C9AF9D5F24621BA9008B5994 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		C9B32C3124773BC100C37942 /* AverageDeltaTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageDeltaTool.swift; sourceTree = "<group>"; };
+		C9B32C342477716800C37942 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		C9B32C37247773C300C37942 /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main.png; sourceTree = "<group>"; };
 		C9B8F127247299B600E7AE69 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C9B8F12B24729B1000E7AE69 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9B8F12D24729B1900E7AE69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 		1301E0F523428D2D0038ACA9 /* UniRadar */ = {
 			isa = PBXGroup;
 			children = (
+				C9B32C362477734700C37942 /* Icons */,
 				C94DCC4224756AE200047E8D /* Lode.entitlements */,
 				C94FC69F24713E4400287DEF /* Animations */,
 				1312EF7623722DB300650D18 /* Utils */,
@@ -290,6 +295,7 @@
 		C9766D0F2443DB9C0056726D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C9B32C332477715700C37942 /* SettingsViews */,
 				C9D2A9F3244BED9B00CA8AAE /* HomeViews */,
 				C9766D102443DBB40056726D /* HomeView.swift */,
 				C94FC6A62471B42000287DEF /* SettingsView.swift */,
@@ -353,6 +359,22 @@
 				C963F9E3246A1D9200B2FBEF /* CustomModifiers.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C9B32C332477715700C37942 /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				C9B32C342477716800C37942 /* AboutView.swift */,
+			);
+			path = SettingsViews;
+			sourceTree = "<group>";
+		};
+		C9B32C362477734700C37942 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				C9B32C37247773C300C37942 /* main.png */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		C9CD92162466359C003499BF /* Cards */ = {
@@ -494,6 +516,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B32C38247773C300C37942 /* main.png in Resources */,
 				C94FC6A524713F6A00287DEF /* resting.json in Resources */,
 				1301E10623428D2E0038ACA9 /* LaunchScreen.storyboard in Resources */,
 				C94FC6A124713E5200287DEF /* swipeup.json in Resources */,
@@ -557,6 +580,7 @@
 				C97D1C3F245E6BE300C04342 /* CoursesView.swift in Sources */,
 				C9A1E4F32456F83E006604B2 /* ViewModel.swift in Sources */,
 				C9766D112443DBB40056726D /* HomeView.swift in Sources */,
+				C9B32C352477716800C37942 /* AboutView.swift in Sources */,
 				C97D1C3C245E533600C04342 /* AppState.swift in Sources */,
 				C9B32C3224773BC100C37942 /* AverageDeltaTool.swift in Sources */,
 				C97D1C41245E6DF700C04342 /* ExamForm.swift in Sources */,

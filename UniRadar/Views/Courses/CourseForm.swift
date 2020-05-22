@@ -92,15 +92,6 @@ struct CourseForm: View {
                     HeaderCaption(title: "CFU", caption: "Ore totali: \(self.courseCfu * 25)").padding(.top)
                     
                     CustomStepper(value: $courseCfu, maxValue: 180, minValue: 1)
-                    
-                    Header(title: "Difficulty").padding(.top)
-                    
-                    Picker(selection: $difficulty, label: Text("")) {
-                        Text("1").tag(1)
-                        Text("2").tag(2)
-                        Text("3").tag(3)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
                 
                 }
                 
@@ -141,7 +132,7 @@ struct CourseForm: View {
                         EmptyView()
                     }
                 }
-                .padding(.bottom, 70)
+                .padding(.bottom, 50)
                 .transition(.scale)
                 
             }

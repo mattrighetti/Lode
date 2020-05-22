@@ -94,7 +94,7 @@ struct HomeView: View {
         }
         .actionSheet(isPresented: $isActionSheetPresented) {
             ActionSheet(title: Text("Choose an action").font(.title), message: nil, buttons: [
-                .default(Text("Add Exam"), action: {
+                .default(Text("Add exam"), action: {
                     self.toggle(
                         menu: .examform(courses: self.viewModel.courses.filter({ $0.mark == 0 }).map({ $0.name! }) )
                     )
