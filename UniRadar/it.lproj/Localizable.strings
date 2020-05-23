@@ -45,6 +45,7 @@
 "App icon" = "App icon";
 "About" = "Riferimenti";
 "Accent Color" = "Colore Tinta";
+"Laude value" = "Valore lode";
 
 // MARK: - Exams View
 "Exams" = "Esami";
@@ -105,8 +106,8 @@
 "Some fields are not compiled" = "Compila i campi";
 "You have to compile every field to create a course" = "Ci sono dei campi non compilati, compilali e riprova";
 
-"No course is present" = "Non è presente alcun corso";
-"You must first add a course before creating exams" = "Devi prima aggiungere almeno un corso per poter aggiungere un esame";
+"No active course is present" = "Non è presente alcun corso";
+"You must first add an active course to be able to add exams" = "Devi prima aggiungere almeno un corso attivo per poter aggiungere degli esame";
 
 "Choose an action" = "Scegli un'opzione";
 
@@ -116,6 +117,9 @@
 "Save your marks, assignments and exams all in this app" = "Salve i tuoi voti, compiti ed esami";
 "Extremely simple to use" = "Estremamente semplice da usare";
 "Designed with ease of use in mind to get you back to work as soon as possible" = "Pensata per la semplicità d'uso";
+
+// MARK: - About View
+"Rate Lode" = "Valuta Lode";
 
 // MARK: - Cards
 "Upcoming exams" = "Prossimi esami";

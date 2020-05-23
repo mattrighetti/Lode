@@ -45,6 +45,7 @@
 "App icon" = "App icon";
 "About" = "About";
 "Accent Color" = "Accent Color";
+"Laude value" = "Laude value";
 
 // MARK: - Exams View
 "Exams" = "Exams";
@@ -105,8 +106,8 @@
 "Some fields are not compiled" = "Some fields are not compiled";
 "You have to compile every field to create a course" = "You have to compile every field to create a course";
 
-"No course is present" = "No course is present";
-"You must first add a course before creating exams" = "You must first add a course before creating exams";
+"No active course is present" = "No active course is present";
+"You must first add an active course to be able to add exams" = "You must first add an active course to be able to add exams";
 
 "Choose an action" = "Choose an action";
 
@@ -116,6 +117,9 @@
 "Save your marks, assignments and exams all in this app" = "Save your marks, assignments and exams all in this app";
 "Extremely simple to use" = "Extremely simple to use";
 "Designed with ease of use in mind to get you back to work as soon as possible" = "Designed with ease of use in mind to get you back to work as soon as possible";
+
+// MARK: - About View
+"Rate Lode" = "Rate Lode";
 
 // MARK: - Cards
 "Upcoming exams" = "Upcoming exams";

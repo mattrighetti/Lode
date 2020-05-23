@@ -54,15 +54,8 @@ struct ExamsView: View {
             }
             .alert(isPresented: self.$presentAlert) {
                 Alert(
-                    title: Text("No course is present"),
-                    message: Text("You must first add a course before creating exams"),
-                    dismissButton: .cancel(Text("Ok"))
-                )
-            }
-            .alert(isPresented: self.$presentAlert) {
-                Alert(
-                    title: Text("Passed Exams can't be edited"),
-                    message: Text("If you need to change some exam, delete the wrong one and create a new one"),
+                    title: Text("No active course is present"),
+                    message: Text("You must first add an active course to be able to add exams"),
                     dismissButton: .cancel(Text("Ok"))
                 )
             }

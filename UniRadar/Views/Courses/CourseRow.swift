@@ -54,9 +54,9 @@ struct CourseRow: View {
     
     private func badge() -> some View {
         if self.course.mark != 0 {
-            return AnyView( NumberBadge(label: "Final", value: Int(self.course.mark), color: .yellow) )
+            return AnyView( NumberBadge(label: NSLocalizedString("Final", comment: ""), value: Int(self.course.mark), color: .yellow) )
         } else {
-            return AnyView( NumberBadge(label: "Expected", value: Int(self.course.expectedMark), color: .blue) )
+            return AnyView( NumberBadge(label: NSLocalizedString("Expected", comment: ""), value: Int(self.course.expectedMark), color: .blue) )
         }
     }
     
