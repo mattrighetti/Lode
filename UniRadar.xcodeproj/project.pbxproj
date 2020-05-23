@@ -17,6 +17,7 @@
 		C90A795D247360D1008B40EF /* AverageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A795C247360D1008B40EF /* AverageCard.swift */; };
 		C90A795F24736119008B40EF /* MainInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A795E24736119008B40EF /* MainInfoCard.swift */; };
 		C90A796124736DC1008B40EF /* CourseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A796024736DC1008B40EF /* CourseRow.swift */; };
+		C90B71B62479D3FD00828E00 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C90B71B52479D3FD00828E00 /* CloudKit.framework */; };
 		C90DF18924795273007A4735 /* CourseDescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90DF18824795273007A4735 /* CourseDescriptionPage.swift */; };
 		C90DF18B24796152007A4735 /* ExamDescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90DF18A24796152007A4735 /* ExamDescriptionPage.swift */; };
 		C90DF18D247964A8007A4735 /* ReminderDescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90DF18C247964A8007A4735 /* ReminderDescriptionPage.swift */; };
@@ -98,6 +99,7 @@
 		C90A795C247360D1008B40EF /* AverageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageCard.swift; sourceTree = "<group>"; };
 		C90A795E24736119008B40EF /* MainInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoCard.swift; sourceTree = "<group>"; };
 		C90A796024736DC1008B40EF /* CourseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseRow.swift; sourceTree = "<group>"; };
+		C90B71B52479D3FD00828E00 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C90DF18824795273007A4735 /* CourseDescriptionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDescriptionPage.swift; sourceTree = "<group>"; };
 		C90DF18A24796152007A4735 /* ExamDescriptionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamDescriptionPage.swift; sourceTree = "<group>"; };
 		C90DF18C247964A8007A4735 /* ReminderDescriptionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDescriptionPage.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9555B6D2450E6820031933D /* Lottie in Frameworks */,
+				C90B71B62479D3FD00828E00 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +299,7 @@
 		C963D38F2472054B0011488B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C90B71B52479D3FD00828E00 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
