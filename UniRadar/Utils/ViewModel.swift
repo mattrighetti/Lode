@@ -84,9 +84,9 @@ extension ViewModel {
             // Update CFU
             self.gainedCfu = courses.filter { $0.mark != 0 }.map { Int($0.cfu) }.reduce(0) { $0 + $1 }
             // Update Average
-            self.average = self.calculateAverage(withCourses: courses)
+            self.average = self.calculateAverage(withCourses: courses, laudeValue: self.laudeValue)
             // Update Expected Average
-            self.expectedAverage = self.calculateExpectedAverage(withCourses: courses)
+            self.expectedAverage = self.calculateExpectedAverage(withCourses: courses, laudeValue: self.laudeValue)
             print(self.expectedAverage)
             // Update Projected Grad Grade
             self.projectedGraduationGrade = self.calculateGraduationGrade(withMean: self.average)
@@ -98,13 +98,22 @@ extension ViewModel {
             self.passedAsExpected = courses.filter { $0.mark != 0 && $0.mark == $0.expectedMark }.count
             self.passedWorseThanExpected = courses.filter { $0.mark != 0 && $0.mark < $0.expectedMark }.count
             self.passedBetterThanExpected = courses.filter { $0.mark != 0 && $0.mark > $0.expectedMark }.count
-        }).store(in: &cancellables)
+        })
+        .store(in: &cancellables)
+        
+        self.$laudeValue.sink(receiveValue: { laudeValue in
+            print("Sink laudeValue")
+            self.average = self.calculateAverage(withCourses: self.courses, laudeValue: laudeValue)
+            // Update Expected Average
+            self.expectedAverage = self.calculateExpectedAverage(withCourses: self.courses, laudeValue: laudeValue)
+        })
+        .store(in: &cancellables)
         
     }
     
-    private func calculateAverage(withCourses courses: [Course]) -> Double {
+    private func calculateAverage(withCourses courses: [Course], laudeValue: Int) -> Double {
         var average = courses.filter { $0.mark != 0 }.map {
-            Double($0.cfu) * (Bool(truncating: $0.laude!) ? Double(self.laudeValue) : Double($0.mark))
+            Double($0.cfu) * (Bool(truncating: $0.laude!) ? Double(laudeValue) : Double($0.mark))
         }.reduce(0, { $0 + $1 })
         average /= Double(self.gainedCfu)
         
@@ -113,9 +122,9 @@ extension ViewModel {
         return average
     }
     
-    private func calculateExpectedAverage(withCourses courses: [Course]) -> Double {
+    private func calculateExpectedAverage(withCourses courses: [Course], laudeValue: Int) -> Double {
         var average = courses.map {
-            Double($0.cfu) * (Bool(truncating: $0.expectedLaude!) ? Double(self.laudeValue) : Double($0.expectedMark))
+            Double($0.cfu) * (Bool(truncating: $0.expectedLaude!) ? Double(laudeValue) : Double($0.expectedMark))
         }.reduce(0, { $0 + $1 })
         
         let totalCfu = courses.map { Double($0.cfu) }.reduce(0, { $0 + $1 })

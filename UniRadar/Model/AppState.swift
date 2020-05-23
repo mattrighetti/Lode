@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 final class AppState: ObservableObject {
-    @Published var accentColor: Color!
+    @Published var tintColor: UIColor!
     @Published var firstAccess: Bool!
     @Published var initialSetup: Bool!
     
@@ -27,14 +27,20 @@ final class AppState: ObservableObject {
             self.initialSetup = false
         }
         
+        if UserDefaults.standard.object(forKey: "tintColor") != nil {
+            self.tintColor = UserDefaults.standard.color(forKey: "tintColor")
+        } else {
+            self.tintColor = .red
+        }
+        
         sub()
     }
     
     private var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
     
     private func sub() {
-        self.$accentColor.sink(receiveValue: { value in
-            UserDefaults.standard.set(value, forKey: "accentColor")
+        self.$tintColor.sink(receiveValue: { value in
+            UserDefaults.standard.set(value, forKey: "tintColor")
         }).store(in: &cancellables)
         
         self.$firstAccess.sink(receiveValue: { value in
@@ -46,4 +52,33 @@ final class AppState: ObservableObject {
         }).store(in: &cancellables)
     }
     
+}
+
+extension UserDefaults {
+
+    func color(forKey key: String) -> UIColor? {
+
+        guard let colorData = data(forKey: key) else { return nil }
+
+        do {
+            return try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
+        } catch let error {
+            print("color error \(error.localizedDescription)")
+            return nil
+        }
+
+    }
+
+    func set(_ value: UIColor?, forKey key: String) {
+
+        guard let color = value else { return }
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
+            set(data, forKey: key)
+        } catch let error {
+            print("error color key data not saved \(error.localizedDescription)")
+        }
+
+    }
+
 }

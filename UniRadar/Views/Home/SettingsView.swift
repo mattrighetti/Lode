@@ -13,14 +13,36 @@ struct SettingsView: View {
     @ObservedObject var viewModel: ViewModel
     
     @State var totalCfu: Int = 180
+    @State var laudeValue: Int = 30
+    
+    private var totalCfuProxy: Binding<Int> {
+        Binding<Int>(get: {
+            self.totalCfu
+        }, set: {
+            self.totalCfu = $0
+            self.viewModel.totalCfu = $0
+        })
+    }
+    
+    private var laudeValueProxy: Binding<Int> {
+        Binding<Int>(get: {
+            self.laudeValue
+        }, set: {
+            self.laudeValue = $0
+            self.viewModel.laudeValue = $0
+        })
+    }
     
     var body: some View {
         NavigationView {
             List {
                 Section(header: Text("Total CFU")) {
-                    Stepper("\(totalCfu)", value: self.$totalCfu, in: 0...300)
-                        .disabled(true)
-                }.listRowBackground(Color("cardBackground"))
+                    Stepper("\(self.totalCfu)", value: self.totalCfuProxy, in: 0...300)
+                }.listRowBackground(Color.cardBackground)
+                
+                Section(header: Text("Laude value")) {
+                    Stepper("\(self.laudeValue)", value: self.laudeValueProxy, in: 30...35)
+                }.listRowBackground(Color.cardBackground)
                 
                 Section(header: Text("Appearance")) {
                     NavigationLink(destination: Text("Feature not available yet"), label: {
@@ -29,19 +51,24 @@ struct SettingsView: View {
                     NavigationLink(destination: Text("Feature not available yet"), label: {
                         Text("App Icon")
                     }).disabled(true)
-                }.listRowBackground(Color("cardBackground"))
+                }.listRowBackground(Color.cardBackground)
                 
                 Section(footer: Text("")) {
                     NavigationLink(destination: AboutView(), label: {
                         Text("About")
                     })
-                }.listRowBackground(Color("cardBackground"))
+                }.listRowBackground(Color.cardBackground)
             }
             .singleSeparator()
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
             .onAppear {
                 self.totalCfu = self.viewModel.totalCfu
+                self.laudeValue = self.viewModel.laudeValue
+            }
+            .onDisappear {
+                self.viewModel.storeInUserDefaults()
+                print("Saving...")
             }
             
             .navigationBarTitle("Settings")
@@ -50,7 +77,8 @@ struct SettingsView: View {
 }
 
 struct SettingsView_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        SettingsView(viewModel: ViewModel(context: .init(concurrencyType: .mainQueueConcurrencyType))).colorScheme(.dark)
+        SettingsView(viewModel: ViewModel(context: context!)).colorScheme(.dark)
     }
 }
