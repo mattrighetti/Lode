@@ -19,19 +19,36 @@ struct CoursesView: View {
     @State var pickerSelection: Int = 0
     @State private var editMode = EditMode.inactive
     @State private var courseToEdit: Course?
+    @State private var showDescription: Bool = false
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(coursesFiltered(withTag: pickerSelection), id: \.id) { course in
-                    CourseRow(course: course)
-                        .onTapGesture {
-                            if self.editMode == .active {
-                                self.courseToEdit = course
-                                self.addCourseModalShown.toggle()
+                    Group {
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            CourseRow(course: course)
+                                .onTapGesture {
+                                    self.courseToEdit = course
+                                    if self.editMode == .active {
+                                        self.addCourseModalShown.toggle()
+                                    }
+                                }.listRowBackground(Color.background)
+                        } else {
+                            ZStack {
+                                NavigationLink(destination: CourseDescriptionPage(course: self.courseToEdit), isActive: .constant(true), label: {
+                                    EmptyView()
+                                }).listRowBackground(Color.background)
+                                CourseRow(course: course)
+                                    .onTapGesture {
+                                        self.courseToEdit = course
+                                        if self.editMode == .active {
+                                            self.addCourseModalShown.toggle()
+                                        }
+                                    }
                             }
                         }
-                        .listRowBackground(Color.background)
+                    }
                 }.onDelete(perform: self.deleteCourse)
                 
                 Button(action: {
@@ -79,7 +96,6 @@ struct CoursesView: View {
                     .environment(\.managedObjectContext, self.managedObjectContext)
             })
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func coursesFiltered(withTag tag: Int) -> [Course] {

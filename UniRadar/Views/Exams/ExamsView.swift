@@ -25,14 +25,32 @@ struct ExamsView: View {
         NavigationView {
             List {
                 ForEach(examsFiltered(withTag: examPickerSelection).sorted(by: { $0.date! < $1.date! }), id: \.id) { exam in
-                    ExamRow(exam: exam)
-                        .onTapGesture {
-                            if self.editMode == .active {
-                                self.examToEdit = exam
-                                self.addExamModalShown.toggle()
+                    Group {
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            ExamRow(exam: exam)
+                                .onTapGesture {
+                                    self.examToEdit = exam
+                                    if self.editMode == .active {
+                                        self.addExamModalShown.toggle()
+                                    }
+                                }
+                                .listRowBackground(Color("background"))
+                        } else {
+                            ZStack {
+                                NavigationLink(destination: ExamDescriptionPage(exam: self.examToEdit), isActive: .constant(true)) {
+                                    EmptyView()
+                                }.listRowBackground(Color("background"))
+                                
+                                ExamRow(exam: exam)
+                                    .onTapGesture {
+                                        self.examToEdit = exam
+                                        if self.editMode == .active {
+                                            self.addExamModalShown.toggle()
+                                        }
+                                    }
                             }
                         }
-                        .listRowBackground(Color("background"))
+                    }
                 }.onDelete(perform: self.deleteExam)
                 
                 Button(action: {
@@ -80,7 +98,6 @@ struct ExamsView: View {
             
             .environment(\.editMode, $editMode)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(
             isPresented: $addExamModalShown,
             onDismiss: {

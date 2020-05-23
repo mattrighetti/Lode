@@ -108,10 +108,16 @@ struct MarksView_Previews: PreviewProvider {
     @ObservedObject static var viewModel: ViewModel = ViewModel(context: context!)
     static var previews: some View {
         let course = Course(context: context!)
-        course.name = "Advanced Algorithms and Parallel Programming"
         course.cfu = 5
-        course.expectedMark = 25
-        course.mark = 0
+        course.colorColIndex = 0
+        course.colorRowIndex = 0
+        course.expectedMark = 19
+        course.laude = true
+        course.expectedLaude = false
+        course.iconName = "pencil"
+        course.id = UUID()
+        course.mark = 31
+        course.name = "Analisi 1"
         
         return Group {
             MarksView(courses: [course]).previewDevice("iPhone 11")

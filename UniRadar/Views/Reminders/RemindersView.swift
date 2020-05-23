@@ -25,14 +25,32 @@ struct RemindersView: View {
         NavigationView {
             List {
                 ForEach(assignmentsFiltered(withTag: pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! }), id: \.id) { assignment in
-                    ReminderRow(assignment: assignment)
-                        .onTapGesture {
-                            if self.editMode == .active {
-                                self.assignmentToEdit = assignment
-                                self.showForm.toggle()
+                    Group {
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            ReminderRow(assignment: assignment)
+                                .onTapGesture {
+                                    self.assignmentToEdit = assignment
+                                    if self.editMode == .active {
+                                        self.showForm.toggle()
+                                    }
+                                }
+                                .listRowBackground(Color("background"))
+                        } else {
+                            ZStack {
+                                NavigationLink(destination: ReminderDescriptionPage(assignment: self.assignmentToEdit), isActive: .constant(true)) {
+                                    EmptyView()
+                                }.listRowBackground(Color.background)
+                                
+                                ReminderRow(assignment: assignment)
+                                    .onTapGesture {
+                                        self.assignmentToEdit = assignment
+                                        if self.editMode == .active {
+                                            self.showForm.toggle()
+                                        }
+                                    }
                             }
                         }
-                        .listRowBackground(Color("background"))
+                    }
                 }.onDelete(perform: self.deleteAssignment)
                 
                 Button(action: {
@@ -73,7 +91,6 @@ struct RemindersView: View {
             
             .environment(\.editMode, $editMode)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(
             isPresented: $showForm,
             onDismiss: {
