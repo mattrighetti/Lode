@@ -45,10 +45,26 @@ struct MarkCard: View {
 
         return .red
     }
+    
+    var expectedMarkString: String {
+        if self.course.expectedMark == 31 {
+            return "30L"
+        } else {
+            return "\(self.course.expectedMark)"
+        }
+    }
+    
+    var markString: String {
+        if self.course.mark == 31 {
+            return "30L"
+        } else {
+            return "\(self.course.mark)"
+        }
+    }
 
     var body: some View {
         ZStack {
-            Color("cardBackground")
+            Color.cardBackground
             VStack(alignment: .leading, spacing: 10) {
                 Text(course.name!).font(.headline).fontWeight(.bold)
                 
@@ -56,14 +72,14 @@ struct MarkCard: View {
                     Spacer()
                     HStack {
                         VStack {
-                            Text("\(course.expectedMark)")
+                            Text(self.expectedMarkString)
                                 .font(.system(.title, design: .rounded))
                                 .fontWeight(.bold)
                             
                             Text("Expected").modifier(BadgePillStyle(color: .blue))
                         }.frame(width: 100)
                         
-                        Divider().background(Color("background"))
+                        Divider()
                         
                         VStack {
                             content()
@@ -79,7 +95,7 @@ struct MarkCard: View {
     
     private func content() -> some View {
         if self.course.mark != 0 {
-            return AnyView( Text(String(course.mark)).font(.system(.title, design: .rounded)).fontWeight(.bold) )
+            return AnyView( Text(markString).font(.system(.title, design: .rounded)).fontWeight(.bold) )
         } else {
             return AnyView( Text("?").font(.system(.title, design: .rounded)).fontWeight(.bold) )
         }

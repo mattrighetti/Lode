@@ -66,13 +66,23 @@ struct NumberBadge: View {
     
     var label: String
     var value: Int
+    var laude: Bool {
+        if self.value == 31 {
+            return true
+        }
+        return false
+    }
     var color: Color
     
     var body: some View {
         HStack {
             Text(label)
-            Image(systemName: "\(self.value).circle")
+            Image(systemName: "\(self.value == 31 ? 30 : self.value).circle")
                 .font(.system(size: 20))
+            if laude {
+                Text("L")
+                    .padding(.horizontal, 0)
+            }
         }
         .badgePillWithImage(color: color)
     }

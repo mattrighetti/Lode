@@ -53,7 +53,7 @@ struct ReminderRow: View {
                 HStack {
                     Image(systemName: "exclamationmark.circle")
                     Text("Due soon")
-                }.modifier(BadgePillStyle(color: .red))
+                }.badgePill(color: .red)
             )
         } else {
             return AnyView(

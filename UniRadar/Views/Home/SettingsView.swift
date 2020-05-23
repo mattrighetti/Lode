@@ -44,15 +44,6 @@ struct SettingsView: View {
                     Stepper("\(self.laudeValue)", value: self.laudeValueProxy, in: 30...35)
                 }.listRowBackground(Color.cardBackground)
                 
-                Section(header: Text("Appearance")) {
-                    NavigationLink(destination: Text("Feature not available yet"), label: {
-                        Text("Accent Color")
-                    }).disabled(true)
-                    NavigationLink(destination: Text("Feature not available yet"), label: {
-                        Text("App Icon")
-                    }).disabled(true)
-                }.listRowBackground(Color.cardBackground)
-                
                 Section(footer: Text("")) {
                     NavigationLink(destination: AboutView(), label: {
                         Text("About")
