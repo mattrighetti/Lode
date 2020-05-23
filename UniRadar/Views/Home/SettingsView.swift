@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var viewModel: ViewModel
     
     @State var totalCfu: Int = 180
@@ -62,6 +64,11 @@ struct SettingsView: View {
             }
             
             .navigationBarTitle("Settings")
+            .navigationBarItems(trailing: Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+            }, label: {
+                Text("Done")
+            }))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
