@@ -104,7 +104,7 @@ struct SplashScreenFeatureView: View {
     var splashscreenFeature: SplashscreenFeature
     
     var lottieSize: CGFloat {
-        (UIScreen.main.bounds.width / 1.7)
+        (UIScreen.main.bounds.width / 2)
     }
     
     var body: some View {
