@@ -38,6 +38,7 @@
 		C9844BFE24549F0200345A26 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844BFD24549F0200345A26 /* CardStack.swift */; };
 		C9844C012454B0F400345A26 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9844C002454B0F400345A26 /* Deck.swift */; };
 		C984E88A245EA2F3003FF668 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C984E888245EA2F3003FF668 /* DataModel.xcdatamodeld */; };
+		C99FB011247943BD00186696 /* HorizontalCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99FB010247943BD00186696 /* HorizontalCards.swift */; };
 		C9A1E4F32456F83E006604B2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1E4F22456F83E006604B2 /* ViewModel.swift */; };
 		C9A52E772448C4FD00C3EF9C /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E762448C4FD00C3EF9C /* DataCard.swift */; };
 		C9A52E792448C9D900C3EF9C /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */; };
@@ -115,6 +116,7 @@
 		C9844BFD24549F0200345A26 /* CardStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStack.swift; sourceTree = "<group>"; };
 		C9844C002454B0F400345A26 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C984E889245EA2F3003FF668 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		C99FB010247943BD00186696 /* HorizontalCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCards.swift; sourceTree = "<group>"; };
 		C9A1E4F22456F83E006604B2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = UniRadar/Utils/ViewModel.swift; sourceTree = SOURCE_ROOT; };
 		C9A52E762448C4FD00C3EF9C /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
 		C9A52E782448C9D900C3EF9C /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				C9CD92162466359C003499BF /* Cards */,
 				C9844BFF2454B0E400345A26 /* Model */,
 				C9844BFD24549F0200345A26 /* CardStack.swift */,
+				C99FB010247943BD00186696 /* HorizontalCards.swift */,
 			);
 			path = CardStack;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				1301E0F723428D2D0038ACA9 /* AppDelegate.swift in Sources */,
 				C96801C924566A9200B7F9BB /* +Glyph.swift in Sources */,
 				C945DB922476C6B200452FEC /* +Publishers.swift in Sources */,
+				C99FB011247943BD00186696 /* HorizontalCards.swift in Sources */,
 				C94FC6A72471B42000287DEF /* SettingsView.swift in Sources */,
 				C90A795F24736119008B40EF /* MainInfoCard.swift in Sources */,
 				C9FCE87124660CAE0091371E /* Course+CoreDataProperties.swift in Sources */,
@@ -790,7 +794,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.Lode;
 				PRODUCT_NAME = Lode;
 				SUPPORTS_MACCATALYST = YES;
@@ -815,7 +819,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.Lode;
 				PRODUCT_NAME = Lode;
 				SUPPORTS_MACCATALYST = YES;

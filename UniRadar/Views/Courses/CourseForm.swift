@@ -162,8 +162,7 @@ struct CourseForm: View {
                         self.presentatitonMode.wrappedValue.dismiss()
                 }
             )
-            .navigationViewStyle(StackNavigationViewStyle())
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func onDonePressed() {

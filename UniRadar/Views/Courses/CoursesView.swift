@@ -79,6 +79,7 @@ struct CoursesView: View {
                     .environment(\.managedObjectContext, self.managedObjectContext)
             })
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func coursesFiltered(withTag tag: Int) -> [Course] {

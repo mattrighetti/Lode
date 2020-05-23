@@ -26,8 +26,14 @@ struct HomeView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 // MARK: - CardDeck Section
                 HomeSection(sectionTitle: NSLocalizedString("Main Info", comment: "")) {
-                    CardStack(viewModel: self.viewModel)
-                        .padding(.horizontal, 25)
+                    Group {
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            CardStack(viewModel: self.viewModel)
+                                .padding(.horizontal, 25)
+                        } else {
+                            HorizontalCards(viewModel: self.viewModel)
+                        }
+                    }
                 }
                 .padding(.bottom)
                 .frame(height: 450)
@@ -76,15 +82,18 @@ struct HomeView: View {
                         })
                     },
                 trailing: HStack {
-                    Button(action: {
-                        self.isActionSheetPresented.toggle()
-                    }, label: {
-                        Image(systemName: "plus.circle").font(.system(size: 20))
-                    })
-
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        Button(action: {
+                            self.isActionSheetPresented.toggle()
+                        }, label: {
+                            Image(systemName: "plus.circle").font(.system(size: 20))
+                        })
+                    } else {
+                        EmptyView()
+                    }
                 }
             )
-        }
+            }.navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: self.$showAlert) {
             Alert(
                 title: Text("No course is present"),
@@ -203,9 +212,16 @@ struct CategoriesCard: View {
 struct HomeView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        HomeView(viewModel: ViewModel(context: context!))
-            .previewDevice("iPhone 11")
-            .environment(\.colorScheme, .dark)
-            .environment(\.locale, .init(identifier: "it"))
+        Group {
+            HomeView(viewModel: ViewModel(context: context!))
+                .previewDevice("iPhone 11")
+                .environment(\.colorScheme, .dark)
+                .environment(\.locale, .init(identifier: "it"))
+            
+            HomeView(viewModel: ViewModel(context: context!))
+                .previewDevice("iPad (7th generation)")
+                .environment(\.colorScheme, .dark)
+                .environment(\.locale, .init(identifier: "it"))
+        }
     }
 }

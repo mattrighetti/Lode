@@ -72,7 +72,7 @@ struct InitialForm: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }
             )
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     func setViewModelValues(_ totalCfu: Int, _ laudeValue: Int) {

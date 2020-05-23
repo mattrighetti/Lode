@@ -128,8 +128,7 @@ struct ExamForm: View {
                     self.onDonePressed()
                 }
             )
-            .navigationViewStyle(StackNavigationViewStyle())
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func onDonePressed() {

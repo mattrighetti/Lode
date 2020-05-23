@@ -50,7 +50,6 @@ struct SettingsView: View {
                     })
                 }.listRowBackground(Color.cardBackground)
             }
-            .singleSeparator()
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
             .onAppear {
@@ -64,6 +63,7 @@ struct SettingsView: View {
             
             .navigationBarTitle("Settings")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

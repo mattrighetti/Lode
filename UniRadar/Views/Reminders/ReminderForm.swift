@@ -116,7 +116,6 @@ struct ReminderForm: View {
                     }
                 )
             )
-            
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     

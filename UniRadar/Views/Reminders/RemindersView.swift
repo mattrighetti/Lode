@@ -73,6 +73,7 @@ struct RemindersView: View {
             
             .environment(\.editMode, $editMode)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(
             isPresented: $showForm,
             onDismiss: {

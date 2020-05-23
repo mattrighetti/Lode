@@ -80,6 +80,7 @@ struct ExamsView: View {
             
             .environment(\.editMode, $editMode)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(
             isPresented: $addExamModalShown,
             onDismiss: {
