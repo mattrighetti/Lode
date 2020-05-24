@@ -810,7 +810,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.Lode;
 				PRODUCT_NAME = Lode;
 				SUPPORTS_MACCATALYST = YES;
@@ -835,7 +835,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattrighetti.Lode;
 				PRODUCT_NAME = Lode;
 				SUPPORTS_MACCATALYST = YES;
