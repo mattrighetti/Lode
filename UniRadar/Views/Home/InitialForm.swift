@@ -67,13 +67,6 @@ struct InitialForm: View {
             }
             
             .navigationBarTitle("Initial setup", displayMode: .large)
-            .navigationBarItems(
-                trailing: Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text("Done")
-                })
-            )
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     

@@ -12,59 +12,38 @@ extension View {
     func navigationBarItems<L, C, T>(leading: L, center: C, trailing: T) -> some View
     where L: View, C: View, T: View {
         
-        var navigationBarWidth: CGFloat {
+        Group {
             if UIDevice.current.userInterfaceIdiom == .phone {
-                return (UIScreen.main.bounds.size.width - 32)
+                self.navigationBarItems(
+                    leading:
+                        HStack {
+                            HStack {
+                                leading
+                            }
+                            .frame(width: 70, alignment: .leading)
+                            Spacer()
+                            HStack {
+                                center
+                            }
+                            .frame(width: 200, alignment: .center)
+                            Spacer()
+                            HStack {
+                                trailing
+                            }
+                            .frame(width: 50, alignment: .trailing)
+                        }
+                        .frame(width: UIScreen.main.bounds.width - 32)
+                )
             } else {
-                return (UIScreen.main.bounds.size.width / 2.8)
+                self.navigationBarItems(
+                    leading: HStack {
+                        HStack { leading }
+                        HStack { center }
+                    },
+                    trailing: trailing
+                )
             }
         }
-        
-        var leadingWidth: CGFloat {
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                return 70
-            } else {
-                return (navigationBarWidth * 1/6)
-            }
-        }
-        
-        var centerWidth: CGFloat {
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                return 200
-            } else {
-                return (navigationBarWidth * 4/6)
-            }
-        }
-        
-        var trailingWidth: CGFloat {
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                return 50
-            } else {
-                return (navigationBarWidth * 1/6)
-            }
-        }
-        
-        return self.navigationBarItems(
-            leading:
-                HStack {
-                    HStack {
-                        leading
-                    }
-                    .frame(width: leadingWidth, alignment: .leading)
-                    Spacer()
-                    HStack {
-                        center
-                    }
-                    .frame(width: centerWidth, alignment: .center)
-                    Spacer()
-                    HStack {
-                        trailing
-                    }
-                    .frame(width: trailingWidth, alignment: .trailing)
-                }
-                .frame(width: navigationBarWidth)
-
-        )
 
     }
 }
