@@ -11,28 +11,58 @@ import SwiftUI
 extension View {
     func navigationBarItems<L, C, T>(leading: L, center: C, trailing: T) -> some View
     where L: View, C: View, T: View {
-        self.navigationBarItems(
+        
+        var navigationBarWidth: CGFloat {
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                return (UIScreen.main.bounds.size.width - 32)
+            } else {
+                return (UIScreen.main.bounds.size.width / 2.8)
+            }
+        }
+        
+        var leadingWidth: CGFloat {
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                return 70
+            } else {
+                return (navigationBarWidth * 1/6)
+            }
+        }
+        
+        var centerWidth: CGFloat {
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                return 200
+            } else {
+                return (navigationBarWidth * 4/6)
+            }
+        }
+        
+        var trailingWidth: CGFloat {
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                return 50
+            } else {
+                return (navigationBarWidth * 1/6)
+            }
+        }
+        
+        return self.navigationBarItems(
             leading:
                 HStack {
                     HStack {
                         leading
                     }
-                    .frame(width: 70, alignment: .leading)
+                    .frame(width: leadingWidth, alignment: .leading)
                     Spacer()
                     HStack {
                         center
                     }
-                    .frame(width: 200, alignment: .center)
+                    .frame(width: centerWidth, alignment: .center)
                     Spacer()
                     HStack {
-                        //Text("asdasd")
                         trailing
                     }
-                    //.background(Color.blue)
-                    .frame(width: 50, alignment: .trailing)
+                    .frame(width: trailingWidth, alignment: .trailing)
                 }
-                //.background(Color.yellow)
-                .frame(width: UIScreen.main.bounds.size.width - 32)
+                .frame(width: navigationBarWidth)
 
         )
 

@@ -82,15 +82,15 @@ struct MainView: View {
             return AnyView( InitialForm(viewModel: self.viewModel) )
         }
         
-        return AnyView(EmptyView())
+        return AnyView( EmptyView() )
     }
     
 }
 
 struct MainView_Previews: PreviewProvider {
-    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        MainView(viewModel: ViewModel(context: moc), appState: AppState())
+        MainView(viewModel: ViewModel(context: context!), appState: AppState())
             .colorScheme(.dark).accentColor(Color.red)
             
     }
