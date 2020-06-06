@@ -68,9 +68,11 @@ struct InitialForm: View {
             
             .navigationBarTitle("Initial setup", displayMode: .large)
             .navigationBarItems(
-                trailing: Button("Done") {
+                trailing: Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
-                }
+                }, label: {
+                    Text("Done")
+                })
             )
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -83,8 +85,10 @@ struct InitialForm: View {
 }
 
 struct InitialForm_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     static var previews: some View {
-        InitialForm(viewModel: ViewModel(context: .init(concurrencyType: .mainQueueConcurrencyType))).colorScheme(.dark)
+        InitialForm(viewModel: ViewModel(context: context!))
+            .colorScheme(.dark)
             .environment(\.locale, .init(identifier: "it"))
     }
 }

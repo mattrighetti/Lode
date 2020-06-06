@@ -115,14 +115,10 @@ struct SplashScreenFeatureView: View {
             Text(splashscreenFeature.featureTitle)
                 .fontWeight(.heavy)
                 .padding([.top, .bottom])
-                .transition(.offset())
-                .animation(.interactiveSpring())
 
             Text(splashscreenFeature.featureDescription)
                 .fontWeight(.regular)
                 .multilineTextAlignment(.center)
-                .transition(.offset())
-                .animation(.interactiveSpring())
         }
     }
 }

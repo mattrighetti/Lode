@@ -86,7 +86,7 @@ struct CourseForm: View {
                     
                     TextField("Exam title", text: $title)
                         .card()
-                    // TODO translate Ore totali in english
+                    
                     HeaderCaption(title: "CFU", caption: "Ore totali: \(self.courseCfu * 25)").padding(.top)
                     
                     CustomStepper(value: $courseCfu, maxValue: 180, minValue: 1)
