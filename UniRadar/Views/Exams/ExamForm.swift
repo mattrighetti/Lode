@@ -17,7 +17,7 @@ struct ExamForm: View {
     
     @State private var name: String = ""
     @State private var course: String = ""
-    @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 1)
+    @State private var colorIndex: GridIndex = GridIndex(row: Int.random(in: 0...2), column: Int.random(in: 0...4))
     @State private var date: Date = Date()
     
     @State private var activeColorNavigationLink: Bool = false

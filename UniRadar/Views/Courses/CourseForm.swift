@@ -21,8 +21,8 @@ struct CourseForm: View {
     @State private var expectedCourseMark: Int = 25
     @State private var courseCfu: Int = 5
     @State private var isPassed: Bool = false
-    @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 0)
-    @State private var iconIndex: GridIndex = GridIndex(row: 0, column: 0)
+    @State private var colorIndex: GridIndex = GridIndex(row: Int.random(in: 0...2), column: Int.random(in: 0...4))
+    @State private var iconIndex: GridIndex = GridIndex(row: Int.random(in: 0...2), column: Int.random(in: 0...4))
     
     // View Data
     @State private var activeColorNavigationLink: Bool = false

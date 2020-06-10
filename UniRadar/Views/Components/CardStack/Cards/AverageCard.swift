@@ -90,7 +90,7 @@ struct AverageCard: View {
                 }
             }
         }
-        .modifier(BorderBox(color: self.isAverageBiggerThanExpected ? .green : .red))
+        .borderBox(color: self.isAverageBiggerThanExpected ? .green : .red)
         .background(Color("cardBackground"))
     }
 }

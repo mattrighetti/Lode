@@ -11,7 +11,7 @@ import SwiftUI
 var cards: [InfoCard] = [
     InfoCard(title: NSLocalizedString("Your CFU", comment: ""), description: "", content: { viewModel in AnyView(CfuCard(viewModel: viewModel)) }),
     InfoCard(title: NSLocalizedString("Your Average", comment: ""), description: "", content: { viewModel in AnyView(AverageCard(viewModel: viewModel)) }),
-    InfoCard(title: NSLocalizedString("Main Infos", comment: ""), description: "", content: { viewModel in AnyView(MainInfoCard(viewModel: viewModel)) })
+    InfoCard(title: NSLocalizedString("Exams Countdown", comment: ""), description: "", content: { viewModel in AnyView(MainInfoCard(viewModel: viewModel)) })
 ]
 
 struct CardStack: View {

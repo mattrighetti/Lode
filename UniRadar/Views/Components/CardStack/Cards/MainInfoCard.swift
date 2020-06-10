@@ -39,7 +39,9 @@ struct MainInfoCard: View {
                         Text("Exam").fontWeight(.bold)
                         Spacer()
                         Text("Days to go").fontWeight(.bold)
-                    }.padding(.bottom)
+                    }
+                    
+                    Divider().padding(0)
                     
                     ForEach(closeExams, id: \.id) { exam in
                         HStack {
@@ -51,7 +53,10 @@ struct MainInfoCard: View {
                     }
                 }
             }
-        }.background(Color("cardBackground"))
+        }
+        .borderBox(color: self.closeExams.isEmpty ? .clear : .blue)
+        .padding(5)
+        .background(Color("cardBackground"))
     }
     
 }

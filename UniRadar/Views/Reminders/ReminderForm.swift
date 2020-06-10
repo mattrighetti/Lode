@@ -17,7 +17,7 @@ struct ReminderForm: View {
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var date: Date = Date()
-    @State private var colorIndex: GridIndex = GridIndex(row: 0, column: 3)
+    @State private var colorIndex: GridIndex = GridIndex(row: Int.random(in: 0...2), column: Int.random(in: 0...4))
     
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
