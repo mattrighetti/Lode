@@ -269,7 +269,6 @@ struct HeaderCaption: View {
     }
 }
 
-// TODO this can be simplified a lot
 struct CustomStepper: View {
     
     @Binding var value: Int

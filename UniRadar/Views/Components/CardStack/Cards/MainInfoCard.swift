@@ -13,7 +13,7 @@ struct MainInfoCard: View {
     @ObservedObject var viewModel: ViewModel
     
     var closeExams: [Exam] {
-        let closest = self.viewModel.exams.sorted(by: { $0.date! < $1.date! }).prefix(4)
+        let closest = self.viewModel.exams.sorted(by: { $0.date! < $1.date! }).filter({ $0.daysLeft >= 0 }).prefix(4)
         return Array(closest)
     }
     

@@ -55,9 +55,7 @@ final class AppState: ObservableObject {
 }
 
 extension UserDefaults {
-
     func color(forKey key: String) -> UIColor? {
-
         guard let colorData = data(forKey: key) else { return nil }
 
         do {
@@ -66,7 +64,6 @@ extension UserDefaults {
             print("color error \(error.localizedDescription)")
             return nil
         }
-
     }
 
     func set(_ value: UIColor?, forKey key: String) {
