@@ -11,6 +11,27 @@ import Foundation
 import CoreData
 
 public class Assignment: NSManagedObject {
+    
+    convenience init(context: NSManagedObjectContext,
+                     id: UUID = UUID(),
+                     colorColumnIndex: Int,
+                     colorRowIndex: Int,
+                     caption: String? = "No caption",
+                     dueDate: Date? = Date(),
+                     title: String? = "No title") {
+        // CoreData stuff
+        let entity = NSEntityDescription.entity(forEntityName: "Assignment", in: context)!
+        self.init(entity: entity, insertInto: context)
+        
+        // ObjectData
+        self.id = id
+        self.caption = caption
+        self.colorColumnIndex = Int16(colorColumnIndex)
+        self.colorRowIndex = Int16(colorRowIndex)
+        self.dueDate = dueDate
+        self.title = title
+    }
+    
     var daysLeft: Int {
         if let date = dueDate {
             let calendar = Calendar.current.dateComponents([.day], from: Date(), to: date)
@@ -19,4 +40,5 @@ public class Assignment: NSManagedObject {
         
         return -5
     }
+    
 }

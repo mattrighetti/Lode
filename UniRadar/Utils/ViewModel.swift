@@ -87,7 +87,6 @@ extension ViewModel {
             self.average = self.calculateAverage(withCourses: courses, laudeValue: self.laudeValue)
             // Update Expected Average
             self.expectedAverage = self.calculateExpectedAverage(withCourses: courses, laudeValue: self.laudeValue)
-            print(self.expectedAverage)
             // Update Projected Grad Grade
             self.projectedGraduationGrade = self.calculateGraduationGrade(withMean: self.average)
             // Update Expected Projected Grad Grade
@@ -102,7 +101,6 @@ extension ViewModel {
         .store(in: &cancellables)
         
         self.$laudeValue.sink(receiveValue: { laudeValue in
-            print("Sink laudeValue")
             self.average = self.calculateAverage(withCourses: self.courses, laudeValue: laudeValue)
             // Update Expected Average
             self.expectedAverage = self.calculateExpectedAverage(withCourses: self.courses, laudeValue: laudeValue)
