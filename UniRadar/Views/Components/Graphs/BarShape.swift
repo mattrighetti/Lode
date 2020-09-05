@@ -42,46 +42,50 @@ struct BarChartView: View {
 
     var body: some View {
         ZStack {
-            GeometryReader { geometry in
-                ForEach(self.indexes.indices, id: \.self) { index in
-                    VStack {
-                        HStack(spacing: 5.5) {
-                            Text(self.stringSingal[index])
-                                .font(.system(size: 10))
-                                .opacity(0.7)
-                            
-                            ForEach(1..<((Int(geometry.size.width) / 7)) ) { _ in
-                                Circle()
-                                    .fill(Color("bw"))
-                                    .opacity(0.2)
-                                    .frame(width: 1, height: 1)
+            if !arrayValues.isEmpty {
+                GeometryReader { geometry in
+                    ForEach(self.indexes.indices, id: \.self) { index in
+                        VStack {
+                            HStack(spacing: 5.5) {
+                                Text(self.stringSingal[index])
+                                    .font(.system(size: 10))
+                                    .opacity(0.7)
+                                
+                                ForEach(1..<((Int(geometry.size.width) / 7)) ) { _ in
+                                    Circle()
+                                        .fill(Color("bw"))
+                                        .opacity(0.2)
+                                        .frame(width: 1, height: 1)
+                                }
+                                
+                                Spacer()
                             }
-                            
-                            Spacer()
-                        }
-                        .padding(.top, (((geometry.size.height - 25) / 12) * CGFloat(self.indexes[index])))
-                    }
-                }
-                
-                HStack(alignment: .bottom, spacing: 1) {
-                    ForEach(self.adjustedValues, id: \.self) { value in
-                        ZStack(alignment: .bottom) {
-                            Capsule()
-                                .fill(Color.clear)
-                            
-                            Capsule()
-                                .fill(self.color)
-                                .frame(
-                                    height:
-                                    CGFloat(value / self.maxValue) * geometry.size.height >= 0.1 ?
-                                    (CGFloat(value / self.maxValue) * geometry.size.height) - 7
-                                    : 7.0
-                            )
+                            .padding(.top, (((geometry.size.height - 25) / 12) * CGFloat(self.indexes[index])))
                         }
                     }
+                    
+                    HStack(alignment: .bottom, spacing: 1) {
+                        ForEach(self.adjustedValues, id: \.self) { value in
+                            ZStack(alignment: .bottom) {
+                                Capsule()
+                                    .fill(Color.clear)
+                                
+                                Capsule()
+                                    .fill(self.color)
+                                    .frame(
+                                        height:
+                                        CGFloat(value / self.maxValue) * geometry.size.height >= 0.1 ?
+                                        (CGFloat(value / self.maxValue) * geometry.size.height) - 7
+                                        : 7.0
+                                )
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    
                 }
-                .padding(.horizontal, 20)
-                
+            } else {
+                Text("No data available to show.")
             }
         }
     }
