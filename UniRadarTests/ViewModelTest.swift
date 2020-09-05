@@ -217,4 +217,41 @@ class ViewModelTest: XCTestCase {
         
     }
     
+    func testDeltaCalculation() {
+        let expectedDeltaResults: [Double] = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+        let expectedDeltaResultsOne: [Double] = [22.50, 23, 23.50, 24, 24.50, 25, 25.50, 26, 26.50, 27, 27.50, 28, 28.50]
+        
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 1), expectedDeltaResults)
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 2), expectedDeltaResults)
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 3), expectedDeltaResults)
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 10), expectedDeltaResults)
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 20), expectedDeltaResults)
+        
+        XCTAssertEqual(self.viewModel.average, 0.0)
+        
+        // ExpectedMarks should make no difference
+        self.viewModel.courses.append(Course(context: self.context!, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30))
+        self.viewModel.courses.append(Course(context: self.context!, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30))
+        
+        XCTAssertEqual(self.viewModel.average, 0.0)
+        XCTAssertEqual(self.viewModel.expectedAverage, 30.0)
+        
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 1), expectedDeltaResults)
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 2), expectedDeltaResults)
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 3), expectedDeltaResults)
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 10), expectedDeltaResults)
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 20), expectedDeltaResults)
+        
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 27, name: nil))
+        
+        XCTAssertEqual(self.viewModel.average, 27.0)
+        XCTAssertEqual(self.viewModel.expectedAverage, 30.0)
+        
+        XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 5), expectedDeltaResultsOne)
+        
+        addTeardownBlock {
+            self.viewModel.courses.removeAll()
+        }
+    }
+    
 }
