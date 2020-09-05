@@ -48,7 +48,7 @@ struct CourseDescriptionPage: View {
                                     Divider().frame(height: 100)
                                     
                                     VStack {
-                                        Text("\(self.course!.expectedMark)")
+                                        Text("\(self.course!.mark == 0 ? "?" : String(self.course!.mark))")
                                             .font(.system(.title, design: .rounded))
                                             .fontWeight(.bold)
                                         

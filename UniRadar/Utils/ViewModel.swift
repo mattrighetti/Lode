@@ -166,4 +166,40 @@ extension ViewModel {
         return deltas
     }
     
+    public func calculateDelta(withCfu cfu: Int, mark: Int16) -> Double {
+        let deltas = self.calculateDeltas(withCfu: cfu)
+        
+        switch mark {
+        case 18:
+            return deltas[0]
+        case 19:
+            return deltas[0]
+        case 20:
+            return deltas[0]
+        case 21:
+            return deltas[0]
+        case 22:
+            return deltas[0]
+        case 23:
+            return deltas[0]
+        case 24:
+            return deltas[0]
+        case 25:
+            return deltas[0]
+        case 26:
+            return deltas[0]
+        case 27:
+            return deltas[0]
+        case 28:
+            return deltas[0]
+        case 29:
+            return deltas[0]
+        case 30:
+            return deltas[0]
+        default:
+            return 0
+        }
+        
+    }
+    
 }
