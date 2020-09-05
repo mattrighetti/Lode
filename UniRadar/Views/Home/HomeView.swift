@@ -80,18 +80,7 @@ struct HomeView: View {
                         }, label: {
                             Image(systemName: "gear").font(.system(size: 20))
                         })
-                    },
-                trailing: HStack {
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        Button(action: {
-                            self.isActionSheetPresented.toggle()
-                        }, label: {
-                            Image(systemName: "plus.circle").font(.system(size: 20))
-                        })
-                    } else {
-                        EmptyView()
                     }
-                }
             )
             }.navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: self.$showAlert) {
