@@ -20,7 +20,7 @@ struct AverageCard: View {
         let totalCfuPassed = self.viewModel.courses.filter({ $0.mark != 0 }).map({
             Double($0.cfu)
         }).reduce(0, { $0 + $1 })
-        return eAverage / totalCfuPassed
+        return (eAverage / totalCfuPassed).isNaN ? 0.0 : eAverage / totalCfuPassed
     }
     
     var sign: String {
