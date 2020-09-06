@@ -41,7 +41,7 @@ struct StatsView: View {
             ])
             
             StatsStringListSection(sectionHeader: NSLocalizedString("Exams Passed", comment: ""), strings: [
-                NSLocalizedString("As Expected", comment: ""),
+                NSLocalizedString("As expected", comment: ""),
                 NSLocalizedString("More than expected", comment: ""),
                 NSLocalizedString("Less than expected", comment: "")
             ], values: [

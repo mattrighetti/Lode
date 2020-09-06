@@ -36,7 +36,8 @@ struct AverageDeltaTool: View {
     
     var body: some View {
         List {
-            Section(header: Text("Course CFU").sectionTitle(), footer: Text("This will show you how much a certain mark will vary you current average")) {
+            Section(header: Text("Course CFU").sectionTitle(),
+                    footer: Text("TWAY")) {
                 HStack(alignment: .center) {
                     Spacer()
                     Text("\(self.cfu)")

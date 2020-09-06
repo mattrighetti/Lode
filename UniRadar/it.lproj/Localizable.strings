@@ -20,6 +20,11 @@
 "Avg Delta Calculator" = "Calcolo Delta Media";
 "Tools" = "Strumenti";
 
+// MARK: - Delta Average Calculator
+"TWAY" = "This will show you how much a certain mark will vary your current average";
+"Course CFU" = "Course CFU";
+"New average" = "New average";
+
 // MARK: - Statistics View
 "Statistics" = "Statistiche";
 "Current statistics" = "Statistiche attuali";
