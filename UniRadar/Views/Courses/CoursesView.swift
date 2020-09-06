@@ -95,7 +95,7 @@ struct CoursesView: View {
                 CourseForm(course: self.editMode == .active ? self.courseToEdit : nil)
                     .environment(\.managedObjectContext, self.managedObjectContext)
             })
-        }
+        }.padding(1)
     }
     
     private func coursesFiltered(withTag tag: Int) -> [Course] {

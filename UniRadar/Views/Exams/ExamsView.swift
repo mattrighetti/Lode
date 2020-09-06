@@ -97,7 +97,7 @@ struct ExamsView: View {
             )
             
             .environment(\.editMode, $editMode)
-        }
+        }.padding(1)
         .sheet(
             isPresented: $addExamModalShown,
             onDismiss: {

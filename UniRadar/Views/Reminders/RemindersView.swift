@@ -90,7 +90,7 @@ struct RemindersView: View {
             )
             
             .environment(\.editMode, $editMode)
-        }
+        }.padding(1)
         .sheet(
             isPresented: $showForm,
             onDismiss: {
