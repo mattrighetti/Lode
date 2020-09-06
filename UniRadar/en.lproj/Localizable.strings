@@ -21,9 +21,10 @@
 "Tools" = "Tools";
 
 // MARK: - Delta Average Calculator
-"TWAY" = "Questo tool ti mostrerà la tua nova media se dovessi conseguire un esame con un voto";
-"Course CFU" = "CFU del corso";
-"New average" = "Nuova media";
+"TWAY" = "This will show you how much a certain mark will vary your current average";
+"Course CFU" = "Course CFU";
+"New average" = "New average";
+"Delta Calculator" = "Delta Calculator";
 
 // MARK: - Statistics View
 "Statistics" = "Statistics";
@@ -39,6 +40,7 @@
 "As expected" = "As expected";
 "More than expected" = "More than expected";
 "Less than expected" = "Less than expected";
+"No data to show" = "No data to show";
 
 // MARK: - Marks View
 "Marks" = "Marks";
