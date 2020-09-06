@@ -1,0 +1,43 @@
+name: iOS starter workflow
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build and Test default scheme using any available iPhone simulator
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Testing....display available Xcodes on the Server
+        run: ls /Applications | grep Xcode
+      - name: Force xcode 11
+        run: sudo xcode-select -switch /Applications/Xcode_11.7.app
+      - name: iOS build setup
+        run: >-
+          xcodebuild test -workspace UniRadar.xcodeproj/project.xcworkspace
+          -scheme UniRadar -destination 'platform=iOS Simulator,name=iPhone
+          11,OS=13.7'
+      - name: testing ... iPhone 11
+        run: >-
+          xcodebuild test -workspace UniRadar.xcodeproj/project.xcworkspace
+          -scheme UniRadar -destination 'platform=iOS Simulator,name=iPhone
+          11,OS=13.7'
+      - name: testing ... iPhone 11 Pro Max
+        run: >-
+          xcodebuild test -workspace UniRadar.xcodeproj/project.xcworkspace
+          -scheme UniRadar -destination 'platform=iOS Simulator,name=iPhone 11
+          Pro Max,OS=13.7'
+      - name: testing ... iPad Air
+        run: >-
+          xcodebuild test -workspace UniRadar.xcodeproj/project.xcworkspace
+          -scheme UniRadar -destination 'platform=iOS Simulator,name=iPad Air
+          (3rd generation),OS=13.7'
+      - name: testing ... iPad Pro 12.9
+        run: >-
+          xcodebuild test -workspace UniRadar.xcodeproj/project.xcworkspace
+          -scheme UniRadar -destination 'platform=iOS Simulator,name=iPad Pro (12.9-inch) (4th generation),OS=13.7'
