@@ -85,7 +85,7 @@ struct BarChartView: View {
                     
                 }
             } else {
-                Text("No data available to show.")
+                Text("No data to show")
             }
         }
     }

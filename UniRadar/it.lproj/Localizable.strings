@@ -17,8 +17,14 @@
 "Average" = "Media";
 "Upcoming Exams" = "Prossimi esami";
 "Active Assignments" = "Compiti attivi";
-"Avg Delta Calculator" = "Calcolo Delta Media";
+"Avg Delta Calculator" = "Calcolatore Media";
 "Tools" = "Strumenti";
+
+// MARK: - Delta Average Calculator
+"TWAY" = "Questo strumento ti mostrerà la tua nova media nel caso dovessi conseguire un esame con un voto mostrato sotto";
+"Course CFU" = "CFU del corso";
+"New average" = "Nuova media";
+"Delta Calculator" = "Calcolatore Media";
 
 // MARK: - Statistics View
 "Statistics" = "Statistiche";
@@ -34,6 +40,7 @@
 "As expected" = "Come atteso";
 "More than expected" = "Più del previsto";
 "Less than expected" = "Meno del previsto";
+"No data to show" = "Nessun dato da mostrare";
 
 // MARK: - Marks View
 "Marks" = "Voti";
@@ -107,7 +114,7 @@
 "You have to compile every field to create a course" = "Ci sono dei campi non compilati, compilali e riprova";
 
 "No active course is present" = "Non è presente alcun corso";
-"You must first add an active course to be able to add exams" = "Devi prima aggiungere almeno un corso attivo per poter aggiungere degli esame";
+"You must first add an active course to be able to add exams" = "Devi prima aggiungere almeno un corso attivo per poter aggiungere degli esami";
 
 "Choose an action" = "Scegli un'opzione";
 
@@ -128,3 +135,4 @@
 "Exam" = "Esami";
 "Days to go" = "Giorni mancanti";
 "No exam in sight!" = "Non hai esami in vista!";
+"Exams Countdown" = "Countdown Esami";

@@ -40,8 +40,8 @@ struct StatsView: View {
                 self.viewModel.projectedGraduationGrade
             ])
             
-            StatsStringListSection(sectionHeader: NSLocalizedString("Exams Passed", comment: ""), strings: [
-                NSLocalizedString("As Expected", comment: ""),
+            StatsStringListSection(sectionHeader: NSLocalizedString("Exams passed", comment: ""), strings: [
+                NSLocalizedString("As expected", comment: ""),
                 NSLocalizedString("More than expected", comment: ""),
                 NSLocalizedString("Less than expected", comment: "")
             ], values: [

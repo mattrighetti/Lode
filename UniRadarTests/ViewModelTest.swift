@@ -98,24 +98,31 @@ class ViewModelTest: XCTestCase {
                 XCTAssertEqual(course.count, countValuesReceived)
                 XCTAssertEqual(self.viewModel.average.twoDecimalPrecision, expectedValues[countValuesReceived].twoDecimalPrecision)
                 XCTAssertEqual(self.viewModel.gainedCfu, expectedGainedCfu[countValuesReceived])
-                XCTAssertEqual(self.viewModel.projectedGraduationGrade.twoDecimalPrecision, expectedProjectedGraduationGrade[countValuesReceived].twoDecimalPrecision)
+                XCTAssertEqual(self.viewModel.projectedGraduationGrade.twoDecimalPrecision,
+                               expectedProjectedGraduationGrade[countValuesReceived].twoDecimalPrecision)
                 
                 expectation.fulfill()
                 countValuesReceived += 1
             })
         countValuesSent += 1
         
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0,
+                                             colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0,
+                                             colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0,
+                                             colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 23, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0,
+                                             colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 23, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 10, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 21, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 10, colorColIndex: 0,
+                                             colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 21, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 12, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 19, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 12, colorColIndex: 0,
+                                             colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 19, name: nil))
         countValuesSent += 1
         
         XCTAssertEqual(countValuesReceived, countValuesSent)
@@ -147,17 +154,23 @@ class ViewModelTest: XCTestCase {
             })
         countValuesSent += 1
         
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 23, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 23, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 10, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 21, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 10,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 21, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 12, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 19, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 12,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 19, name: nil))
         countValuesSent += 1
         
         XCTAssertEqual(countValuesReceived, countValuesSent)
@@ -183,21 +196,27 @@ class ViewModelTest: XCTestCase {
             })
         countValuesSent += 1
         
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 30, name: nil))
         countValuesSent += 1
         self.viewModel.courses.append(Course(context: self.context!, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30))
         countValuesSent += 1
         self.viewModel.courses.append(Course(context: self.context!, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 23, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 23, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 10, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 21, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 10,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 21, name: nil))
         countValuesSent += 1
-        self.viewModel.courses.append(Course(context: self.context, cfu: 12, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 19, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 12,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 19, name: nil))
         countValuesSent += 1
         self.viewModel.courses.append(Course(context: self.context!, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30))
         countValuesSent += 1
@@ -242,7 +261,8 @@ class ViewModelTest: XCTestCase {
         XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 10), expectedDeltaResults)
         XCTAssertEqual(self.viewModel.calculateDeltas(withCfu: 20), expectedDeltaResults)
         
-        self.viewModel.courses.append(Course(context: self.context, cfu: 5, colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 27, name: nil))
+        self.viewModel.courses.append(Course(context: self.context, cfu: 5,
+                                             colorColIndex: 0, colorRowIndex: 0, expectedMark: 30, iconName: nil, laude: nil, expectedLaude: nil, mark: 27, name: nil))
         
         XCTAssertEqual(self.viewModel.average, 27.0)
         XCTAssertEqual(self.viewModel.expectedAverage, 30.0)
