@@ -31,6 +31,19 @@ struct ExamDescriptionPage: View {
                         }
                         .padding(.bottom, 20)
                         
+                        HStack {
+                            Text(exam!.completeDateString)
+                                .font(.system(size: 30.0, weight: .bold, design: .rounded))
+                            
+                        }.foregroundColor(Color("text"))
+                        
+                        HStack {
+                            Text("In \(exam!.daysLeft) days")
+                                .font(.system(size: 20.0, weight: .bold, design: .rounded))
+                        }
+                        .badgePill(color: exam!.daysLeft < 5 ? .flatRed : .blue)
+                        .padding(.top, 30)
+                        
                         Spacer()
                     }.padding()
                 } else {

@@ -25,11 +25,28 @@ struct ReminderDescriptionPage: View {
                             }
                             .frame(width: 100, height: 100, alignment: .center)
                             
-                            Text(self.assignment!.title!)
+                            Text(self.assignment!.title ?? "No title")
                                 .font(.system(.largeTitle, design: .rounded))
                                 .bold()
+                            
+                            Text(self.assignment!.caption ?? "")
+                                .font(.system(size: 20.0, weight: .regular, design: .rounded))
+                                .padding(.top, 30)
                         }
                         .padding(.bottom, 20)
+                        
+                        HStack {
+                            Text("Due \(assignment!.completeDueDate)")
+                                .font(.system(size: 30.0, weight: .bold, design: .rounded))
+                            
+                        }.foregroundColor(Color("text"))
+                        
+                        HStack {
+                            Text("In \(assignment!.daysLeft) days")
+                                .font(.system(size: 20.0, weight: .bold, design: .rounded))
+                        }
+                        .badgePill(color: assignment!.daysLeft < 5 ? .flatRed : .blue)
+                        .padding(.top, 30)
                         
                         Spacer()
                     }.padding()

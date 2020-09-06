@@ -42,6 +42,12 @@ public class Exam: NSManagedObject {
         return dateFormatter.string(from: date!).capitalized
     }
     
+    var completeDateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+        return dateFormatter.string(from: date!).capitalized
+    }
+    
     var monthString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM"

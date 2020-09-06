@@ -41,4 +41,10 @@ public class Assignment: NSManagedObject {
         return -5
     }
     
+    var completeDueDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+        return dateFormatter.string(from: dueDate!).capitalized
+    }
+    
 }
