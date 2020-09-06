@@ -114,7 +114,7 @@
 "You have to compile every field to create a course" = "Ci sono dei campi non compilati, compilali e riprova";
 
 "No active course is present" = "Non è presente alcun corso";
-"You must first add an active course to be able to add exams" = "Devi prima aggiungere almeno un corso attivo per poter aggiungere degli esame";
+"You must first add an active course to be able to add exams" = "Devi prima aggiungere almeno un corso attivo per poter aggiungere degli esami";
 
 "Choose an action" = "Scegli un'opzione";
 
@@ -135,3 +135,4 @@
 "Exam" = "Esami";
 "Days to go" = "Giorni mancanti";
 "No exam in sight!" = "Non hai esami in vista!";
+"Exams Countdown" = "Countdown Esami";
