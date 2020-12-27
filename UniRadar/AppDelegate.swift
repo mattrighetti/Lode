@@ -9,9 +9,11 @@
 import CoreData
 import UIKit
 
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var viewModel: ViewModel?
+    var appState: AppState?
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -32,28 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableViewCell.appearance().selectionStyle = .none
         UIPickerView.appearance().backgroundColor = UIColor(named: "cardBackground")
         UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+        
+        initModel()
 
         return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(
-        _ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession,
-        options: UIScene.ConnectionOptions
-    ) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(
-            name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(
-        _ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>
-    ) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
     // MARK: - Core Data stack
@@ -86,6 +70,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+        }
+    }
+    
+    func initModel() {
+        let context = self.persistentContainer.viewContext
+        self.viewModel = ViewModel(context: context)
+        self.appState = AppState()
+        
+        if ((self.appState?.initialSetup) != nil) {
+            self.viewModel?.totalCfu = UserDefaults.standard.integer(forKey: "totalCfu")
+            self.viewModel?.laudeValue = UserDefaults.standard.integer(forKey: "laudeValue")
         }
     }
 
