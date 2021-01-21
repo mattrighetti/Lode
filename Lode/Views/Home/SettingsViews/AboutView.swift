@@ -72,10 +72,9 @@ struct AboutView: View {
                         Image(systemName: "chevron.right")
                     }
                 })
-            }.listRowBackground(Color("cardBackground"))
+            }
         }
-        .listStyle(GroupedListStyle())
-        .environment(\.horizontalSizeClass, .regular)
+        .listStyle(InsetGroupedListStyle())
         
         .navigationBarTitle("About", displayMode: .inline)
     }

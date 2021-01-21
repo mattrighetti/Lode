@@ -59,7 +59,7 @@ struct HomeView: View {
                     }
                 }
                 .padding(.bottom)
-            }
+            }.background(Color("dark"))
             .sheet(isPresented: $sheet.isShowing, content: sheetContent)
 
             .navigationBarTitle("Home", displayMode: .automatic)

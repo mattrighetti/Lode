@@ -38,20 +38,19 @@ struct SettingsView: View {
             List {
                 Section(header: Text("Total CFU")) {
                     Stepper("\(totalCfu)", value: totalCfuProxy, in: 0...300)
-                }.listRowBackground(Color.cardBackground)
+                }
                 
                 Section(header: Text("Laude value")) {
                     Stepper("\(laudeValue)", value: laudeValueProxy, in: 30...35)
-                }.listRowBackground(Color.cardBackground)
+                }
                 
                 Section(footer: Text("")) {
                     NavigationLink(destination: AboutView(), label: {
                         Text("About")
                     })
-                }.listRowBackground(Color.cardBackground)
+                }
             }
-            .listStyle(GroupedListStyle())
-            .environment(\.horizontalSizeClass, .regular)
+            .listStyle(InsetGroupedListStyle())
             
             .navigationBarTitle("Settings")
             .navigationBarItems(trailing: Button(action: {
