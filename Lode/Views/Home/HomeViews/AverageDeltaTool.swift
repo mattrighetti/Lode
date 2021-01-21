@@ -54,11 +54,10 @@ struct AverageDeltaTool: View {
                 }
                 .padding(.bottom, 5)
             }
-            .listRowBackground(Color("cardBackground"))
             
             Section(header: Text("Current average").sectionTitle()) {
                 Text("\(viewModel.average.twoDecimalPrecision)").bold()
-            }.listRowBackground(Color("cardBackground"))
+            }
             
             Section(header: Text("New average").sectionTitle()) {
                 ForEach(deltas.indices, id: \.self) { index in
@@ -70,17 +69,12 @@ struct AverageDeltaTool: View {
                     }
                 }
             }
-            .listRowBackground(Color("cardBackground"))
             
         }
         .singleSeparator()
-        .listStyle(GroupedListStyle())
-        .environment(\.horizontalSizeClass, .regular)
+        .listStyle(InsetGroupedListStyle())
         .onAppear {
             self.deltas = viewModel.calculateDeltas(withCfu: cfu)
-        }
-        .onDisappear {
-            presentationMode.wrappedValue.dismiss()
         }
         
         .navigationBarTitle("Delta Calculator")
