@@ -10,7 +10,7 @@ import SwiftUI
 import CoreData
 
 struct MainView: View {
-    @AppStorage("firstAccess") public var firstAccess: Bool = false
+    @AppStorage("firstAccess") public var firstAccess: Bool = true
     @AppStorage("initialSetup") public var initialSetup: Bool = true
 
     @ObservedObject private var sheet = SheetState()
@@ -43,13 +43,23 @@ struct MainView: View {
                     Text("Assignments")
                 }
         }
-        .sheet(isPresented: $showSheet, content: sheetContent)
+        .sheet(isPresented: $sheet.isShowing, onDismiss: presentationLogic, content: sheetContent)
         .onAppear {
             if firstAccess {
                 sheet.state = .introduction
             } else if initialSetup {
                 sheet.state = .settings
             }
+        }
+    }
+
+    func presentationLogic() -> Void {
+        if sheet.state == .introduction {
+            firstAccess = false
+            sheet.state = .settings
+        } else if sheet.state == .settings {
+            initialSetup = false
+            sheet.state = .none
         }
     }
 
