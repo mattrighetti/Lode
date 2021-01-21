@@ -26,32 +26,14 @@ struct RemindersView: View {
         NavigationView {
             List {
                 ForEach(assignmentsFiltered(withTag: pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! }), id: \.id) { assignment in
-                    Group {
-                        if UIDevice.current.userInterfaceIdiom == .phone {
-                            ReminderRow(assignment: assignment)
-                                .onTapGesture {
-                                    self.assignmentToEdit = assignment
-                                    if editMode == .active {
-                                        self.showForm.toggle()
-                                    }
-                                }
-                                .listRowBackground(Color("background"))
-                        } else {
-                            ZStack {
-                                NavigationLink(destination: ReminderDescriptionPage(assignment: assignmentToEdit), isActive: .constant(true)) {
-                                    EmptyView()
-                                }.listRowBackground(Color.background)
-                                
-                                ReminderRow(assignment: assignment)
-                                    .onTapGesture {
-                                        self.assignmentToEdit = assignment
-                                        if editMode == .active {
-                                            self.showForm.toggle()
-                                        }
-                                    }
+                    ReminderRow(assignment: assignment)
+                        .onTapGesture {
+                            self.assignmentToEdit = assignment
+                            if editMode == .active {
+                                self.showForm.toggle()
                             }
                         }
-                    }
+                        .listRowBackground(Color("background"))
                 }.onDelete(perform: deleteAssignment)
                 
                 Button(action: {
@@ -71,6 +53,7 @@ struct RemindersView: View {
                 .segmentedButton()
                 .listRowBackground(Color("background"))
             }
+            .listStyle(InsetGroupedListStyle())
 
             .navigationBarTitle("Assignments")
             .navigationBarItems(
@@ -89,9 +72,8 @@ struct RemindersView: View {
                     label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
                 )
             )
-            
             .environment(\.editMode, $editMode)
-        }.padding(.leading, 1)
+        }
         .sheet(
             isPresented: $showForm,
             onDismiss: {

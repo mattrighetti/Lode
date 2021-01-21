@@ -25,48 +25,32 @@ struct CoursesView: View {
         NavigationView {
             List {
                 ForEach(coursesFiltered(withTag: pickerSelection), id: \.id) { course in
-                    Group {
-                        if UIDevice.current.userInterfaceIdiom == .phone {
-                            CourseRow(course: course)
-                                .onTapGesture {
-                                    self.courseToEdit = course
-                                    if self.editMode == .active {
-                                        self.addCourseModalShown.toggle()
-                                    }
-                                }.listRowBackground(Color.background)
-                        } else {
-                            ZStack {
-                                NavigationLink(destination: CourseDescriptionPage(course: self.courseToEdit), isActive: .constant(true), label: {
-                                    EmptyView()
-                                }).listRowBackground(Color.background)
-                                CourseRow(course: course)
-                                    .onTapGesture {
-                                        self.courseToEdit = course
-                                        if self.editMode == .active {
-                                            self.addCourseModalShown.toggle()
-                                        }
-                                    }
+                    CourseRow(course: course)
+                            .onTapGesture {
+                                self.courseToEdit = course
+                                if editMode == .active {
+                                    self.addCourseModalShown.toggle()
+                                }
                             }
-                        }
-                    }
-                }.onDelete(perform: self.deleteCourse)
-                
+                }.onDelete(perform: deleteCourse)
+
                 Button(action: {
-                        self.addCourseModalShown.toggle()
+                    self.addCourseModalShown.toggle()
                 }, label: {
                     HStack {
                         VStack(alignment: .leading, spacing: 10) {
-                            Image(systemName: "plus.circle").foregroundColor(Color("bw"))
+                            Image(systemName: "plus.circle")
                             Spacer()
                             Text("Add course")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("bw"))
+                                    .fontWeight(.bold)
                         }
                         Spacer()
                     }
                 })
                 .segmentedButton()
+                .listRowBackground(Color("background"))
             }
+            .listStyle(InsetGroupedListStyle())
             
             .navigationBarTitle("Courses")
             .navigationBarItems(
@@ -87,15 +71,14 @@ struct CoursesView: View {
             )
             .environment(\.editMode, $editMode)
             .sheet(isPresented: self.$addCourseModalShown, onDismiss: {
-                if self.editMode == .active {
+                if editMode == .active {
                     self.editMode = .inactive
                     self.courseToEdit = nil
                 }
             }, content: {
-                CourseForm(course: self.editMode == .active ? self.courseToEdit : nil)
-                    .environment(\.managedObjectContext, self.managedObjectContext)
+                CourseForm(course: editMode == .active ? courseToEdit : nil)
             })
-        }.padding(.leading, 1)
+        }
     }
     
     private func coursesFiltered(withTag tag: Int) -> [Course] {
@@ -113,11 +96,11 @@ struct CoursesView: View {
     }
     
     private func deleteCourse(at offsets: IndexSet) {
-        let deletedItem = self.coursesFiltered(withTag: self.pickerSelection)[offsets.first!]
-        self.managedObjectContext.delete(deletedItem)
+        let deletedItem = coursesFiltered(withTag: pickerSelection)[offsets.first!]
+        managedObjectContext.delete(deletedItem)
     
         do {
-            try self.managedObjectContext.save()
+            try managedObjectContext.save()
         } catch {
             print(error)
         }

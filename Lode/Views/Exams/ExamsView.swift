@@ -70,6 +70,7 @@ struct ExamsView: View {
                 .segmentedButton()
                 .listRowBackground(Color("background"))
             }
+            .listStyle(InsetGroupedListStyle())
             .alert(isPresented: self.$presentAlert) {
                 Alert(
                     title: Text("No active course is present"),
@@ -97,7 +98,7 @@ struct ExamsView: View {
             )
             
             .environment(\.editMode, $editMode)
-        }.padding(.leading, 1)
+        }
         .sheet(
             isPresented: $addExamModalShown,
             onDismiss: {

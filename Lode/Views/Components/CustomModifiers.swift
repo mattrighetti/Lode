@@ -24,9 +24,7 @@ struct SegmentedButton: ViewModifier {
                             dash: [7]
                         )
                     )
-                    .foregroundColor(Color("bw"))
             )
-            .padding(.bottom, 50)
     }
 }
 
