@@ -40,7 +40,7 @@ struct InitialForm: View {
                 Header(title: NSLocalizedString("Total CFUs of your study plan", comment: "")).padding(.top)
                 
                 Stepper(value: self.$totalCfu, in: 30...1000) {
-                    Text("\(self.totalCfu)")
+                    Text("\(totalCfu)")
                         .font(.title)
                 }
                 .padding()
@@ -50,7 +50,7 @@ struct InitialForm: View {
                 Header(title: NSLocalizedString("How much is a laude evaluated?", comment: "")).padding(.top)
                 
                 Stepper(value: self.$laudeValue, in: 30...35) {
-                    Text("\(self.laudeValue)")
+                    Text("\(laudeValue)")
                         .font(.title)
                 }
                 .padding()
@@ -61,7 +61,7 @@ struct InitialForm: View {
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
             .onAppear {
-                self.setViewModelValues(self.totalCfu, self.laudeValue)
+                setViewModelValues(totalCfu, laudeValue)
             }
             
             .navigationBarTitle("Initial setup", displayMode: .large)
