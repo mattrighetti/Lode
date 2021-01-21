@@ -13,13 +13,12 @@ struct HomeView: View {
     @ObservedObject var viewModel = HomeViewViewModel()
     @ObservedObject private var sheet = SheetState()
 
-    @State var showSheet: Bool = false
-    @State var progress: CGFloat = 0.4
-    @State var markViewActive: Bool = false
-    @State var statsViewActive: Bool = false
-    @State var toolsViewActive: Bool = false
-    @State var isActionSheetPresented: Bool = false
-    @State var showAlert: Bool = false
+    @State private var progress: CGFloat = 0.4
+    @State private var markViewActive: Bool = false
+    @State private var statsViewActive: Bool = false
+    @State private var toolsViewActive: Bool = false
+    @State private var isActionSheetPresented: Bool = false
+    @State private var showAlert: Bool = false
 
     var body: some View {
         NavigationView {
@@ -61,7 +60,7 @@ struct HomeView: View {
                 }
                 .padding(.bottom)
             }
-            .sheet(isPresented: $showSheet, content: sheetContent)
+            .sheet(isPresented: $sheet.isShowing, content: sheetContent)
 
             .navigationBarTitle("Home", displayMode: .automatic)
             .navigationBarItems(
@@ -74,43 +73,8 @@ struct HomeView: View {
                         })
                     }
             )
-            }.navigationViewStyle(StackNavigationViewStyle())
-        .alert(isPresented: self.$showAlert) {
-            Alert(
-                title: Text("No course is present"),
-                message: Text("You must first add a course before creating exams"),
-                dismissButton: .cancel(Text("Ok"))
-            )
         }
-        .actionSheet(isPresented: $isActionSheetPresented) {
-            ActionSheet(title: Text("Choose an action").font(.title), message: nil, buttons: [
-                .default(Text("Add exam"), action: {
-                    // TODO fix this
-//                    self.toggle(
-//                        menu: .examform(courses: self.viewModel.courses.filter({ $0.mark == 0 }).map({ $0.name! }) )
-//                    )
-                }),
-                .default(Text("Add assignment"), action: {
-                    sheet.state = .assignmentForm
-                }),
-                .default(Text("Add course"), action: {
-                    sheet.state = .courseForm
-                }),
-                .cancel()
-            ])
-        }
-    }
-    
-    private func toggle() {
-        if sheet.state == .examForm {
-            if viewModel.courses.filter({ $0.mark == 0 }).map({ $0.name! }).isEmpty {
-                self.showAlert.toggle()
-            } else {
-                sheet.state = .none // menu
-            }
-        } else {
-            sheet.state = .none // menu
-        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     @ViewBuilder private func sheetContent() -> some View {
