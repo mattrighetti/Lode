@@ -113,3 +113,9 @@ private struct Feature: View {
                 .padding(.horizontal, 25)
     }
 }
+
+struct IntroductionView_Previews: PreviewProvider {
+    static var previews: some View {
+        IntroductionView()
+    }
+}
