@@ -12,17 +12,20 @@ struct MarksView: View {
 
     @Environment(\.presentationMode) var presentationMode
     
-    @State var courses: FetchedResults<Course>
+    @FetchRequest(entity: Course.entity(), sortDescriptors: [], animation: .none)
+    private var courses: FetchedResults<Course>
 
     var body: some View {
-        List {
-            ForEach(courses, id: \.id) { course in
-                MarkCard(course: course)
-                    .listRowBackground(Color("background"))
+        ScrollView(showsIndicators: false) {
+            LazyVGrid(columns: [GridItem(.flexible())]) {
+                ForEach(courses, id: \.id) { course in
+                    MarkCard(course: course)
+                }
             }
+            .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
         }
         .onDisappear {
-            self.presentationMode.wrappedValue.dismiss()
+            presentationMode.wrappedValue.dismiss()
         }
 
         .navigationBarTitle( NSLocalizedString("Marks", comment: "") )
@@ -35,11 +38,11 @@ struct MarkCard: View {
     var course: Course
     
     var markIcon: Color {
-        guard self.course.mark != 0 else {
+        guard course.mark != 0 else {
             return .orange
         }
 
-        if self.course.mark >= self.course.expectedMark {
+        if course.mark >= course.expectedMark {
             return .green
         }
 
@@ -47,18 +50,18 @@ struct MarkCard: View {
     }
     
     var expectedMarkString: String {
-        if self.course.expectedMark == 31 {
+        if course.expectedMark == 31 {
             return "30L"
         } else {
-            return "\(self.course.expectedMark)"
+            return "\(course.expectedMark)"
         }
     }
     
     var markString: String {
-        if self.course.mark == 31 {
+        if course.mark == 31 {
             return "30L"
         } else {
-            return "\(self.course.mark)"
+            return "\(course.mark)"
         }
     }
 
@@ -72,7 +75,7 @@ struct MarkCard: View {
                     Spacer()
                     HStack {
                         VStack {
-                            Text(self.expectedMarkString)
+                            Text(expectedMarkString)
                                 .font(.system(.title, design: .rounded))
                                 .fontWeight(.bold)
                             
@@ -94,7 +97,7 @@ struct MarkCard: View {
     }
     
     private func content() -> some View {
-        if self.course.mark != 0 {
+        if course.mark != 0 {
             return AnyView( Text(markString).font(.system(.title, design: .rounded)).fontWeight(.bold) )
         } else {
             return AnyView( Text("?").font(.system(.title, design: .rounded)).fontWeight(.bold) )

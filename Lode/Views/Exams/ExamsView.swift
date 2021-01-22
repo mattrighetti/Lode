@@ -13,7 +13,11 @@ struct ExamsView: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @ObservedObject var viewModel = ExamViewViewModel()
+    @FetchRequest(entity: Exam.entity(), sortDescriptors: [], animation: .spring())
+    private var exams: FetchedResults<Exam>
+
+    @FetchRequest(entity: Course.entity(), sortDescriptors: [], animation: .spring())
+    private var courses: FetchedResults<Course>
 
     @State private var addExamModalShown: Bool = false
     @State private var examPickerSelection: Int = 0
@@ -23,54 +27,37 @@ struct ExamsView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(examsFiltered(withTag: examPickerSelection).sorted(by: { $0.date! < $1.date! }), id: \.id) { exam in
-                    Group {
-                        if UIDevice.current.userInterfaceIdiom == .phone {
-                            ExamRow(exam: exam)
-                                .onTapGesture {
-                                    self.examToEdit = exam
-                                    if editMode == .active {
-                                        self.addExamModalShown.toggle()
-                                    }
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: [GridItem(.flexible())]) {
+                    ForEach(examsFiltered(withTag: examPickerSelection).sorted(by: { $0.date! < $1.date! }), id: \.id) { exam in
+                        ExamRow(exam: exam)
+                            .onTapGesture {
+                                self.examToEdit = exam
+                                if editMode == .active {
+                                    self.addExamModalShown.toggle()
                                 }
-                                .listRowBackground(Color("background"))
-                        } else {
-                            ZStack {
-                                NavigationLink(destination: ExamDescriptionPage(exam: examToEdit), isActive: .constant(true)) {
-                                    EmptyView()
-                                }.listRowBackground(Color("background"))
-                                
-                                ExamRow(exam: exam)
-                                    .onTapGesture {
-                                        self.examToEdit = exam
-                                        if editMode == .active {
-                                            self.addExamModalShown.toggle()
-                                        }
-                                    }
                             }
-                        }
-                    }
-                }.onDelete(perform: deleteExam)
-                
-                Button(action: {
-                    showModal()
-                }, label: {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Image(systemName: "plus.circle").foregroundColor(Color("bw"))
+                            .onLongPressGesture { print("Long pressure of element \(exam)") }
+                    }.onDelete(perform: deleteExam)
+
+                    Button(action: {
+                        showModal()
+                    }, label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Image(systemName: "plus.circle").foregroundColor(Color("bw"))
+                                Spacer()
+                                Text("Add exam")
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color("bw"))
+                            }
                             Spacer()
-                            Text("Add exam")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("bw"))
                         }
-                        Spacer()
-                    }
-                })
-                .segmentedButton()
-                .listRowBackground(Color("background"))
+                    })
+                    .segmentedButton()
+                }
+                .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
-            .listStyle(InsetGroupedListStyle())
             .alert(isPresented: self.$presentAlert) {
                 Alert(
                     title: Text("No active course is present"),
@@ -98,6 +85,10 @@ struct ExamsView: View {
             )
             
             .environment(\.editMode, $editMode)
+        }.onAppear {
+            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().separatorStyle = .none
         }
         .sheet(
             isPresented: $addExamModalShown,
@@ -109,7 +100,7 @@ struct ExamsView: View {
             },
             content: {
                 ExamForm(
-                    courses: viewModel.courses.compactMap{ course in course }.filter({ $0.mark == 0 }).map { $0.name! },
+                    courses: courses.compactMap{ course in course }.filter({ $0.mark == 0 }).map { $0.name! },
                     exam: editMode == .active ? examToEdit : nil
                 )
                 .environment(\.managedObjectContext, managedObjectContext)
@@ -122,16 +113,16 @@ struct ExamsView: View {
         
         switch tag {
         case 0:
-            return viewModel.exams.filter(upcomingFilter)
+            return exams.filter(upcomingFilter)
         case 1:
-            return viewModel.exams.filter(pastFilter)
+            return exams.filter(pastFilter)
         default:
-            return viewModel.exams.compactMap { exam in exam }
+            return exams.compactMap { exam in exam }
         }
     }
     
     private func showModal() {
-        if viewModel.courses.compactMap({ course in course }).filter({ $0.mark == 0 }).map({ $0.name! }).isEmpty {
+        if courses.compactMap({ course in course }).filter({ $0.mark == 0 }).map({ $0.name! }).isEmpty {
             self.presentAlert.toggle()
         } else {
             self.addExamModalShown.toggle()

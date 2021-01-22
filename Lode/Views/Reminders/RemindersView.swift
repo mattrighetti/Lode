@@ -24,36 +24,36 @@ struct RemindersView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(assignmentsFiltered(withTag: pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! }), id: \.id) { assignment in
-                    ReminderRow(assignment: assignment)
-                        .onTapGesture {
-                            self.assignmentToEdit = assignment
-                            if editMode == .active {
-                                self.showForm.toggle()
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: [GridItem(.flexible())]) {
+                    ForEach(assignmentsFiltered(withTag: pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! }), id: \.id) { assignment in
+                        ReminderRow(assignment: assignment)
+                            .onTapGesture {
+                                self.assignmentToEdit = assignment
+                                if editMode == .active {
+                                    self.showForm.toggle()
+                                }
                             }
-                        }
-                        .listRowBackground(Color("background"))
-                }.onDelete(perform: deleteAssignment)
-                
-                Button(action: {
-                    self.showForm.toggle()
-                }, label: {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Image(systemName: "plus.circle").foregroundColor(Color("bw"))
-                            Spacer()
-                            Text("Add assignment")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("bw"))
-                        }
-                        Spacer()
                     }
-                })
-                .segmentedButton()
-                .listRowBackground(Color("background"))
+                    .onDelete(perform: deleteAssignment)
+
+                    Button(action: {
+                        self.showForm.toggle()
+                    }, label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Image(systemName: "plus.circle").foregroundColor(Color("bw"))
+                                Spacer()
+                                Text("Add assignment")
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color("bw"))
+                            }
+                            Spacer()
+                        }
+                    })
+                            .segmentedButton()
+                }.padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
-            .listStyle(InsetGroupedListStyle())
 
             .navigationBarTitle("Assignments")
             .navigationBarItems(
@@ -74,6 +74,11 @@ struct RemindersView: View {
             )
             .environment(\.editMode, $editMode)
         }
+        .onAppear {
+            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().separatorStyle = .none
+        }
         .sheet(
             isPresented: $showForm,
             onDismiss: {
@@ -87,11 +92,13 @@ struct RemindersView: View {
             }
         )
     }
-    
+}
+
+extension RemindersView {
     private func assignmentsFiltered(withTag tag: Int) -> [Assignment] {
         let upcomingFilter: (Assignment) -> Bool = { $0.dueDate! > Date() }
         let pastFilter: (Assignment) -> Bool = { $0.dueDate! <= Date() }
-        
+
         switch tag {
         case 0:
             return assignments.filter(upcomingFilter)
@@ -101,18 +108,17 @@ struct RemindersView: View {
             return assignments.compactMap { assignment in assignment }
         }
     }
-    
+
     private func deleteAssignment(at offsets: IndexSet) {
         let deletedItem = assignmentsFiltered(withTag: pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! })[offsets.first!]
         managedObjectContext.delete(deletedItem)
-        
+
         do {
             try managedObjectContext.save()
         } catch {
             print(error)
         }
     }
-    
 }
 
 struct RemindersView_Previews: PreviewProvider {

@@ -12,85 +12,122 @@ struct StatsView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @ObservedObject var viewModel = StatsViewViewModel()
-    
+    @FetchRequest(entity: Course.entity(), sortDescriptors: [], animation: .spring())
+    private var courses: FetchedResults<Course>
+
+    @FetchRequest(entity: Exam.entity(), sortDescriptors: [], animation: .spring())
+    private var exams: FetchedResults<Exam>
+
+    var totalCourses: Double {
+        Double(courses.count)
+    }
+
+    var totalCfu: Double {
+        courses.compactMap { course in Double(course.cfu) }.reduce(0, { $0 + $1 })
+    }
+
+    var expectedAverage: Double {
+        let markSum = courses.compactMap { course in
+            Double(course.expectedMark) * Double(course.cfu)
+        }
+        .reduce(0, { $0 + $1 })
+
+        return markSum / Double(totalCfu)
+    }
+
+    var projectedGraduationGrade: Double {
+        expectedAverage * 11.0 / 30.0
+    }
+
+    var passedExams: [Course] {
+        courses.filter { $0.mark != 0 }
+    }
+
+    var numPassedExams: Double {
+        Double(passedExams.count)
+    }
+
+    var gainedCfu: Double {
+        passedExams.compactMap { Double($0.cfu) }.reduce(0, { $0 + $1 })
+    }
+
+    var currentAverage: Double {
+        let average = passedExams.compactMap { Double($0.cfu) * Double($0.mark) }.reduce(0, { $0 + $1 })
+        return average / gainedCfu
+    }
+
+    var currentProjectedGraduationGrade: Double {
+        currentAverage * 11.0 / 31.0
+    }
+
+    var asExpected: Double {
+        Double(passedExams.filter { course in course.mark == course.expectedMark }.count)
+    }
+
+    var betterThanExpected: Double {
+        Double(passedExams.filter { course in course.mark > course.expectedMark }.count)
+    }
+
+    var worseThanExpected: Double {
+        Double(passedExams.filter { course in course.mark < course.expectedMark }.count)
+    }
+
     var body: some View {
         List {
-            StatsStringListSection(sectionHeader: NSLocalizedString("Main Info", comment: ""), strings: [
-                NSLocalizedString("Total courses", comment: ""),
-                NSLocalizedString("Total CFU", comment: ""),
-                NSLocalizedString("Expected Average", comment: ""),
-                NSLocalizedString("Projected graduation grade", comment: "")
-            ], values: [
-                Double(self.viewModel.courses.count),
-                Double(self.viewModel.totalCfu),
-                self.viewModel.expectedAverage,
-                self.viewModel.expectedGraduationGrade
-            ])
+            Section(header: Text("Main Info")) {
+                ListItem(itemDescription: "Total Courses", itemValue: totalCourses)
+                ListItem(itemDescription: "Total CFU", itemValue: totalCfu)
+                ListItem(itemDescription: "Expected Average", itemValue: expectedAverage)
+                ListItem(itemDescription: "Projected graduation grade", itemValue: projectedGraduationGrade)
+            }
+
+            Section(header: Text("Current statistics")) {
+                ListItem(itemDescription: "Passed exams", itemValue: numPassedExams)
+                ListItem(itemDescription: "Gained CFU", itemValue: gainedCfu)
+                ListItem(itemDescription: "Current Average", itemValue: currentAverage)
+                ListItem(itemDescription: "Current graduation grade", itemValue: currentProjectedGraduationGrade)
+            }
+
+            Section(header: Text("Exams passed")) {
+                ListItem(itemDescription: "As expected", itemValue: asExpected)
+                ListItem(itemDescription: "Better than expected", itemValue: betterThanExpected)
+                ListItem(itemDescription: "Worse than expected", itemValue: worseThanExpected)
+            }
             
-            StatsStringListSection(sectionHeader: NSLocalizedString("Current statistics", comment: ""), strings: [
-                NSLocalizedString("Passed exams", comment: ""),
-                NSLocalizedString("Gained CFU", comment: ""),
-                NSLocalizedString("Current average", comment: ""),
-                NSLocalizedString("Current graduation grade", comment: "")
-            ], values: [
-                Double(self.viewModel.passedExams),
-                Double(self.viewModel.gainedCfu),
-                self.viewModel.average,
-                self.viewModel.projectedGraduationGrade
-            ])
-            
-            StatsStringListSection(sectionHeader: NSLocalizedString("Exams passed", comment: ""), strings: [
-                NSLocalizedString("As expected", comment: ""),
-                NSLocalizedString("More than expected", comment: ""),
-                NSLocalizedString("Less than expected", comment: "")
-            ], values: [
-                Double(self.viewModel.passedAsExpected),
-                Double(self.viewModel.passedBetterThanExpected),
-                Double(self.viewModel.passedWorseThanExpected)
-            ])
-            
-            Section(header: Text("Latest marks").modifier(SectionTitle())) {
-                BarChartView(arrayValues: self.viewModel.courses.filter({ $0.mark != 0 }).map({ Double($0.mark) }), color: .red)
+            Section(header: Text("Latest marks")) {
+                BarChartView(arrayValues: courses.filter({ $0.mark != 0 }).map({ Double($0.mark) }), color: .red)
                     .frame(height: 250, alignment: .center)
                     .padding()
-                    .listRowBackground(Color("cardBackground"))
             }
             
         }
-        .singleSeparator()
-        .listStyle(GroupedListStyle())
-        .environment(\.horizontalSizeClass, .regular)
+        .listStyle(InsetGroupedListStyle())
+        .onAppear {
+            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().separatorStyle = .none
+        }
         .onDisappear {
-            self.presentationMode.wrappedValue.dismiss()
+            presentationMode.wrappedValue.dismiss()
         }
         
         .navigationBarTitle("Statistics")
     }
 }
 
-struct StatsStringListSection: View {
-    
-    var sectionHeader: String
-    var strings: [String]
-    var values: [Double]
-    
+struct ListItem: View {
+    var itemDescription: String
+    var itemValue: Double
+
     var body: some View {
-        Section(header: Text(sectionHeader).modifier(SectionTitle())) {
-            ForEach(strings.indices) { index in
-                VStack {
-                    HStack {
-                        Text(self.strings[index])
-                        Spacer()
-                        Text(
-                            self.values[index] == floor(self.values[index]) ?
-                            "\(Int(self.values[index]))" :
-                            "\(self.values[index].twoDecimalPrecision)"
-                        ).padding(10)
-                    }
-                }
-                .listRowBackground(Color("cardBackground"))
-            }
+        HStack {
+            Text(itemDescription)
+            Spacer()
+            Text(
+                itemValue == floor(itemValue) ?
+                    "\(Int(itemValue))" :
+                    "\(itemValue.twoDecimalPrecision)"
+            )
         }
     }
 }

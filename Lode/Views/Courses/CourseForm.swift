@@ -11,7 +11,7 @@ import CoreData
 
 struct CourseForm: View {
 
-    @Environment(\.presentationMode) var presentatitonMode
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
 
     // Course Data
@@ -32,7 +32,7 @@ struct CourseForm: View {
     var course: Course?
     
     var acronym: String {
-        let splitString = self.title
+        let splitString = title
             .split { $0 == " " }
             .map({ String($0).lowercased() })
             .filter { $0 != "and" && $0 != "e" && $0 != "of" }
@@ -70,11 +70,11 @@ struct CourseForm: View {
                     
                     Header(title: "Title").padding(.top)
                     
-                    if self.title.count > 30 {
+                    if title.count > 30 {
                         withAnimation {
                             HStack {
                                 Text("Title will be truncated to:")
-                                Text(self.acronym)
+                                Text(acronym)
                                 Spacer()
                             }
                             .foregroundColor(.red)
@@ -87,7 +87,7 @@ struct CourseForm: View {
                     TextField("Exam title", text: $title)
                         .card()
                     
-                    HeaderCaption(title: "CFU", caption: "Ore totali: \(self.courseCfu * 25)").padding(.top)
+                    HeaderCaption(title: "CFU", caption: "Ore totali: \(courseCfu * 25)").padding(.top)
                     
                     CustomStepper(value: $courseCfu, maxValue: 180, minValue: 1)
                 
@@ -109,15 +109,15 @@ struct CourseForm: View {
                             .fontWeight(.semibold)
                         
                         Spacer()
-                        Image(systemName: self.isPassed ? "checkmark.seal" : "xmark.seal" )
-                            .foregroundColor(self.isPassed ? Color.green : Color.red)
+                        Image(systemName: isPassed ? "checkmark.seal" : "xmark.seal" )
+                            .foregroundColor(isPassed ? Color.green : Color.red)
                     }
                     .card()
                 })
                 .padding(.top)
                 
                 VStack {
-                    if self.isPassed {
+                    if isPassed {
                         HeaderCaption(
                             title: "Mark obtained",
                             caption: "The mark you got"
@@ -136,8 +136,8 @@ struct CourseForm: View {
             .padding(.horizontal)
             .background(Color.background.edgesIgnoringSafeArea(.all))
             .onAppear {
-                if !self.restoredCourse {
-                    if let courseToEdit = self.course {
+                if !restoredCourse {
+                    if let courseToEdit = course {
                         self.title = courseToEdit.name!
                         self.difficulty = 3
                         self.courseMark = courseToEdit.mark != 0 ? Int(courseToEdit.mark) : 25
@@ -155,18 +155,18 @@ struct CourseForm: View {
             .navigationBarTitle("Add course", displayMode: .inline)
             .navigationBarItems(
                 leading: Button("Cancel") {
-                    self.presentatitonMode.wrappedValue.dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Done") {
-                        self.onDonePressed()
-                        self.presentatitonMode.wrappedValue.dismiss()
+                        onDonePressed()
+                        presentationMode.wrappedValue.dismiss()
                 }
             )
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func onDonePressed() {
-        if self.course != nil {
+        if course != nil {
             updateCourse()
         } else {
             addCourse()
@@ -193,7 +193,7 @@ struct CourseForm: View {
     }
     
     private func updateCourse() {
-        let fetchCourse: NSFetchRequest<Course> = Course.fetchRequest(withUUID: self.course!.id!)
+        let fetchCourse: NSFetchRequest<Course> = Course.fetchRequest(withUUID: course!.id!)
         
         do {
             if let course = try managedObjectContext.fetch(fetchCourse).first {
@@ -216,6 +216,7 @@ struct CourseForm: View {
     
     func saveContext() {
         do {
+            print("Saving data to local database")
             try managedObjectContext.save()
         } catch {
             print(error)
@@ -223,13 +224,13 @@ struct CourseForm: View {
     }
     
     private func incrementMark() {
-        if self.courseMark < 31 {
+        if courseMark < 31 {
             self.courseMark += 1
         }
     }
     
     private func decrementMark() {
-        if self.courseMark > 18 {
+        if courseMark > 18 {
             self.courseMark -= 1
         }
     }

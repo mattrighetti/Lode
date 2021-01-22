@@ -10,8 +10,10 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @ObservedObject var viewModel = HomeViewViewModel()
     @ObservedObject private var sheet = SheetState()
+
+    @FetchRequest(entity: Course.entity(), sortDescriptors: [], animation: .spring())
+    private var courses: FetchedResults<Course>
 
     @State private var progress: CGFloat = 0.4
     @State private var markViewActive: Bool = false
@@ -35,7 +37,7 @@ struct HomeView: View {
                 HomeSection(sectionTitle: NSLocalizedString("Categories", comment: "")) {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            NavigationLink(destination: MarksView(courses: viewModel.courses), isActive: self.$markViewActive) {
+                            NavigationLink(destination: MarksView(), isActive: self.$markViewActive) {
                                 CategoriesCard(label: NSLocalizedString("Marks", comment: ""), imageName: "checkmark.seal")
                             }.buttonStyle(PlainButtonStyle())
                             
@@ -82,7 +84,7 @@ struct HomeView: View {
         case .settings:
             SettingsView()
         case .examForm:
-            ExamForm(courses: viewModel.courses.compactMap { course in course.name })
+            ExamForm(courses: courses.compactMap { course in course.name })
         case .assignmentForm:
             ReminderForm()
         case .courseForm:

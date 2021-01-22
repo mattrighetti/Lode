@@ -14,10 +14,6 @@ struct LodeApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .onAppear {
-                    UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-                    UITableView.appearance().backgroundColor = UIColor(named: "background")
-                }
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

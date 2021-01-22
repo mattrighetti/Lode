@@ -12,7 +12,8 @@ struct AverageDeltaTool: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @ObservedObject var viewModel = AverageDeltaViewViewModel()
+    @FetchRequest(entity: Course.entity(), sortDescriptors: [])
+    private var courses: FetchedResults<Course>
     
     @State var cfu: Int = 5
     @State var deltas: [Double] = [Double]()
@@ -30,13 +31,22 @@ struct AverageDeltaTool: View {
             cfu
         }, set: {
             self.cfu = $0
-            self.deltas = viewModel.calculateDeltas(withCfu: $0)
+            self.deltas = calculateDeltas(withCfu: $0)
         })
+    }
+
+    var gainedCfu: Double {
+        courses.filter { course in course.mark != 0 }.compactMap { Double($0.cfu) }.reduce(0, { $0 + $1 })
+    }
+
+    var average: Double {
+        let average = courses.filter { course in course.mark != 0 }.compactMap { Double($0.cfu) * Double($0.mark) }.reduce(0, { $0 + $1 })
+        return average / gainedCfu
     }
     
     var body: some View {
         List {
-            Section(header: Text("Course CFU").sectionTitle(),
+            Section(header: Text("Course CFU"),
                     footer: Text("TWAY")) {
                 HStack(alignment: .center) {
                     Spacer()
@@ -55,17 +65,17 @@ struct AverageDeltaTool: View {
                 .padding(.bottom, 5)
             }
             
-            Section(header: Text("Current average").sectionTitle()) {
-                Text("\(viewModel.average.twoDecimalPrecision)").bold()
+            Section(header: Text("Current average")) {
+                Text("\(average.twoDecimalPrecision)").bold()
             }
             
-            Section(header: Text("New average").sectionTitle()) {
+            Section(header: Text("New average")) {
                 ForEach(deltas.indices, id: \.self) { index in
                     HStack {
                         Text(valueStrings[index])
                         Spacer()
                         Text("\(deltas[index].twoDecimalPrecision)")
-                            .foregroundColor(deltas[index] < viewModel.average ? .red : .green)
+                            .foregroundColor(deltas[index] < average ? .red : .green)
                     }
                 }
             }
@@ -74,10 +84,37 @@ struct AverageDeltaTool: View {
         .singleSeparator()
         .listStyle(InsetGroupedListStyle())
         .onAppear {
-            self.deltas = viewModel.calculateDeltas(withCfu: cfu)
+            self.deltas = calculateDeltas(withCfu: cfu)
+            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().separatorStyle = .none
         }
         
         .navigationBarTitle("Delta Calculator")
+    }
+
+    public func calculateDeltas(withCfu cfu: Int) -> [Double] {
+        var deltas = [Double]()
+        let average = courses.filter { $0.mark != 0 }.map { Double($0.mark * $0.cfu) }.reduce(0, { $0 + $1 })
+        let gainedCfu = Double(self.gainedCfu) + Double(cfu)
+
+        guard gainedCfu != 0 else {
+            for mark in 18...30 {
+                deltas.append(Double(mark))
+            }
+
+            return deltas
+        }
+
+        var tmp = 0.0
+        for mark in 18...30 {
+            tmp = average
+            tmp += (Double(mark) * Double(cfu))
+            tmp /= gainedCfu
+            deltas.append(tmp)
+        }
+
+        return deltas
     }
     
 }

@@ -12,8 +12,9 @@ import CoreData
 struct CoursesView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
-    
-    @ObservedObject var viewModel = CourseViewViewModel()
+
+    @FetchRequest(entity: Course.entity(), sortDescriptors: [])
+    var courses: FetchedResults<Course>
     
     @State var addCourseModalShown: Bool = false
     @State var pickerSelection: Int = 0
@@ -23,34 +24,35 @@ struct CoursesView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(coursesFiltered(withTag: pickerSelection), id: \.id) { course in
-                    CourseRow(course: course)
-                            .onTapGesture {
-                                self.courseToEdit = course
-                                if editMode == .active {
-                                    self.addCourseModalShown.toggle()
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: [GridItem(.flexible())]) {
+                    ForEach(coursesFiltered(withTag: pickerSelection), id: \.id) { course in
+                        CourseRow(course: course)
+                                .onTapGesture {
+                                    self.courseToEdit = course
+                                    if editMode == .active {
+                                        self.addCourseModalShown.toggle()
+                                    }
                                 }
-                            }
-                }.onDelete(perform: deleteCourse)
+                    }.onDelete(perform: deleteCourse)
 
-                Button(action: {
-                    self.addCourseModalShown.toggle()
-                }, label: {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Image(systemName: "plus.circle")
+                    Button(action: {
+                        self.addCourseModalShown.toggle()
+                    }, label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Image(systemName: "plus.circle")
+                                Spacer()
+                                Text("Add course")
+                                        .fontWeight(.bold)
+                            }
                             Spacer()
-                            Text("Add course")
-                                    .fontWeight(.bold)
                         }
-                        Spacer()
-                    }
-                })
-                .segmentedButton()
-                .listRowBackground(Color("background"))
+                    })
+                    .segmentedButton()
+                }
+                .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
-            .listStyle(InsetGroupedListStyle())
             
             .navigationBarTitle("Courses")
             .navigationBarItems(
@@ -78,34 +80,40 @@ struct CoursesView: View {
             }, content: {
                 CourseForm(course: editMode == .active ? courseToEdit : nil)
             })
+        }.onAppear {
+            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().separatorStyle = .none
         }
     }
-    
+}
+
+extension CoursesView {
     private func coursesFiltered(withTag tag: Int) -> [Course] {
+        NSLog("Filtering courses", courses.compactMap{ course in course })
         let activeFilter: (Course) -> Bool = { $0.mark != 0 ? false : true }
         let passedFilter: (Course) -> Bool = { $0.mark != 0 ? true : false }
-        
+
         switch tag {
         case 0:
-            return viewModel.courses.filter(activeFilter)
+            return courses.filter(activeFilter)
         case 1:
-            return viewModel.courses.filter(passedFilter)
+            return courses.filter(passedFilter)
         default:
-            return viewModel.courses.compactMap { course in course }
+            return courses.compactMap { course in course }
         }
     }
-    
+
     private func deleteCourse(at offsets: IndexSet) {
         let deletedItem = coursesFiltered(withTag: pickerSelection)[offsets.first!]
         managedObjectContext.delete(deletedItem)
-    
+
         do {
             try managedObjectContext.save()
         } catch {
             print(error)
         }
     }
-    
 }
 
 struct CoursesView_Previews: PreviewProvider {
