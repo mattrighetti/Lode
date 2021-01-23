@@ -17,14 +17,14 @@ struct StringList: View {
     var body: some View {
         List {
             Section(header: Text("Select a course").padding(.top, 25)) {
-                ForEach(self.strings.indices) { index in
+                ForEach(strings.indices) { index in
                     Button(action: {
                         self.selectedIndex = index
                     }, label: {
                         HStack {
-                            Text(self.strings[index])
+                            Text(strings[index])
                             Spacer()
-                            if self.selectedIndex == index {
+                            if selectedIndex == index {
                                 Image(systemName: "checkmark.circle").foregroundColor(.green)
                             }
                         }
@@ -32,9 +32,7 @@ struct StringList: View {
                 }.listRowBackground(Color("cardBackground"))
             }
         }
-        .singleSeparator()
-        .listStyle(GroupedListStyle())
-        .environment(\.horizontalSizeClass, .regular)
+        .listStyle(InsetGroupedListStyle())
     }
 }
 
