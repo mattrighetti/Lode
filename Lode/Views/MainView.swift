@@ -48,7 +48,7 @@ struct MainView: View {
             if firstAccess {
                 sheet.state = .introduction
             } else if initialSetup {
-                sheet.state = .settings
+                sheet.state = .initialForm
             }
         }
     }
@@ -56,8 +56,8 @@ struct MainView: View {
     func presentationLogic() -> Void {
         if sheet.state == .introduction {
             firstAccess = false
-            sheet.state = .settings
-        } else if sheet.state == .settings {
+            sheet.state = .initialForm
+        } else if sheet.state == .initialForm {
             initialSetup = false
             sheet.state = .none
         }
@@ -67,8 +67,8 @@ struct MainView: View {
         switch sheet.state {
         case .introduction:
             IntroductionView()
-        case .settings:
-            SettingsView()
+        case .initialForm:
+            InitialForm()
         case .none:
             EmptyView()
         }
@@ -87,7 +87,7 @@ fileprivate class SheetState: ObservableObject {
 
 fileprivate enum SheetContent {
     case none
-    case settings
+    case initialForm
     case introduction
 }
 
