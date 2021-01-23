@@ -75,6 +75,10 @@ struct HomeView: View {
                         })
                     }
             )
+        }.onAppear {
+            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().backgroundColor = UIColor(named: "background")
+            UITableView.appearance().separatorStyle = .none
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
