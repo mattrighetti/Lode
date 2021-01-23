@@ -74,38 +74,11 @@ struct ExamForm: View {
                         .card()
                     }
                 )
-                
-                Header(title: "Date").padding(.top)
-                
-                Button(action: {
-                    withAnimation {
-                        self.isShowingDatePicker.toggle()
-                    }
-                }, label: {
-                    HStack {
-                        Spacer()
-                        Text(date.textDateRappresentation)
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                        Spacer()
-                    }
-                    .card()
-                })
-                .padding(.top)
 
-                HStack {
-                    Spacer()
-                    if self.isShowingDatePicker {
-                        DatePicker(selection: self.$date, displayedComponents: .date) {
-                            EmptyView()
-                        }.labelsHidden()
-                    }
-                    Spacer()
-                }
-                .background(Color("cardBackground"))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .transition(.scale)
-                .padding(.bottom, 50)
+                Header(title: "Date").padding(.top)
+
+                DatePicker("Select date", selection: self.$date, displayedComponents: .date)
+                    .datePickerStyle(GraphicalDatePickerStyle())
                 
             }
             .scrollViewWithoutBackground()
@@ -132,20 +105,20 @@ struct ExamForm: View {
     }
     
     private func onDonePressed() {
-        if self.fieldsAreCompiled() {
-            if self.exam != nil {
-                self.updateExam()
+        if fieldsAreCompiled() {
+            if exam != nil {
+                updateExam()
             } else {
-                self.addExam()
+                addExam()
             }
-            self.presentationMode.wrappedValue.dismiss()
+            presentationMode.wrappedValue.dismiss()
         } else {
             self.showAlert.toggle()
         }
     }
     
     private func fieldsAreCompiled() -> Bool {
-        if self.courseIndex == -1 || self.name.isEmpty {
+        if courseIndex == -1 || name.isEmpty {
             return false
         } else {
             return true
@@ -161,7 +134,7 @@ struct ExamForm: View {
     }
     
     private func updateExam() {
-        let fetchExam = Exam.fetchRequest(withUUID: self.exam!.id!)
+        let fetchExam = Exam.fetchRequest(withUUID: exam!.id!)
         
         do {
             if let exam = try managedObjectContext.fetch(fetchExam).first {

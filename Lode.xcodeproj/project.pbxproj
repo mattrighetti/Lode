@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,7 +47,6 @@
 		33071C9979A7F47AC468953D /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330712FA46C7568ECB669E0C /* CustomModifiers.swift */; };
 		33071CAD90223537F8FD571F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330718A633A1BC1414606C32 /* Deck.swift */; };
 		33071D00D4ABA83545C7AB6B /* Exam+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330710BD04F120EBC5C13B25 /* Exam+CoreDataClass.swift */; };
-		33071D40460B9A117AA7F853 /* FetchedResultsPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071F6B957FB55E163FF9D7 /* FetchedResultsPublisher.swift */; };
 		33071D90135BBE5CD49C688E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307113B1322C4267E9A90D5 /* SettingsView.swift */; };
 		33071DD8D9B4AA67B8C58346 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307124EF3B9D01F58B2075C /* CardStack.swift */; };
 		33071E358A0FA61E4150F2B0 /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = 3307187CF7B461F9A1D5979A /* main.png */; };
@@ -132,7 +131,6 @@
 		33071DE5C916D22CC1AF1DFC /* ExamRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamRow.swift; sourceTree = "<group>"; };
 		33071EB6BB512D09A998BBCD /* ExamDescriptionPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamDescriptionPage.swift; sourceTree = "<group>"; };
 		33071F3CBD5D619C805F3696 /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = "<group>"; };
-		33071F6B957FB55E163FF9D7 /* FetchedResultsPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsPublisher.swift; sourceTree = "<group>"; };
 		33071FCEEDB6EB18DCCA4608 /* AverageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageCard.swift; sourceTree = "<group>"; };
 		C9405F0E25B8F17100342FF7 /* Lode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9405F1125B8F17100342FF7 /* LodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodeApp.swift; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 				330713824C632D3EE1A68BAC /* +Utils.swift */,
 				330719EF74FEA8B5052549CC /* GridIndex.swift */,
 				33071AADCF01BAE24697C90E /* +Publishers.swift */,
-				33071F6B957FB55E163FF9D7 /* FetchedResultsPublisher.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -473,6 +470,7 @@
 		C9405F0625B8F17100342FF7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
@@ -495,8 +493,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				it,
 				Base,
+				it,
 			);
 			mainGroup = C9405F0525B8F17100342FF7;
 			productRefGroup = C9405F0F25B8F17100342FF7 /* Products */;
@@ -586,7 +584,6 @@
 				330710308F32CD666156FAC2 /* +Utils.swift in Sources */,
 				330714F8774FCC2DEEB7A0C8 /* GridIndex.swift in Sources */,
 				33071F31C3B4B99640EDC97B /* +Publishers.swift in Sources */,
-				33071D40460B9A117AA7F853 /* FetchedResultsPublisher.swift in Sources */,
 				33071D00D4ABA83545C7AB6B /* Exam+CoreDataClass.swift in Sources */,
 				33071377E595CA0D104EE097 /* Course+CoreDataClass.swift in Sources */,
 				3307160656C30B63BC7AD972 /* Exam+CoreDataProperties.swift in Sources */,

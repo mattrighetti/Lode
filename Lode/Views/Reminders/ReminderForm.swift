@@ -27,7 +27,7 @@ struct ReminderForm: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 NavigationLink(
                     destination: ColorPickerView(colorIndex: $colorIndex),
                     isActive: $activeColorNavigationLink
@@ -58,36 +58,9 @@ struct ReminderForm: View {
                     .card()
                 
                 Header(title: "Date").padding(.top)
-                
-                Button(action: {
-                    withAnimation {
-                        self.isShowingDatePicker.toggle()
-                    }
-                }, label: {
-                    HStack {
-                        Spacer()
-                        Text(date.textDateRappresentation)
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                        Spacer()
-                    }
-                    .card()
-                })
-                .padding(.top)
 
-                HStack {
-                    Spacer()
-                    if self.isShowingDatePicker {
-                        DatePicker(selection: self.$date, in: Date()..., displayedComponents: .date) {
-                            EmptyView()
-                        }.labelsHidden()
-                    }
-                    Spacer()
-                }
-                .background(Color("cardBackground"))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .transition(.scale)
-                .padding(.bottom, 50)
+                DatePicker("Select date", selection: self.$date, displayedComponents: .date)
+                        .datePickerStyle(GraphicalDatePickerStyle())
                 
             }
             .scrollViewWithoutBackground()
