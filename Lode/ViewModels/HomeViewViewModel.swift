@@ -12,11 +12,10 @@ class HomeViewViewModel: ObservableObject {
     @Published var courses: [Course] = [] {
         willSet {
             gainedCfu = newValue.filter { $0.mark != 0 }.map { Double($0.cfu) }.reduce (0, { $0 + $1 })
-            if gainedCfu == 0 {
+            if gainedCfu == 0.0 {
                 average = 0.0
             } else {
-                average = newValue.filter { $0.mark != 0 }.map { Double($0.cfu) * Double($0.mark) }
-                        .reduce(0, { $0 + $1 }) / gainedCfu
+                average = newValue.filter { $0.mark != 0 }.map { Double($0.cfu) * Double($0.mark) }.reduce(0, { $0 + $1 }) / gainedCfu
             }
             let eAverage = newValue.filter({ $0.mark != 0 }).map({
                 Double($0.cfu) * (Bool(truncating: $0.expectedLaude!) ? Double(laudeValue) : Double($0.expectedMark))

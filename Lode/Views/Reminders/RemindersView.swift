@@ -11,44 +11,51 @@ import SwiftUI
 
 struct RemindersView: View {
 
+    @Environment(\.editMode) var editMode
+
+    @ObservedObject private var sheet = SheetState()
     @StateObject private var viewModel = AssignmentViewViewModel()
-    
-    @State var showForm: Bool = false
-    @State var addReminderPressed: Bool = false
+
     @State var pickerSelection: Int = 0
-    @State private var editMode = EditMode.inactive
-    @State private var assignmentToEdit: Assignment?
+
+    private var columnsLayout: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+        } else {
+            return [GridItem(.flexible())]
+        }
+    }
 
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: [GridItem(.flexible())]) {
+                LazyVGrid(columns: columnsLayout) {
                     ForEach(pickerSelection == 0 ? viewModel.dueAssignments : viewModel.pastAssignments, id: \.id) { assignment in
                         ReminderRow(assignment: assignment)
                             .onTapGesture {
-                                self.assignmentToEdit = assignment
-                                if editMode == .active {
-                                    self.showForm.toggle()
+                                if editMode?.wrappedValue == .active {
+                                    sheet.assignmentToEdit = assignment
                                 }
                             }
                     }
 
                     Button(action: {
-                        self.showForm.toggle()
+                        sheet.isShowing.toggle()
                     }, label: {
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
                                 Image(systemName: "plus.circle").foregroundColor(Color("bw"))
                                 Spacer()
                                 Text("Add assignment")
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("bw"))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color("bw"))
                             }
                             Spacer()
                         }
                     })
-                            .segmentedButton()
-                }.padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
+                    .segmentedButton()
+                }
+                .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
 
             .navigationBarTitle("Assignments")
@@ -64,11 +71,11 @@ struct RemindersView: View {
                     .padding()
                 ),
                 trailing: Button(
-                    action: { self.showForm.toggle() },
-                    label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
+                    action: { sheet.isShowing.toggle() },
+                    label: { Image(systemName: "plus.circle")
+                        .font(.system(size: 20)) }
                 )
             )
-            .environment(\.editMode, $editMode)
         }
         .onAppear {
             UIScrollView.appearance().backgroundColor = UIColor(named: "background")
@@ -76,17 +83,23 @@ struct RemindersView: View {
             UITableView.appearance().separatorStyle = .none
         }
         .sheet(
-            isPresented: $showForm,
+            isPresented: $sheet.isShowing,
             onDismiss: {
-                if editMode == .active {
-                    self.editMode = .inactive
-                    self.assignmentToEdit = nil
-                }
+                sheet.assignmentToEdit = nil
             },
             content: {
-                ReminderForm(assignment: editMode == .active ? assignmentToEdit : nil)
+                ReminderForm(assignment: sheet.assignmentToEdit)
             }
         )
+    }
+}
+
+fileprivate class SheetState: ObservableObject {
+    @Published var isShowing: Bool = false
+    @Published var assignmentToEdit: Assignment? = nil {
+        didSet {
+            isShowing = assignmentToEdit != nil
+        }
     }
 }
 
