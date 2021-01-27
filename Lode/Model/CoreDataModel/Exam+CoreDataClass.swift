@@ -59,3 +59,11 @@ public class Exam: NSManagedObject {
     }
     
 }
+
+extension Exam {
+    static var requestAll: NSFetchRequest<Exam> {
+        let request: NSFetchRequest<Exam> = Exam.fetchRequest()
+        request.sortDescriptors = []
+        return request
+    }
+}

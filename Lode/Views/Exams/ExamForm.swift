@@ -7,13 +7,14 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ExamForm: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
-    
-    var courses: [String]
+
+    @ObservedObject var viewModel: ExamViewViewModel
     
     @State private var name: String = ""
     @State private var course: String = ""
@@ -28,6 +29,8 @@ struct ExamForm: View {
     @State private var bottomPadding: CGFloat = 0
     
     @State private var restoredExam: Bool = false
+    @State var courses: [String] = []
+
     var exam: Exam?
     
     var body: some View {
@@ -63,11 +66,11 @@ struct ExamForm: View {
                     .padding(.top)
                 
                 NavigationLink(
-                    destination: StringList(strings: courses, selectedIndex: $courseIndex),
+                    destination: StringList(strings: viewModel.courseNotPassedStrings, selectedIndex: $courseIndex),
                     isActive: $showCourses,
                     label: {
                         HStack {
-                            Text(courseIndex != -1 ? courses[courseIndex] : NSLocalizedString("Select a course", comment: ""))
+                            Text(courseIndex != -1 ? viewModel.courseNotPassedStrings[courseIndex] : NSLocalizedString("Select a course", comment: ""))
                             Spacer()
                             Image(systemName: "chevron.right")
                         }
@@ -95,13 +98,13 @@ struct ExamForm: View {
             .navigationBarTitle("Add exam", displayMode: .inline)
             .navigationBarItems(
                 leading: Button("Cancel") {
-                    self.presentationMode.wrappedValue.dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Done") {
-                    self.onDonePressed()
+                    onDonePressed()
                 }
             )
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
     }
     
     private func onDonePressed() {
@@ -162,12 +165,11 @@ struct ExamForm: View {
             print(error)
         }
     }
-    
 }
 
 struct CourseForm_Previews: PreviewProvider {
     @State private var index: Int = -1
     static var previews: some View {
-        ExamForm(courses: ["This", "Other", "One"], exam: nil).colorScheme(.dark).accentColor(.darkRed)
+        ExamForm(viewModel: ExamViewViewModel()).colorScheme(.dark).accentColor(.darkRed)
     }
 }

@@ -11,40 +11,41 @@ import CoreData
 
 struct CoursesView: View {
     
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @ObservedObject private var sheet = SheetState()
+    @StateObject private var viewModel = CourseViewViewModel()
 
-    @FetchRequest(entity: Course.entity(), sortDescriptors: [])
-    var courses: FetchedResults<Course>
-    
-    @State var addCourseModalShown: Bool = false
+    private var columnsLayout: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+        } else {
+            return [GridItem(.flexible())]
+        }
+    }
+
     @State var pickerSelection: Int = 0
     @State private var editMode = EditMode.inactive
-    @State private var courseToEdit: Course?
     @State private var showDescription: Bool = false
     
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: [GridItem(.flexible())]) {
-                    ForEach(coursesFiltered(withTag: pickerSelection), id: \.id) { course in
+                LazyVGrid(columns: columnsLayout) {
+                    ForEach(pickerSelection == 0 ? viewModel.activeCourses : viewModel.passedCourses, id: \.id) { course in
                         CourseRow(course: course)
-                                .onTapGesture {
-                                    self.courseToEdit = course
-                                    if editMode == .active {
-                                        self.addCourseModalShown.toggle()
-                                    }
-                                }
-                    }.onDelete(perform: deleteCourse)
+                            .onTapGesture {
+                                sheet.courseToEdit = course
+                            }
+                    }
 
                     Button(action: {
-                        self.addCourseModalShown.toggle()
+                        sheet.isShowing = true
                     }, label: {
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
                                 Image(systemName: "plus.circle")
                                 Spacer()
                                 Text("Add course")
-                                        .fontWeight(.bold)
+                                    .fontWeight(.bold)
                             }
                             Spacer()
                         }
@@ -67,18 +68,15 @@ struct CoursesView: View {
                     .padding()
                 ),
                 trailing: Button(
-                    action: { self.addCourseModalShown.toggle() },
+                    action: {  },
                     label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
                 )
             )
             .environment(\.editMode, $editMode)
-            .sheet(isPresented: self.$addCourseModalShown, onDismiss: {
-                if editMode == .active {
-                    self.editMode = .inactive
-                    self.courseToEdit = nil
-                }
+            .sheet(isPresented: $sheet.isShowing, onDismiss: {
+                sheet.courseToEdit = nil
             }, content: {
-                CourseForm(course: editMode == .active ? courseToEdit : nil)
+                CourseForm(course: sheet.courseToEdit)
             })
         }.onAppear {
             UIScrollView.appearance().backgroundColor = UIColor(named: "background")
@@ -88,30 +86,11 @@ struct CoursesView: View {
     }
 }
 
-extension CoursesView {
-    private func coursesFiltered(withTag tag: Int) -> [Course] {
-        NSLog("Filtering courses", courses.compactMap{ course in course })
-        let activeFilter: (Course) -> Bool = { $0.mark != 0 ? false : true }
-        let passedFilter: (Course) -> Bool = { $0.mark != 0 ? true : false }
-
-        switch tag {
-        case 0:
-            return courses.filter(activeFilter)
-        case 1:
-            return courses.filter(passedFilter)
-        default:
-            return courses.compactMap { course in course }
-        }
-    }
-
-    private func deleteCourse(at offsets: IndexSet) {
-        let deletedItem = coursesFiltered(withTag: pickerSelection)[offsets.first!]
-        managedObjectContext.delete(deletedItem)
-
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print(error)
+fileprivate class SheetState: ObservableObject {
+    @Published var isShowing: Bool = false
+    @Published var courseToEdit: Course? = nil {
+        didSet {
+            isShowing = courseToEdit != nil
         }
     }
 }

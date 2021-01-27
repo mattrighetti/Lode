@@ -11,10 +11,7 @@ import SwiftUI
 
 struct RemindersView: View {
 
-    @Environment(\.managedObjectContext) var managedObjectContext
-
-    @FetchRequest(entity: Assignment.entity(), sortDescriptors: [])
-    var assignments: FetchedResults<Assignment>
+    @StateObject private var viewModel = AssignmentViewViewModel()
     
     @State var showForm: Bool = false
     @State var addReminderPressed: Bool = false
@@ -26,7 +23,7 @@ struct RemindersView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: [GridItem(.flexible())]) {
-                    ForEach(assignmentsFiltered(withTag: pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! }), id: \.id) { assignment in
+                    ForEach(pickerSelection == 0 ? viewModel.dueAssignments : viewModel.pastAssignments, id: \.id) { assignment in
                         ReminderRow(assignment: assignment)
                             .onTapGesture {
                                 self.assignmentToEdit = assignment
@@ -35,7 +32,6 @@ struct RemindersView: View {
                                 }
                             }
                     }
-                    .onDelete(perform: deleteAssignment)
 
                     Button(action: {
                         self.showForm.toggle()
@@ -91,33 +87,6 @@ struct RemindersView: View {
                 ReminderForm(assignment: editMode == .active ? assignmentToEdit : nil)
             }
         )
-    }
-}
-
-extension RemindersView {
-    private func assignmentsFiltered(withTag tag: Int) -> [Assignment] {
-        let upcomingFilter: (Assignment) -> Bool = { $0.dueDate! > Date() }
-        let pastFilter: (Assignment) -> Bool = { $0.dueDate! <= Date() }
-
-        switch tag {
-        case 0:
-            return assignments.filter(upcomingFilter)
-        case 1:
-            return assignments.filter(pastFilter)
-        default:
-            return assignments.compactMap { assignment in assignment }
-        }
-    }
-
-    private func deleteAssignment(at offsets: IndexSet) {
-        let deletedItem = assignmentsFiltered(withTag: pickerSelection).sorted(by: { $0.dueDate! < $1.dueDate! })[offsets.first!]
-        managedObjectContext.delete(deletedItem)
-
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print(error)
-        }
     }
 }
 

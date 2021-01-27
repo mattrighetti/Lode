@@ -11,34 +11,31 @@ import SwiftUI
 
 struct ExamsView: View {
 
-    @Environment(\.managedObjectContext) var managedObjectContext
-    
-    @FetchRequest(entity: Exam.entity(), sortDescriptors: [], animation: .spring())
-    private var exams: FetchedResults<Exam>
+    private var columnsLayout: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+        } else {
+            return [GridItem(.flexible())]
+        }
+    }
 
-    @FetchRequest(entity: Course.entity(), sortDescriptors: [], animation: .spring())
-    private var courses: FetchedResults<Course>
+    @ObservedObject private var sheet = SheetState()
+    @StateObject private var viewModel = ExamViewViewModel()
 
-    @State private var addExamModalShown: Bool = false
     @State private var examPickerSelection: Int = 0
     @State private var presentAlert: Bool = false
     @State private var editMode = EditMode.inactive
-    @State private var examToEdit: Exam?
 
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: [GridItem(.flexible())]) {
-                    ForEach(examsFiltered(withTag: examPickerSelection).sorted(by: { $0.date! < $1.date! }), id: \.id) { exam in
+                LazyVGrid(columns: columnsLayout) {
+                    ForEach(examPickerSelection == 0 ? viewModel.upcomingExams : viewModel.pastExams, id: \.id) { exam in
                         ExamRow(exam: exam)
                             .onTapGesture {
-                                self.examToEdit = exam
-                                if editMode == .active {
-                                    self.addExamModalShown.toggle()
-                                }
+                                sheet.examToEdit = exam
                             }
-                            .onLongPressGesture { print("Long pressure of element \(exam)") }
-                    }.onDelete(perform: deleteExam)
+                    }
 
                     Button(action: {
                         showModal()
@@ -48,8 +45,8 @@ struct ExamsView: View {
                                 Image(systemName: "plus.circle").foregroundColor(Color("bw"))
                                 Spacer()
                                 Text("Add exam")
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("bw"))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color("bw"))
                             }
                             Spacer()
                         }
@@ -57,13 +54,6 @@ struct ExamsView: View {
                     .segmentedButton()
                 }
                 .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
-            }
-            .alert(isPresented: self.$presentAlert) {
-                Alert(
-                    title: Text("No active course is present"),
-                    message: Text("You must first add an active course to be able to add exams"),
-                    dismissButton: .cancel(Text("Ok"))
-                )
             }
 
             .navigationBarTitle("Exams")
@@ -85,61 +75,48 @@ struct ExamsView: View {
             )
             
             .environment(\.editMode, $editMode)
-        }.onAppear {
+        }
+        .alert(isPresented: self.$presentAlert) {
+            Alert(
+                title: Text("No active course is present"),
+                message: Text("You must first add an active course to be able to add exams"),
+                dismissButton: .cancel(Text("Ok"))
+            )
+        }
+        .onAppear {
             UIScrollView.appearance().backgroundColor = UIColor(named: "background")
             UITableView.appearance().backgroundColor = UIColor(named: "background")
             UITableView.appearance().separatorStyle = .none
         }
         .sheet(
-            isPresented: $addExamModalShown,
+            isPresented: $sheet.isShowing,
             onDismiss: {
-                if editMode == .active {
-                    self.editMode = .inactive
-                    self.examToEdit = nil
-                }
+                sheet.examToEdit = nil
             },
             content: {
                 ExamForm(
-                    courses: courses.compactMap{ course in course }.filter({ $0.mark == 0 }).map { $0.name! },
-                    exam: editMode == .active ? examToEdit : nil
+                    viewModel: viewModel,
+                    exam: sheet.examToEdit
                 )
-                .environment(\.managedObjectContext, managedObjectContext)
         })
     }
     
-    func examsFiltered(withTag tag: Int) -> [Exam] {
-        let upcomingFilter: (Exam) -> Bool = { $0.date! > Date() }
-        let pastFilter: (Exam) -> Bool = { $0.date! <= Date() }
-        
-        switch tag {
-        case 0:
-            return exams.filter(upcomingFilter)
-        case 1:
-            return exams.filter(pastFilter)
-        default:
-            return exams.compactMap { exam in exam }
-        }
-    }
-    
     private func showModal() {
-        if courses.compactMap({ course in course }).filter({ $0.mark == 0 }).map({ $0.name! }).isEmpty {
+        if viewModel.courseNotPassedStrings.isEmpty {
             self.presentAlert.toggle()
         } else {
-            self.addExamModalShown.toggle()
+            sheet.isShowing = true
         }
     }
-    
-    private func deleteExam(at offsets: IndexSet) {
-        let deletedItem = examsFiltered(withTag: examPickerSelection).sorted(by: { $0.date! < $1.date! })[offsets.first!]
-        managedObjectContext.delete(deletedItem)
-        
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print(error)
+}
+
+fileprivate class SheetState: ObservableObject {
+    @Published var isShowing: Bool = false
+    @Published var examToEdit: Exam? = nil {
+        didSet {
+            isShowing = examToEdit != nil
         }
     }
-    
 }
 
 struct ExamsView_Previews: PreviewProvider {

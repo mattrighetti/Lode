@@ -9,22 +9,23 @@
 import SwiftUI
 
 struct CfuCard: View {
-
     @AppStorage("totalCfu") var totalCfu: Int = 180
-    @Binding var gainedCfu: Int
+
+    @EnvironmentObject var viewModel: HomeViewViewModel
 
     var body: some View {
         ZStack {
             CircularProgressBar(
-                progress: CGFloat(gainedCfu) / CGFloat(totalCfu)
+                progress: CGFloat(viewModel.gainedCfu) / CGFloat(totalCfu)
             )
-            Text("\(gainedCfu)").font(.system(size: 30, weight: .bold, design: .rounded))
+            Text("\(viewModel.gainedCfu.twoDecimalPrecision)")
+                .font(.system(size: 30, weight: .bold, design: .rounded))
         }.background(Color("cardBackground"))
     }
 }
 
 struct Cards_Previews: PreviewProvider {
     static var previews: some View {
-        CfuCard(gainedCfu: .constant(180)).colorScheme(.dark)
+        CfuCard().colorScheme(.dark)
     }
 }

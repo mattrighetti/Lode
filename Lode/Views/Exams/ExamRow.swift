@@ -49,7 +49,11 @@ struct ExamRow: View {
             }
 
             Spacer()
-            
+
+            VStack {
+                Image(systemName: "ellipsis.circle.fill")
+                Spacer()
+            }
         }
         .card()
     }

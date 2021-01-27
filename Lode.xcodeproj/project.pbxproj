@@ -18,8 +18,10 @@
 		3307111EA0E7C4F2120C7B39 /* AverageDeltaTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330717C2773F1BDDCCE42A1F /* AverageDeltaTool.swift */; };
 		33071153C08D360DB8830796 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330712C4EFEA9EB40E30DA1F /* MainView.swift */; };
 		330711A68B3880DA05ABE184 /* MarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330712FA61CAAC9678237DC0 /* MarksView.swift */; };
+		330711D157EB9726D225E5D2 /* ExamStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071D0C4A36F5F447B89CAC /* ExamStorage.swift */; };
 		330711EF7F74DD1921C9DDB2 /* ReminderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071609C332263221295FF4 /* ReminderRow.swift */; };
 		33071280B244F665FFD58A21 /* ExamForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330715652E583EEDA5834830 /* ExamForm.swift */; };
+		3307134088C7BDC01486DE86 /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071F615C0ECD63B73F2857 /* HomeViewViewModel.swift */; };
 		33071366E3746A0BC04AB504 /* CfuCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071AD1793E70FD10AFC6CE /* CfuCards.swift */; };
 		33071377E595CA0D104EE097 /* Course+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071F3CBD5D619C805F3696 /* Course+CoreDataClass.swift */; };
 		33071385D8B5FADB765D7235 /* Assignment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071032F28C4222EF9AE486 /* Assignment+CoreDataProperties.swift */; };
@@ -29,27 +31,35 @@
 		3307153B9900F439ED84C542 /* AverageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071FCEEDB6EB18DCCA4608 /* AverageCard.swift */; };
 		3307154A93ED6F17DEDBA7EF /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330714D57CEA0F51416B0445 /* +Color.swift */; };
 		33071577667D61B60B6FBA9D /* BarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071698C62E4CD0AFF355A4 /* BarShape.swift */; };
+		330715FB56465483183FF0E5 /* ExamViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071F932AE2514135A29061 /* ExamViewViewModel.swift */; };
 		3307160656C30B63BC7AD972 /* Exam+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330717446BF6D94198F86FC2 /* Exam+CoreDataProperties.swift */; };
 		330716DEFB7BAD13B05D767B /* +Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071B9FFEEBB30BA8797C4D /* +Glyph.swift */; };
 		33071745DD0C7E0FBFCF27CE /* HorizontalCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071726CF9A892620E596A7 /* HorizontalCards.swift */; };
 		330717A976DA11DDF1064D61 /* ReminderForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071AE4F3F552E967DBFEA3 /* ReminderForm.swift */; };
 		330717B5E32DD82C48FE2203 /* CourseForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330711C3D316E7D5C8AB223D /* CourseForm.swift */; };
 		330718596C691AD73D161D3D /* MainInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330712864F6299D2CA290395 /* MainInfoCard.swift */; };
+		330718B529463AE11011F049 /* AssignmentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330717555FCF2D515F3CC06E /* AssignmentStorage.swift */; };
+		33071921A1B69F337962FCE5 /* CourseViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071BFA087812FDECDEB8B7 /* CourseViewViewModel.swift */; };
+		33071930812CB17C784B58F4 /* CourseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071E8864BBA0CE4220400B /* CourseStorage.swift */; };
 		330719582B589770DD0453BC /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307109BBDDBFC1863B3E0BA /* +View.swift */; };
 		3307197759CEA3187B88CB27 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071270F1F98158F8ED8E7C /* StatsView.swift */; };
 		330719942BE80B02FE39EF5F /* InitialForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071B533BC09719E3363122 /* InitialForm.swift */; };
 		330719E9EA6E448E94BC7215 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330715A6897F584870C4FEF9 /* DataCard.swift */; };
 		33071A6A10CF8E57AAF93DBD /* CourseDescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330711198317F5EB7524C5BC /* CourseDescriptionPage.swift */; };
 		33071B195BC3A0EF6C27FEFA /* ExamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330711EC7F8478F0605C4262 /* ExamsView.swift */; };
+		33071B8A2FCEB14CF5D60F0B /* AverageDeltaToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330714E6A8CA6A934D709BC6 /* AverageDeltaToolViewModel.swift */; };
 		33071B902E81F1DFA8B66C65 /* ExamDescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071EB6BB512D09A998BBCD /* ExamDescriptionPage.swift */; };
 		33071C7996EF0F70EBFED77A /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307153A3D8B3C00F3829F44 /* Course+CoreDataProperties.swift */; };
 		33071C91ABD3F08164ECC08F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307156FAD59786C758E8062 /* HomeView.swift */; };
 		33071C9979A7F47AC468953D /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330712FA46C7568ECB669E0C /* CustomModifiers.swift */; };
 		33071CAD90223537F8FD571F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330718A633A1BC1414606C32 /* Deck.swift */; };
+		33071CBFFD3F11FCC195F842 /* MarksViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307161C5C7604B87585E448 /* MarksViewViewModel.swift */; };
+		33071CD2F20EA230EE0C8F4D /* StatsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307159AA593A60EB07CF919 /* StatsViewViewModel.swift */; };
 		33071D00D4ABA83545C7AB6B /* Exam+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330710BD04F120EBC5C13B25 /* Exam+CoreDataClass.swift */; };
 		33071D90135BBE5CD49C688E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307113B1322C4267E9A90D5 /* SettingsView.swift */; };
 		33071DD8D9B4AA67B8C58346 /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307124EF3B9D01F58B2075C /* CardStack.swift */; };
 		33071E358A0FA61E4150F2B0 /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = 3307187CF7B461F9A1D5979A /* main.png */; };
+		33071E512187DA7F00B5E4EC /* AssignmentViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071FF3876ED9841C83692B /* AssignmentViewViewModel.swift */; };
 		33071EB0A76EE45CF56F086D /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071BB9CF263BEA2B3CCA36 /* +Date.swift */; };
 		33071F0ADFA9961B63F87EAE /* +Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307135A52C87CCBF2BE7E91 /* +Array.swift */; };
 		33071F31C3B4B99640EDC97B /* +Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071AADCF01BAE24697C90E /* +Publishers.swift */; };
@@ -101,16 +111,20 @@
 		330713F84FABC154A9283B45 /* CourseRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseRow.swift; sourceTree = "<group>"; };
 		330714D57CEA0F51416B0445 /* +Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Color.swift"; sourceTree = "<group>"; };
 		330714DE48364678EA9256D4 /* IntroductionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
+		330714E6A8CA6A934D709BC6 /* AverageDeltaToolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageDeltaToolViewModel.swift; sourceTree = "<group>"; };
 		3307153A3D8B3C00F3829F44 /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		330715652E583EEDA5834830 /* ExamForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamForm.swift; sourceTree = "<group>"; };
 		3307156FAD59786C758E8062 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		3307159AA593A60EB07CF919 /* StatsViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewViewModel.swift; sourceTree = "<group>"; };
 		330715A6897F584870C4FEF9 /* DataCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
 		330715D877C513A9B6E66B01 /* IconColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconColorPickerView.swift; sourceTree = "<group>"; };
 		33071609C332263221295FF4 /* ReminderRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderRow.swift; sourceTree = "<group>"; };
 		330716120CD511CBAB152F6C /* CoursesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
+		3307161C5C7604B87585E448 /* MarksViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksViewViewModel.swift; sourceTree = "<group>"; };
 		33071698C62E4CD0AFF355A4 /* BarShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarShape.swift; sourceTree = "<group>"; };
 		33071726CF9A892620E596A7 /* HorizontalCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalCards.swift; sourceTree = "<group>"; };
 		330717446BF6D94198F86FC2 /* Exam+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Exam+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		330717555FCF2D515F3CC06E /* AssignmentStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentStorage.swift; sourceTree = "<group>"; };
 		330717891D2FB24A034ED140 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		330717C2773F1BDDCCE42A1F /* AverageDeltaTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageDeltaTool.swift; sourceTree = "<group>"; };
 		3307182C214E6AAC9C1F9C62 /* CircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
@@ -126,12 +140,18 @@
 		33071B533BC09719E3363122 /* InitialForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialForm.swift; sourceTree = "<group>"; };
 		33071B9FFEEBB30BA8797C4D /* +Glyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Glyph.swift"; sourceTree = "<group>"; };
 		33071BB9CF263BEA2B3CCA36 /* +Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
+		33071BFA087812FDECDEB8B7 /* CourseViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewViewModel.swift; sourceTree = "<group>"; };
+		33071D0C4A36F5F447B89CAC /* ExamStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamStorage.swift; sourceTree = "<group>"; };
 		33071D5FFF95471299B52B80 /* Assignment+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+CoreDataClass.swift"; sourceTree = "<group>"; };
 		33071DA4189A62CD755F461D /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		33071DE5C916D22CC1AF1DFC /* ExamRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamRow.swift; sourceTree = "<group>"; };
+		33071E8864BBA0CE4220400B /* CourseStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseStorage.swift; sourceTree = "<group>"; };
 		33071EB6BB512D09A998BBCD /* ExamDescriptionPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamDescriptionPage.swift; sourceTree = "<group>"; };
 		33071F3CBD5D619C805F3696 /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = "<group>"; };
+		33071F615C0ECD63B73F2857 /* HomeViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
+		33071F932AE2514135A29061 /* ExamViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamViewViewModel.swift; sourceTree = "<group>"; };
 		33071FCEEDB6EB18DCCA4608 /* AverageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageCard.swift; sourceTree = "<group>"; };
+		33071FF3876ED9841C83692B /* AssignmentViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentViewViewModel.swift; sourceTree = "<group>"; };
 		C9405F0E25B8F17100342FF7 /* Lode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9405F1125B8F17100342FF7 /* LodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodeApp.swift; sourceTree = "<group>"; };
 		C9405F1525B8F17200342FF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,6 +224,20 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		3307134B1A050D0AEBD1EAE1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				33071F615C0ECD63B73F2857 /* HomeViewViewModel.swift */,
+				33071BFA087812FDECDEB8B7 /* CourseViewViewModel.swift */,
+				33071F932AE2514135A29061 /* ExamViewViewModel.swift */,
+				33071FF3876ED9841C83692B /* AssignmentViewViewModel.swift */,
+				3307161C5C7604B87585E448 /* MarksViewViewModel.swift */,
+				3307159AA593A60EB07CF919 /* StatsViewViewModel.swift */,
+				330714E6A8CA6A934D709BC6 /* AverageDeltaToolViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		3307140A53371011B2B783FD /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +256,16 @@
 				3307196BD610F1371D7D3F2A /* CoreDataModel */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		330714FF38F60B8D9264E8F2 /* CoreDataControllers */ = {
+			isa = PBXGroup;
+			children = (
+				33071E8864BBA0CE4220400B /* CourseStorage.swift */,
+				330717555FCF2D515F3CC06E /* AssignmentStorage.swift */,
+				33071D0C4A36F5F447B89CAC /* ExamStorage.swift */,
+			);
+			path = CoreDataControllers;
 			sourceTree = "<group>";
 		};
 		33071740A234129BE91F653B /* HomeViews */ = {
@@ -378,6 +422,8 @@
 				3307140DBEF98FE5F1720825 /* Model */,
 				3307125037CED6A959FCC8A5 /* Icons */,
 				C9E57A9A25B9269200AC289F /* Lode.xcdatamodeld */,
+				3307134B1A050D0AEBD1EAE1 /* ViewModels */,
+				330714FF38F60B8D9264E8F2 /* CoreDataControllers */,
 			);
 			path = Lode;
 			sourceTree = "<group>";
@@ -591,6 +637,16 @@
 				33071C7996EF0F70EBFED77A /* Course+CoreDataProperties.swift in Sources */,
 				33071385D8B5FADB765D7235 /* Assignment+CoreDataProperties.swift in Sources */,
 				33071FDB9F17D7CF44226CEE /* IntroductionView.swift in Sources */,
+				33071930812CB17C784B58F4 /* CourseStorage.swift in Sources */,
+				330718B529463AE11011F049 /* AssignmentStorage.swift in Sources */,
+				330711D157EB9726D225E5D2 /* ExamStorage.swift in Sources */,
+				3307134088C7BDC01486DE86 /* HomeViewViewModel.swift in Sources */,
+				33071921A1B69F337962FCE5 /* CourseViewViewModel.swift in Sources */,
+				330715FB56465483183FF0E5 /* ExamViewViewModel.swift in Sources */,
+				33071E512187DA7F00B5E4EC /* AssignmentViewViewModel.swift in Sources */,
+				33071CBFFD3F11FCC195F842 /* MarksViewViewModel.swift in Sources */,
+				33071CD2F20EA230EE0C8F4D /* StatsViewViewModel.swift in Sources */,
+				33071B8A2FCEB14CF5D60F0B /* AverageDeltaToolViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

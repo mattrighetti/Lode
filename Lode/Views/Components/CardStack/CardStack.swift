@@ -9,21 +9,7 @@
 import SwiftUI
 
 struct CardStack: View {
-
-    @ObservedObject var deck: Deck = Deck(cards: [
-        InfoCard(title: NSLocalizedString("Your CFU", comment: ""), description: "", content: {
-            AnyView(CfuCard(gainedCfu: .constant(9)))
-        }),
-        InfoCard(title: NSLocalizedString("Your Average", comment: ""), description: "", content: {
-            AnyView(AverageCard(courses: .constant([Course]()), average: .constant(1.0)))
-        }),
-        InfoCard(title: NSLocalizedString("Exams Countdown", comment: ""), description: "", content: {
-            AnyView(MainInfoCard(exams: .constant([Exam]())))
-        })
-    ])
-
-    @FetchRequest(entity: Exam.entity(), sortDescriptors: []) var exams: FetchedResults<Exam>
-    @FetchRequest(entity: Course.entity(), sortDescriptors: []) var courses: FetchedResults<Course>
+    @ObservedObject var deck: Deck = Deck()
     
     @State var draggingOffset: CGFloat = 0
     @State var isDragging: Bool = false

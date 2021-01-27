@@ -12,13 +12,12 @@ struct MarksView: View {
 
     @Environment(\.presentationMode) var presentationMode
     
-    @FetchRequest(entity: Course.entity(), sortDescriptors: [], animation: .none)
-    private var courses: FetchedResults<Course>
+    @StateObject private var viewModel = MarksViewViewModel()
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: [GridItem(.flexible())]) {
-                ForEach(courses, id: \.id) { course in
+                ForEach(viewModel.courses, id: \.id) { course in
                     MarkCard(course: course)
                 }
             }
@@ -95,12 +94,13 @@ struct MarkCard: View {
             }.padding()
         }.cornerRadius(25)
     }
-    
+
+    @ViewBuilder
     private func content() -> some View {
         if course.mark != 0 {
-            return AnyView( Text(markString).font(.system(.title, design: .rounded)).fontWeight(.bold) )
+            Text(markString).font(.system(.title, design: .rounded)).fontWeight(.bold)
         } else {
-            return AnyView( Text("?").font(.system(.title, design: .rounded)).fontWeight(.bold) )
+            Text("?").font(.system(.title, design: .rounded)).fontWeight(.bold)
         }
     }
 

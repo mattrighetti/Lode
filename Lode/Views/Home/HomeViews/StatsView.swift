@@ -12,90 +12,32 @@ struct StatsView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @FetchRequest(entity: Course.entity(), sortDescriptors: [], animation: .spring())
-    private var courses: FetchedResults<Course>
-
-    @FetchRequest(entity: Exam.entity(), sortDescriptors: [], animation: .spring())
-    private var exams: FetchedResults<Exam>
-
-    var totalCourses: Double {
-        Double(courses.count)
-    }
-
-    var totalCfu: Double {
-        courses.compactMap { course in Double(course.cfu) }.reduce(0, { $0 + $1 })
-    }
-
-    var expectedAverage: Double {
-        let markSum = courses.compactMap { course in
-            Double(course.expectedMark) * Double(course.cfu)
-        }
-        .reduce(0, { $0 + $1 })
-
-        return markSum / Double(totalCfu)
-    }
-
-    var projectedGraduationGrade: Double {
-        expectedAverage * 11.0 / 30.0
-    }
-
-    var passedExams: [Course] {
-        courses.filter { $0.mark != 0 }
-    }
-
-    var numPassedExams: Double {
-        Double(passedExams.count)
-    }
-
-    var gainedCfu: Double {
-        passedExams.compactMap { Double($0.cfu) }.reduce(0, { $0 + $1 })
-    }
-
-    var currentAverage: Double {
-        let average = passedExams.compactMap { Double($0.cfu) * Double($0.mark) }.reduce(0, { $0 + $1 })
-        return average / gainedCfu
-    }
-
-    var currentProjectedGraduationGrade: Double {
-        currentAverage * 11.0 / 31.0
-    }
-
-    var asExpected: Double {
-        Double(passedExams.filter { course in course.mark == course.expectedMark }.count)
-    }
-
-    var betterThanExpected: Double {
-        Double(passedExams.filter { course in course.mark > course.expectedMark }.count)
-    }
-
-    var worseThanExpected: Double {
-        Double(passedExams.filter { course in course.mark < course.expectedMark }.count)
-    }
+    @StateObject private var viewModel = StatsViewViewModel()
 
     var body: some View {
         List {
             Section(header: Text("Main Info")) {
-                ListItem(itemDescription: "Total Courses", itemValue: totalCourses)
-                ListItem(itemDescription: "Total CFU", itemValue: totalCfu)
-                ListItem(itemDescription: "Expected Average", itemValue: expectedAverage)
-                ListItem(itemDescription: "Projected graduation grade", itemValue: projectedGraduationGrade)
+                ListItem(itemDescription: "Total Courses", itemValue: viewModel.totalCourses)
+                ListItem(itemDescription: "Total CFU", itemValue: viewModel.totalCfu)
+                ListItem(itemDescription: "Expected Average", itemValue: viewModel.expectedAverage)
+                ListItem(itemDescription: "Projected graduation grade", itemValue: viewModel.projectedGraduationGrade)
             }
 
             Section(header: Text("Current statistics")) {
-                ListItem(itemDescription: "Passed exams", itemValue: numPassedExams)
-                ListItem(itemDescription: "Gained CFU", itemValue: gainedCfu)
-                ListItem(itemDescription: "Current Average", itemValue: currentAverage)
-                ListItem(itemDescription: "Current graduation grade", itemValue: currentProjectedGraduationGrade)
+                ListItem(itemDescription: "Passed exams", itemValue: viewModel.numPassedExams)
+                ListItem(itemDescription: "Gained CFU", itemValue: viewModel.gainedCfu)
+                ListItem(itemDescription: "Current Average", itemValue: viewModel.currentAverage)
+                ListItem(itemDescription: "Current graduation grade", itemValue: viewModel.currentProjectedGraduationGrade)
             }
 
             Section(header: Text("Exams passed")) {
-                ListItem(itemDescription: "As expected", itemValue: asExpected)
-                ListItem(itemDescription: "Better than expected", itemValue: betterThanExpected)
-                ListItem(itemDescription: "Worse than expected", itemValue: worseThanExpected)
+                ListItem(itemDescription: "As expected", itemValue: viewModel.asExpected)
+                ListItem(itemDescription: "Better than expected", itemValue: viewModel.betterThanExpected)
+                ListItem(itemDescription: "Worse than expected", itemValue: viewModel.worseThanExpected)
             }
             
             Section(header: Text("Latest marks")) {
-                BarChartView(arrayValues: courses.filter({ $0.mark != 0 }).map({ Double($0.mark) }), color: .red)
+                BarChartView(arrayValues: viewModel.barChartData, color: .red)
                     .frame(height: 250, alignment: .center)
                     .padding()
             }
@@ -108,6 +50,7 @@ struct StatsView: View {
             UITableView.appearance().separatorStyle = .none
         }
         .onDisappear {
+            // TODO check if needed
             presentationMode.wrappedValue.dismiss()
         }
         

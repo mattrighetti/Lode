@@ -11,9 +11,7 @@ import SwiftUI
 struct HomeView: View {
 
     @ObservedObject private var sheet = SheetState()
-
-    @FetchRequest(entity: Course.entity(), sortDescriptors: [], animation: .spring())
-    private var courses: FetchedResults<Course>
+    @StateObject private var viewModel = HomeViewViewModel()
 
     @State private var progress: CGFloat = 0.4
     @State private var markViewActive: Bool = false
@@ -29,6 +27,7 @@ struct HomeView: View {
                 HomeSection(sectionTitle: NSLocalizedString("Main Info", comment: "")) {
                     CardStack()
                         .padding(.horizontal, 25)
+                        .environmentObject(viewModel)
                 }
                 .padding(.bottom)
                 .frame(height: 450)
@@ -87,12 +86,6 @@ struct HomeView: View {
         switch sheet.state {
         case .settings:
             SettingsView()
-        case .examForm:
-            ExamForm(courses: courses.compactMap { course in course.name })
-        case .assignmentForm:
-            ReminderForm()
-        case .courseForm:
-            CourseForm()
         default:
             EmptyView()
         }
@@ -112,9 +105,6 @@ fileprivate class SheetState: ObservableObject {
 fileprivate enum SheetContent {
     case none
     case settings
-    case assignmentForm
-    case examForm
-    case courseForm
 }
 
 struct HomeSection<Content>: View where Content: View {

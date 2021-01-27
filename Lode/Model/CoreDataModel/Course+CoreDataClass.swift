@@ -61,3 +61,13 @@ public class Course: NSManagedObject {
         
     }
 }
+
+// MARK : - REQUESTS
+
+extension Course {
+    static var requestAll: NSFetchRequest<Course> {
+        let request: NSFetchRequest<Course> = Course.fetchRequest()
+        request.sortDescriptors = []
+        return request
+    }
+}

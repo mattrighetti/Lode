@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct CourseRow: View {
-    
+    @State private var showActionSheet = false
+    @State private var selectedCourseId: UUID?
+
     var course: Course
-    
+
     var courseAcronym: String {
-        let splitString = self.course.name!
+        let splitString = course.name!
             .split { $0 == " " }
             .map(String.init)
             .filter { $0 != "and" && $0 != "e" }
@@ -22,7 +24,7 @@ struct CourseRow: View {
     }
     
     var isNameTooLong: Bool {
-        return self.course.name!.count > 30
+        course.name!.count > 30
     }
     
     var body: some View {
@@ -48,15 +50,29 @@ struct CourseRow: View {
             .drawingGroup()
             
             Spacer()
+
+            VStack {
+                Button(action: {
+                    self.selectedCourseId = course.id
+                    self.showActionSheet.toggle()
+                }) {
+                    Image(systemName: "ellipsis.circle.fill")
+                        .font(.system(size: 25.0))
+                        .foregroundColor(.white)
+                }
+
+                Spacer()
+            }
         }
         .card()
     }
-    
+
+    @ViewBuilder
     private func badge() -> some View {
-        if self.course.mark != 0 {
-            return AnyView( NumberBadge(label: NSLocalizedString("Final", comment: ""), value: Int(self.course.mark), color: .yellow) )
+        if course.mark != 0 {
+            NumberBadge(label: NSLocalizedString("Final", comment: ""), value: Int(course.mark), color: .yellow)
         } else {
-            return AnyView( NumberBadge(label: NSLocalizedString("Expected", comment: ""), value: Int(self.course.expectedMark), color: .blue) )
+            NumberBadge(label: NSLocalizedString("Expected", comment: ""), value: Int(course.expectedMark), color: .blue)
         }
     }
     
@@ -67,7 +83,7 @@ struct NumberBadge: View {
     var label: String
     var value: Int
     var laude: Bool {
-        if self.value == 31 {
+        if value == 31 {
             return true
         }
         return false

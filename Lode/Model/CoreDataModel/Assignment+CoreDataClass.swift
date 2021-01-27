@@ -48,3 +48,11 @@ public class Assignment: NSManagedObject {
     }
     
 }
+
+extension Assignment {
+    static var requestAll: NSFetchRequest<Assignment> {
+        let request: NSFetchRequest<Assignment> = Assignment.fetchRequest()
+        request.sortDescriptors = []
+        return request
+    }
+}

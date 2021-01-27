@@ -90,10 +90,3 @@ fileprivate enum SheetContent {
     case initialForm
     case introduction
 }
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-            .colorScheme(.dark).accentColor(Color.red)
-    }
-}

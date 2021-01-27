@@ -10,10 +10,10 @@ import SwiftUI
 
 struct MainInfoCard: View {
 
-    @Binding var exams: [Exam]
+    @EnvironmentObject var viewModel: HomeViewViewModel
     
     var closeExams: [Exam] {
-        let closest = exams.sorted(by: { $0.date! < $1.date! }).filter({ $0.daysLeft > 0 }).prefix(4)
+        let closest = viewModel.exams.sorted(by: { $0.date! < $1.date! }).filter({ $0.daysLeft > 0 }).prefix(4)
         return Array(closest)
     }
     
@@ -63,6 +63,6 @@ struct MainInfoCard: View {
 
 struct MainInfoCard_Previews: PreviewProvider {
     static var previews: some View {
-        MainInfoCard(exams: .constant([Exam]()))
+        MainInfoCard()
     }
 }
