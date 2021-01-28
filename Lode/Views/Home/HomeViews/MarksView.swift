@@ -110,8 +110,7 @@ struct MarksView_Previews: PreviewProvider {
     static var previews: some View {
         let course = Course()
         course.cfu = 5
-        course.colorColIndex = 0
-        course.colorRowIndex = 0
+        course.color = Color.flatRed.toHex
         course.expectedMark = 19
         course.laude = true
         course.expectedLaude = false

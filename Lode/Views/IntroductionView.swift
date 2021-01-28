@@ -79,9 +79,9 @@ struct RectangularButtonLabel<Content: View>: View {
                     .padding()
             Spacer()
         }
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
+        .background(Color.blue)
+        .foregroundColor(Color.white)
+        .cornerRadius(10)
     }
 }
 

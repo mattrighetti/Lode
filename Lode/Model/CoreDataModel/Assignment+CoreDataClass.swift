@@ -9,13 +9,13 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 public class Assignment: NSManagedObject {
 
     convenience init(context: NSManagedObjectContext,
                      id: UUID = UUID(),
-                     colorColumnIndex: Int,
-                     colorRowIndex: Int,
+                     color: Color,
                      caption: String? = "No caption",
                      dueDate: Date? = Date(),
                      title: String? = "No title") {
@@ -26,8 +26,7 @@ public class Assignment: NSManagedObject {
         // ObjectData
         self.id = id
         self.caption = caption
-        self.colorColumnIndex = Int16(colorColumnIndex)
-        self.colorRowIndex = Int16(colorRowIndex)
+        self.color = color.toHex
         self.dueDate = dueDate
         self.title = title
     }

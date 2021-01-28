@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct ExamRow: View {
-
     var exam: Exam
     
     var body: some View {
         HStack {
             ZStack(alignment: .center) {
                 Circle()
-                    .fill(Color.gradientsPalette[Int(exam.colorRowIndex)][Int(exam.colorColIndex)])
+                    // TODO fix this color usage
+                    .fill(Color(hex: exam.color!)!)
                 
                 VStack {
                     Text(exam.dayString)
@@ -49,11 +49,6 @@ struct ExamRow: View {
             }
 
             Spacer()
-
-            VStack {
-                Image(systemName: "ellipsis.circle.fill")
-                Spacer()
-            }
         }
         .card()
     }
@@ -65,8 +60,7 @@ struct ExamRow_Previews: PreviewProvider {
         let exam = Exam()
         exam.date = Date()
         exam.title = "This is a title"
-        exam.colorColIndex = 0
-        exam.colorRowIndex = 0
+        exam.color = "#AABBFFFF"
         
         return List {
             ExamRow(exam: exam)

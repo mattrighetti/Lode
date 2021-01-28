@@ -2,16 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Assignment" representedClassName=".Assignment" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String"/>
-        <attribute name="colorColumnIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="colorRowIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Course" representedClassName=".Course" syncable="YES">
         <attribute name="cfu" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="colorColIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="colorRowIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="expectedLaude" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="expectedMark" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="iconName" optional="YES" attributeType="String"/>
@@ -21,15 +19,14 @@
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Exam" representedClassName=".Exam" syncable="YES">
-        <attribute name="colorColIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="colorRowIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Assignment" positionX="184.351318359375" positionY="8.3629150390625" width="128" height="119"/>
-        <element name="Course" positionX="97.140380859375" positionY="205.8341064453125" width="128" height="179"/>
-        <element name="Exam" positionX="-54" positionY="-9" width="128" height="104"/>
+        <element name="Assignment" positionX="184.351318359375" positionY="8.3629150390625" width="128" height="104"/>
+        <element name="Course" positionX="97.140380859375" positionY="205.8341064453125" width="128" height="164"/>
+        <element name="Exam" positionX="-54" positionY="-9" width="128" height="89"/>
     </elements>
 </model>

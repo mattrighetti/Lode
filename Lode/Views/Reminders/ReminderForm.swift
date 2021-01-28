@@ -9,27 +9,27 @@
 import SwiftUI
 
 struct ReminderForm: View {
-    
-    // Does automatically the job to get the dismiss Bool of the View that launches this as sheet
+
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.managedObjectContext) var managedObjectContext
+
+    var viewModel = AssignmentFormViewModel()
 
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var date: Date = Date()
-    @State private var colorIndex: GridIndex = GridIndex(row: Int.random(in: 0...2), column: Int.random(in: 0...4))
+    @State private var color: Color = Color.gradientsPalette[Int.random(in: 0...Color.gradientsPalette.count)]
     
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
     
-    @State private var restoredAssignment: Bool = false
+    @State private var editAssignmentMode: Bool = false
     var assignment: Assignment?
 
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 NavigationLink(
-                    destination: ColorPickerView(colorIndex: $colorIndex),
+                    destination: ColorPickerView(selectedColor: $color),
                     isActive: $activeColorNavigationLink
                 ) {
                     ZStack {
@@ -39,7 +39,7 @@ struct ReminderForm: View {
                             .frame(width: 105, height: 105, alignment: .center)
 
                         Circle()
-                            .fill(Color.gradientsPalette[colorIndex.row][colorIndex.column])
+                            .fill(color)
                             .frame(width: 100, height: 100, alignment: .center)
                         
                     }.padding(.top, 50)
@@ -61,20 +61,35 @@ struct ReminderForm: View {
 
                 DatePicker("Select date", selection: self.$date, displayedComponents: .date)
                         .datePickerStyle(GraphicalDatePickerStyle())
+
+                if editAssignmentMode {
+                    Button(action: {
+                        viewModel.delete(id: assignment!.id!)
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            Text("Delete")
+                                .padding()
+                            Spacer()
+                        }
+                        .background(Color.flatRed)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                    })
+                }
                 
             }
             .scrollViewWithoutBackground()
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
-            .onAppear {
-                self.restoreAssignment()
-            }
+            .onAppear(perform: setupAssignment)
                 
             .navigationBarTitle("Add assignment", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(
                     action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     },
                     label: {
                         Text("Cancel")
@@ -82,7 +97,7 @@ struct ReminderForm: View {
                 ),
                 trailing: Button(
                     action: {
-                        self.onDonePressed()
+                        onDonePressed()
                     },
                     label: {
                         Text("Done")
@@ -93,63 +108,22 @@ struct ReminderForm: View {
     }
     
     private func onDonePressed() {
-        if self.assignment != nil {
-            updateAssignment()
+        if editAssignmentMode {
+            viewModel.update(withId: assignment!.id!, title: title, caption: description, color: color.toHex!, dueDate: date)
         } else {
-            addAssignment()
+            viewModel.addAssignment(title: title, caption: description, color: color.toHex!, dueDate: date)
         }
-        self.presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
     }
     
-    private func compile(assignment: Assignment) {
-        assignment.id = UUID()
-        assignment.title = title.isEmpty ? "No title" : title
-        assignment.caption = description
-        assignment.colorColumnIndex = Int16(colorIndex.column)
-        assignment.colorRowIndex = Int16(colorIndex.row)
-        assignment.dueDate = date
-    }
-    
-    private func updateAssignment() {
-        let fetchAssignment = Assignment.fetchRequest(withUUID: self.assignment!.id!)
-        
-        do {
-            if let course = try managedObjectContext.fetch(fetchAssignment).first {
-                compile(assignment: course)
-            }
-            
-            saveContext()
-        } catch {
-            let fetchError = error as NSError
-            debugPrint(fetchError)
-        }
-    }
-    
-    private func addAssignment() {
-        let newAssignment = Assignment(context: managedObjectContext)
-        compile(assignment: newAssignment)
-        
-        saveContext()
-    }
-    
-    private func restoreAssignment() {
-        if !self.restoredAssignment {
-            if let assignmentToEdit = self.assignment {
-                self.title = assignmentToEdit.title ?? ""
-                self.description = assignmentToEdit.caption ?? ""
-                self.date = assignmentToEdit.dueDate!
-                self.colorIndex = GridIndex(row: Int(assignmentToEdit.colorRowIndex), column: Int(assignmentToEdit.colorColumnIndex))
-            }
-            
-            self.restoredAssignment.toggle()
-        }
-    }
-    
-    private func saveContext() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print(error)
+    private func setupAssignment() {
+        if let assignmentToEdit = assignment {
+            self.title = assignmentToEdit.title!
+            self.description = assignmentToEdit.caption!
+            self.date = assignmentToEdit.dueDate!
+            self.color = Color(hex: assignmentToEdit.color!)!
+
+            self.editAssignmentMode.toggle()
         }
     }
     

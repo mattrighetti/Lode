@@ -9,12 +9,9 @@
 import SwiftUI
 
 struct CourseRow: View {
-    @State private var showActionSheet = false
-    @State private var selectedCourseId: UUID?
-
     var course: Course
 
-    var courseAcronym: String {
+    private var courseAcronym: String {
         let splitString = course.name!
             .split { $0 == " " }
             .map(String.init)
@@ -23,7 +20,7 @@ struct CourseRow: View {
         return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
     }
     
-    var isNameTooLong: Bool {
+    private var isNameTooLong: Bool {
         course.name!.count > 30
     }
     
@@ -31,18 +28,20 @@ struct CourseRow: View {
         HStack {
             ZStack(alignment: .center) {
                 Circle()
-                    .fill(Color.gradientsPalette[Int(course.colorRowIndex)][Int(course.colorColIndex)])
-                Image(systemName: course.iconName ?? "pencil").foregroundColor(.white).font(.system(size: 30))
+                    .fill(Color(hex: course.color!)!)
+                Image(systemName: course.iconName ?? "pencil")
+                    .foregroundColor(.white)
+                    .font(.system(size: 30))
             }
             .frame(width: 70, height: 70, alignment: .center)
 
             VStack(alignment: .leading) {
-                Text(isNameTooLong ? self.courseAcronym : self.course.name ?? "No name")
+                Text(isNameTooLong ? self.courseAcronym : course.name ?? "No name")
                     .font(.headline)
                     .fontWeight(.semibold)
                 
                 HStack {
-                    NumberBadge(label: "CFU", value: Int(self.course.cfu), color: .orange)
+                    NumberBadge(label: "CFU", value: Int(course.cfu), color: .orange)
                     badge()
                 }
                 .padding(.top, 10)
@@ -50,19 +49,6 @@ struct CourseRow: View {
             .drawingGroup()
             
             Spacer()
-
-            VStack {
-                Button(action: {
-                    self.selectedCourseId = course.id
-                    self.showActionSheet.toggle()
-                }) {
-                    Image(systemName: "ellipsis.circle.fill")
-                        .font(.system(size: 25.0))
-                        .foregroundColor(.white)
-                }
-
-                Spacer()
-            }
         }
         .card()
     }
@@ -79,7 +65,6 @@ struct CourseRow: View {
 }
 
 struct NumberBadge: View {
-    
     var label: String
     var value: Int
     var laude: Bool {
@@ -93,7 +78,7 @@ struct NumberBadge: View {
     var body: some View {
         HStack {
             Text(label)
-            Image(systemName: "\(self.value == 31 ? 30 : self.value).circle")
+            Image(systemName: "\(value == 31 ? 30 : value).circle")
                 .font(.system(size: 20))
             if laude {
                 Text("L")

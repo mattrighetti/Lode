@@ -3,20 +3,26 @@
 //
 
 import Combine
+import os
+
+fileprivate var logger = Logger(subsystem: "com.mattrighetti.Lode", category: "CourseViewViewModel")
 
 class CourseViewViewModel: ObservableObject {
     @Published var activeCourses: [Course] = []
     @Published var passedCourses: [Course] = []
     @Published var courses: [Course] = [] {
         willSet {
+            logger.log("Updating courses to: \(newValue)")
             activeCourses = newValue.filter { $0.mark == 0 }
             passedCourses = newValue.filter { $0.mark != 0 }
         }
     }
+
     private var cancellable: AnyCancellable?
 
     init() {
         cancellable = CourseStorage.shared.courses.sink { courses in
+            logger.log("Updating courses")
             self.courses = courses
         }
     }

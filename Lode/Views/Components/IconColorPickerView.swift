@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct IconColorPickerView: View {
-
-    @Binding var colorIndex: GridIndex
-    @Binding var glyphIndex: GridIndex
+    
+    @Binding var selectedColor: Color
+    @Binding var selectedGlyph: String
 
     @State private var pickerSelection: Int = 0
 
@@ -21,11 +21,11 @@ struct IconColorPickerView: View {
                 Spacer()
 
                 ZStack {
-                    Color.gradientsPalette[colorIndex.row][colorIndex.column]
+                    selectedColor
                         .clipShape(Circle())
                         .frame(width: 150, height: 150, alignment: .center)
 
-                    Image(systemName: Glyph.glyphArray[glyphIndex.row][glyphIndex.column])
+                    Image(systemName: selectedGlyph)
                         .font(.system(size: 60))
                         .foregroundColor(.white)
                 }
@@ -42,106 +42,79 @@ struct IconColorPickerView: View {
                 .padding(.horizontal, 50)
 
                 Divider().padding(0)
-
-                GridStack(rows: 3, columns: 5) { row, column in
-                    Group {
-                        if self.$pickerSelection.wrappedValue == 0 {
-                            CircleColorPickerElement(
-                                row: row,
-                                col: column,
-                                currentIndex: self.$colorIndex
-                            ).onTapGesture {
-                                self.colorIndex = GridIndex(row: row, column: column)
-                            }
-                        } else {
-                            GlyphColorPickerElement(
-                                row: row,
-                                col: column,
-                                currentIndex: self.$glyphIndex
-                            ).onTapGesture {
-                                self.glyphIndex = GridIndex(row: row, column: column)
-                            }
-                        }
-                    }
-                }.padding(.vertical)
+                
+                LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 3), alignment: .center, spacing: 15) {
+                    gridPickerContent()
+                }.frame(height: 200, alignment: .center)
             }
-        }.background(Color("background").edgesIgnoringSafeArea(.all))
+        }
+        .background(Color("background").edgesIgnoringSafeArea(.all))
     }
-}
-
-struct GridStack<Content: View>: View {
-    let rows: Int
-    let columns: Int
-    let content: (Int, Int) -> Content
-
-    var body: some View {
-        VStack {
-            ForEach(0..<rows, id: \.self) { row in
-                HStack {
-                    ForEach(0..<self.columns, id: \.self) { column in
-                        self.content(row, column)
-                    }.padding(.horizontal, 5)
-                }.padding(.vertical, 5)
-            }.drawingGroup()
+    
+    @ViewBuilder
+    private func gridPickerContent() -> some View {
+        if pickerSelection == 0 {
+            ForEach(Color.gradientsPalette, id: \.self) { color in
+                CircleColorPickerElement(color: color, isSelected: color == selectedColor).onTapGesture {
+                    self.selectedColor = color
+                }
+            }
+        } else {
+            ForEach(Glyph.glyphArray, id: \.self) { glyph in
+                GlyphColorPickerElement(glyph: glyph, isSelected: glyph == selectedGlyph).onTapGesture {
+                    self.selectedGlyph = glyph
+                }
+            }
         }
     }
 }
 
 struct CircleColorPickerElement: View {
-
-    var row: Int
-    var col: Int
-
-    @Binding var currentIndex: GridIndex
+    var color: Color
+    var isSelected: Bool
 
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.gradientsPalette[row][col])
+                .fill(color)
                 .frame(width: 50, height: 50)
             generateSelection()
         }
     }
 
-    func generateSelection() -> AnyView {
-        if currentIndex.column == col && currentIndex.row == row {
-            return AnyView(
-                Circle()
-                    .stroke()
-                    .fill(Color.gradientsPalette[row][col])
-                    .frame(width: 45, height: 45)
-            )
+    @ViewBuilder
+    func generateSelection() -> some View {
+        if isSelected {
+            Circle()
+                .stroke()
+                .fill(Color.white)
+                .frame(width: 45, height: 45)
         } else {
-            return AnyView(EmptyView())
+            EmptyView()
         }
     }
 }
 
 struct GlyphColorPickerElement: View {
-
-    var row: Int
-    var col: Int
-
-    @Binding var currentIndex: GridIndex
+    var glyph: String
+    var isSelected: Bool
 
     var body: some View {
         ZStack {
-            Image(systemName: Glyph.glyphArray[row][col])
-            .frame(width: 50, height: 50)
+            Image(systemName: glyph)
+                .frame(width: 50, height: 50)
             generateSelection()
         }
     }
 
-    func generateSelection() -> AnyView {
-        if currentIndex.column == col && currentIndex.row == row {
-            return AnyView(
-                Circle()
-                    .stroke()
-                    .fill(Color.gradientsPalette[row][col])
-                    .frame(width: 45, height: 45)
-            )
+    @ViewBuilder
+    func generateSelection() -> some View {
+        if isSelected {
+            Circle()
+                .stroke()
+                .frame(width: 45, height: 45)
         } else {
-            return AnyView(EmptyView())
+            EmptyView()
         }
     }
 }
@@ -151,7 +124,7 @@ struct GradientPickerView_Previews: PreviewProvider {
     @State private static var index: GridIndex = GridIndex(row: 1, column: 1)
 
     static var previews: some View {
-        IconColorPickerView(colorIndex: $index, glyphIndex: $index)
+        IconColorPickerView(selectedColor: .constant(.red), selectedGlyph: .constant("car"))
             .environment(\.locale, .init(identifier: "it"))
             .colorScheme(.dark)
     }

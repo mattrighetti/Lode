@@ -9,14 +9,13 @@
 import SwiftUI
 
 struct ReminderRow: View {
-
     var assignment: Assignment
 
     var body: some View {
         HStack {
             ZStack(alignment: .center) {
                 Circle()
-                    .fill(Color.gradientsPalette[Int(assignment.colorRowIndex)][Int(assignment.colorColumnIndex)])
+                    .fill(Color(hex: assignment.color!)!)
 
                 VStack {
                     Text("\(assignment.daysLeft)")

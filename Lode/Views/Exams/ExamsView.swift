@@ -33,7 +33,9 @@ struct ExamsView: View {
                     ForEach(examPickerSelection == 0 ? viewModel.upcomingExams : viewModel.pastExams, id: \.id) { exam in
                         ExamRow(exam: exam)
                             .onTapGesture {
-                                sheet.examToEdit = exam
+                                if editMode == .active {
+                                    sheet.examToEdit = exam
+                                }
                             }
                     }
 
@@ -73,7 +75,6 @@ struct ExamsView: View {
                     label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
                 )
             )
-            
             .environment(\.editMode, $editMode)
         }
         .alert(isPresented: self.$presentAlert) {
@@ -92,12 +93,10 @@ struct ExamsView: View {
             isPresented: $sheet.isShowing,
             onDismiss: {
                 sheet.examToEdit = nil
+                self.editMode = .inactive
             },
             content: {
-                ExamForm(
-                    viewModel: viewModel,
-                    exam: sheet.examToEdit
-                )
+                ExamForm(exam: sheet.examToEdit)
         })
     }
     

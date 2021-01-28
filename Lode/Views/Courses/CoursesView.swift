@@ -8,9 +8,11 @@
 
 import SwiftUI
 import CoreData
+import os
+
+fileprivate let logger = Logger(subsystem: "com.mattrighetti.Lode", category: "CourseView")
 
 struct CoursesView: View {
-    
     @ObservedObject private var sheet = SheetState()
     @StateObject private var viewModel = CourseViewViewModel()
 
@@ -22,7 +24,7 @@ struct CoursesView: View {
         }
     }
 
-    @State var pickerSelection: Int = 0
+    @State private var pickerSelection: Int = 0
     @State private var editMode = EditMode.inactive
     @State private var showDescription: Bool = false
     
@@ -30,10 +32,13 @@ struct CoursesView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columnsLayout) {
-                    ForEach(pickerSelection == 0 ? viewModel.activeCourses : viewModel.passedCourses, id: \.id) { course in
+                    ForEach(pickerSelection == 0 ? viewModel.activeCourses : viewModel.passedCourses, id: \.name) { course in
                         CourseRow(course: course)
                             .onTapGesture {
-                                sheet.courseToEdit = course
+                                if editMode == .active {
+                                    logger.log("Setting course to edit: \(course)")
+                                    sheet.courseToEdit = course
+                                }
                             }
                     }
 
@@ -56,25 +61,28 @@ struct CoursesView: View {
             }
             
             .navigationBarTitle("Courses")
-            .navigationBarItems(
-                leading: EditButton(),
-                center: AnyView(
-                    Picker(selection: $pickerSelection, label: Text("Picker")) {
-                        Text("Active").tag(0)
-                        Text("Passed").tag(1)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading, content: { EditButton() })
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack {
+                        Picker(selection: $pickerSelection, label: Text("Picker")) {
+                            Text("Active").tag(0)
+                            Text("Passed").tag(1)
+                        }
+                        .foregroundColor(Color.blue)
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                        Button(
+                            action: { sheet.isShowing.toggle() },
+                            label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
+                        )
                     }
-                    .foregroundColor(Color.blue)
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding()
-                ),
-                trailing: Button(
-                    action: {  },
-                    label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
-                )
-            )
-            .environment(\.editMode, $editMode)
+                }
+            }.environment(\.editMode, $editMode)
             .sheet(isPresented: $sheet.isShowing, onDismiss: {
+                logger.log("Setting course to edit to value: nil")
                 sheet.courseToEdit = nil
+                self.editMode = .inactive
             }, content: {
                 CourseForm(course: sheet.courseToEdit)
             })

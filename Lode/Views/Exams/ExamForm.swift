@@ -12,13 +12,12 @@ import Combine
 struct ExamForm: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.managedObjectContext) var managedObjectContext
 
-    @ObservedObject var viewModel: ExamViewViewModel
+    @StateObject var viewModel = ExamFormViewModel()
     
     @State private var name: String = ""
     @State private var course: String = ""
-    @State private var colorIndex: GridIndex = GridIndex(row: Int.random(in: 0...2), column: Int.random(in: 0...4))
+    @State private var color: Color = Color.gradientsPalette[Int.random(in: 0...(Color.gradientsPalette.count - 1))]
     @State private var date: Date = Date()
     
     @State private var activeColorNavigationLink: Bool = false
@@ -28,8 +27,7 @@ struct ExamForm: View {
     @State private var courseIndex: Int = -1
     @State private var bottomPadding: CGFloat = 0
     
-    @State private var restoredExam: Bool = false
-    @State var courses: [String] = []
+    @State private var editExamMode: Bool = false
 
     var exam: Exam?
     
@@ -37,7 +35,7 @@ struct ExamForm: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 NavigationLink(
-                    destination: ColorPickerView(colorIndex: $colorIndex),
+                    destination: ColorPickerView(selectedColor: $color),
                     isActive: $activeColorNavigationLink,
                     label: {
                         ZStack {
@@ -47,9 +45,8 @@ struct ExamForm: View {
                                 .frame(width: 105, height: 105, alignment: .center)
 
                             Circle()
-                                .fill(Color.gradientsPalette[colorIndex.row][colorIndex.column])
+                                .fill(color)
                                 .frame(width: 100, height: 100, alignment: .center)
-
                         }
                         .padding(.top, 50)
                     }
@@ -82,11 +79,29 @@ struct ExamForm: View {
 
                 DatePicker("Select date", selection: self.$date, displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
+
+                if editExamMode {
+                    Button(action: {
+                        viewModel.deleteExam(withId: exam!.id!)
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            Text("Delete")
+                                .padding()
+                            Spacer()
+                        }
+                        .background(Color.flatRed)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                    })
+                }
                 
             }
             .scrollViewWithoutBackground()
             .padding(.horizontal)
             .background(Color("background").edgesIgnoringSafeArea(.all))
+            .onAppear(perform: setupExam)
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Some fields are not compiled"),
@@ -96,23 +111,37 @@ struct ExamForm: View {
             }
 
             .navigationBarTitle("Add exam", displayMode: .inline)
-            .navigationBarItems(
-                leading: Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
-                },
-                trailing: Button("Done") {
-                    onDonePressed()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        onDonePressed()
+                    }
                 }
-            )
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
+        }
+    }
+
+    private func setupExam() {
+        if let exam = exam {
+            name = exam.title!
+            date = exam.date!
+            color = Color(hex: exam.color!)!
+
+            self.editExamMode = true
         }
     }
     
     private func onDonePressed() {
         if fieldsAreCompiled() {
             if exam != nil {
-                updateExam()
+                viewModel.update(withId: exam!.id!, name: name, color: color.toHex!, date: date)
             } else {
-                addExam()
+                viewModel.addExam(name: name, color: color.toHex!, date: date)
             }
             presentationMode.wrappedValue.dismiss()
         } else {
@@ -127,49 +156,11 @@ struct ExamForm: View {
             return true
         }
     }
-    
-    private func compile(exam: Exam) {
-        exam.id = UUID()
-        exam.title = name.isEmpty ? NSLocalizedString("No name", comment: "") : name
-        exam.date = date
-        exam.colorColIndex = Int16(colorIndex.column)
-        exam.colorRowIndex = Int16(colorIndex.row)
-    }
-    
-    private func updateExam() {
-        let fetchExam = Exam.fetchRequest(withUUID: exam!.id!)
-        
-        do {
-            if let exam = try managedObjectContext.fetch(fetchExam).first {
-                compile(exam: exam)
-            }
-            
-            saveContext()
-        } catch {
-            let fetchError = error as NSError
-            debugPrint(fetchError)
-        }
-    }
-    
-    private func addExam() {
-        let newExam = Exam(context: managedObjectContext)
-        compile(exam: newExam)
-        
-        saveContext()
-    }
-    
-    private func saveContext() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print(error)
-        }
-    }
 }
 
 struct CourseForm_Previews: PreviewProvider {
     @State private var index: Int = -1
     static var previews: some View {
-        ExamForm(viewModel: ExamViewViewModel()).colorScheme(.dark).accentColor(.darkRed)
+        ExamForm().colorScheme(.dark).accentColor(.darkRed)
     }
 }

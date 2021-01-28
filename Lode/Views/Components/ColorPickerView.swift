@@ -9,10 +9,9 @@
 import SwiftUI
 
 struct ColorPickerView: View {
-    
-    @Binding var colorIndex: GridIndex
 
     @State private var pickerSelection: Int = 0
+    @Binding var selectedColor: Color
 
     var body: some View {
         VStack(spacing: 0) {
@@ -20,7 +19,7 @@ struct ColorPickerView: View {
                 Spacer()
 
                 ZStack {
-                    Color.gradientsPalette[colorIndex.row][colorIndex.column]
+                    selectedColor
                         .clipShape(Circle())
                         .frame(width: 150, height: 150, alignment: .center)
                 }
@@ -37,25 +36,21 @@ struct ColorPickerView: View {
 
                 Divider().padding(0)
 
-                GridStack(rows: 3, columns: 5) { row, column in
-                    CircleColorPickerElement(
-                        row: row,
-                        col: column,
-                        currentIndex: self.$colorIndex
-                    ).onTapGesture {
-                        self.colorIndex = GridIndex(row: row, column: column)
+                LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 3), spacing: 15) {
+                    ForEach(Color.gradientsPalette, id: \.self) { color in
+                        CircleColorPickerElement(color: color, isSelected: color == selectedColor).onTapGesture {
+                            selectedColor = color
+                        }
                     }
-                }.padding(.vertical)
+                }.frame(width: .infinity, height: 230, alignment: .center)
             }
         }.background(Color("background").edgesIgnoringSafeArea(.all))
     }
 }
 
 struct ColorPickerView_Previews: PreviewProvider {
-    @State private static var colorIndex: GridIndex = GridIndex(row: 0, column: 0)
     static var previews: some View {
-        ColorPickerView(colorIndex: $colorIndex)
-            .environment(\.locale, .init(identifier: "it"))
+        ColorPickerView(selectedColor: .constant(.red))
             .colorScheme(.dark)
     }
 }

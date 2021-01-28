@@ -8,35 +8,39 @@
 
 import SwiftUI
 import CoreData
+import os
+
+fileprivate let logger = Logger(subsystem: "com.mattrighetti.Lode", category: "CourseForm")
 
 struct CourseForm: View {
 
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.managedObjectContext) var managedObjectContext
+
+    var viewModel = CourseFormViewModel()
 
     // Course Data
     @State private var title: String = ""
-    @State private var difficulty: Int = 1
     @State private var courseMark: Int = 25
     @State private var expectedCourseMark: Int = 25
     @State private var courseCfu: Int = 5
     @State private var isPassed: Bool = false
-    @State private var colorIndex: GridIndex = GridIndex(row: Int.random(in: 0...2), column: Int.random(in: 0...4))
-    @State private var iconIndex: GridIndex = GridIndex(row: Int.random(in: 0...2), column: Int.random(in: 0...4))
+    @State private var color: Color = Color.gradientsPalette[Int.random(in: 0...(Color.gradientsPalette.count - 1))]
+    @State private var glyph: String = Glyph.glyphArray[Int.random(in: 0...(Glyph.glyphArray.count - 1))]
     
     // View Data
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
     
-    @State private var restoredCourse: Bool = false
+    @State private var editCourseMode: Bool = false
+
     var course: Course?
     
-    var acronym: String {
+    private var acronym: String {
         let splitString = title
             .split { $0 == " " }
-            .map({ String($0).lowercased() })
+            .map { String($0).lowercased() }
             .filter { $0 != "and" && $0 != "e" && $0 != "of" }
-        
+
         return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
     }
     
@@ -46,7 +50,7 @@ struct CourseForm: View {
                 
                 Group {
                     NavigationLink(
-                        destination: IconColorPickerView(colorIndex: $colorIndex, glyphIndex: $iconIndex),
+                        destination: IconColorPickerView(selectedColor: $color, selectedGlyph: $glyph),
                         isActive: $activeColorNavigationLink,
                         label: {
                             ZStack {
@@ -56,10 +60,10 @@ struct CourseForm: View {
                                     .frame(width: 105, height: 105, alignment: .center)
 
                                 Circle()
-                                    .fill(Color.gradientsPalette[colorIndex.row][colorIndex.column])
+                                    .fill(color)
                                     .frame(width: 100, height: 100, alignment: .center)
 
-                                Image(systemName: Glyph.glyphArray[iconIndex.row][iconIndex.column])
+                                Image(systemName: glyph)
                                     .font(.system(size: 50))
                                     .foregroundColor(.white)
 
@@ -84,24 +88,33 @@ struct CourseForm: View {
                         }
                     }
                     
-                    TextField("Exam title", text: $title)
+                    TextField("Course title", text: $title)
                         .card()
                     
                     HeaderCaption(title: "CFU", caption: "Ore totali: \(courseCfu * 25)").padding(.top)
-                    
-                    CustomStepper(value: $courseCfu, maxValue: 180, minValue: 1)
-                
+
+                    Stepper(value: $courseCfu, in: 1...50, label: {
+                        Text("\(courseCfu)").font(.title)
+                    })
+                    .padding()
+                    .background(Color("cardBackground"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
                 
                 HeaderCaption(
                     title: "Mark expected",
                     caption: "This will be used for further statistics"
                 ).padding(.top)
-                
-                CustomStepper(value: $expectedCourseMark, maxValue: 31, minValue: 18)
+
+                Stepper(value: $expectedCourseMark, in: 18...31, label: {
+                    Text(expectedCourseMark <= 30 ? "\(expectedCourseMark)" : "30L").font(.title)
+                })
+                .padding()
+                .background(Color("cardBackground"))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
                 
                 Button(action: {
-                    self.isPassed.toggle()
+                    isPassed.toggle()
                 }, label: {
                     HStack {
                         Text("Passed (singular)")
@@ -122,122 +135,95 @@ struct CourseForm: View {
                             title: "Mark obtained",
                             caption: "The mark you got"
                         ).padding(.top)
-                        
-                        CustomStepper(value: $courseMark, maxValue: 31, minValue: 18)
-                    } else {
-                        EmptyView()
+
+                        Stepper(value: $courseMark, in: 18...31, label: {
+                            Text(courseMark <= 30 ? "\(courseMark)" : "30L").font(.title)
+                        })
+                        .padding()
+                        .background(Color("cardBackground"))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                 }
                 .padding(.bottom, 50)
                 .transition(.scale)
+
+                if editCourseMode {
+                    Button(action: {
+                        viewModel.deleteCourse(withId: course!.id!)
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            Text("Delete")
+                                .padding()
+                            Spacer()
+                        }
+                        .background(Color.flatRed)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                    })
+                }
                 
             }
             .scrollViewWithoutBackground()
             .padding(.horizontal)
             .background(Color.background.edgesIgnoringSafeArea(.all))
-            .onAppear {
-                if !restoredCourse {
-                    if let courseToEdit = course {
-                        self.title = courseToEdit.name!
-                        self.difficulty = 3
-                        self.courseMark = courseToEdit.mark != 0 ? Int(courseToEdit.mark) : 25
-                        self.expectedCourseMark = Int(courseToEdit.expectedMark)
-                        self.courseCfu = Int(courseToEdit.cfu)
-                        self.isPassed = courseToEdit.mark != 0 ? true : false
-                        self.colorIndex = GridIndex(row: Int(courseToEdit.colorRowIndex), column: Int(courseToEdit.colorColIndex))
-                        self.iconIndex = Glyph.gridIndex(ofGlyph: courseToEdit.iconName!)!
-                    }
-                    
-                    self.restoredCourse.toggle()
-                }
-            }
 
             .navigationBarTitle("Add course", displayMode: .inline)
             .navigationBarItems(
-                leading: Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
-                },
-                trailing: Button("Done") {
-                        onDonePressed()
-                        presentationMode.wrappedValue.dismiss()
-                }
+                leading: Button("Cancel") { presentationMode.wrappedValue.dismiss() },
+                trailing: Button("Save") { onSavePressed() }
             )
-        }.navigationViewStyle(StackNavigationViewStyle())
-    }
-    
-    private func onDonePressed() {
-        if course != nil {
-            updateCourse()
-        } else {
-            addCourse()
         }
+        .onAppear(perform: setupCourse)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
-    
-    private func compile(course: Course) {
-        course.id = UUID()
-        course.name = title.isEmpty ? "No title" : title
-        course.cfu = Int16(courseCfu)
-        course.colorRowIndex = Int16(colorIndex.row)
-        course.colorColIndex = Int16(colorIndex.column)
-        course.iconName = Glyph.glyphArray[iconIndex.row][iconIndex.column]
-        course.expectedMark = Int16(expectedCourseMark)
-        course.expectedLaude = NSNumber(value: (expectedCourseMark == 31))
-        
-        if isPassed {
-            course.mark = Int16(courseMark)
-            course.laude = NSNumber(value: (courseMark == 31))
-        } else {
-            course.mark = 0
-            course.laude = NSNumber(value: false)
-        }
-    }
-    
-    private func updateCourse() {
-        let fetchCourse: NSFetchRequest<Course> = Course.fetchRequest(withUUID: course!.id!)
-        
-        do {
-            if let course = try managedObjectContext.fetch(fetchCourse).first {
-                compile(course: course)
-            }
-            
-            saveContext()
-        } catch {
-            let fetchError = error as NSError
-            debugPrint(fetchError)
+
+    private func setupCourse() {
+        if let course = course {
+            logger.log("Did set \(course)")
+            self.title = course.name!
+            self.courseMark = course.mark != 0 ? Int(course.mark) : 25
+            self.expectedCourseMark = Int(course.expectedMark)
+            self.courseCfu = Int(course.cfu)
+            self.isPassed = course.mark != 0
+            self.color = Color(hex: course.color!)!
+            self.glyph = course.iconName!
+
+            self.editCourseMode = true
         }
     }
 
-    private func addCourse() {
-        let newCourse = Course(context: managedObjectContext)
-        compile(course: newCourse)
-        
-        saveContext()
-    }
-    
-    func saveContext() {
-        do {
-            print("Saving data to local database")
-            try managedObjectContext.save()
-        } catch {
-            print(error)
+    private func onSavePressed() {
+        if !editCourseMode {
+            viewModel.addCourse(
+                name: title,
+                cfu: courseCfu,
+                color: color.toHex!,
+                expectedMark: expectedCourseMark,
+                iconName: glyph,
+                laude: isPassed ? false : false,
+                expectedLaude: false,
+                mark: isPassed ? courseMark : 0
+            )
+        } else {
+            viewModel.update(
+                withId: course!.id!,
+                name: title,
+                cfu: courseCfu,
+                color: color.toHex!,
+                expectedMark: expectedCourseMark,
+                iconName: glyph,
+                laude: isPassed ? false : false,
+                expectedLaude: false,
+                mark: isPassed ? courseMark : 0
+            )
         }
-    }
-    
-    private func incrementMark() {
-        if courseMark < 31 {
-            self.courseMark += 1
-        }
-    }
-    
-    private func decrementMark() {
-        if courseMark > 18 {
-            self.courseMark -= 1
-        }
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
 struct Header: View {
-    
     var title: String
     
     var body: some View {
@@ -251,7 +237,6 @@ struct Header: View {
 }
 
 struct HeaderCaption: View {
-    
     var title: String
     var caption: String
     
@@ -270,45 +255,10 @@ struct HeaderCaption: View {
     }
 }
 
-struct CustomStepper: View {
-    
-    @Binding var value: Int
-    var maxValue: Int
-    var minValue: Int
-    
-    var body: some View {
-        VStack {
-            Stepper(onIncrement: {
-                self.incrementValue()
-            }, onDecrement: {
-                self.decrementValue()
-            }, label: {
-                Text(value <= 30 ? "\(value)" : "30L")
-                    .font(.title)
-            })
-            .padding()
-            .background(Color("cardBackground"))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-        }
-    }
-    
-    func incrementValue() {
-        if value < maxValue {
-            value += 1
-        }
-    }
-    
-    func decrementValue() {
-        if value > minValue {
-            value -= 1
-        }
-    }
-}
-
 struct ExamForm_Previews: PreviewProvider {
     @State private static var title: String = "title"
 
     static var previews: some View {
-        CourseForm().colorScheme(.dark)
+        CourseForm(course: nil).colorScheme(.dark)
     }
 }

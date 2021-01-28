@@ -9,20 +9,15 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 public class Exam: NSManagedObject {
     
-    convenience init(context: NSManagedObjectContext,
-                     id: UUID = UUID(),
-                     colorColIndex: Int,
-                     colorRowIndex: Int,
-                     date: Date? = Date(),
-                     title: String? = "No title") {
+    convenience init(context: NSManagedObjectContext, id: UUID = UUID(), color: Color, date: Date? = Date(), title: String? = "No title") {
         let entity = NSEntityDescription.entity(forEntityName: "Exam", in: context)!
         self.init(entity: entity, insertInto: context)
         self.id = id
-        self.colorColIndex = Int16(colorColIndex)
-        self.colorRowIndex = Int16(colorRowIndex)
+        self.color = color.toHex
         self.date = date
         self.title = title
     }
@@ -55,7 +50,7 @@ public class Exam: NSManagedObject {
     }
     
     var dayInt: Int {
-        return Calendar.current.component(.day, from: date!)
+        Calendar.current.component(.day, from: date!)
     }
     
 }

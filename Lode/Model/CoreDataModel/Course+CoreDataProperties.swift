@@ -12,11 +12,11 @@ import CoreData
 
 extension Course {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
-        return NSFetchRequest<Course>(entityName: "Course")
+    public class func fetchRequest() -> NSFetchRequest<Course> {
+        NSFetchRequest<Course>(entityName: "Course")
     }
     
-    @nonobjc public class func fetchRequest(withUUID id: UUID) -> NSFetchRequest<Course> {
+    public class func fetchRequest(withUUID id: UUID) -> NSFetchRequest<Course> {
         let fetchCourse: NSFetchRequest<Course> = self.fetchRequest()
         fetchCourse.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
         
@@ -24,8 +24,7 @@ extension Course {
     }
 
     @NSManaged public var cfu: Int16
-    @NSManaged public var colorColIndex: Int16
-    @NSManaged public var colorRowIndex: Int16
+    @NSManaged public var color: String?
     @NSManaged public var expectedMark: Int16
     @NSManaged public var iconName: String?
     @NSManaged public var id: UUID?

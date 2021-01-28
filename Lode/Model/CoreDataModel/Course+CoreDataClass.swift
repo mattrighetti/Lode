@@ -9,14 +9,14 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 public class Course: NSManagedObject {
     convenience init(
-        context: NSManagedObjectContext!,
+        context: NSManagedObjectContext,
         id: UUID = UUID(),
         cfu: Int,
-        colorColIndex: Int,
-        colorRowIndex: Int,
+        color: Color,
         expectedMark: Int,
         iconName: String? = "No icon",
         laude: Bool?,
@@ -29,8 +29,7 @@ public class Course: NSManagedObject {
             // Object data
             self.id = id
             self.cfu = Int16(cfu)
-            self.colorColIndex = Int16(colorColIndex)
-            self.colorRowIndex = Int16(colorRowIndex)
+            self.color = color.toHex
             self.expectedMark = Int16(expectedMark)
             self.iconName = iconName
             self.laude = NSNumber(value: (expectedMark == 31))
@@ -40,17 +39,15 @@ public class Course: NSManagedObject {
     }
     
     convenience init(
-        context: NSManagedObjectContext!,
+        context: NSManagedObjectContext,
         id: UUID = UUID(),
         cfu: Int,
-        colorColIndex: Int,
-        colorRowIndex: Int,
+        color: Color,
         expectedMark: Int) {
         
         self.init(context: context,
                   cfu: cfu,
-                  colorColIndex: colorColIndex,
-                  colorRowIndex: colorRowIndex,
+                  color: color,
                   expectedMark: expectedMark,
                   iconName: nil,
                   laude: nil,

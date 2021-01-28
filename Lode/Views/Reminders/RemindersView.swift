@@ -8,15 +8,17 @@
 
 import CoreData
 import SwiftUI
+import os
+
+fileprivate let logger = Logger(subsystem: "com.mattrighetti.Lode", category: "ReminderView")
 
 struct RemindersView: View {
-
-    @Environment(\.editMode) var editMode
 
     @ObservedObject private var sheet = SheetState()
     @StateObject private var viewModel = AssignmentViewViewModel()
 
-    @State var pickerSelection: Int = 0
+    @State private var pickerSelection: Int = 0
+    @State private var editMode = EditMode.inactive
 
     private var columnsLayout: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -33,7 +35,8 @@ struct RemindersView: View {
                     ForEach(pickerSelection == 0 ? viewModel.dueAssignments : viewModel.pastAssignments, id: \.id) { assignment in
                         ReminderRow(assignment: assignment)
                             .onTapGesture {
-                                if editMode?.wrappedValue == .active {
+                                if editMode == .active {
+                                    logger.log("Setting assignment to edit")
                                     sheet.assignmentToEdit = assignment
                                 }
                             }
@@ -76,6 +79,7 @@ struct RemindersView: View {
                         .font(.system(size: 20)) }
                 )
             )
+            .environment(\.editMode, $editMode)
         }
         .onAppear {
             UIScrollView.appearance().backgroundColor = UIColor(named: "background")
@@ -86,6 +90,7 @@ struct RemindersView: View {
             isPresented: $sheet.isShowing,
             onDismiss: {
                 sheet.assignmentToEdit = nil
+                editMode = .inactive
             },
             content: {
                 ReminderForm(assignment: sheet.assignmentToEdit)
