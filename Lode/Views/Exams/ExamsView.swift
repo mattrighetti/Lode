@@ -59,22 +59,24 @@ struct ExamsView: View {
             }
 
             .navigationBarTitle("Exams")
-            .navigationBarItems(
-                leading: EditButton(),
-                center: AnyView(
-                    Picker(selection: $examPickerSelection, label: Text("Picker")) {
-                        Text("Upcoming").tag(0)
-                        Text("Past").tag(1)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading, content: { EditButton() })
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    HStack {
+                        Picker("", selection: $examPickerSelection) {
+                            Text("Upcoming").tag(0)
+                            Text("Past").tag(1)
+                        }
+                        .foregroundColor(Color.blue)
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                        Button(
+                            action: { showModal() },
+                            label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
+                        )
                     }
-                    .foregroundColor(Color.blue)
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding()
-                ),
-                trailing: Button(
-                    action: { showModal() },
-                    label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
-                )
-            )
+                }
+            }
             .environment(\.editMode, $editMode)
         }
         .alert(isPresented: self.$presentAlert) {

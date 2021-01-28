@@ -62,23 +62,27 @@ struct RemindersView: View {
             }
 
             .navigationBarTitle("Assignments")
-            .navigationBarItems(
-                leading: EditButton(),
-                center: AnyView(
-                    Picker(selection: $pickerSelection, label: Text("Picker")) {
-                        Text("Current").tag(0)
-                        Text("Past").tag(1)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    HStack {
+                        Picker(selection: $pickerSelection, label: Text("Picker")) {
+                            Text("Current").tag(0)
+                            Text("Past").tag(1)
+                        }
+                        .foregroundColor(Color.blue)
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding()
+
+                        Button(
+                            action: { sheet.isShowing.toggle() },
+                            label: { Image(systemName: "plus.circle").font(.system(size: 20)) }
+                        )
                     }
-                    .foregroundColor(Color.blue)
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding()
-                ),
-                trailing: Button(
-                    action: { sheet.isShowing.toggle() },
-                    label: { Image(systemName: "plus.circle")
-                        .font(.system(size: 20)) }
-                )
-            )
+                }
+            }
             .environment(\.editMode, $editMode)
         }
         .onAppear {

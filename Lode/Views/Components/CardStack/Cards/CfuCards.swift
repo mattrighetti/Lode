@@ -18,7 +18,7 @@ struct CfuCard: View {
             CircularProgressBar(
                 progress: CGFloat(viewModel.gainedCfu) / CGFloat(totalCfu)
             )
-            Text("\(viewModel.gainedCfu.twoDecimalPrecision)")
+            Text("\(Int(viewModel.gainedCfu))")
                 .font(.system(size: 30, weight: .bold, design: .rounded))
         }.background(Color("cardBackground"))
     }

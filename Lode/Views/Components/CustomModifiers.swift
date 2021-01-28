@@ -74,7 +74,8 @@ struct BadgePillWithImageStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.white)
-            .padding(7)
+            .padding(.vertical, 3)
+            .padding(.horizontal, 7)
             .font(.system(size: 13.0, weight: .regular, design: .rounded))
             .background(color)
             .cornerRadius(8)
