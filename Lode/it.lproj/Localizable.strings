@@ -1,0 +1,138 @@
+/* 
+  Localizable.strings
+  Lode
+
+  Created by Mattia Righetti on 29/01/21.
+  
+*/
+
+// MARK: - Home View
+"Home" = "Home";
+"Main Info" = "Info";
+"Categories" = "Categorie";
+"Stats" = "Statistiche";
+"Your CFU" = "I tuoi CFU";
+"Your Average" = "La tua media";
+"Expected Average" = "Media attesa";
+"Average" = "Media";
+"Upcoming Exams" = "Prossimi esami";
+"Active Assignments" = "Compiti attivi";
+"Avg Delta Calculator" = "Calcolatore Media";
+"Tools" = "Strumenti";
+
+// MARK: - Delta Average Calculator
+"TWAY" = "Questo strumento ti mostrerà la tua nova media nel caso dovessi conseguire un esame con un voto mostrato sotto";
+"Course CFU" = "CFU del corso";
+"New average" = "Nuova media";
+"Delta Calculator" = "Calcolatore Media";
+
+// MARK: - Statistics View
+"Statistics" = "Statistiche";
+"Current statistics" = "Statistiche attuali";
+"Exams passed" = "Esami passati";
+"Latest marks" = "Ultimi voti";
+"Total courses" = "Corsi totali";
+"Projected graduation grade" = "Voto di laurea";
+"Passed exams" = "Esami passati";
+"Gained CFU" = "CFU guadagnati";
+"Current average" = "Media attuale";
+"Current graduation grade" = "Voto di laurea attuale";
+"As expected" = "Come atteso";
+"More than expected" = "Più del previsto";
+"Less than expected" = "Meno del previsto";
+"No data to show" = "Nessun dato da mostrare";
+
+// MARK: - Marks View
+"Marks" = "Voti";
+
+// MARK: - Settings View
+"Settings" = "Impostazioni";
+"Total CFU" = "CFU totali";
+"Accent color" = "Accent color";
+"App icon" = "App icon";
+"About" = "Riferimenti";
+"Accent Color" = "Colore Tinta";
+"Laude value" = "Valore lode";
+
+// MARK: - Exams View
+"Exams" = "Esami";
+"Course" = "Corso";
+"Add exam" = "Aggiungi esame";
+"Exam title" = "Titolo esame";
+"Exam description" = "Descrizione esame";
+"Select a course" = "Seleziona un corso";
+"In %d days" = "Tra %d giorni";
+
+// MARK: - Assignments View
+"Assignments" = "Compiti";
+"Add assignment" = "Aggiungi compito";
+"Assignment title" = "Titolo compito";
+"Assignment description" = "Descrizione compito";
+"missing" = "mancanti";
+"Due soon" = "Scade presto";
+
+// MARK: - Courses View
+"Courses" = "Corsi";
+"Add course" = "Aggiungi corso";
+"Course title" = "Titolo corso";
+"Total hours" = "Ore totali";
+"Difficulty" = "Difficoltà";
+"Mark expected" = "Voto atteso";
+"Mark obtained" = "Voto ottenuto";
+"This will be used for further statistics" = "Verrà usato per le statistiche";
+"The mark you got" = "Il voto ottenuto";
+"Final" = "Finale";
+
+// MARK: - SegmentedPicker Navbar
+"Past" = "Passati";
+"Passed" = "Superati";
+"Passed (singular)" = "Superato";
+"Current" = "Attuali";
+"Upcoming" = "Prossimi";
+"Active" = "Attivi";
+
+// MARK: - Buttons
+"Cancel" = "Annulla";
+"Done" = "Fine";
+
+// MARK: - Common words
+"Date" = "Data";
+"Description" = "Descrizione";
+"Expected" = "Atteso";
+"Color" = "Colore";
+"Glyph" = "Glifo";
+"No name" = "Nessun nome";
+"Title" = "Titolo";
+"Today" = "Oggi";
+
+// MARK: - Initial Setup view
+"Initial setup" = "Dati iniziali";
+"Total CFUs of your study plan" = "CFU totali del tuo piano";
+
+// MARK: - Alert Messages
+"Some fields are not compiled" = "Compila i campi";
+"You have to compile every field to create a course" = "Ci sono dei campi non compilati, compilali e riprova";
+
+"No active course is present" = "Non è presente alcun corso";
+"You must first add an active course to be able to add exams" = "Devi prima aggiungere almeno un corso attivo per poter aggiungere degli esami";
+
+"Choose an action" = "Scegli un'opzione";
+
+// MARK: - SplashScreen
+"Keep track of everything" = "Tieni traccia di tutto";
+"All in a single place" = "All in a single place";
+"Save your marks, assignments and exams all in this app" = "Salve i tuoi voti, compiti ed esami";
+"Extremely simple to use" = "Estremamente semplice da usare";
+"Designed with ease of use in mind to get you back to work as soon as possible" = "Pensata per la semplicità d'uso";
+
+// MARK: - About View
+"Rate Lode" = "Valuta Lode";
+
+// MARK: - Cards
+"Upcoming exams" = "Prossimi esami";
+"Active assignments" = "Compiti attivi";
+"than expected" = "del previsto";
+"Exam" = "Esami";
+"Days to go" = "Giorni mancanti";
+"No exam in sight!" = "Non hai esami in vista!";
+"Exams Countdown" = "Countdown Esami";

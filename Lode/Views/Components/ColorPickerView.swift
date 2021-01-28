@@ -42,7 +42,7 @@ struct ColorPickerView: View {
                             selectedColor = color
                         }
                     }
-                }.frame(width: .infinity, height: 230, alignment: .center)
+                }.frame(height: 230, alignment: .center)
             }
         }.background(Color("background").edgesIgnoringSafeArea(.all))
     }

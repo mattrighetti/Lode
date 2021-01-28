@@ -72,6 +72,7 @@
 		C9405F1B25B8F17200342FF7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9405F1A25B8F17200342FF7 /* Persistence.swift */; };
 		C9405F2925B8F17200342FF7 /* LodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9405F2825B8F17200342FF7 /* LodeTests.swift */; };
 		C9405F3425B8F17200342FF7 /* LodeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9405F3325B8F17200342FF7 /* LodeUITests.swift */; };
+		C95BA81525C384130026A9DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C95BA81725C384130026A9DB /* Localizable.strings */; };
 		C9E57A9C25B9269200AC289F /* Lode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9E57A9A25B9269200AC289F /* Lode.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -164,6 +165,8 @@
 		C9405F2F25B8F17200342FF7 /* LodeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LodeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9405F3325B8F17200342FF7 /* LodeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodeUITests.swift; sourceTree = "<group>"; };
 		C9405F3525B8F17200342FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C95BA81625C384130026A9DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C95BA81B25C384160026A9DB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9E57A9B25B9269200AC289F /* Lode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lode.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -424,6 +427,7 @@
 				C9E57A9A25B9269200AC289F /* Lode.xcdatamodeld */,
 				3307134B1A050D0AEBD1EAE1 /* ViewModels */,
 				330714FF38F60B8D9264E8F2 /* CoreDataControllers */,
+				C95BA81725C384130026A9DB /* Localizable.strings */,
 			);
 			path = Lode;
 			sourceTree = "<group>";
@@ -560,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9405F1925B8F17200342FF7 /* Preview Assets.xcassets in Resources */,
+				C95BA81525C384130026A9DB /* Localizable.strings in Resources */,
 				C9405F1625B8F17200342FF7 /* Assets.xcassets in Resources */,
 				33071E358A0FA61E4150F2B0 /* main.png in Resources */,
 			);
@@ -680,6 +685,18 @@
 			targetProxy = C9405F3025B8F17200342FF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C95BA81725C384130026A9DB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C95BA81625C384130026A9DB /* en */,
+				C95BA81B25C384160026A9DB /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C9405F3625B8F17200342FF7 /* Debug */ = {
