@@ -5,6 +5,13 @@
 import SwiftUI
 
 struct ContributingView: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    var githubIcon: String {
+        colorScheme == .dark ? "github-logo-light" : "github-logo"
+    }
+    
     var body: some View {
         List {
             Section {
@@ -22,8 +29,13 @@ struct ContributingView: View {
                 Button(action: {
                     UIApplication.shared.open(URL(string: "https://github.com/mattrighetti")!)
                 }, label: {
-                    Label(title: { Text("Github code") }) {
-                        Image(systemName: "chevron.right")
+                    Label(title: {
+                        Text("Github code")
+                    }) {
+                        Image(githubIcon)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40)
                     }
                 })
             }.listRowBackground(Color("cardBackground"))
