@@ -32,7 +32,7 @@ struct RemindersView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columnsLayout) {
-                    ForEach(pickerSelection == 0 ? viewModel.dueAssignments : viewModel.pastAssignments, id: \.title) { assignment in
+                    ForEach(pickerSelection == 0 ? viewModel.dueAssignments : viewModel.pastAssignments, id: \.id) { assignment in
                         ReminderRow(assignment: assignment)
                             .onTapGesture {
                                 if editMode == .active {

@@ -48,6 +48,7 @@ class AssignmentStorage: NSObject {
 
         do {
             if let assignment = try PersistenceController.shared.container.viewContext.fetch(fetchAssignment).first {
+                assignment.setValue(UUID(), forKey: "id")
                 assignment.setValue(title, forKey: "title")
                 assignment.setValue(caption, forKey: "caption")
                 assignment.setValue(color, forKey: "color")

@@ -32,7 +32,7 @@ struct CoursesView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columnsLayout) {
-                    ForEach(pickerSelection == 0 ? viewModel.activeCourses : viewModel.passedCourses, id: \.name) { course in
+                    ForEach(pickerSelection == 0 ? viewModel.activeCourses : viewModel.passedCourses, id: \.id) { course in
                         CourseRow(course: course)
                             .onTapGesture {
                                 if editMode == .active {

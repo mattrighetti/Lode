@@ -47,6 +47,7 @@ class ExamStorage: NSObject, ObservableObject {
 
         do {
             if let exam = try PersistenceController.shared.container.viewContext.fetch(fetchExam).first {
+                exam.setValue(UUID(), forKey: "id")
                 exam.setValue(name, forKey: "title")
                 exam.setValue(color, forKey: "color")
                 exam.setValue(date, forKey: "date")

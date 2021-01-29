@@ -52,6 +52,7 @@ class CourseStorage: NSObject, ObservableObject {
 
         do {
             if let course = try PersistenceController.shared.container.viewContext.fetch(fetchCourse).first {
+                course.setValue(UUID(), forKey: "id")
                 course.setValue(Int16(cfu), forKey: "cfu")
                 course.setValue(color, forKey: "color")
                 course.setValue(Int16(expectedMark), forKey: "expectedMark")
