@@ -37,8 +37,7 @@ struct AverageDeltaTool: View {
     
     var body: some View {
         List {
-            Section(header: Text("Course CFU"),
-                    footer: Text("TWAY")) {
+            Section(header: Text("Course CFU"), footer: Text("TWAY")) {
                 HStack(alignment: .center) {
                     Spacer()
                     Text("\(cfu)")
@@ -49,16 +48,15 @@ struct AverageDeltaTool: View {
                 
                 HStack {
                     Spacer()
-                    Stepper("", value: cfuProxy, in: 1...30)
-                        .labelsHidden()
+                    Stepper("", value: cfuProxy, in: 1...30).labelsHidden()
                     Spacer()
                 }
                 .padding(.bottom, 5)
-            }
+            }.listRowBackground(Color("cardBackground"))
             
             Section(header: Text("Current average")) {
                 Text("\(viewModel.average.twoDecimalPrecision)").bold()
-            }
+            }.listRowBackground(Color("cardBackground"))
             
             Section(header: Text("New average")) {
                 ForEach(deltas.indices, id: \.self) { index in
@@ -69,7 +67,7 @@ struct AverageDeltaTool: View {
                             .foregroundColor(deltas[index] < viewModel.average ? .red : .green)
                     }
                 }
-            }
+            }.listRowBackground(Color("cardBackground"))
             
         }
         .singleSeparator()

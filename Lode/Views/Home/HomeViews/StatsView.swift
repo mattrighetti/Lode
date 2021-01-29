@@ -10,7 +10,7 @@ import SwiftUI
 
 struct StatsView: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationMode
     
     @StateObject private var viewModel = StatsViewViewModel()
 
@@ -21,27 +21,26 @@ struct StatsView: View {
                 ListItem(itemDescription: "Total CFU", itemValue: viewModel.totalCfu)
                 ListItem(itemDescription: "Expected Average", itemValue: viewModel.expectedAverage)
                 ListItem(itemDescription: "Projected graduation grade", itemValue: viewModel.projectedGraduationGrade)
-            }
+            }.listRowBackground(Color("cardBackground"))
 
             Section(header: Text("Current statistics")) {
                 ListItem(itemDescription: "Passed exams", itemValue: viewModel.numPassedExams)
                 ListItem(itemDescription: "Gained CFU", itemValue: viewModel.gainedCfu)
                 ListItem(itemDescription: "Current Average", itemValue: viewModel.currentAverage)
                 ListItem(itemDescription: "Current graduation grade", itemValue: viewModel.currentProjectedGraduationGrade)
-            }
+            }.listRowBackground(Color("cardBackground"))
 
             Section(header: Text("Exams passed")) {
                 ListItem(itemDescription: "As expected", itemValue: viewModel.asExpected)
                 ListItem(itemDescription: "Better than expected", itemValue: viewModel.betterThanExpected)
                 ListItem(itemDescription: "Worse than expected", itemValue: viewModel.worseThanExpected)
-            }
+            }.listRowBackground(Color("cardBackground"))
             
             Section(header: Text("Latest marks")) {
                 BarChartView(arrayValues: viewModel.barChartData, color: .red)
                     .frame(height: 250, alignment: .center)
                     .padding()
-            }
-            
+            }.listRowBackground(Color("cardBackground"))
         }
         .listStyle(InsetGroupedListStyle())
         .onAppear {

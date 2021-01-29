@@ -30,7 +30,7 @@ struct ExamsView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columnsLayout) {
-                    ForEach(examPickerSelection == 0 ? viewModel.upcomingExams : viewModel.pastExams, id: \.id) { exam in
+                    ForEach(examPickerSelection == 0 ? viewModel.upcomingExams : viewModel.pastExams, id: \.title) { exam in
                         ExamRow(exam: exam)
                             .onTapGesture {
                                 if editMode == .active {

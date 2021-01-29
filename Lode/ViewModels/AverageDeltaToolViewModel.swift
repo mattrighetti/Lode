@@ -9,7 +9,11 @@ class AverageDeltaToolViewModel: ObservableObject {
     @Published var courses: [Course] = [] {
         willSet {
             gainedCfu = newValue.filter { $0.mark != 0 }.compactMap { Double($0.cfu) }.reduce(0, { $0 + $1 })
-            average = courses
+            guard gainedCfu != 0 else {
+                average = 0.0
+                return
+            }
+            average = newValue
                     .filter { $0.mark != 0 }
                     .compactMap { Double($0.cfu) * Double($0.mark) }
                     .reduce(0, { $0 + $1 }) / gainedCfu

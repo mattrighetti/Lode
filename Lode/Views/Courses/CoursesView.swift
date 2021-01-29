@@ -47,10 +47,11 @@ struct CoursesView: View {
                     }, label: {
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
-                                Image(systemName: "plus.circle")
+                                Image(systemName: "plus.circle").foregroundColor(Color("bw"))
                                 Spacer()
                                 Text("Add course")
                                     .fontWeight(.bold)
+                                    .foregroundColor(Color("bw"))
                             }
                             Spacer()
                         }

@@ -12,13 +12,13 @@ class StatsViewViewModel: ObservableObject {
             totalCfu = newValue.compactMap { course in Double(course.cfu) }.reduce(0, { $0 + $1 })
             let markSum = newValue.compactMap { Double($0.expectedMark) * Double($0.cfu) }.reduce(0, { $0 + $1 })
             expectedAverage = markSum / Double(totalCfu)
-            projectedGraduationGrade = expectedAverage * 11.0 / 30.0
+            projectedGraduationGrade = expectedAverage * 110.0 / 30.0
             passedExams = newValue.filter { $0.mark != 0 }
             numPassedExams = Double(passedExams.count)
             gainedCfu = passedExams.compactMap { Double($0.cfu) }.reduce(0, { $0 + $1 })
             let average = passedExams.compactMap { Double($0.cfu) * Double($0.mark) }.reduce(0, { $0 + $1 })
             currentAverage = average / gainedCfu
-            currentProjectedGraduationGrade = currentAverage * 11.0 / 31.0
+            currentProjectedGraduationGrade = currentAverage * 110.0 / 30.0
             asExpected = Double(passedExams.filter { $0.mark == $0.expectedMark }.count)
             betterThanExpected = Double(passedExams.filter { $0.mark > $0.expectedMark }.count)
             worseThanExpected = Double(passedExams.filter { $0.mark < $0.expectedMark }.count)
