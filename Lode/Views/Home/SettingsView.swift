@@ -36,28 +36,41 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Total CFU")) {
-                    Stepper("\(totalCfu)", value: totalCfuProxy, in: 0...300)
+                Section(header: Text("App settings")) {
+                    Stepper(value: totalCfuProxy, in: 0...300) {
+                        VStack(alignment: .leading) {
+                            Text("Total CFU:").font(.system(size: 15.0, weight: .semibold))
+                            Text("\(totalCfu)").font(.system(size: 25.0, design: .rounded))
+                        }
+                    }
+                    Stepper(value: laudeValueProxy, in: 30...35) {
+                        VStack(alignment: .leading) {
+                            Text("Laude Value:").font(.system(size: 15.0, weight: .semibold))
+                            Text("\(laudeValue)").font(.system(size: 25.0, design: .rounded))
+                        }
+                    }
                 }
                 
-                Section(header: Text("Laude value")) {
-                    Stepper("\(laudeValue)", value: laudeValueProxy, in: 30...35)
-                }
-                
-                Section(footer: Text("")) {
-                    NavigationLink(destination: AboutView(), label: {
-                        Text("About")
-                    })
+                Section(header: Text("Other")) {
+                    NavigationLink(destination: AboutView()) {
+                        Label(title: { Text("About") }, icon: { Image(systemName: "info.circle.fill") })
+                    }
+                    NavigationLink(destination: ContributingView()) {
+                        Label(title: { Text("Contribute") }, icon: { Image(systemName: "chevron.left.slash.chevron.right") })
+                    }
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            
             .navigationBarTitle("Settings")
-            .navigationBarItems(trailing: Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }, label: {
-                Text("Done")
-            }))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Done")
+                    })
+                }
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

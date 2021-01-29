@@ -31,33 +31,52 @@ struct HomeView: View {
                 }
                 .padding(.bottom)
                 .frame(height: 450)
-                
+
                 // MARK: - Categories Section
                 HomeSection(sectionTitle: NSLocalizedString("Categories", comment: "")) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            NavigationLink(destination: MarksView(), isActive: self.$markViewActive) {
-                                CategoriesCard(label: NSLocalizedString("Marks", comment: ""), imageName: "checkmark.seal")
-                            }.buttonStyle(PlainButtonStyle())
-                            
-                            NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
-                                CategoriesCard(label: NSLocalizedString("Stats", comment: ""), imageName: "checkmark")
-                            }.buttonStyle(PlainButtonStyle())
-                        }
-                        .padding(.horizontal, 25)
-                    }
+                    VStack(alignment: .leading) {
+                        NavigationLink(destination: MarksView(), isActive: self.$markViewActive) {
+                            Label(title: {
+                                Text("Your Marks").font(.system(size: 20.0, weight: .semibold, design: .rounded))
+                            }) {
+                                Image(systemName: "checkmark.seal.fill")
+                                        .foregroundColor(.flatGreen)
+                                        .font(.system(size: 20.0))
+                            }
+                        }.buttonStyle(PlainButtonStyle())
+                        Divider()
+                        NavigationLink(destination: StatsView(), isActive: self.$statsViewActive) {
+                            Label(title: {
+                                Text("Statistics").font(.system(size: 20.0, weight: .semibold, design: .rounded))
+                            }) {
+                                Image(systemName: "checkmark")
+                                        .foregroundColor(.flatGreen)
+                                        .font(.system(size: 20.0))
+                            }
+                        }.buttonStyle(PlainButtonStyle())
+                    }.card()
+                    .padding(.horizontal, 25)
                 }
-                
+
                 // MARK: - Categories Section
                 HomeSection(sectionTitle: NSLocalizedString("Tools", comment: "")) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            NavigationLink(destination: AverageDeltaTool(), isActive: self.$toolsViewActive) {
-                                CategoriesCard(label: NSLocalizedString("Avg Delta Calculator", comment: ""), imageName: "divide.circle")
-                            }.buttonStyle(PlainButtonStyle())
+                    VStack(alignment: .leading) {
+                        NavigationLink(destination: AverageDeltaTool(), isActive: self.$toolsViewActive) {
+                            Label(title: {
+                                HStack {
+                                    Text("Average Delta Tool")
+                                        .font(.system(size: 20.0, weight: .semibold, design: .rounded))
+                                    Spacer()
+                                }
+                            }) {
+                                Image(systemName: "divide.circle.fill")
+                                        .foregroundColor(.flatGreen)
+                                        .font(.system(size: 20.0))
+                            }
                         }
-                        .padding(.horizontal, 25)
-                    }
+                        .buttonStyle(PlainButtonStyle())
+                    }.card()
+                    .padding(.horizontal, 25)
                 }
                 .padding(.bottom)
             }
@@ -79,7 +98,6 @@ struct HomeView: View {
             UITableView.appearance().backgroundColor = UIColor(named: "background")
             UITableView.appearance().separatorStyle = .none
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     @ViewBuilder private func sheetContent() -> some View {

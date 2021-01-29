@@ -16,19 +16,19 @@ struct IntroductionView: View {
                 Text("ParkMate")
             }
 
-            Feature(iconName: "car.fill", iconColor: .yellow,
-                    headline: "Keep track of everything",
+            Feature(iconName: "doc.fill", iconColor: .yellow,
+                    headline: "Keep track of your courses",
                     description: "Keep track of everything")
                     .padding(.vertical)
 
-            Feature(iconName: "person.2.fill", iconColor: .blue,
-                    headline: "All in a single place",
-                    description: "Save your marks, assignments and exams all in this app")
+            Feature(iconName: "paperclip", iconColor: .blue,
+                    headline: "All in one",
+                    description: "Save your marks, assignments and exams all in a single place")
                     .padding(.vertical)
 
-            Feature(iconName: "server.rack", iconColor: .green,
+            Feature(iconName: "sparkle", iconColor: .green,
                     headline: "Extremely simple to use",
-                    description: "Designed with ease of use in mind to get you back to work as soon as possible")
+                    description: "Designed with ease of use in mind")
                     .padding(.vertical)
         }
 

@@ -11,27 +11,29 @@ import SwiftUI
 struct AboutView: View {
     var body: some View {
         List {
-            HStack {
-                Spacer()
+            Section {
                 HStack {
-                    Image(uiImage: UIImage(named: "main.png")!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                        .cornerRadius(15)
-                    
-                    VStack(alignment: .leading) {
-                        Text("Lode \((Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!)")
-                            .font(.system(size: 20.0, design: .rounded))
-                            .bold()
-                            .padding(.bottom)
-                        Text("by Mattia Righetti")
+                    Spacer()
+                    HStack {
+                        Image(uiImage: UIImage(named: "main.png")!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .cornerRadius(15)
+
+                        VStack(alignment: .leading) {
+                            Text("Lode \((Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!)")
+                                .font(.system(size: 20.0, design: .rounded))
+                                .bold()
+                                .padding(.bottom)
+                            Text("by Mattia Righetti")
+                        }
                     }
+                    Spacer()
                 }
-                Spacer()
-            }
-            
+            }.listRowBackground(Color("background"))
+
             Section(header: Text("Developer info"), footer: Text("")) {
                 Button(action: {
                     UIApplication.shared.open(URL(string: "mailto:matt95.righetti@gmail.com")!)
@@ -42,29 +44,9 @@ struct AboutView: View {
                         Image(systemName: "chevron.right")
                     }
                 })
-                
+
                 Button(action: {
-                    UIApplication.shared.open(URL(string: "https://twitter.com/matt_righetti")!)
-                }, label: {
-                    HStack {
-                        Text("Twitter")
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                })
-                
-                Button(action: {
-                    UIApplication.shared.open(URL(string: "https://www.reddit.com/user/MattRighetti")!)
-                }, label: {
-                    HStack {
-                        Text("Reddit")
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                })
-                
-                Button(action: {
-                    UIApplication.shared.open(URL(string: "https://www.reddit.com/user/MattRighetti")!)
+
                 }, label: {
                     HStack {
                         Text("Rate Lode")
@@ -72,10 +54,10 @@ struct AboutView: View {
                         Image(systemName: "chevron.right")
                     }
                 })
-            }
+            }.listRowBackground(Color("cardBackground"))
         }
         .listStyle(InsetGroupedListStyle())
-        
+
         .navigationBarTitle("About", displayMode: .inline)
     }
 }
