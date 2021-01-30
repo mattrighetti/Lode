@@ -13,7 +13,7 @@ import CoreData
 extension Exam {
 
     public class func fetchRequest() -> NSFetchRequest<Exam> {
-        return NSFetchRequest<Exam>(entityName: "Exam")
+        NSFetchRequest<Exam>(entityName: "Exam")
     }
     
     public class func fetchRequest(withUUID id: UUID) -> NSFetchRequest<Exam> {

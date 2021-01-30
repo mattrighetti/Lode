@@ -1,5 +1,5 @@
 //
-//  ReminderForm.swift
+//  AssignmentForm.swift
 //  UniRadar
 //
 //  Created by Mattia Righetti on 20/04/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ReminderForm: View {
+struct AssignmentForm: View {
 
     @Environment(\.presentationMode) var presentationMode
 
@@ -129,9 +129,9 @@ struct ReminderForm: View {
     
 }
 
-struct ReminderForm_Previews: PreviewProvider {
+struct AssignmentForm_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderForm()
+        AssignmentForm()
             .environment(\.colorScheme, .dark)
     }
 }

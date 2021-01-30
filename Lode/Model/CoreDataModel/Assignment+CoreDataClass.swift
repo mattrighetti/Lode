@@ -13,12 +13,14 @@ import SwiftUI
 
 public class Assignment: NSManagedObject {
 
-    convenience init(context: NSManagedObjectContext,
-                     id: UUID = UUID(),
-                     color: Color,
-                     caption: String? = "No caption",
-                     dueDate: Date? = Date(),
-                     title: String? = "No title") {
+    convenience init(
+            context: NSManagedObjectContext,
+            id: UUID = UUID(),
+            color: Color,
+            caption: String? = "No caption",
+            dueDate: Date? = Date(),
+            title: String? = "No title"
+    ) {
         // CoreData stuff
         let entity = NSEntityDescription.entity(forEntityName: "Assignment", in: context)!
         self.init(entity: entity, insertInto: context)

@@ -1,5 +1,5 @@
 //
-//  RemindersView.swift
+//  AssignmentsView.swift
 //  UniRadar
 //
 //  Created by Mattia Righetti on 20/04/2020.
@@ -12,7 +12,7 @@ import os
 
 fileprivate let logger = Logger(subsystem: "com.mattrighetti.Lode", category: "ReminderView")
 
-struct RemindersView: View {
+struct AssignmentsView: View {
 
     @ObservedObject private var sheet = SheetState()
     @StateObject private var viewModel = AssignmentViewViewModel()
@@ -33,7 +33,7 @@ struct RemindersView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columnsLayout) {
                     ForEach(pickerSelection == 0 ? viewModel.dueAssignments : viewModel.pastAssignments, id: \.id) { assignment in
-                        ReminderRow(assignment: assignment)
+                        AssignmentRow(assignment: assignment)
                             .onTapGesture {
                                 if editMode == .active {
                                     logger.log("Setting assignment to edit")
@@ -97,7 +97,7 @@ struct RemindersView: View {
                 editMode = .inactive
             },
             content: {
-                ReminderForm(assignment: sheet.assignmentToEdit)
+                AssignmentForm(assignment: sheet.assignmentToEdit)
             }
         )
     }
@@ -112,9 +112,9 @@ fileprivate class SheetState: ObservableObject {
     }
 }
 
-struct RemindersView_Previews: PreviewProvider {
+struct AssignmentsView_Previews: PreviewProvider {
     static var previews: some View {
-        RemindersView()
+        AssignmentsView()
             .environment(\.colorScheme, .dark)
     }
 }

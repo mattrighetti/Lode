@@ -22,7 +22,8 @@ public class Course: NSManagedObject {
         laude: Bool?,
         expectedLaude: Bool?,
         mark: Int?,
-        name: String? = "No name") {
+        name: String? = "No name"
+    ) {
             // CoreData stuff
             let entity = NSEntityDescription.entity(forEntityName: "Course", in: context)!
             self.init(entity: entity, insertInto: context)
@@ -43,19 +44,19 @@ public class Course: NSManagedObject {
         id: UUID = UUID(),
         cfu: Int,
         color: Color,
-        expectedMark: Int) {
-        
-        self.init(context: context,
-                  cfu: cfu,
-                  color: color,
-                  expectedMark: expectedMark,
-                  iconName: nil,
-                  laude: nil,
-                  expectedLaude: nil,
-                  mark: nil,
-                  name: nil
+        expectedMark: Int
+    ) {
+        self.init(
+            context: context,
+            cfu: cfu,
+            color: color,
+            expectedMark: expectedMark,
+            iconName: nil,
+            laude: nil,
+            expectedLaude: nil,
+            mark: nil,
+            name: nil
         )
-        
     }
 }
 

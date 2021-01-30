@@ -37,7 +37,7 @@ struct MainView: View {
                     Text("Exams")
                 }
             
-            RemindersView()
+            AssignmentsView()
                 .tabItem {
                     Image(systemName: "pin")
                     Text("Assignments")

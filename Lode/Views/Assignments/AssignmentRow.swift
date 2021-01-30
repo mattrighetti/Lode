@@ -1,5 +1,5 @@
 //
-//  ReminderRow.swift
+//  AssignmentRow.swift
 //  UniRadar
 //
 //  Created by Mattia Righetti on 19/05/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ReminderRow: View {
+struct AssignmentRow: View {
     var assignment: Assignment
 
     var body: some View {
@@ -63,14 +63,14 @@ struct ReminderRow: View {
 
 }
 
-struct ReminderRow_Previews: PreviewProvider {
+struct AssignmentRow_Previews: PreviewProvider {
     static var previews: some View {
         let assignment = Assignment()
         assignment.title = "Start studying Artificial Intelligence"
         assignment.caption = "Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom Start from the  bottom"
         assignment.dueDate = Date(timeIntervalSince1970: TimeInterval(exactly: 1589979887.0)!)
         return List {
-            ReminderRow(assignment: assignment)
+            AssignmentRow(assignment: assignment)
         }
     }
 }
