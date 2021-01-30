@@ -20,8 +20,8 @@ class CourseViewViewModel: ObservableObject {
 
     private var cancellable: AnyCancellable?
 
-    init() {
-        cancellable = CourseStorage.shared.courses.sink { courses in
+    init(coursePublisher: AnyPublisher<[Course], Never> = CourseStorage.shared.courses.eraseToAnyPublisher()) {
+        cancellable = coursePublisher.sink { courses in
             logger.log("Updating courses")
             self.courses = courses
         }

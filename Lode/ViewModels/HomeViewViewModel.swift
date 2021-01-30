@@ -61,11 +61,14 @@ class HomeViewViewModel: ObservableObject {
 
     private var cancellable = Set<AnyCancellable>()
 
-    init() {
-        CourseStorage.shared.courses.sink { courses in
+    init(
+        coursePublisher: AnyPublisher<[Course], Never> = CourseStorage.shared.courses.eraseToAnyPublisher(),
+        examPublisher: AnyPublisher<[Exam], Never> = ExamStorage.shared.exams.eraseToAnyPublisher()
+    ) {
+        coursePublisher.sink { courses in
             self.courses = courses
         }.store(in: &cancellable)
-        ExamStorage.shared.exams.sink { exams in
+        examPublisher.sink { exams in
             self.exams = exams
         }.store(in: &cancellable)
     }

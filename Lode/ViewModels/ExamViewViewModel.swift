@@ -19,11 +19,14 @@ class ExamViewViewModel: ObservableObject {
 
     private var cancellable = Set<AnyCancellable>()
 
-    init() {
-        CourseStorage.shared.courses.sink {
+    init(
+        coursePublisher: AnyPublisher<[Course], Never> = CourseStorage.shared.courses.eraseToAnyPublisher(),
+        examPublisher: AnyPublisher<[Exam], Never> = ExamStorage.shared.exams.eraseToAnyPublisher()
+    ) {
+        coursePublisher.sink {
             self.courseNotPassedStrings = $0.filter({ $0.mark == 0 }).map { $0.name! }
         }.store(in: &cancellable)
-        ExamStorage.shared.exams.sink {
+        examPublisher.sink {
             self.exams = $0.sorted(by: { $0.date! < $1.date! })
         }.store(in: &cancellable)
     }
