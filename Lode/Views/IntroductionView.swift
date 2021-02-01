@@ -59,9 +59,9 @@ struct MainTitle<Content: View>: View {
         VStack {
             content
         }
-                .font(.system(size: 40.0, weight: .bold))
-                .padding(.top, 40)
-                .padding(.bottom, 40)
+        .font(.system(size: 40.0, weight: .bold))
+        .padding(.top, 40)
+        .padding(.bottom, 40)
     }
 }
 

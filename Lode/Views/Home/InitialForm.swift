@@ -37,7 +37,8 @@ struct InitialForm: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 
-                Header(title: NSLocalizedString("Total CFUs of your study plan", comment: "")).padding(.top)
+                Header(title: NSLocalizedString("Total CFUs of your study plan", comment: ""))
+                    .padding(.top)
                 
                 Stepper(value: self.$totalCfu, in: 30...1000) {
                     Text("\(totalCfu)")
@@ -47,7 +48,8 @@ struct InitialForm: View {
                 .background(Color("cardBackground"))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 
-                Header(title: NSLocalizedString("How much is a laude evaluated?", comment: "")).padding(.top)
+                Header(title: NSLocalizedString("How much is a laude evaluated?", comment: ""))
+                        .padding(.top)
                 
                 Stepper(value: self.$laudeValue, in: 30...35) {
                     Text("\(laudeValue)")
@@ -59,12 +61,22 @@ struct InitialForm: View {
                 
             }
             .padding(.horizontal)
-            .background(Color("background").edgesIgnoringSafeArea(.all))
+            .background(Color("background")
+                .edgesIgnoringSafeArea(.all))
             .onAppear {
                 setViewModelValues(totalCfu, laudeValue)
             }
             
             .navigationBarTitle("Initial setup", displayMode: .large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Done")
+                    })
+                }
+            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     
