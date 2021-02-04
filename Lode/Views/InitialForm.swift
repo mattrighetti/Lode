@@ -13,7 +13,7 @@ struct InitialForm: View {
     @Environment(\.presentationMode) var presentationMode
 
     @AppStorage("totalCfu") var totalCfu: Int = 180
-    @AppStorage("laudeValue") var laudeValue: Int = 180
+    @AppStorage("laudeValue") var laudeValue: Int = 30
     
     private var totalCfuProxy: Binding<Int> {
         Binding<Int>(get: {

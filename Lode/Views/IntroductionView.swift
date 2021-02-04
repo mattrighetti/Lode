@@ -13,7 +13,7 @@ struct IntroductionView: View {
         VStack(alignment: .center) {
             MainTitle {
                 Text("Welcome To")
-                Text("ParkMate")
+                Text("Lode")
             }
 
             Feature(iconName: "doc.fill", iconColor: .yellow,
