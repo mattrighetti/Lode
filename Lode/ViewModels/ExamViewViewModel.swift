@@ -23,10 +23,10 @@ class ExamViewViewModel: ObservableObject {
         coursePublisher: AnyPublisher<[Course], Never> = CourseStorage.shared.courses.eraseToAnyPublisher(),
         examPublisher: AnyPublisher<[Exam], Never> = ExamStorage.shared.exams.eraseToAnyPublisher()
     ) {
-        coursePublisher.sink {
+        coursePublisher.sink { [unowned self] in
             self.courseNotPassedStrings = $0.filter({ $0.mark == 0 }).map { $0.name! }
         }.store(in: &cancellable)
-        examPublisher.sink {
+        examPublisher.sink { [unowned self] in
             self.exams = $0.sorted(by: { $0.date! < $1.date! })
         }.store(in: &cancellable)
     }

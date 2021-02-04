@@ -25,7 +25,7 @@ class AverageDeltaToolViewModel: ObservableObject {
     private var cancellable: AnyCancellable?
 
     init() {
-        cancellable = CourseStorage.shared.courses.sink { courses in
+        cancellable = CourseStorage.shared.courses.sink { [unowned self] courses in
             self.courses = courses
         }
     }

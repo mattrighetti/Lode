@@ -17,7 +17,7 @@ class AssignmentViewViewModel: ObservableObject {
     private var cancellable: AnyCancellable?
 
     init() {
-        cancellable = AssignmentStorage.shared.assignments.sink { assignments in
+        cancellable = AssignmentStorage.shared.assignments.sink { [unowned self] assignments in
             self.assignments = assignments
         }
     }

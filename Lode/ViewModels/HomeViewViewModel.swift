@@ -65,10 +65,10 @@ class HomeViewViewModel: ObservableObject {
         coursePublisher: AnyPublisher<[Course], Never> = CourseStorage.shared.courses.eraseToAnyPublisher(),
         examPublisher: AnyPublisher<[Exam], Never> = ExamStorage.shared.exams.eraseToAnyPublisher()
     ) {
-        coursePublisher.sink { courses in
+        coursePublisher.sink { [unowned self] courses in
             self.courses = courses
         }.store(in: &cancellable)
-        examPublisher.sink { exams in
+        examPublisher.sink { [unowned self] exams in
             self.exams = exams
         }.store(in: &cancellable)
     }

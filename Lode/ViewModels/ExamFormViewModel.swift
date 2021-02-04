@@ -11,7 +11,7 @@ class ExamFormViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
 
     init(coursePublisher: AnyPublisher<[Course], Never> = CourseStorage.shared.courses.eraseToAnyPublisher()) {
-        coursePublisher.sink {
+        coursePublisher.sink { [unowned self] in
             self.courseNotPassedStrings = $0.filter({ $0.mark == 0 }).map { $0.name! }
         }.store(in: &cancellable)
     }

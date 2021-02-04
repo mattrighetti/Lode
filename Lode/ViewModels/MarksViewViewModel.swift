@@ -10,7 +10,7 @@ class MarksViewViewModel: ObservableObject {
     private var cancellable: AnyCancellable?
 
     init(coursePublisher: AnyPublisher<[Course], Never> = CourseStorage.shared.courses.eraseToAnyPublisher()) {
-        cancellable = coursePublisher.sink { courses in
+        cancellable = coursePublisher.sink { [unowned self] courses in
             self.courses = courses
         }
     }
