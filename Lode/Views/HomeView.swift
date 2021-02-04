@@ -49,7 +49,7 @@ struct HomeView: View {
                             Label(title: {
                                 Text("Statistics").font(.system(size: 20.0, weight: .semibold, design: .rounded))
                             }) {
-                                Image(systemName: "checkmark")
+                                Image(systemName: "chart.bar.doc.horizontal.fill")
                                         .foregroundColor(.flatGreen)
                                         .font(.system(size: 20.0))
                             }

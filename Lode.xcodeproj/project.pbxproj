@@ -44,13 +44,13 @@
 		33071930812CB17C784B58F4 /* CourseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071E8864BBA0CE4220400B /* CourseStorage.swift */; };
 		330719582B589770DD0453BC /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307109BBDDBFC1863B3E0BA /* +View.swift */; };
 		330719E9EA6E448E94BC7215 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330715A6897F584870C4FEF9 /* DataCard.swift */; };
+		330719F099591DB72A4ADFE2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330715AB465F18AF9D79B806 /* HomeView.swift */; };
 		33071AD51F676090872813B8 /* ContributingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330714524155EC9F94D59C2E /* ContributingView.swift */; };
 		33071B195BC3A0EF6C27FEFA /* ExamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330711EC7F8478F0605C4262 /* ExamsView.swift */; };
 		33071B7081FF9FF9A53827C4 /* MarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071B3E8C3C0BA0A0FF602C /* MarksView.swift */; };
 		33071B8A2FCEB14CF5D60F0B /* AverageDeltaToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330714E6A8CA6A934D709BC6 /* AverageDeltaToolViewModel.swift */; };
 		33071C4D1AFA5C66659FD562 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33071A1F6560130CC737DF81 /* AboutView.swift */; };
 		33071C7996EF0F70EBFED77A /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307153A3D8B3C00F3829F44 /* Course+CoreDataProperties.swift */; };
-		33071C91ABD3F08164ECC08F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307156FAD59786C758E8062 /* HomeView.swift */; };
 		33071C9979A7F47AC468953D /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330712FA46C7568ECB669E0C /* CustomModifiers.swift */; };
 		33071CAD90223537F8FD571F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330718A633A1BC1414606C32 /* Deck.swift */; };
 		33071CBFFD3F11FCC195F842 /* MarksViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307161C5C7604B87585E448 /* MarksViewViewModel.swift */; };
@@ -115,9 +115,9 @@
 		330714E6A8CA6A934D709BC6 /* AverageDeltaToolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageDeltaToolViewModel.swift; sourceTree = "<group>"; };
 		3307153A3D8B3C00F3829F44 /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		330715652E583EEDA5834830 /* ExamForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamForm.swift; sourceTree = "<group>"; };
-		3307156FAD59786C758E8062 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3307159AA593A60EB07CF919 /* StatsViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewViewModel.swift; sourceTree = "<group>"; };
 		330715A6897F584870C4FEF9 /* DataCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
+		330715AB465F18AF9D79B806 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		330715D877C513A9B6E66B01 /* IconColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconColorPickerView.swift; sourceTree = "<group>"; };
 		33071609C332263221295FF4 /* AssignmentRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentRow.swift; sourceTree = "<group>"; };
 		330716120CD511CBAB152F6C /* CoursesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
@@ -248,14 +248,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		3307140A53371011B2B783FD /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				3307156FAD59786C758E8062 /* HomeView.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		3307140DBEF98FE5F1720825 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,7 +269,6 @@
 		330717D71D9828B200550242 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3307140A53371011B2B783FD /* Home */,
 				330718B76B602C1A77DE4278 /* Exams */,
 				33071CE89A272D167CA9F7D5 /* Courses */,
 				33071BAB96030C949457D247 /* Assignments */,
@@ -289,6 +280,7 @@
 				33071D96CADBFC37675EB9B1 /* StatsView.swift */,
 				33071C3381DB54817E496CFB /* SettingsViews */,
 				33071FA04E594D65CBFB6D54 /* InitialForm.swift */,
+				330715AB465F18AF9D79B806 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -591,7 +583,6 @@
 			files = (
 				C9405F1B25B8F17200342FF7 /* Persistence.swift in Sources */,
 				C9405F1225B8F17100342FF7 /* LodeApp.swift in Sources */,
-				33071C91ABD3F08164ECC08F /* HomeView.swift in Sources */,
 				33071393A0D39DF13526E8E6 /* ExamRow.swift in Sources */,
 				33071280B244F665FFD58A21 /* ExamForm.swift in Sources */,
 				33071B195BC3A0EF6C27FEFA /* ExamsView.swift in Sources */,
@@ -651,6 +642,7 @@
 				33071AD51F676090872813B8 /* ContributingView.swift in Sources */,
 				33071EEE4C1A28EFD27B9E6F /* SettingsView.swift in Sources */,
 				330718439F6558ED14470678 /* InitialForm.swift in Sources */,
+				330719F099591DB72A4ADFE2 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
