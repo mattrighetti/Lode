@@ -24,7 +24,7 @@ struct HomeView: View {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                         RectangleData(title: "CFU", data: "\(viewModel.gainedCfu)", color: .flatBlue)
                         RectangleData(title: "Upcoming exams", data: "\(viewModel.upcomingExams)", color: .flatShakespeare)
-                        RectangleData(title: "Average", data: "\(viewModel.average)", color: .green)
+                        RectangleData(title: "Average", data: "\(viewModel.average.twoDecimalPrecision)", color: .green)
                         RectangleData(title: "Due Assignments", data: "\(viewModel.dueAssignments)", color: .orange)
                     })
                 }

@@ -46,6 +46,18 @@ struct StatsView: View {
                     ListItem(itemDescription: "Better than expected", itemValue: viewModel.betterThanExpected)
                     ListItem(itemDescription: "Worse than expected", itemValue: viewModel.worseThanExpected)
                 }.listRowBackground(Color("cardBackground"))
+                
+                if viewModel.passedExams.count > 0 {
+                    Section(header: Text("Other")) {
+                        PieChart(
+                            data: .constant(viewModel.pieChartPassedCoursesMarks.values.map { Double($0) }),
+                            labels: .constant(viewModel.pieChartPassedCoursesMarks.keys.map { String($0) }),
+                            colors: Color.gradientsPalette.shuffled(), borderColor: .white
+                        )
+                        .frame(height: 250, alignment: .center)
+                    }
+                    .listRowBackground(Color.background)
+                }
             }
             .listStyle(InsetGroupedListStyle())
         } else {
@@ -69,7 +81,7 @@ struct ListItem: View {
     var body: some View {
         HStack {
             Text(itemDescription)
-                .font(.system(size: 17.0, weight: .regular, design: .rounded))
+                .font(.system(size: 16.0, weight: .regular, design: .rounded))
             Spacer()
             Text(itemValue == floor(itemValue) ? "\(Int(itemValue))" : "\(itemValue.twoDecimalPrecision)")
                 .font(.system(size: 20.0, weight: .semibold, design: .rounded))

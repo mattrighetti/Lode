@@ -17,7 +17,7 @@ struct ContributingView: View {
             Section {
                 VStack(alignment: .center) {
                     Text("Coming soon...")
-                        .font(.system(size: 35.0))
+                        .font(.system(size: 35.0, design: .rounded))
                         .padding(.bottom)
 
                     Text("This application is going to be open sourced as soon as it gets out of beta")

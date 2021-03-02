@@ -27,6 +27,9 @@ class StatsViewViewModel: ObservableObject {
             betterThanExpected = Double(passedExams.filter { $0.mark > $0.expectedMark }.count)
             worseThanExpected = Double(passedExams.filter { $0.mark < $0.expectedMark }.count)
             barChartData = passedExams.map({ Double($0.mark) })
+            passedExams.forEach {
+                pieChartPassedCoursesMarks[Int($0.mark)] = (pieChartPassedCoursesMarks[Int($0.mark)] ?? 0) + 1
+            }
         }
     }
     @Published var totalCourses: Double = 0.0
@@ -42,6 +45,7 @@ class StatsViewViewModel: ObservableObject {
     @Published var betterThanExpected: Double = 0.0
     @Published var worseThanExpected: Double = 0.0
     @Published var barChartData: [Double] = []
+    @Published var pieChartPassedCoursesMarks: [Int:Int] = [:]
 
     private var cancellables: Set<AnyCancellable>
 
