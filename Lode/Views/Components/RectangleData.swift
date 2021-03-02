@@ -15,11 +15,13 @@ struct RectangleData: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.system(size: 15, weight: .regular, design: .rounded))
+                    .foregroundColor(.white)
                 Spacer()
                 Text(data)
                     .font(.system(size: 23, weight: .semibold, design: .rounded))
+                    .foregroundColor(.white)
             }
             Spacer()
         }

@@ -117,7 +117,7 @@ struct CourseForm: View {
                     isPassed.toggle()
                 }, label: {
                     HStack {
-                        Text("Passed (singular)")
+                        Text(isPassed ? "Passed (singular)" : "Not passed (singular)")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                         
@@ -170,13 +170,21 @@ struct CourseForm: View {
             .background(Color.background.edgesIgnoringSafeArea(.all))
 
             .navigationBarTitle("Add course", displayMode: .inline)
-            .navigationBarItems(
-                leading: Button("Cancel") { presentationMode.wrappedValue.dismiss() },
-                trailing: Button("Save") { onSavePressed() }
-            )
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        onSavePressed()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+
+                    }
+                }
+            }
         }
         .onAppear(perform: setupCourse)
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     private func setupCourse() {

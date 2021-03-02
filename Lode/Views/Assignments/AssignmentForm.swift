@@ -86,25 +86,19 @@ struct AssignmentForm: View {
             .onAppear(perform: setupAssignment)
                 
             .navigationBarTitle("Add assignment", displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(
-                    action: {
-                        presentationMode.wrappedValue.dismiss()
-                    },
-                    label: {
-                        Text("Cancel")
-                    }
-                ),
-                trailing: Button(
-                    action: {
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
                         onDonePressed()
-                    },
-                    label: {
-                        Text("Done")
                     }
-                )
-            )
-        }.navigationViewStyle(StackNavigationViewStyle())
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
+        }
     }
     
     private func onDonePressed() {

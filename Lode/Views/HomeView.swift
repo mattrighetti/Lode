@@ -20,16 +20,14 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Main info")) {
+                ListView(header: Text("Main Info")) {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                         RectangleData(title: "CFU", data: "\(viewModel.gainedCfu)", color: .flatBlue)
-                        RectangleData(title: "Upcoming exams", data: "\(viewModel.upcomingExams)", color: .flatShakespeare)
+                        RectangleData(title: "Upcoming Exams", data: "\(viewModel.upcomingExams)", color: .flatShakespeare)
                         RectangleData(title: "Average", data: "\(viewModel.average.twoDecimalPrecision)", color: .green)
                         RectangleData(title: "Due Assignments", data: "\(viewModel.dueAssignments)", color: .orange)
                     })
                 }
-                .listRowBackground(Color.background)
-                .listRowInsets(.some(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)))
                 Section(header: Text("Categories")) {
                     NavigationLink(destination: MarksView()) {
                         Label(title: {

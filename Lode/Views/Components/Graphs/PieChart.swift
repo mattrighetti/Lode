@@ -76,6 +76,7 @@ struct PieSliceText: View {
         VStack {
             Text(title)
                 .font(.headline)
+                .foregroundColor(.white)
         }
     }
 }

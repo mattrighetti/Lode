@@ -7,17 +7,15 @@
 */
 
 // MARK: - Home View
-"Home" = "Home";
 "Main Info" = "Main Info";
 "Categories" = "Categories";
 "Stats" = "Stats";
-"Your CFU" = "Your CFU";
-"Your Average" = "Your Average";
 "Expected Average" = "Expected Average";
 "Average" = "Average";
 "Upcoming Exams" = "Upcoming Exams";
-"Active Assignments" = "Active Assignments";
-"Avg Delta Calculator" = "Avg Delta Calculator";
+"Due Assignments" = "Due Assignments";
+"Average Delta Tool" = "Average Delta Tool";
+"Your Marks" = "Your Marks";
 "Tools" = "Tools";
 
 // MARK: - Delta Average Calculator
@@ -38,15 +36,17 @@
 "Current average" = "Current average";
 "Current graduation grade" = "Current graduation grade";
 "As expected" = "As expected";
-"More than expected" = "More than expected";
-"Less than expected" = "Less than expected";
+"Better than expected" = "Better than expected";
+"Worse than expected" = "Worse than expected";
 "No data to show" = "No data to show";
+"Other" = "Other";
 
 // MARK: - Marks View
 "Marks" = "Marks";
 
 // MARK: - Settings View
 "Settings" = "Settings";
+"App settings" = "App settings";
 "Total CFU" = "Total CFU";
 "Accent color" = "Accent color";
 "App icon" = "App icon";
@@ -87,6 +87,7 @@
 "Past" = "Past";
 "Passed" = "Passed";
 "Passed (singular)" = "Passed";
+"Not passed (singular)" = "Not passed";
 "Current" = "Current";
 "Upcoming" = "Upcoming";
 "Active" = "Active";
@@ -127,6 +128,7 @@
 
 // MARK: - About View
 "Rate Lode" = "Rate Lode";
+"Developer info" = "Developer info";
 
 // MARK: - Cards
 "Upcoming exams" = "Upcoming exams";

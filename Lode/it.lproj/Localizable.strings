@@ -7,46 +7,46 @@
 */
 
 // MARK: - Home View
-"Home" = "Home";
 "Main Info" = "Info";
 "Categories" = "Categorie";
 "Stats" = "Statistiche";
-"Your CFU" = "I tuoi CFU";
-"Your Average" = "La tua media";
 "Expected Average" = "Media attesa";
 "Average" = "Media";
 "Upcoming Exams" = "Prossimi esami";
-"Active Assignments" = "Compiti attivi";
-"Avg Delta Calculator" = "Calcolatore Media";
+"Due Assignments" = "Compiti attivi";
+"Average Delta Tool" = "Delta Media";
+"Your Marks" = "Voti";
 "Tools" = "Strumenti";
 
 // MARK: - Delta Average Calculator
-"TWAY" = "Questo strumento ti mostrerà la tua nova media nel caso dovessi conseguire un esame con un voto mostrato sotto";
+"TWAY" = "Questo strumento ti mostrerà la tua nova media in base al tuo prossimo voto";
 "Course CFU" = "CFU del corso";
 "New average" = "Nuova media";
-"Delta Calculator" = "Calcolatore Media";
+"Delta Calculator" = "Calcolatore Delta";
 
 // MARK: - Statistics View
 "Statistics" = "Statistiche";
-"Current statistics" = "Statistiche attuali";
+"Current statistics" = "Dati attuali";
 "Exams passed" = "Esami passati";
 "Latest marks" = "Ultimi voti";
 "Total courses" = "Corsi totali";
-"Projected graduation grade" = "Voto di laurea";
+"Projected graduation grade" = "Voto di laurea atteso";
 "Passed exams" = "Esami passati";
-"Gained CFU" = "CFU guadagnati";
+"Gained CFU" = "CFU ottenuti";
 "Current average" = "Media attuale";
 "Current graduation grade" = "Voto di laurea attuale";
 "As expected" = "Come atteso";
-"More than expected" = "Più del previsto";
-"Less than expected" = "Meno del previsto";
+"Better than expected" = "Meglio del previsto";
+"Worse than expected" = "Peggio del previsto";
 "No data to show" = "Nessun dato da mostrare";
+"Other" = "Altro";
 
 // MARK: - Marks View
 "Marks" = "Voti";
 
 // MARK: - Settings View
 "Settings" = "Impostazioni";
+"App settings" = "Impostazioni app";
 "Total CFU" = "CFU totali";
 "Accent color" = "Accent color";
 "App icon" = "App icon";
@@ -64,10 +64,10 @@
 "In %d days" = "Tra %d giorni";
 
 // MARK: - Assignments View
-"Assignments" = "Compiti";
-"Add assignment" = "Aggiungi compito";
-"Assignment title" = "Titolo compito";
-"Assignment description" = "Descrizione compito";
+"Assignments" = "To Do";
+"Add assignment" = "Aggiungi To Do";
+"Assignment title" = "Titolo";
+"Assignment description" = "Descrizione";
 "missing" = "mancanti";
 "Due soon" = "Scade presto";
 
@@ -87,6 +87,7 @@
 "Past" = "Passati";
 "Passed" = "Superati";
 "Passed (singular)" = "Superato";
+"Not passed (singular)" = "Non passato";
 "Current" = "Attuali";
 "Upcoming" = "Prossimi";
 "Active" = "Attivi";
@@ -127,6 +128,7 @@
 
 // MARK: - About View
 "Rate Lode" = "Valuta Lode";
+"Developer info" = "Info sviluppatore";
 
 // MARK: - Cards
 "Upcoming exams" = "Prossimi esami";

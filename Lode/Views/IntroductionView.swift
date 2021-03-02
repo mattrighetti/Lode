@@ -42,7 +42,7 @@ struct IntroductionView: View {
                 Text("Continue")
             }
         })
-                .padding(.horizontal)
+        .padding(.horizontal)
 
         Spacer()
     }

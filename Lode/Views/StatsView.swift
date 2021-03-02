@@ -28,7 +28,7 @@ struct StatsView: View {
         if viewModel.courses.count > 0 {
             List {
                 Section(header: Text("Main Info")) {
-                    ListItem(itemDescription: "Total Courses", itemValue: viewModel.totalCourses)
+                    ListItem(itemDescription: "Total courses", itemValue: viewModel.totalCourses)
                     ListItem(itemDescription: "Total CFU", itemValue: viewModel.totalCfu)
                     ListItem(itemDescription: "Expected Average", itemValue: viewModel.expectedAverage)
                     ListItem(itemDescription: "Projected graduation grade", itemValue: viewModel.projectedGraduationGrade)
@@ -37,7 +37,7 @@ struct StatsView: View {
                 Section(header: Text("Current statistics")) {
                     ListItem(itemDescription: "Passed exams", itemValue: viewModel.numPassedExams)
                     ListItem(itemDescription: "Gained CFU", itemValue: viewModel.gainedCfu)
-                    ListItem(itemDescription: "Current Average", itemValue: viewModel.currentAverage)
+                    ListItem(itemDescription: "Current average", itemValue: viewModel.currentAverage)
                     ListItem(itemDescription: "Current graduation grade", itemValue: viewModel.currentProjectedGraduationGrade)
                 }.listRowBackground(Color("cardBackground"))
 
@@ -80,7 +80,7 @@ struct ListItem: View {
 
     var body: some View {
         HStack {
-            Text(itemDescription)
+            Text(LocalizedStringKey(itemDescription))
                 .font(.system(size: 16.0, weight: .regular, design: .rounded))
             Spacer()
             Text(itemValue == floor(itemValue) ? "\(Int(itemValue))" : "\(itemValue.twoDecimalPrecision)")

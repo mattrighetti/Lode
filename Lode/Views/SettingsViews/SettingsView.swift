@@ -39,27 +39,27 @@ struct SettingsView: View {
                 Section(header: Text("App settings")) {
                     Stepper(value: totalCfuProxy, in: 0...300) {
                         VStack(alignment: .leading) {
-                            Text("Total CFU:").font(.system(size: 15.0, weight: .regular))
+                            Text("Total CFU").font(.system(size: 15.0, weight: .regular))
                             Text("\(totalCfu)").font(.system(size: 25.0, design: .rounded))
                         }
                     }.padding(.vertical, 7)
                     Stepper(value: laudeValueProxy, in: 30...35) {
                         VStack(alignment: .leading) {
-                            Text("Laude Value:").font(.system(size: 15.0, weight: .regular))
+                            Text("Laude value").font(.system(size: 15.0, weight: .regular))
                             Text("\(laudeValue)").font(.system(size: 25.0, design: .rounded))
                         }
                     }.padding(.vertical, 7)
                 }
                 
                 Section(header: Text("Other")) {
-                    NavigationLink(destination: TipJarView()) {
-                        Label(title: { Text("Tip Jar") }, icon: {
-                            CircledIcon(color: .red) {
-                                Image(systemName: "app.gift")
-                                    .font(.title3)
-                            }
-                        })
-                    }.padding(.vertical, 10)
+//                    NavigationLink(destination: TipJarView()) {
+//                        Label(title: { Text("Tip Jar") }, icon: {
+//                            CircledIcon(color: .red) {
+//                                Image(systemName: "app.gift")
+//                                    .font(.title3)
+//                            }
+//                        })
+//                    }.padding(.vertical, 10)
                     NavigationLink(destination: AboutView()) {
                         Label(title: { Text("About") }, icon: {
                             CircledIcon(color: .blue) {
