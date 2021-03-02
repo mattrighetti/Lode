@@ -24,6 +24,17 @@ struct CourseRow: View {
         course.name.count > 30
     }
     
+    private var finalMarkColor: Color? {
+        if course.mark != 0 {
+            if course.mark >= course.expectedMark {
+                return .green
+            } else {
+                return .red
+            }
+        }
+        return nil
+    }
+    
     var body: some View {
         HStack {
             ZStack(alignment: .center) {
@@ -39,14 +50,11 @@ struct CourseRow: View {
                 Text(isNameTooLong ? self.courseAcronym : course.name)
                     .font(.headline)
                     .fontWeight(.semibold)
-                
-                HStack {
-                    NumberBadge(label: "CFU", value: Int(course.cfu), color: .orange)
+                VStack(alignment: .leading, spacing: 3.0) {
+                    VerticalLineBadge(label: "CFU", value: Int(course.cfu), color: .orange)
                     badge()
                 }
-                .padding(.top, 10)
             }
-            .drawingGroup()
             
             Spacer()
         }
@@ -56,15 +64,15 @@ struct CourseRow: View {
     @ViewBuilder
     private func badge() -> some View {
         if course.mark != 0 {
-            NumberBadge(label: NSLocalizedString("Final", comment: ""), value: Int(course.mark), color: .yellow)
+            VerticalLineBadge(label: "Final", value: Int(course.mark), color: finalMarkColor!)
         } else {
-            NumberBadge(label: NSLocalizedString("Expected", comment: ""), value: Int(course.expectedMark), color: .blue)
+            VerticalLineBadge(label: "Expected", value: Int(course.expectedMark), color: .blue)
         }
     }
     
 }
 
-struct NumberBadge: View {
+struct VerticalLineBadge: View {
     var label: String
     var value: Int
     var laude: Bool {
@@ -77,15 +85,14 @@ struct NumberBadge: View {
     
     var body: some View {
         HStack {
+            RoundedRectangle(cornerRadius: 25.0)
+                .frame(width: 3, height: 15, alignment: .center)
+                .foregroundColor(color)
             Text(label)
-            Image(systemName: "\(value == 31 ? 30 : value).circle")
-                .font(.system(size: 20))
-            if laude {
-                Text("L")
-                    .padding(.horizontal, 0)
-            }
+                .fontWeight(.regular)
+            Text("\(value == 31 ? 30 : value)\(laude ? "L" : "")")
+                .fontWeight(.semibold)
         }
-        .badgePillWithImage(color: color)
     }
 }
 
