@@ -70,13 +70,10 @@ struct AverageDeltaTool: View {
             }.listRowBackground(Color("cardBackground"))
             
         }
-        .singleSeparator()
         .listStyle(InsetGroupedListStyle())
+        .background(Color.background.ignoresSafeArea())
         .onAppear {
             self.deltas = viewModel.calculateDeltas(withCfu: cfu)
-            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().separatorStyle = .none
         }
         
         .navigationBarTitle("Delta Calculator")

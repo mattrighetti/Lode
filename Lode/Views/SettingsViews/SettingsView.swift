@@ -36,7 +36,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("App settings")) {
+                Section(header: Text("App settings").fontWeight(.semibold)) {
                     Stepper(value: totalCfuProxy, in: 0...300) {
                         VStack(alignment: .leading) {
                             Text("Total CFU").font(.system(size: 15.0, weight: .regular))
@@ -51,7 +51,7 @@ struct SettingsView: View {
                     }.padding(.vertical, 7)
                 }
                 
-                Section(header: Text("Other")) {
+                Section(header: Text("Other").fontWeight(.semibold)) {
 //                    NavigationLink(destination: TipJarView()) {
 //                        Label(title: { Text("Tip Jar") }, icon: {
 //                            CircledIcon(color: .red) {
@@ -79,6 +79,8 @@ struct SettingsView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
+            .background(Color.background.ignoresSafeArea())
+            
             .navigationBarTitle("Settings", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

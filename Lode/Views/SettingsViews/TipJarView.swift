@@ -59,6 +59,8 @@ struct TipJarView: View {
             }.padding(.vertical, 5)
         }
         .listStyle(InsetGroupedListStyle())
+        .background(Color.background.ignoresSafeArea())
+        
         .navigationTitle("Tip Jar")
     }
 }

@@ -34,7 +34,7 @@ struct AboutView: View {
                 }
             }.listRowBackground(Color("background"))
 
-            Section(header: Text("Developer info"), footer: Text("")) {
+            Section(header: Text("Developer info").fontWeight(.semibold)) {
                 Button(action: {
                     UIApplication.shared.open(URL(string: "mailto:matt95.righetti@gmail.com")!)
                 }, label: {
@@ -49,6 +49,7 @@ struct AboutView: View {
             .listRowBackground(Color("cardBackground"))
         }
         .listStyle(InsetGroupedListStyle())
+        .background(Color.background.ignoresSafeArea())
 
         .navigationBarTitle("About", displayMode: .inline)
     }

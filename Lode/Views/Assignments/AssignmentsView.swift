@@ -65,6 +65,7 @@ struct AssignmentsView: View {
                 }
                 .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
+            .background(Color.background.ignoresSafeArea())
 
             .navigationBarTitle("Assignments")
             .toolbar {
@@ -89,11 +90,6 @@ struct AssignmentsView: View {
                 }
             }
             .environment(\.editMode, $editMode)
-        }
-        .onAppear {
-            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().separatorStyle = .none
         }
         .sheet(
             isPresented: $sheet.isShowing,

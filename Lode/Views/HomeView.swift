@@ -20,7 +20,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             List {
-                ListView(header: Text("Main Info")) {
+                ListView(header: Text("Main Info").fontWeight(.semibold)) {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                         RectangleData(title: "CFU", data: "\(viewModel.gainedCfu)", color: .flatBlue)
                         RectangleData(title: "Upcoming Exams", data: "\(viewModel.upcomingExams)", color: .flatShakespeare)
@@ -28,7 +28,7 @@ struct HomeView: View {
                         RectangleData(title: "Due Assignments", data: "\(viewModel.dueAssignments)", color: .orange)
                     })
                 }
-                Section(header: Text("Categories")) {
+                Section(header: Text("Categories").fontWeight(.semibold)) {
                     NavigationLink(destination: MarksView()) {
                         Label(title: {
                             Text("Your Marks")
@@ -51,7 +51,7 @@ struct HomeView: View {
                         }.padding(.vertical, 10)
                     }
                 }.listRowBackground(Color("cardBackground"))
-                Section(header: Text("Tools")) {
+                Section(header: Text("Tools").fontWeight(.semibold)) {
                     NavigationLink(destination: AverageDeltaTool()) {
                         Label(title: {
                             Text("Average Delta Tool")
@@ -65,12 +65,8 @@ struct HomeView: View {
                     }
                 }.listRowBackground(Color("cardBackground"))
             }
-            .onAppear {
-                UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-                UITableView.appearance().backgroundColor = UIColor(named: "background")
-                UITableView.appearance().separatorStyle = .none
-            }
             .listStyle(InsetGroupedListStyle())
+            .background(Color.background.ignoresSafeArea())
             .sheet(isPresented: $sheet.isShowing, content: sheetContent)
 
             .navigationBarTitle("Home", displayMode: .automatic)

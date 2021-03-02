@@ -27,62 +27,59 @@ struct AssignmentForm: View {
 
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                NavigationLink(
-                    destination: ColorPickerView(selectedColor: $color),
-                    isActive: $activeColorNavigationLink
-                ) {
-                    ZStack {
-                        Circle()
-                            .stroke()
-                            .fill(Color.blue)
-                            .frame(width: 105, height: 105, alignment: .center)
+            List {
+                ListView {
+                    NavigationLinkButton(
+                        destination: ColorPickerView(selectedColor: $color),
+                        isActive: $activeColorNavigationLink
+                    ) {
+                        ZStack {
+                            Circle()
+                                .stroke()
+                                .fill(Color.blue)
+                                .frame(width: 105, height: 105, alignment: .center)
 
-                        Circle()
-                            .fill(color)
-                            .frame(width: 100, height: 100, alignment: .center)
-                        
-                    }.padding(.top, 50)
-                }
-                
-                HStack {
-                    Text("Info").font(.headline).fontWeight(.bold)
-                    Spacer()
-                }
-                .padding(.top)
-                
-                TextField("Assignment title", text: $title)
-                    .card()
-                
-                TextField("Assignment description", text: $description)
-                    .card()
-                
-                Header(title: "Date").padding(.top)
-
-                DatePicker("Select date", selection: self.$date, displayedComponents: .date)
-                        .datePickerStyle(GraphicalDatePickerStyle())
-
-                if editAssignmentMode {
-                    Button(action: {
-                        viewModel.delete(id: assignment!.id!)
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Text("Delete")
-                                .padding()
-                            Spacer()
+                            Circle()
+                                .fill(color)
+                                .frame(width: 100, height: 100, alignment: .center)
                         }
-                        .background(Color.flatRed)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(10)
-                    })
+                        .padding(.vertical, 5)
+                    }
                 }
-                
+                ListView(header: Text("General").fontWeight(.semibold)) {
+                    VStack {
+                        TextField("Assignment title", text: $title)
+                            .card()
+                        
+                        TextField("Assignment description", text: $description)
+                            .card()
+                    }
+                }
+                ListView(header: Text("Date").fontWeight(.semibold)) {
+                    DatePicker("Select date", selection: self.$date, displayedComponents: .date)
+                        .datePickerStyle(GraphicalDatePickerStyle()).card()
+                }
+                if editAssignmentMode {
+                    ListView {
+                        Button(action: {
+                            viewModel.delete(id: assignment!.id!)
+                            presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            HStack {
+                                Spacer()
+                                Text("Delete")
+                                    .padding()
+                                Spacer()
+                            }
+                            .background(Color.flatRed)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(10)
+                        })
+                    }
+                }
             }
-            .scrollViewWithoutBackground()
-            .padding(.horizontal)
-            .background(Color("background").edgesIgnoringSafeArea(.all))
+            .background(Color.background.ignoresSafeArea())
+            .listStyle(InsetGroupedListStyle())
             .onAppear(perform: setupAssignment)
                 
             .navigationBarTitle("Add assignment", displayMode: .inline)
@@ -120,7 +117,6 @@ struct AssignmentForm: View {
             self.editAssignmentMode.toggle()
         }
     }
-    
 }
 
 struct AssignmentForm_Previews: PreviewProvider {

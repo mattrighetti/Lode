@@ -36,16 +36,4 @@ extension View {
         ModifiedContent(content: self, modifier: SegmentedButton())
     }
 
-    func singleSeparator() -> some View {
-        ModifiedContent(content: self, modifier: ListSingleSeparatorStyle())
-    }
-
-    func scrollViewWithBackground() -> some View {
-        ModifiedContent(content: self, modifier: ScrollViewBackgroundModifier())
-    }
-
-    func scrollViewWithoutBackground() -> some View {
-        ModifiedContent(content: self, modifier: ScrollViewNoBackgroundModifier())
-    }
-
 }

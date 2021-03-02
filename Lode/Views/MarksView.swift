@@ -16,6 +16,7 @@ struct MarksView: View {
 
     var body: some View {
         dataContent()
+            .background(Color.background.ignoresSafeArea())
 
         .navigationBarTitle( NSLocalizedString("Marks", comment: "") )
     }
@@ -33,15 +34,12 @@ struct MarksView: View {
                 .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
         } else {
-            ZStack {
-                Color.background.edgesIgnoringSafeArea(.all)
-                VStack {
-                    Image(systemName: "xmark.seal.fill")
-                        .font(.system(size: 150))
-                        .foregroundColor(.flatRed)
-                    Text("No data available to show")
-                        .font(.system(size: 20.0, weight: .regular, design: .rounded))
-                }
+            VStack {
+                Image(systemName: "xmark.seal.fill")
+                    .font(.system(size: 150))
+                    .foregroundColor(.flatRed)
+                Text("No data available to show")
+                    .font(.system(size: 20.0, weight: .regular, design: .rounded))
             }
         }
     }

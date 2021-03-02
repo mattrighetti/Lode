@@ -67,6 +67,7 @@
 		C9405F2925B8F17200342FF7 /* LodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9405F2825B8F17200342FF7 /* LodeTests.swift */; };
 		C9405F3425B8F17200342FF7 /* LodeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9405F3325B8F17200342FF7 /* LodeUITests.swift */; };
 		C95BA81525C384130026A9DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C95BA81725C384130026A9DB /* Localizable.strings */; };
+		C9A98A3525EEF92C007608A3 /* NavigationLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A98A3425EEF92C007608A3 /* NavigationLinkButton.swift */; };
 		C9C297B525EE8FE700E06C85 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C297B425EE8FE700E06C85 /* ListView.swift */; };
 		C9E57A9C25B9269200AC289F /* Lode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9E57A9A25B9269200AC289F /* Lode.xcdatamodeld */; };
 		C9F2FEE425CC1A4800B52F97 /* IAPItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2FEE325CC1A4800B52F97 /* IAPItems.swift */; };
@@ -158,6 +159,7 @@
 		C9405F3525B8F17200342FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C95BA81625C384130026A9DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C95BA81B25C384160026A9DB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C9A98A3425EEF92C007608A3 /* NavigationLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkButton.swift; sourceTree = "<group>"; };
 		C9C297B425EE8FE700E06C85 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		C9E57A9B25B9269200AC289F /* Lode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lode.xcdatamodel; sourceTree = "<group>"; };
 		C9F2FEE325CC1A4800B52F97 /* IAPItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPItems.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 		33071DF72ACDF83F07DB1CB2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C9A98A3325EEF91A007608A3 /* ListHacks */,
 				3307107A67D2F92AE36C2806 /* Graphs */,
 				33071AF884264071A3358FBD /* StringList.swift */,
 				330717891D2FB24A034ED140 /* ColorPickerView.swift */,
@@ -337,7 +340,6 @@
 				330715D877C513A9B6E66B01 /* IconColorPickerView.swift */,
 				C93E740225ED54E800626683 /* CircledIcon.swift */,
 				C93E740A25EDB53200626683 /* RectangleData.swift */,
-				C9C297B425EE8FE700E06C85 /* ListView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -407,6 +409,15 @@
 				C9405F3525B8F17200342FF7 /* Info.plist */,
 			);
 			path = LodeUITests;
+			sourceTree = "<group>";
+		};
+		C9A98A3325EEF91A007608A3 /* ListHacks */ = {
+			isa = PBXGroup;
+			children = (
+				C9C297B425EE8FE700E06C85 /* ListView.swift */,
+				C9A98A3425EEF92C007608A3 /* NavigationLinkButton.swift */,
+			);
+			path = ListHacks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -578,6 +589,7 @@
 				33071FDB9F17D7CF44226CEE /* IntroductionView.swift in Sources */,
 				33071930812CB17C784B58F4 /* CourseStorage.swift in Sources */,
 				330718B529463AE11011F049 /* AssignmentStorage.swift in Sources */,
+				C9A98A3525EEF92C007608A3 /* NavigationLinkButton.swift in Sources */,
 				C93E740B25EDB53200626683 /* RectangleData.swift in Sources */,
 				330711D157EB9726D225E5D2 /* ExamStorage.swift in Sources */,
 				3307134088C7BDC01486DE86 /* HomeViewViewModel.swift in Sources */,

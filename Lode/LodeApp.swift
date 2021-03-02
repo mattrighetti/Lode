@@ -14,6 +14,10 @@ struct LodeApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear {
+                    UITableView.appearance().backgroundColor = .clear // tableview background
+                    UITableViewCell.appearance().backgroundColor = .clear // cell background
+                }
         }
     }
 }

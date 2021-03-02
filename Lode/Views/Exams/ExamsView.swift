@@ -61,6 +61,7 @@ struct ExamsView: View {
                 }
                 .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
+            .background(Color.background.ignoresSafeArea())
 
             .navigationBarTitle("Exams")
             .toolbar {
@@ -89,11 +90,6 @@ struct ExamsView: View {
                 message: Text("You must first add an active course to be able to add exams"),
                 dismissButton: .cancel(Text("Ok"))
             )
-        }
-        .onAppear {
-            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().separatorStyle = .none
         }
         .sheet(
             isPresented: $sheet.isShowing,

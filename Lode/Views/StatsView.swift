@@ -13,11 +13,7 @@ struct StatsView: View {
 
     var body: some View {
         dataContent()
-        .onAppear {
-            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().separatorStyle = .none
-        }
+            .background(Color.background.ignoresSafeArea())
         
         .navigationBarTitle("Statistics")
     }
@@ -27,28 +23,28 @@ struct StatsView: View {
         // TODO change condition on if statement
         if viewModel.courses.count > 0 {
             List {
-                Section(header: Text("Main Info")) {
+                Section(header: Text("Main Info").fontWeight(.semibold)) {
                     ListItem(itemDescription: "Total courses", itemValue: viewModel.totalCourses)
                     ListItem(itemDescription: "Total CFU", itemValue: viewModel.totalCfu)
                     ListItem(itemDescription: "Expected Average", itemValue: viewModel.expectedAverage)
                     ListItem(itemDescription: "Projected graduation grade", itemValue: viewModel.projectedGraduationGrade)
                 }.listRowBackground(Color("cardBackground"))
 
-                Section(header: Text("Current statistics")) {
+                Section(header: Text("Current statistics").fontWeight(.semibold)) {
                     ListItem(itemDescription: "Passed exams", itemValue: viewModel.numPassedExams)
                     ListItem(itemDescription: "Gained CFU", itemValue: viewModel.gainedCfu)
                     ListItem(itemDescription: "Current average", itemValue: viewModel.currentAverage)
                     ListItem(itemDescription: "Current graduation grade", itemValue: viewModel.currentProjectedGraduationGrade)
                 }.listRowBackground(Color("cardBackground"))
 
-                Section(header: Text("Exams passed")) {
+                Section(header: Text("Exams passed").fontWeight(.semibold)) {
                     ListItem(itemDescription: "As expected", itemValue: viewModel.asExpected)
                     ListItem(itemDescription: "Better than expected", itemValue: viewModel.betterThanExpected)
                     ListItem(itemDescription: "Worse than expected", itemValue: viewModel.worseThanExpected)
                 }.listRowBackground(Color("cardBackground"))
                 
                 if viewModel.passedExams.count > 0 {
-                    Section(header: Text("Other")) {
+                    Section(header: Text("Other").fontWeight(.semibold)) {
                         PieChart(
                             data: .constant(viewModel.pieChartPassedCoursesMarks.values.map { Double($0) }),
                             labels: .constant(viewModel.pieChartPassedCoursesMarks.keys.map { String($0) }),

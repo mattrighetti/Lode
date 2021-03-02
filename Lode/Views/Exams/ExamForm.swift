@@ -24,15 +24,19 @@ struct ExamForm: View {
     @State private var showAlert: Bool = false
     @State private var courseIndex: Int = -1
     @State private var editExamMode: Bool = false
+    @State private var showCourseSelection: Bool = false
+    @State private var showColorPickerView: Bool = false
 
     var exam: Exam?
     
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                NavigationLink(
-                    destination: ColorPickerView(selectedColor: $color),
-                    label: {
+            List {
+                ListView {
+                    NavigationLinkButton(
+                        destination: ColorPickerView(selectedColor: $color),
+                        isActive: $showColorPickerView
+                    ) {
                         ZStack {
                             Circle()
                             .stroke()
@@ -43,58 +47,54 @@ struct ExamForm: View {
                                 .fill(color)
                                 .frame(width: 100, height: 100, alignment: .center)
                         }
-                        .padding(.top, 50)
+                        .padding(.vertical, 5)
                     }
-                )
-                
-                Header(title: "Description").padding(.top)
-                
-                TextField("Exam description", text: $name)
-                    .padding()
-                    .background(Color("cardBackground"))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                
-                Header(title: "Course")
-                    .padding(.top)
-                
-                NavigationLink(
-                    destination: StringList(courses: viewModel.courseNotPassed, selectedIndex: $courseIndex),
-                    label: {
+                }
+                ListView(header: Text("Description").fontWeight(.semibold)) {
+                    TextField("Exam description", text: $name)
+                        .padding()
+                        .background(Color("cardBackground"))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+                ListView(header: Text("Course").fontWeight(.semibold)) {
+                    NavigationLinkButton(
+                        destination: StringList(courses: viewModel.courseNotPassed, selectedIndex: $courseIndex),
+                        isActive: $showCourseSelection
+                    ) {
                         HStack {
                             Text(courseIndex != -1 ? viewModel.courseNotPassed[courseIndex].name : NSLocalizedString("Select a course", comment: ""))
                             Spacer()
                             Image(systemName: "chevron.right")
-                        }
-                        .card()
+                        }.card()
                     }
-                )
-
-                Header(title: "Date").padding(.top)
-
-                DatePicker("Select date", selection: self.$date, displayedComponents: .date)
-                    .datePickerStyle(GraphicalDatePickerStyle())
-
-                if editExamMode {
-                    Button(action: {
-                        viewModel.deleteExam(withId: exam!.id)
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        HStack {
-                            Spacer()
-                            Text("Delete")
-                                .padding()
-                            Spacer()
-                        }
-                        .background(Color.flatRed)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(10)
-                    })
                 }
-                
+                ListView(header: Text("Date").fontWeight(.semibold)) {
+                    DatePicker("Select date", selection: self.$date, displayedComponents: .date)
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .card()
+                }
+                if editExamMode {
+                    ListView {
+                        Button(action: {
+                            viewModel.deleteExam(withId: exam!.id)
+                            presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            HStack {
+                                Spacer()
+                                Text("Delete")
+                                    .padding()
+                                Spacer()
+                            }
+                            .background(Color.flatRed)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(10)
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
             }
-            .scrollViewWithoutBackground()
-            .padding(.horizontal)
-            .background(Color("background").edgesIgnoringSafeArea(.all))
+            .listStyle(InsetGroupedListStyle())
+            .background(Color.background.ignoresSafeArea())
             .onAppear(perform: setupExam)
             .alert(isPresented: $showAlert) {
                 Alert(

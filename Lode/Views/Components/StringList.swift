@@ -25,15 +25,18 @@ struct StringList: View {
                             Text(courses[index].name)
                             Spacer()
                             if selectedIndex == index {
-                                Image(systemName: "checkmark.circle").foregroundColor(.green)
+                                Image(systemName: "checkmark.circle")
+                                    .foregroundColor(.green)
                             }
                         }
+                        .padding(.vertical, 7)
                     })
-                    .padding(.vertical, 7)
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .listRowBackground(Color("cardBackground"))
+                .listRowBackground(Color.cardBackground)
             }
         }
         .listStyle(InsetGroupedListStyle())
+        .background(Color.background)
     }
 }

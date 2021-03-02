@@ -65,6 +65,7 @@ struct CoursesView: View {
                 }
                 .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
+            .background(Color.background.ignoresSafeArea())
             
             .navigationBarTitle("Courses")
             .toolbar {
@@ -93,10 +94,6 @@ struct CoursesView: View {
             }, content: {
                 CourseForm(course: sheet.courseToEdit)
             })
-        }.onAppear {
-            UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().backgroundColor = UIColor(named: "background")
-            UITableView.appearance().separatorStyle = .none
         }
     }
     

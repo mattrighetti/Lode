@@ -94,23 +94,20 @@ private struct Feature: View {
     var body: some View {
         HStack(alignment: .center) {
             Image(systemName: iconName)
-                    .font(.title)
-                    .foregroundColor(iconColor)
-
+                .font(.title)
+                .foregroundColor(iconColor)
             VStack(alignment: .leading) {
                 Text(headline)
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-
+                    .font(.subheadline)
+                    .fontWeight(.bold)
                 Text(description)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
             }
-                    .padding(.leading, 10)
-
+            .padding(.leading, 10)
             Spacer()
         }
-                .padding(.horizontal, 25)
+        .padding(.horizontal, 25)
     }
 }
 

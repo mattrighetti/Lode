@@ -36,12 +36,7 @@ struct InitialForm: View {
                 .listRowBackground(Color.cardBackground)
             }
             .listStyle(InsetGroupedListStyle())
-            .background(Color("background"))
-            .onAppear {
-                UIScrollView.appearance().backgroundColor = UIColor(named: "background")
-                UITableView.appearance().backgroundColor = UIColor(named: "background")
-                UITableView.appearance().separatorStyle = .none
-            }
+            .background(Color.background.ignoresSafeArea())
             
             .navigationBarTitle("Initial setup", displayMode: .large)
             .toolbar {

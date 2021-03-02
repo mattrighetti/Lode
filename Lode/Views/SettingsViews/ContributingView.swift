@@ -14,7 +14,7 @@ struct ContributingView: View {
     
     var body: some View {
         List {
-            Section {
+            ListView {
                 VStack(alignment: .center) {
                     Text("Coming soon...")
                         .font(.system(size: 35.0, design: .rounded))
@@ -24,7 +24,6 @@ struct ContributingView: View {
                             .font(.caption)
                 }
             }
-            .listRowBackground(Color("background"))
 
             Section {
                 Button(action: {
@@ -47,6 +46,7 @@ struct ContributingView: View {
             .listRowBackground(Color("cardBackground"))
         }
         .listStyle(InsetGroupedListStyle())
+        .background(Color.background.ignoresSafeArea())
 
         .navigationBarTitle("Contribute", displayMode: .inline)
     }

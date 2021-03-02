@@ -46,34 +46,31 @@ struct CourseForm: View {
     
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                
-                Group {
-                    NavigationLink(
+            List {
+                ListView {
+                    NavigationLinkButton(
                         destination: IconColorPickerView(selectedColor: $color, selectedGlyph: $glyph),
-                        isActive: $activeColorNavigationLink,
-                        label: {
-                            ZStack {
-                                Circle()
-                                    .stroke()
-                                    .fill(Color.blue)
-                                    .frame(width: 105, height: 105, alignment: .center)
+                        isActive: $activeColorNavigationLink
+                    ) {
+                        ZStack {
+                            Circle()
+                                .stroke()
+                                .fill(Color.blue)
+                                .frame(width: 105, height: 105, alignment: .center)
 
-                                Circle()
-                                    .fill(color)
-                                    .frame(width: 100, height: 100, alignment: .center)
+                            Circle()
+                                .fill(color)
+                                .frame(width: 100, height: 100, alignment: .center)
 
-                                Image(systemName: glyph)
-                                    .font(.system(size: 50))
-                                    .foregroundColor(.white)
+                            Image(systemName: glyph)
+                                .font(.system(size: 50))
+                                .foregroundColor(.white)
 
-                            }
-                            .padding(.top, 50)
                         }
-                    )
-                    
-                    Header(title: "Title").padding(.top)
-                    
+                        .padding(.vertical, 5)
+                    }
+                }
+                ListView {
                     if title.count > 30 {
                         withAnimation {
                             HStack {
@@ -90,9 +87,8 @@ struct CourseForm: View {
                     
                     TextField("Course title", text: $title)
                         .card()
-                    
-                    HeaderCaption(title: "CFU", caption: "Ore totali: \(courseCfu * 25)").padding(.top)
-
+                }
+                ListView(header: Text("Course CFU").fontWeight(.semibold)) {
                     Stepper(value: $courseCfu, in: 1...50, label: {
                         Text("\(courseCfu)").font(.title)
                     })
@@ -100,74 +96,66 @@ struct CourseForm: View {
                     .background(Color("cardBackground"))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
-                
-                HeaderCaption(
-                    title: "Mark expected",
-                    caption: "This will be used for further statistics"
-                ).padding(.top)
-
-                Stepper(value: $expectedCourseMark, in: 18...31, label: {
-                    Text(expectedCourseMark <= 30 ? "\(expectedCourseMark)" : "30L").font(.title)
-                })
-                .padding()
-                .background(Color("cardBackground"))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                
-                Button(action: {
-                    isPassed.toggle()
-                }, label: {
-                    HStack {
-                        Text(isPassed ? "Passed (singular)" : "Not passed (singular)")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                        
-                        Spacer()
-                        Image(systemName: isPassed ? "checkmark.seal" : "xmark.seal" )
-                            .foregroundColor(isPassed ? Color.green : Color.red)
-                    }
-                    .card()
-                })
-                .padding(.top)
-                
-                VStack {
-                    if isPassed {
-                        HeaderCaption(
-                            title: "Mark obtained",
-                            caption: "The mark you got"
-                        ).padding(.top)
-
-                        Stepper(value: $courseMark, in: 18...31, label: {
-                            Text(courseMark <= 30 ? "\(courseMark)" : "30L").font(.title)
-                        })
-                        .padding()
-                        .background(Color("cardBackground"))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                    }
+                ListView(header: Text("Expected mark").fontWeight(.semibold)) {
+                    Stepper(value: $expectedCourseMark, in: 18...31, label: {
+                        Text(expectedCourseMark <= 30 ? "\(expectedCourseMark)" : "30L").font(.title)
+                    })
+                    .padding()
+                    .background(Color("cardBackground"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
-                .padding(.bottom, 50)
-                .transition(.scale)
-
-                if editCourseMode {
+                ListView {
                     Button(action: {
-                        viewModel.deleteCourse(withId: course!.id)
-                        presentationMode.wrappedValue.dismiss()
+                        isPassed.toggle()
                     }, label: {
                         HStack {
+                            Text(isPassed ? "Passed (singular)" : "Not passed (singular)")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                            
                             Spacer()
-                            Text("Delete")
-                                .padding()
-                            Spacer()
+                            Image(systemName: isPassed ? "checkmark.seal" : "xmark.seal" )
+                                .foregroundColor(isPassed ? Color.green : Color.red)
                         }
-                        .background(Color.flatRed)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(10)
+                        .card()
                     })
+                    .buttonStyle(PlainButtonStyle())
                 }
-                
+                if isPassed {
+                    ListView(header: Text("Mark").fontWeight(.semibold)) {
+                        VStack {
+                            Stepper(value: $courseMark, in: 18...31, label: {
+                                Text(courseMark <= 30 ? "\(courseMark)" : "30L").font(.title)
+                            })
+                            .padding()
+                            .background(Color("cardBackground"))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
+                        .transition(.scale)
+                    }
+                }
+                if editCourseMode {
+                    ListView {
+                        Button(action: {
+                            viewModel.deleteCourse(withId: course!.id)
+                            presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            HStack {
+                                Spacer()
+                                Text("Delete")
+                                    .padding()
+                                Spacer()
+                            }
+                            .background(Color.flatRed)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(10)
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
             }
-            .scrollViewWithoutBackground()
-            .padding(.horizontal)
-            .background(Color.background.edgesIgnoringSafeArea(.all))
+            .listStyle(InsetGroupedListStyle())
+            .background(Color.background.ignoresSafeArea())
 
             .navigationBarTitle("Add course", displayMode: .inline)
             .toolbar {
@@ -228,38 +216,6 @@ struct CourseForm: View {
             )
         }
         presentationMode.wrappedValue.dismiss()
-    }
-}
-
-struct Header: View {
-    var title: String
-    
-    var body: some View {
-        HStack {
-            Text(NSLocalizedString(title, comment: ""))
-                .font(.headline)
-                .fontWeight(.bold)
-            Spacer()
-        }
-    }
-}
-
-struct HeaderCaption: View {
-    var title: String
-    var caption: String
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(NSLocalizedString(title, comment: "")).font(.headline)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 5)
-                
-                Text(NSLocalizedString(caption, comment: ""))
-                    .font(.caption)
-            }
-            Spacer()
-        }
     }
 }
 
