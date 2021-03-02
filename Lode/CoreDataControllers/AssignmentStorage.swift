@@ -6,7 +6,7 @@ import Combine
 import CoreData
 import os
 
-fileprivate let logger = Logger(subsystem: "com.mattrighetti.Lode", category: "AssignmentStorage")
+private let logger = Logger(subsystem: "com.mattrighetti.Lode", category: "AssignmentStorage")
 
 class AssignmentStorage: NSObject {
     var assignments = CurrentValueSubject<[Assignment], Never>([])
@@ -15,7 +15,7 @@ class AssignmentStorage: NSObject {
 
     private override init() {
         assignmentFetchController = NSFetchedResultsController(
-                fetchRequest: Assignment.requestAll,
+            fetchRequest: Assignment.Request.all.rawValue,
                 managedObjectContext: PersistenceController.shared.container.viewContext,
                 sectionNameKeyPath: nil, cacheName: nil
         )

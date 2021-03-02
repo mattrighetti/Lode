@@ -46,18 +46,16 @@ struct AssignmentRow: View {
         }.card()
     }
 
+    @ViewBuilder
     func isDueSoon() -> some View {
         if assignment.daysLeft < 5 {
-            return AnyView(
-                HStack {
-                    Image(systemName: "exclamationmark.circle")
-                    Text("Due soon")
-                }.badgePill(color: .red)
-            )
+            HStack {
+                Image(systemName: "exclamationmark.circle")
+                Text("Due soon")
+            }
+            .badgePill(color: .red)
         } else {
-            return AnyView(
-                EmptyView()
-            )
+            EmptyView()
         }
     }
 

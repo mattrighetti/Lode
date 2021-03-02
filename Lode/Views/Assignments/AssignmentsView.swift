@@ -40,6 +40,11 @@ struct AssignmentsView: View {
                                     sheet.assignmentToEdit = assignment
                                 }
                             }
+                            .onLongPressGesture {
+                                generateHapticFeedback()
+                                logger.log("LongPress -> Setting assignment to edit")
+                                sheet.assignmentToEdit = assignment
+                            }
                     }
 
                     Button(action: {
@@ -100,6 +105,11 @@ struct AssignmentsView: View {
                 AssignmentForm(assignment: sheet.assignmentToEdit)
             }
         )
+    }
+    
+    private func generateHapticFeedback() {
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
     }
 }
 

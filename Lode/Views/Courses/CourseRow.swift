@@ -12,7 +12,7 @@ struct CourseRow: View {
     var course: Course
 
     private var courseAcronym: String {
-        let splitString = course.name!
+        let splitString = course.name
             .split { $0 == " " }
             .map(String.init)
             .filter { $0 != "and" && $0 != "e" }
@@ -21,22 +21,22 @@ struct CourseRow: View {
     }
     
     private var isNameTooLong: Bool {
-        course.name!.count > 30
+        course.name.count > 30
     }
     
     var body: some View {
         HStack {
             ZStack(alignment: .center) {
                 Circle()
-                    .fill(Color(hex: course.color!)!)
-                Image(systemName: course.iconName ?? "pencil")
+                    .fill(Color(hex: course.color)!)
+                Image(systemName: course.iconName)
                     .foregroundColor(.white)
                     .font(.system(size: 30))
             }
             .frame(width: 70, height: 70, alignment: .center)
 
             VStack(alignment: .leading) {
-                Text(isNameTooLong ? self.courseAcronym : course.name ?? "No name")
+                Text(isNameTooLong ? self.courseAcronym : course.name)
                     .font(.headline)
                     .fontWeight(.semibold)
                 

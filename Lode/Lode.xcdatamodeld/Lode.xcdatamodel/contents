@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18147.2" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Assignment" representedClassName=".Assignment" syncable="YES">
-        <attribute name="caption" optional="YES" attributeType="String"/>
-        <attribute name="color" optional="YES" attributeType="String"/>
-        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="caption" attributeType="String"/>
+        <attribute name="color" attributeType="String"/>
+        <attribute name="dueDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
     </entity>
     <entity name="Course" representedClassName=".Course" syncable="YES">
-        <attribute name="cfu" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="color" optional="YES" attributeType="String"/>
-        <attribute name="expectedLaude" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="expectedMark" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="iconName" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="laude" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="mark" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="cfu" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="color" attributeType="String"/>
+        <attribute name="expectedLaude" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="expectedMark" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="iconName" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="laude" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="mark" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="exams" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Exam" inverseName="courseId" inverseEntity="Exam"/>
     </entity>
     <entity name="Exam" representedClassName=".Exam" syncable="YES">
-        <attribute name="color" optional="YES" attributeType="String"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="color" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="courseId" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="exams" inverseEntity="Course"/>
     </entity>
     <elements>
-        <element name="Assignment" positionX="184.351318359375" positionY="8.3629150390625" width="128" height="104"/>
-        <element name="Course" positionX="97.140380859375" positionY="205.8341064453125" width="128" height="164"/>
-        <element name="Exam" positionX="-54" positionY="-9" width="128" height="89"/>
+        <element name="Assignment" positionX="184.351318359375" positionY="8.3629150390625" width="184.789794921875" height="118"/>
+        <element name="Course" positionX="168.6956787109375" positionY="187.5873413085938" width="225.8270263671875" height="193"/>
+        <element name="Exam" positionX="-162.8060302734375" positionY="15.13720703125" width="177.28955078125" height="118"/>
     </elements>
 </model>

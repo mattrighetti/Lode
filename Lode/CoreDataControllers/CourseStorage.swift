@@ -15,7 +15,7 @@ class CourseStorage: NSObject, ObservableObject {
 
     private override init() {
         courseFetchController = NSFetchedResultsController(
-                fetchRequest: Course.requestAll,
+            fetchRequest: Course.Request.all.rawValue,
                 managedObjectContext: PersistenceController.shared.container.viewContext,
                 sectionNameKeyPath: nil, cacheName: nil
         )

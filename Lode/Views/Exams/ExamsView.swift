@@ -37,6 +37,10 @@ struct ExamsView: View {
                                     sheet.examToEdit = exam
                                 }
                             }
+                            .onLongPressGesture {
+                                generateHapticFeedback()
+                                sheet.examToEdit = exam
+                            }
                     }
 
                     Button(action: {
@@ -108,6 +112,11 @@ struct ExamsView: View {
         } else {
             sheet.isShowing = true
         }
+    }
+    
+    private func generateHapticFeedback() {
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
     }
 }
 

@@ -38,23 +38,15 @@ struct AboutView: View {
                 Button(action: {
                     UIApplication.shared.open(URL(string: "mailto:matt95.righetti@gmail.com")!)
                 }, label: {
-                    HStack {
-                        Text("Email")
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                })
-
+                    Label(title: { Text("Email") }, icon: { CircledIcon(color: .flatLightBlue) { Image(systemName: "envelope") } })
+                }).padding(.vertical, 10)
                 Button(action: {
-
+                    
                 }, label: {
-                    HStack {
-                        Text("Rate Lode")
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                })
-            }.listRowBackground(Color("cardBackground"))
+                    Label(title: { Text("Rate Lode") }, icon: { CircledIcon(color: .yellow) { Image(systemName: "star.fill") } })
+                }).padding(.vertical, 10)
+            }
+            .listRowBackground(Color("cardBackground"))
         }
         .listStyle(InsetGroupedListStyle())
 

@@ -15,7 +15,7 @@ class ExamStorage: NSObject, ObservableObject {
 
     private override init() {
         examFetchController = NSFetchedResultsController(
-                fetchRequest: Exam.requestAll,
+            fetchRequest: Exam.Request.all.rawValue,
                 managedObjectContext: PersistenceController.shared.container.viewContext,
                 sectionNameKeyPath: nil, cacheName: nil
         )
@@ -32,17 +32,18 @@ class ExamStorage: NSObject, ObservableObject {
         }
     }
 
-    func add(id: UUID, name: String, color: String, date: Date) {
+    func add(id: UUID, name: String, color: String, date: Date, course: Course) {
         let exam = Exam(context: PersistenceController.shared.container.viewContext)
         exam.setValue(id, forKey: "id")
         exam.setValue(name, forKey: "title")
         exam.setValue(color, forKey: "color")
         exam.setValue(date, forKey: "date")
+        exam.setValue(course, forKey: "courseId")
 
         saveContext()
     }
 
-    func update(id: UUID, name: String, color: String, date: Date) {
+    func update(id: UUID, name: String, color: String, date: Date, course: Course) {
         let fetchExam: NSFetchRequest<Exam> = Exam.fetchRequest(withUUID: id)
 
         do {
@@ -51,6 +52,7 @@ class ExamStorage: NSObject, ObservableObject {
                 exam.setValue(name, forKey: "title")
                 exam.setValue(color, forKey: "color")
                 exam.setValue(date, forKey: "date")
+                exam.setValue(course, forKey: "courseId")
             }
 
             saveContext()

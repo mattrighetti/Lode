@@ -16,7 +16,7 @@ struct ExamRow: View {
             ZStack(alignment: .center) {
                 Circle()
                     // TODO fix this color usage
-                    .fill(Color(hex: exam.color!)!)
+                    .fill(Color(hex: exam.color)!)
                 
                 VStack {
                     Text(exam.dayString)
@@ -33,7 +33,7 @@ struct ExamRow: View {
             }.frame(width: 70, height: 70, alignment: .center)
 
             VStack(alignment: .leading) {
-                Text(exam.title ?? "No name")
+                Text(exam.title)
                     .font(.headline)
                     .fontWeight(.semibold)
                 

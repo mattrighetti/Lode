@@ -122,7 +122,7 @@ extension Color {
     init(decimalRed red: Double, green: Double, blue: Double) {
         self.init(red: red / 255, green: green / 255, blue: blue / 255)
     }
-    
+
     init?(hex: String) {
         var hexNormalized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
         hexNormalized = hexNormalized.replacingOccurrences(of: "#", with: "")
@@ -152,11 +152,11 @@ extension Color {
         } else {
             return nil
         }
-        
+
         let uiColor = UIColor(red: r, green: g, blue: b, alpha: a)
         self.init(uiColor)
     }
-    
+
     var toHex: String? {
         // Extract Components
         guard let components = cgColor?.components, components.count >= 3 else {

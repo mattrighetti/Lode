@@ -12,59 +12,35 @@ struct InitialForm: View {
     
     @Environment(\.presentationMode) var presentationMode
 
-    @AppStorage("totalCfu") var totalCfu: Int = 180
+    @AppStorage("totalCfu") var totalCfu: Int = 120
     @AppStorage("laudeValue") var laudeValue: Int = 30
-    
-    private var totalCfuProxy: Binding<Int> {
-        Binding<Int>(get: {
-            totalCfu
-        }, set: {
-            self.totalCfu = $0
-            totalCfu = $0
-        })
-    }
-    
-    private var laudeValueProxy: Binding<Int> {
-        Binding<Int>(get: {
-            laudeValue
-        }, set: {
-            self.laudeValue = $0
-            laudeValue = $0
-        })
-    }
     
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                
-                Header(title: NSLocalizedString("Total CFUs of your study plan", comment: ""))
-                    .padding(.top)
-                
-                Stepper(value: self.$totalCfu, in: 30...1000) {
-                    Text("\(totalCfu)")
-                        .font(.title)
+            List {
+                Section(header: Text("Total CFUs of your study plan")) {
+                    Stepper(value: self.$totalCfu, in: 30...1000) {
+                        Text("\(totalCfu)")
+                            .font(.title)
+                    }
+                    .padding(.vertical, 7)
                 }
-                .padding()
-                .background(Color("cardBackground"))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                
-                Header(title: NSLocalizedString("How much is a laude evaluated?", comment: ""))
-                        .padding(.top)
-                
-                Stepper(value: self.$laudeValue, in: 30...35) {
-                    Text("\(laudeValue)")
-                        .font(.title)
+                .listRowBackground(Color.cardBackground)
+                Section(header: Text("Total CFUs of your study plan")) {
+                    Stepper(value: self.$laudeValue, in: 30...35) {
+                        Text("\(laudeValue)")
+                            .font(.title)
+                    }
+                    .padding(.vertical, 7)
                 }
-                .padding()
-                .background(Color("cardBackground"))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                
+                .listRowBackground(Color.cardBackground)
             }
-            .padding(.horizontal)
-            .background(Color("background")
-                .edgesIgnoringSafeArea(.all))
+            .listStyle(InsetGroupedListStyle())
+            .background(Color("background"))
             .onAppear {
-                setViewModelValues(totalCfu, laudeValue)
+                UIScrollView.appearance().backgroundColor = UIColor(named: "background")
+                UITableView.appearance().backgroundColor = UIColor(named: "background")
+                UITableView.appearance().separatorStyle = .none
             }
             
             .navigationBarTitle("Initial setup", displayMode: .large)
@@ -77,14 +53,9 @@ struct InitialForm: View {
                     })
                 }
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
-    
-    func setViewModelValues(_ totalCfu: Int, _ laudeValue: Int) {
-        self.totalCfu = totalCfu
-        self.laudeValue = laudeValue
-    }
-    
 }
 
 struct InitialForm_Previews: PreviewProvider {

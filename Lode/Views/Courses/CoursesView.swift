@@ -40,6 +40,11 @@ struct CoursesView: View {
                                     sheet.courseToEdit = course
                                 }
                             }
+                            .onLongPressGesture {
+                                generateHapticFeedback()
+                                logger.log("LongPress -> Setting course to edit: \(course)")
+                                sheet.courseToEdit = course
+                            }
                     }
 
                     Button(action: {
@@ -79,11 +84,12 @@ struct CoursesView: View {
                         )
                     }
                 }
-            }.environment(\.editMode, $editMode)
+            }
+            .environment(\.editMode, $editMode)
             .sheet(isPresented: $sheet.isShowing, onDismiss: {
                 logger.log("Setting course to edit to value: nil")
                 sheet.courseToEdit = nil
-                self.editMode = .inactive
+                editMode = .inactive
             }, content: {
                 CourseForm(course: sheet.courseToEdit)
             })
@@ -92,6 +98,11 @@ struct CoursesView: View {
             UITableView.appearance().backgroundColor = UIColor(named: "background")
             UITableView.appearance().separatorStyle = .none
         }
+    }
+    
+    private func generateHapticFeedback() {
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
     }
 }
 

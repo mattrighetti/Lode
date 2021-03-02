@@ -149,7 +149,7 @@ struct CourseForm: View {
 
                 if editCourseMode {
                     Button(action: {
-                        viewModel.deleteCourse(withId: course!.id!)
+                        viewModel.deleteCourse(withId: course!.id)
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         HStack {
@@ -182,13 +182,13 @@ struct CourseForm: View {
     private func setupCourse() {
         if let course = course {
             logger.log("Did set \(course)")
-            self.title = course.name!
+            self.title = course.name
             self.courseMark = course.mark != 0 ? Int(course.mark) : 25
             self.expectedCourseMark = Int(course.expectedMark)
             self.courseCfu = Int(course.cfu)
             self.isPassed = course.mark != 0
-            self.color = Color(hex: course.color!)!
-            self.glyph = course.iconName!
+            self.color = Color(hex: course.color)!
+            self.glyph = course.iconName
 
             self.editCourseMode = true
         }
@@ -208,7 +208,7 @@ struct CourseForm: View {
             )
         } else {
             viewModel.update(
-                withId: course!.id!,
+                withId: course!.id,
                 name: title,
                 cfu: courseCfu,
                 color: color.toHex!,

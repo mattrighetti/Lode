@@ -24,7 +24,7 @@ public class Assignment: NSManagedObject {
         // CoreData stuff
         let entity = NSEntityDescription.entity(forEntityName: "Assignment", in: context)!
         self.init(entity: entity, insertInto: context)
-        
+
         // ObjectData
         self.id = id
         self.caption = caption
@@ -32,13 +32,13 @@ public class Assignment: NSManagedObject {
         self.dueDate = dueDate
         self.title = title
     }
-    
+
     var daysLeft: Int {
         if let date = dueDate {
             let calendar = Calendar.current.dateComponents([.day], from: Date(), to: date)
             return calendar.day ?? -1
         }
-        
+
         return -5
     }
     
@@ -47,13 +47,31 @@ public class Assignment: NSManagedObject {
         dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
         return dateFormatter.string(from: dueDate!).capitalized
     }
-    
+
 }
 
 extension Assignment {
-    static var requestAll: NSFetchRequest<Assignment> {
-        let request: NSFetchRequest<Assignment> = Assignment.fetchRequest()
-        request.sortDescriptors = []
-        return request
+    enum Request: RawRepresentable {
+        case all
+        case withUuid(uuid: UUID)
+        
+        typealias RawValue = NSFetchRequest<Assignment>
+        
+        init?(rawValue: NSFetchRequest<Assignment>) {
+            return nil
+        }
+        
+        var rawValue: NSFetchRequest<Assignment> {
+            switch self {
+            case .all:
+                let request: NSFetchRequest<Assignment> = Assignment.fetchRequest()
+                request.sortDescriptors = []
+                return request
+            case .withUuid(uuid: let uuid):
+                let request: NSFetchRequest<Assignment> = Assignment.fetchRequest(withUUID: uuid)
+                request.sortDescriptors = []
+                return request
+            }
+        }
     }
 }

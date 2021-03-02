@@ -15,21 +15,36 @@ struct MarksView: View {
     @StateObject private var viewModel = MarksViewViewModel()
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            LazyVGrid(columns: [GridItem(.flexible())]) {
-                ForEach(viewModel.courses, id: \.id) { course in
-                    MarkCard(course: course)
-                }
-            }
-            .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
-        }
-        .onDisappear {
-            presentationMode.wrappedValue.dismiss()
-        }
+        dataContent()
 
         .navigationBarTitle( NSLocalizedString("Marks", comment: "") )
     }
 
+    @ViewBuilder
+    func dataContent() -> some View {
+        // TODO change condition on if statement
+        if viewModel.courses.count > 0 {
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: [GridItem(.flexible())]) {
+                    ForEach(viewModel.courses, id: \.id) { course in
+                        MarkCard(course: course)
+                    }
+                }
+                .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
+            }
+        } else {
+            ZStack {
+                Color.background.edgesIgnoringSafeArea(.all)
+                VStack {
+                    Image(systemName: "xmark.seal.fill")
+                        .font(.system(size: 150))
+                        .foregroundColor(.flatRed)
+                    Text("No data available to show")
+                        .font(.system(size: 20.0, weight: .regular, design: .rounded))
+                }
+            }
+        }
+    }
 }
 
 struct MarkCard: View {
@@ -68,7 +83,7 @@ struct MarkCard: View {
         ZStack {
             Color.cardBackground
             VStack(alignment: .leading, spacing: 10) {
-                Text(course.name!).font(.headline).fontWeight(.bold)
+                Text(course.name).font(.headline).fontWeight(.bold)
                 
                 HStack {
                     Spacer()
@@ -110,7 +125,7 @@ struct MarksView_Previews: PreviewProvider {
     static var previews: some View {
         let course = Course()
         course.cfu = 5
-        course.color = Color.flatRed.toHex
+        course.color = Color.flatRed.toHex!
         course.expectedMark = 19
         course.laude = true
         course.expectedLaude = false

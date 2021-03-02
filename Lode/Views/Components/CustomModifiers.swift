@@ -114,30 +114,6 @@ struct ScrollViewNoBackgroundModifier: ViewModifier {
     }
 }
 
-// MARK: - KeyboardAdaptive (not working)
-
-struct KeyboardAdaptive: ViewModifier {
-    @State private var bottomPadding: CGFloat = 0
-    
-    func body(content: Content) -> some View {
-        // 1.
-        GeometryReader { geometry in
-            content
-                .padding(.bottom, self.bottomPadding)
-                .onReceive(Publishers.keyboardHeight) { keyboardHeight in
-                    print("Trigger onReceive")
-                    let keyboardTop = geometry.frame(in: .global).height - keyboardHeight - 100
-                    print("keyboardTop:", keyboardTop)
-                    let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                    print("focusedTextInputBottom:", focusedTextInputBottom)
-                    self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom)
-                    print(self.bottomPadding)
-                }
-                .animation(.easeOut(duration: 0.16))
-        }
-    }
-}
-
 extension UIResponder {
     static var currentFirstResponder: UIResponder? {
         _currentFirstResponder = nil

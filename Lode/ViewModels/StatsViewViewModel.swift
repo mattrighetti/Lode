@@ -45,7 +45,6 @@ class StatsViewViewModel: ObservableObject {
 
     private var cancellables: Set<AnyCancellable>
 
-
     init() {
         cancellables = Set<AnyCancellable>()
         CourseStorage.shared.courses.sink { [unowned self] courses in

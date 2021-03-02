@@ -12,8 +12,8 @@ class ExamViewViewModel: ObservableObject {
     @Published var pastExams: [Exam] = []
     @Published var exams: [Exam] = [] {
         willSet {
-            upcomingExams = newValue.filter { $0.date! > Date() }
-            pastExams = newValue.filter { $0.date! <= Date() }
+            upcomingExams = newValue.filter { $0.date > Date() }
+            pastExams = newValue.filter { $0.date <= Date() }
         }
     }
 
@@ -24,10 +24,10 @@ class ExamViewViewModel: ObservableObject {
         examPublisher: AnyPublisher<[Exam], Never> = ExamStorage.shared.exams.eraseToAnyPublisher()
     ) {
         coursePublisher.sink { [unowned self] in
-            self.courseNotPassedStrings = $0.filter({ $0.mark == 0 }).map { $0.name! }
+            self.courseNotPassedStrings = $0.filter({ $0.mark == 0 }).map { $0.name }
         }.store(in: &cancellable)
         examPublisher.sink { [unowned self] in
-            self.exams = $0.sorted(by: { $0.date! < $1.date! })
+            self.exams = $0.sorted(by: { $0.date < $1.date })
         }.store(in: &cancellable)
     }
 }

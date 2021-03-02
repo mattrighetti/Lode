@@ -23,22 +23,28 @@ struct ContributingView: View {
                     Text("This application is going to be open sourced as soon as it gets out of beta")
                             .font(.caption)
                 }
-            }.listRowBackground(Color("background"))
+            }
+            .listRowBackground(Color("background"))
 
             Section {
                 Button(action: {
                     UIApplication.shared.open(URL(string: "https://github.com/mattrighetti")!)
                 }, label: {
                     Label(title: {
-                        Text("Github code")
+                        Text("Github respository")
                     }) {
-                        Image(githubIcon)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40)
+                        CircledIcon(color: .white) {
+                            Image(uiImage: UIImage(named: "github-50.png")!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .scaledToFit()
+                                .frame(width: 20, height: 20, alignment: .center)
+                        }
                     }
                 })
-            }.listRowBackground(Color("cardBackground"))
+                .padding(.vertical, 7)
+            }
+            .listRowBackground(Color("cardBackground"))
         }
         .listStyle(InsetGroupedListStyle())
 

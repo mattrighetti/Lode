@@ -121,7 +121,6 @@ struct GlyphColorPickerElement: View {
 
 struct GradientPickerView_Previews: PreviewProvider {
     @State private static var iconName: String = "pencil"
-    @State private static var index: GridIndex = GridIndex(row: 1, column: 1)
 
     static var previews: some View {
         IconColorPickerView(selectedColor: .constant(.red), selectedGlyph: .constant("car"))

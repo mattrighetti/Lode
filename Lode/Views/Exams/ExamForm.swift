@@ -16,17 +16,13 @@ struct ExamForm: View {
     @StateObject var viewModel = ExamFormViewModel()
     
     @State private var name: String = ""
-    @State private var course: String = ""
+    @State private var course: Course? = nil
     @State private var color: Color = Color.gradientsPalette[Int.random(in: 0...(Color.gradientsPalette.count - 1))]
     @State private var date: Date = Date()
     
-    @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
     @State private var showAlert: Bool = false
-    @State private var showCourses: Bool = false
     @State private var courseIndex: Int = -1
-    @State private var bottomPadding: CGFloat = 0
-    
     @State private var editExamMode: Bool = false
 
     var exam: Exam?
@@ -36,7 +32,6 @@ struct ExamForm: View {
             ScrollView(showsIndicators: false) {
                 NavigationLink(
                     destination: ColorPickerView(selectedColor: $color),
-                    isActive: $activeColorNavigationLink,
                     label: {
                         ZStack {
                             Circle()
@@ -63,11 +58,10 @@ struct ExamForm: View {
                     .padding(.top)
                 
                 NavigationLink(
-                    destination: StringList(strings: viewModel.courseNotPassedStrings, selectedIndex: $courseIndex),
-                    isActive: $showCourses,
+                    destination: StringList(courses: viewModel.courseNotPassed, selectedIndex: $courseIndex),
                     label: {
                         HStack {
-                            Text(courseIndex != -1 ? viewModel.courseNotPassedStrings[courseIndex] : NSLocalizedString("Select a course", comment: ""))
+                            Text(courseIndex != -1 ? viewModel.courseNotPassed[courseIndex].name : NSLocalizedString("Select a course", comment: ""))
                             Spacer()
                             Image(systemName: "chevron.right")
                         }
@@ -82,7 +76,7 @@ struct ExamForm: View {
 
                 if editExamMode {
                     Button(action: {
-                        viewModel.deleteExam(withId: exam!.id!)
+                        viewModel.deleteExam(withId: exam!.id)
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         HStack {
@@ -128,20 +122,23 @@ struct ExamForm: View {
 
     private func setupExam() {
         if let exam = exam {
-            name = exam.title!
-            date = exam.date!
-            color = Color(hex: exam.color!)!
-
-            self.editExamMode = true
+            name = exam.title
+            date = exam.date
+            color = Color(hex: exam.color)!
+            guard let index = viewModel.courseNotPassed.firstIndex(of: exam.courseId) else {
+                fatalError("Course error is not present in the notPassedCourse")
+            }
+            courseIndex = index
+            editExamMode = true
         }
     }
     
     private func onDonePressed() {
         if fieldsAreCompiled() {
             if exam != nil {
-                viewModel.update(withId: exam!.id!, name: name, color: color.toHex!, date: date)
+                viewModel.update(withId: exam!.id, name: name, color: color.toHex!, date: date, course: viewModel.courseNotPassed[courseIndex])
             } else {
-                viewModel.addExam(name: name, color: color.toHex!, date: date)
+                viewModel.addExam(name: name, color: color.toHex!, date: date, course: viewModel.courseNotPassed[courseIndex])
             }
             presentationMode.wrappedValue.dismiss()
         } else {
