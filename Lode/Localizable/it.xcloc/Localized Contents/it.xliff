@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="Lode/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="it">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.3" build-num="12C33"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>Lode</source>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Lode/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="it">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.3" build-num="12C33"/>
+    </header>
+    <body>
+      <trans-unit id="%@" xml:space="preserve">
+        <source>%@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ %@" xml:space="preserve">
+        <source>%1$@ %2$@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="?" xml:space="preserve">
+        <source>?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About" xml:space="preserve">
+        <source>About</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Active" xml:space="preserve">
+        <source>Active</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add a course" xml:space="preserve">
+        <source>Add a course</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add assignment" xml:space="preserve">
+        <source>Add assignment</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add course" xml:space="preserve">
+        <source>Add course</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add exam" xml:space="preserve">
+        <source>Add exam</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Assignment description" xml:space="preserve">
+        <source>Assignment description</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Assignment title" xml:space="preserve">
+        <source>Assignment title</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Assignments" xml:space="preserve">
+        <source>Assignments</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Avg Delta Calculator" xml:space="preserve">
+        <source>Avg Delta Calculator</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Categories" xml:space="preserve">
+        <source>Categories</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Color" xml:space="preserve">
+        <source>Color</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Continue" xml:space="preserve">
+        <source>Continue</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Course CFU" xml:space="preserve">
+        <source>Course CFU</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Courses" xml:space="preserve">
+        <source>Courses</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Current" xml:space="preserve">
+        <source>Current</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Current average" xml:space="preserve">
+        <source>Current average</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Current statistics" xml:space="preserve">
+        <source>Current statistics</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Days to go" xml:space="preserve">
+        <source>Days to go</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Developer info" xml:space="preserve">
+        <source>Developer info</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Done" xml:space="preserve">
+        <source>Done</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Due %@" xml:space="preserve">
+        <source>Due %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Due soon" xml:space="preserve">
+        <source>Due soon</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Email" xml:space="preserve">
+        <source>Email</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Exam" xml:space="preserve">
+        <source>Exam</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Exam description" xml:space="preserve">
+        <source>Exam description</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Exam title" xml:space="preserve">
+        <source>Exam title</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Exams" xml:space="preserve">
+        <source>Exams</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Exams Countdown" xml:space="preserve">
+        <source>Exams Countdown</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Exams passed" xml:space="preserve">
+        <source>Exams passed</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Expected" xml:space="preserve">
+        <source>Expected</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Final" xml:space="preserve">
+        <source>Final</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Glyph" xml:space="preserve">
+        <source>Glyph</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Home" xml:space="preserve">
+        <source>Home</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="How much is a laude evaluated?" xml:space="preserve">
+        <source>How much is a laude evaluated?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="In %@ days" xml:space="preserve">
+        <source>In %@ days</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="In %d days" xml:space="preserve">
+        <source>In %d days</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Info" xml:space="preserve">
+        <source>Info</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="L" xml:space="preserve">
+        <source>L</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Latest marks" xml:space="preserve">
+        <source>Latest marks</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Laude value" xml:space="preserve">
+        <source>Laude value</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Lode %@" xml:space="preserve">
+        <source>Lode %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Main Info" xml:space="preserve">
+        <source>Main Info</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Marks" xml:space="preserve">
+        <source>Marks</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New average" xml:space="preserve">
+        <source>New average</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No active course is present" xml:space="preserve">
+        <source>No active course is present</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No data to show" xml:space="preserve">
+        <source>No data to show</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No description" xml:space="preserve">
+        <source>No description</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No exam in sight!" xml:space="preserve">
+        <source>No exam in sight!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No name" xml:space="preserve">
+        <source>No name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No title" xml:space="preserve">
+        <source>No title</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ok" xml:space="preserve">
+        <source>Ok</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ParkMate" xml:space="preserve">
+        <source>ParkMate</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Passed" xml:space="preserve">
+        <source>Passed</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Passed (singular)" xml:space="preserve">
+        <source>Passed (singular)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Past" xml:space="preserve">
+        <source>Past</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Picker" xml:space="preserve">
+        <source>Picker</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rate Lode" xml:space="preserve">
+        <source>Rate Lode</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reddit" xml:space="preserve">
+        <source>Reddit</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select a course" xml:space="preserve">
+        <source>Select a course</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select an assignment" xml:space="preserve">
+        <source>Select an assignment</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select an exam" xml:space="preserve">
+        <source>Select an exam</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Some fields are not compiled" xml:space="preserve">
+        <source>Some fields are not compiled</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Stats" xml:space="preserve">
+        <source>Stats</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="TWAY" xml:space="preserve">
+        <source>TWAY</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Title will be truncated to:" xml:space="preserve">
+        <source>Title will be truncated to:</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tools" xml:space="preserve">
+        <source>Tools</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Total CFU" xml:space="preserve">
+        <source>Total CFU</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Total CFUs of your study plan" xml:space="preserve">
+        <source>Total CFUs of your study plan</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Twitter" xml:space="preserve">
+        <source>Twitter</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Upcoming" xml:space="preserve">
+        <source>Upcoming</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Welcome To" xml:space="preserve">
+        <source>Welcome To</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have to compile every field to create a course" xml:space="preserve">
+        <source>You have to compile every field to create a course</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You must first add an active course to be able to add exams" xml:space="preserve">
+        <source>You must first add an active course to be able to add exams</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your Average" xml:space="preserve">
+        <source>Your Average</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your CFU" xml:space="preserve">
+        <source>Your CFU</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="by Mattia Righetti" xml:space="preserve">
+        <source>by Mattia Righetti</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="missing" xml:space="preserve">
+        <source>missing</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="than expected" xml:space="preserve">
+        <source>than expected</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="to see something useful 😉" xml:space="preserve">
+        <source>to see something useful 😉</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="🥳" xml:space="preserve">
+        <source>🥳</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
