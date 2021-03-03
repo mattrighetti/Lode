@@ -23,7 +23,6 @@ struct MarksView: View {
 
     @ViewBuilder
     func dataContent() -> some View {
-        // TODO change condition on if statement
         if viewModel.courses.count > 0 {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: [GridItem(.flexible())]) {
@@ -46,18 +45,26 @@ struct MarksView: View {
 }
 
 struct MarkCard: View {
-
     var course: Course
     
-    var markIcon: Color {
-        guard course.mark != 0 else {
-            return .orange
+    var abbreviatedCourseTitle: String? {
+        let toRemove = ["and", "e", "of", "di"]
+        if course.name.count > 25 {
+            let splitString = course.name
+                .split { $0 == " " }
+                .map { String($0) }
+                .filter { !toRemove.contains($0) }
+            
+            return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
         }
-
+        return nil
+    }
+    
+    var markIcon: Color {
+        guard course.mark != 0 else { return .orange }
         if course.mark >= course.expectedMark {
             return .green
         }
-
         return .red
     }
     
@@ -76,47 +83,36 @@ struct MarkCard: View {
             return "\(course.mark)"
         }
     }
-
-    var body: some View {
-        ZStack {
-            Color.cardBackground
-            VStack(alignment: .leading, spacing: 10) {
-                Text(course.name).font(.headline).fontWeight(.bold)
-                
-                HStack {
-                    Spacer()
-                    HStack {
-                        VStack {
-                            Text(expectedMarkString)
-                                .font(.system(.title, design: .rounded))
-                                .fontWeight(.bold)
-                            
-                            Text("Expected").modifier(BadgePillStyle(color: .blue))
-                        }.frame(width: 100)
-                        
-                        Divider()
-                        
-                        VStack {
-                            content()
-                            
-                            Text("Final").modifier(BadgePillStyle(color: .green))
-                        }.frame(width: 100)
-                    }.modifier(BorderBox(color: Color("background")))
-                    Spacer()
-                }
-            }.padding()
-        }.cornerRadius(25)
-    }
-
-    @ViewBuilder
-    private func content() -> some View {
+    
+    var finalMark: String {
         if course.mark != 0 {
-            Text(markString).font(.system(.title, design: .rounded)).fontWeight(.bold)
+            return markString
         } else {
-            Text("?").font(.system(.title, design: .rounded)).fontWeight(.bold)
+            return "?"
         }
     }
 
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(abbreviatedCourseTitle ?? course.name)
+                .font(.system(size: 20.0, weight: .semibold, design: .rounded))
+            HStack {
+                RoundedRectangle(cornerRadius: 25.0)
+                    .foregroundColor(.orange)
+                    .frame(width: 3, height: 15, alignment: .center)
+                Text("Expected \(expectedMarkString)")
+                Spacer()
+            }
+            HStack {
+                RoundedRectangle(cornerRadius: 25.0)
+                    .foregroundColor(.red)
+                    .frame(width: 3, height: 15, alignment: .center)
+                Text("Final \(finalMark)")
+                Spacer()
+            }
+        }
+        .card()
+    }
 }
 
 struct MarksView_Previews: PreviewProvider {

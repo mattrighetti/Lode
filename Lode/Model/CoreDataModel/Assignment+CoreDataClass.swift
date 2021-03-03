@@ -17,9 +17,9 @@ public class Assignment: NSManagedObject {
             context: NSManagedObjectContext,
             id: UUID = UUID(),
             color: Color,
-            caption: String? = "No caption",
-            dueDate: Date? = Date(),
-            title: String? = "No title"
+            caption: String = "No caption",
+            dueDate: Date = Date(),
+            title: String = "No title"
     ) {
         // CoreData stuff
         let entity = NSEntityDescription.entity(forEntityName: "Assignment", in: context)!
@@ -28,24 +28,20 @@ public class Assignment: NSManagedObject {
         // ObjectData
         self.id = id
         self.caption = caption
-        self.color = color.toHex
+        self.color = color.toHex!
         self.dueDate = dueDate
         self.title = title
     }
 
     var daysLeft: Int {
-        if let date = dueDate {
-            let calendar = Calendar.current.dateComponents([.day], from: Date(), to: date)
-            return calendar.day ?? -1
-        }
-
-        return -5
+        let calendar = Calendar.current.dateComponents([.day], from: Date(), to: dueDate)
+        return calendar.day ?? -1
     }
     
     var completeDueDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
-        return dateFormatter.string(from: dueDate!).capitalized
+        return dateFormatter.string(from: dueDate).capitalized
     }
 
 }

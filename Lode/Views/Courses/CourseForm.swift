@@ -30,18 +30,23 @@ struct CourseForm: View {
     // View Data
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
+    @State private var showAlert: Bool = false
     
     @State private var editCourseMode: Bool = false
 
     var course: Course?
     
-    private var acronym: String {
-        let splitString = title
-            .split { $0 == " " }
-            .map { String($0).lowercased() }
-            .filter { $0 != "and" && $0 != "e" && $0 != "of" }
-
-        return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
+    private var acronym: String? {
+        let toRemove = ["and", "e", "of", "di"]
+        if title.count > 25 {
+            let splitString = title
+                .split { $0 == " " }
+                .map { String($0) }
+                .filter { !toRemove.contains($0) }
+            
+            return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
+        }
+        return nil
     }
     
     var body: some View {
@@ -71,22 +76,22 @@ struct CourseForm: View {
                     }
                 }
                 ListView {
-                    if title.count > 30 {
-                        withAnimation {
+                    VStack {
+                        if acronym != nil {
                             HStack {
                                 Text("Title will be truncated to:")
-                                Text(acronym)
+                                Text(acronym ?? "")
                                 Spacer()
                             }
                             .foregroundColor(.red)
                             .font(.caption)
                             .padding(.top, 5)
-                            .transition(.scale)
+                            .transition(.move(edge: .bottom))
                         }
+                        
+                        TextField("Course title", text: $title)
+                            .card()
                     }
-                    
-                    TextField("Course title", text: $title)
-                        .card()
                 }
                 ListView(header: Text("Course CFU").fontWeight(.semibold)) {
                     Stepper(value: $courseCfu, in: 1...50, label: {
@@ -131,7 +136,6 @@ struct CourseForm: View {
                             .background(Color("cardBackground"))
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
-                        .transition(.scale)
                     }
                 }
                 if editCourseMode {
@@ -173,6 +177,13 @@ struct CourseForm: View {
             }
         }
         .onAppear(perform: setupCourse)
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Some fields are not compiled"),
+                message: Text("You have at least to provide a title"),
+                dismissButton: .cancel(Text("Ok"))
+            )
+        }
     }
 
     private func setupCourse() {
@@ -191,6 +202,10 @@ struct CourseForm: View {
     }
 
     private func onSavePressed() {
+        guard !title.isEmpty else {
+            showAlert.toggle()
+            return
+        }
         if !editCourseMode {
             viewModel.addCourse(
                 name: title,

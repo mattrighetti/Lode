@@ -21,6 +21,7 @@ struct AssignmentForm: View {
     
     @State private var activeColorNavigationLink: Bool = false
     @State private var isShowingDatePicker: Bool = false
+    @State private var showAlert: Bool = false
     
     @State private var editAssignmentMode: Bool = false
     var assignment: Assignment?
@@ -62,7 +63,7 @@ struct AssignmentForm: View {
                 if editAssignmentMode {
                     ListView {
                         Button(action: {
-                            viewModel.delete(id: assignment!.id!)
+                            viewModel.delete(id: assignment!.id)
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
                             HStack {
@@ -75,6 +76,7 @@ struct AssignmentForm: View {
                             .foregroundColor(Color.white)
                             .cornerRadius(10)
                         })
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }
@@ -96,11 +98,22 @@ struct AssignmentForm: View {
                 }
             }
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Some fields are not compiled"),
+                message: Text("You have at least to provide a title"),
+                dismissButton: .cancel(Text("Ok"))
+            )
+        }
     }
     
     private func onDonePressed() {
+        guard !title.isEmpty else {
+            showAlert.toggle()
+            return
+        }
         if editAssignmentMode {
-            viewModel.update(withId: assignment!.id!, title: title, caption: description, color: color.toHex!, dueDate: date)
+            viewModel.update(withId: assignment!.id, title: title, caption: description, color: color.toHex!, dueDate: date)
         } else {
             viewModel.addAssignment(title: title, caption: description, color: color.toHex!, dueDate: date)
         }
@@ -109,10 +122,10 @@ struct AssignmentForm: View {
     
     private func setupAssignment() {
         if let assignmentToEdit = assignment {
-            self.title = assignmentToEdit.title!
-            self.description = assignmentToEdit.caption!
-            self.date = assignmentToEdit.dueDate!
-            self.color = Color(hex: assignmentToEdit.color!)!
+            self.title = assignmentToEdit.title
+            self.description = assignmentToEdit.caption
+            self.date = assignmentToEdit.dueDate
+            self.color = Color(hex: assignmentToEdit.color)!
 
             self.editAssignmentMode.toggle()
         }

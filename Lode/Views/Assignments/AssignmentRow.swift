@@ -10,55 +10,51 @@ import SwiftUI
 
 struct AssignmentRow: View {
     var assignment: Assignment
+    
+    private var title: String {
+        assignment.title.isEmpty ? "No title" : assignment.title
+    }
+    
+    private var caption: String {
+        assignment.caption.isEmpty ? "No description" : assignment.caption
+    }
 
     var body: some View {
         HStack {
             ZStack(alignment: .center) {
                 Circle()
-                    .fill(Color(hex: assignment.color!)!)
-
+                    .fill(Color(hex: assignment.color)!)
                 VStack {
                     Text("\(assignment.daysLeft)")
                         .font(.system(size: 25.0, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
-
                     Text("missing")
                         .font(.system(size: 10.0, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                 }
-            }.frame(width: 70, height: 70, alignment: .center)
-
+            }
+            .frame(width: 70, height: 70, alignment: .center)
             VStack(alignment: .leading) {
-                Text(assignment.title ?? "No title")
+                Text(title)
                     .font(.headline)
                     .fontWeight(.bold)
                     .layoutPriority(1)
                     .padding(.bottom, 5)
-
-                Text(assignment.caption ?? "No description")
+                Text(caption)
                     .font(.caption)
                     .lineLimit(3)
-
-                isDueSoon()
+                if assignment.daysLeft < 5 {
+                    HStack {
+                        Image(systemName: "exclamationmark.circle")
+                        Text("Due soon")
+                    }
+                    .badgePill(color: .red)
+                }
             }
-
             Spacer()
-        }.card()
-    }
-
-    @ViewBuilder
-    func isDueSoon() -> some View {
-        if assignment.daysLeft < 5 {
-            HStack {
-                Image(systemName: "exclamationmark.circle")
-                Text("Due soon")
-            }
-            .badgePill(color: .red)
-        } else {
-            EmptyView()
         }
+        .card()
     }
-
 }
 
 struct AssignmentRow_Previews: PreviewProvider {

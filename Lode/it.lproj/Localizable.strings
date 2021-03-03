@@ -62,6 +62,7 @@
 "Exam description" = "Descrizione esame";
 "Select a course" = "Seleziona un corso";
 "In %d days" = "Tra %d giorni";
+"You have at least to provide a title" = "Devi almeno fornire un titolo";
 
 // MARK: - Assignments View
 "Assignments" = "To Do";
@@ -70,6 +71,7 @@
 "Assignment description" = "Descrizione";
 "missing" = "mancanti";
 "Due soon" = "Scade presto";
+"Title will be truncated to:" = "Verrà ridotto a:";
 
 // MARK: - Courses View
 "Courses" = "Corsi";

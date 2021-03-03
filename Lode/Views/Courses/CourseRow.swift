@@ -11,17 +11,18 @@ import SwiftUI
 struct CourseRow: View {
     var course: Course
 
-    private var courseAcronym: String {
-        let splitString = course.name
-            .split { $0 == " " }
-            .map(String.init)
-            .filter { $0 != "and" && $0 != "e" }
-        
-        return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
-    }
-    
-    private var isNameTooLong: Bool {
-        course.name.count > 30
+    private var courseAcronym: String? {
+        let toRemove = ["and", "e", "of", "di"]
+        if course.name.count > 25 {
+            let splitString = course.name
+                .lowercased()
+                .split { $0 == " " }
+                .map { String($0) }
+                .filter { !toRemove.contains($0) }
+            
+            return splitString.map({ String($0.first!).uppercased() }).reduce("", +)
+        }
+        return nil
     }
     
     private var finalMarkColor: Color? {
@@ -47,9 +48,8 @@ struct CourseRow: View {
             .frame(width: 70, height: 70, alignment: .center)
 
             VStack(alignment: .leading) {
-                Text(isNameTooLong ? self.courseAcronym : course.name)
-                    .font(.headline)
-                    .fontWeight(.semibold)
+                Text(courseAcronym ?? course.name)
+                    .font(.system(size: 20.0, weight: .semibold, design: .rounded))
                 VStack(alignment: .leading, spacing: 3.0) {
                     VerticalLineBadge(label: "CFU", value: Int(course.cfu), color: .orange)
                     badge()

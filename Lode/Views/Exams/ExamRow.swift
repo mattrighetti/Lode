@@ -34,8 +34,7 @@ struct ExamRow: View {
 
             VStack(alignment: .leading) {
                 Text(exam.title)
-                    .font(.headline)
-                    .fontWeight(.semibold)
+                    .font(.system(size: 20.0, weight: .semibold, design: .rounded))
                 
                 if exam.daysLeft >= 0 {
                     Text(

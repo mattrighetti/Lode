@@ -62,6 +62,7 @@
 "Exam description" = "Exam description";
 "Select a course" = "Select a course";
 "In %d days" = "In %d days";
+"You have at least to provide a title" = "You have at least to provide a title";
 
 // MARK: - Assignments View
 "Assignments" = "Assignments";
@@ -70,6 +71,7 @@
 "Assignment description" = "Assignment description";
 "missing" = "missing";
 "Due soon" = "Due soon";
+"Title will be truncated to:" = "Title will be truncated to:";
 
 // MARK: - Courses View
 "Courses" = "Courses";

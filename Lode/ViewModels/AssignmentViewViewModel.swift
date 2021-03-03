@@ -8,8 +8,8 @@ import Foundation
 class AssignmentViewViewModel: ObservableObject {
     @Published var assignments: [Assignment] = [] {
         willSet {
-            dueAssignments = newValue.filter { $0.dueDate! > Date() }
-            pastAssignments = newValue.filter { $0.dueDate! <= Date() }
+            dueAssignments = newValue.filter { $0.dueDate > Date() }
+            pastAssignments = newValue.filter { $0.dueDate <= Date() }
         }
     }
     @Published var dueAssignments: [Assignment] = []
@@ -18,7 +18,7 @@ class AssignmentViewViewModel: ObservableObject {
 
     init() {
         cancellable = AssignmentStorage.shared.assignments.sink { [unowned self] assignments in
-            self.assignments = assignments
+            self.assignments = assignments.sorted(by: { $0.dueDate < $1.dueDate })
         }
     }
 }
