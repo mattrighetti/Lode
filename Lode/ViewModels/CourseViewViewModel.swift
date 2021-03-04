@@ -12,7 +12,6 @@ class CourseViewViewModel: ObservableObject {
     @Published var passedCourses: [Course] = []
     @Published var courses: [Course] = [] {
         willSet {
-            logger.log("Updating courses to: \(newValue)")
             activeCourses = newValue.filter { $0.mark == 0 }
             passedCourses = newValue.filter { $0.mark != 0 }
         }

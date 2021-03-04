@@ -28,8 +28,10 @@ public class Exam: NSManagedObject {
     }
     
     var daysLeft: Int {
-        let calendar = Calendar.current.dateComponents([.day], from: Date(), to: date)
-        return calendar.day!
+        guard let normalizedDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date) else { fatalError() }
+        guard let normalizedNow = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) else { fatalError() }
+        let secondsDiff = normalizedDate - normalizedNow
+        return Int(Int(secondsDiff / 60 / 60) / 24)
     }
 
     var dayString: String {

@@ -14,20 +14,9 @@ struct ContributingView: View {
     
     var body: some View {
         List {
-            ListView {
-                VStack(alignment: .center) {
-                    Text("Coming soon...")
-                        .font(.system(size: 35.0, design: .rounded))
-                        .padding(.bottom)
-
-                    Text("This application is going to be open sourced as soon as it gets out of beta")
-                            .font(.caption)
-                }
-            }
-
-            Section {
+            Section(header: Text("Code").fontWeight(.semibold)) {
                 Button(action: {
-                    UIApplication.shared.open(URL(string: "https://github.com/mattrighetti")!)
+                    UIApplication.shared.open(URL(string: "https://github.com/mattrighetti/Lode")!)
                 }, label: {
                     Label(title: {
                         Text("Github respository")

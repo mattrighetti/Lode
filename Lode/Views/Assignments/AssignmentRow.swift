@@ -24,14 +24,7 @@ struct AssignmentRow: View {
             ZStack(alignment: .center) {
                 Circle()
                     .fill(Color(hex: assignment.color)!)
-                VStack {
-                    Text("\(assignment.daysLeft)")
-                        .font(.system(size: 25.0, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                    Text("missing")
-                        .font(.system(size: 10.0, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                }
+                daysMissingView()
             }
             .frame(width: 70, height: 70, alignment: .center)
             VStack(alignment: .leading) {
@@ -43,17 +36,51 @@ struct AssignmentRow: View {
                 Text(caption)
                     .font(.caption)
                     .lineLimit(3)
-                if assignment.daysLeft < 5 {
-                    HStack {
-                        Image(systemName: "exclamationmark.circle")
-                        Text("Due soon")
-                    }
-                    .badgePill(color: .red)
-                }
+                badge()
             }
             Spacer()
         }
         .card()
+    }
+    
+    @ViewBuilder
+    func daysMissingView() -> some View {
+        if assignment.daysLeft > 0 {
+            VStack {
+                Text("\(assignment.daysLeft)")
+                    .font(.system(size: 25.0, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                Text("missing")
+                    .font(.system(size: 10.0, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+            }
+        } else if assignment.daysLeft == 0 {
+            VStack {
+                Text("Today")
+                    .font(.system(size: 20.0, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+            }
+        } else {
+            VStack {
+                Text("\(assignment.daysLeft * -1)")
+                    .font(.system(size: 25.0, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                Text("days ago")
+                    .font(.system(size: 10.0, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func badge() -> some View {
+        if assignment.daysLeft < 3 && assignment.daysLeft > 0 {
+            HStack {
+                Image(systemName: "exclamationmark.circle")
+                Text("Due soon")
+            }
+            .badgePill(color: .red)
+        }
     }
 }
 

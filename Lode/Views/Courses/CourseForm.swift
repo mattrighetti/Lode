@@ -127,7 +127,7 @@ struct CourseForm: View {
                     .buttonStyle(PlainButtonStyle())
                 }
                 if isPassed {
-                    ListView(header: Text("Mark").fontWeight(.semibold)) {
+                    ListView(header: Text("Obtained mark").fontWeight(.semibold)) {
                         VStack {
                             Stepper(value: $courseMark, in: 18...31, label: {
                                 Text(courseMark <= 30 ? "\(courseMark)" : "30L").font(.title)

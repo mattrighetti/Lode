@@ -15,7 +15,6 @@ struct ExamRow: View {
         HStack {
             ZStack(alignment: .center) {
                 Circle()
-                    // TODO fix this color usage
                     .fill(Color(hex: exam.color)!)
                 
                 VStack {

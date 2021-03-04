@@ -18,19 +18,25 @@ struct IntroductionView: View {
 
             Feature(iconName: "doc.fill", iconColor: .yellow,
                     headline: "Keep track of your courses",
-                    description: "Keep track of everything")
-                    .padding(.vertical)
+                    description: "Save your marks and make expectations")
+                        .padding(.vertical)
 
-            Feature(iconName: "paperclip", iconColor: .blue,
-                    headline: "All in one",
-                    description: "Save your marks, assignments and exams all in a single place")
-                    .padding(.vertical)
+            Feature(iconName: "apps.iphone", iconColor: .blue,
+                    headline: "All you need in a single app",
+                    description: "Save your marks, assignments and exams all in a single application")
+                        .padding(.vertical)
 
-            Feature(iconName: "sparkle", iconColor: .green,
+            Feature(iconName: "wand.and.stars", iconColor: .green,
                     headline: "Extremely simple to use",
-                    description: "Designed with ease of use in mind")
-                    .padding(.vertical)
+                    description: "Designed with ease of use in mind with great care to user experience and design")
+                        .padding(.vertical)
+            
+            Feature(iconName: "globe", iconColor: .orange,
+                    headline: "Open source",
+                    description: "Contribute to the application and help us improve it")
+                        .padding(.vertical)
         }
+        .padding(.top)
 
         Spacer()
 
@@ -97,10 +103,10 @@ private struct Feature: View {
                 .font(.title)
                 .foregroundColor(iconColor)
             VStack(alignment: .leading) {
-                Text(headline)
+                Text(LocalizedStringKey(headline))
                     .font(.subheadline)
                     .fontWeight(.bold)
-                Text(description)
+                Text(LocalizedStringKey(description))
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
@@ -114,5 +120,6 @@ private struct Feature: View {
 struct IntroductionView_Previews: PreviewProvider {
     static var previews: some View {
         IntroductionView()
+            .environment(\.locale, .init(identifier: "it"))
     }
 }

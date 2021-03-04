@@ -13,7 +13,7 @@
 "Expected Average" = "Media attesa";
 "Average" = "Media";
 "Upcoming Exams" = "Prossimi esami";
-"Due Assignments" = "Compiti attivi";
+"Due Assignments" = "To do";
 "Average Delta Tool" = "Delta Media";
 "Your Marks" = "Voti";
 "Tools" = "Strumenti";
@@ -43,6 +43,7 @@
 
 // MARK: - Marks View
 "Marks" = "Voti";
+"No data available to show" = "Nessun dato da visualizzare";
 
 // MARK: - Settings View
 "Settings" = "Impostazioni";
@@ -53,6 +54,8 @@
 "About" = "Riferimenti";
 "Accent Color" = "Colore Tinta";
 "Laude value" = "Valore lode";
+"Contribute" = "Contribuisci";
+"Github repository" = "Cartella GitHub";
 
 // MARK: - Exams View
 "Exams" = "Esami";
@@ -63,6 +66,7 @@
 "Select a course" = "Seleziona un corso";
 "In %d days" = "Tra %d giorni";
 "You have at least to provide a title" = "Devi almeno fornire un titolo";
+"General" = "Generali";
 
 // MARK: - Assignments View
 "Assignments" = "To Do";
@@ -72,6 +76,7 @@
 "missing" = "mancanti";
 "Due soon" = "Scade presto";
 "Title will be truncated to:" = "Verrà ridotto a:";
+"days ago" = "giorni fa";
 
 // MARK: - Courses View
 "Courses" = "Corsi";
@@ -79,11 +84,12 @@
 "Course title" = "Titolo corso";
 "Total hours" = "Ore totali";
 "Difficulty" = "Difficoltà";
-"Mark expected" = "Voto atteso";
-"Mark obtained" = "Voto ottenuto";
+"Expected mark" = "Voto atteso";
+"Obtained mark" = "Voto ottenuto";
 "This will be used for further statistics" = "Verrà usato per le statistiche";
 "The mark you got" = "Il voto ottenuto";
 "Final" = "Finale";
+"Delete" = "Elimina";
 
 // MARK: - SegmentedPicker Navbar
 "Past" = "Passati";
@@ -121,13 +127,6 @@
 
 "Choose an action" = "Scegli un'opzione";
 
-// MARK: - SplashScreen
-"Keep track of everything" = "Tieni traccia di tutto";
-"All in a single place" = "All in a single place";
-"Save your marks, assignments and exams all in this app" = "Salve i tuoi voti, compiti ed esami";
-"Extremely simple to use" = "Estremamente semplice da usare";
-"Designed with ease of use in mind to get you back to work as soon as possible" = "Pensata per la semplicità d'uso";
-
 // MARK: - About View
 "Rate Lode" = "Valuta Lode";
 "Developer info" = "Info sviluppatore";
@@ -140,3 +139,14 @@
 "Days to go" = "Giorni mancanti";
 "No exam in sight!" = "Non hai esami in vista!";
 "Exams Countdown" = "Countdown Esami";
+
+// Mark: - Introduction View
+"Keep track of your courses" = "Traccia i tuoi corsi";
+"Save your marks and make expectations" = "Salva i tuoi corsi, fai previsioni su voti e visualizza i tuoi progressi";
+"All you need in a single app" = "Tutto in una app";
+"Save your marks, assignments and exams all in a single application" = "Tieni traccia dei tuoi voti, esami e to do in una singola app";
+"Extremely simple to use" = "Semplice da usare";
+"Designed with ease of use in mind with great care to user experience and design" = "Pensata per la semplicità d'uso e con cura del design";
+"Open source" = "Open source";
+"Contribute to the application and help us improve it" = "Contribuisci all'applicazione e aiutaci a migliorarla";
+"Welcome To" = "Benvenuti su";

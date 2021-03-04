@@ -8,8 +8,8 @@ import Foundation
 class AssignmentViewViewModel: ObservableObject {
     @Published var assignments: [Assignment] = [] {
         willSet {
-            dueAssignments = newValue.filter { $0.dueDate > Date() }
-            pastAssignments = newValue.filter { $0.dueDate <= Date() }
+            dueAssignments = newValue.filter { $0.daysLeft >= 0 }
+            pastAssignments = newValue.filter { $0.daysLeft <= 0 }
         }
     }
     @Published var dueAssignments: [Assignment] = []

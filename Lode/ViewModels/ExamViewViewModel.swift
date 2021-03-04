@@ -12,8 +12,8 @@ class ExamViewViewModel: ObservableObject {
     @Published var pastExams: [Exam] = []
     @Published var exams: [Exam] = [] {
         willSet {
-            upcomingExams = newValue.filter { $0.date > Date() }
-            pastExams = newValue.filter { $0.date <= Date() }
+            upcomingExams = newValue.filter { $0.daysLeft >= 0 }
+            pastExams = newValue.filter { $0.daysLeft < 0 }
         }
     }
 

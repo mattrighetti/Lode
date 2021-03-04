@@ -33,12 +33,15 @@ struct MarksView: View {
                 .padding(EdgeInsets(top: 15, leading: 15, bottom: 10, trailing: 15))
             }
         } else {
-            VStack {
-                Image(systemName: "xmark.seal.fill")
-                    .font(.system(size: 150))
-                    .foregroundColor(.flatRed)
-                Text("No data available to show")
-                    .font(.system(size: 20.0, weight: .regular, design: .rounded))
+            ZStack {
+                Color.background.ignoresSafeArea()
+                VStack {
+                    Image(systemName: "xmark.seal.fill")
+                        .font(.system(size: 150))
+                        .foregroundColor(.flatRed)
+                    Text("No data available to show")
+                        .font(.system(size: 20.0, weight: .regular, design: .rounded))
+                }
             }
         }
     }

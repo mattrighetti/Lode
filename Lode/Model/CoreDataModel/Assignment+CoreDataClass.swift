@@ -34,8 +34,10 @@ public class Assignment: NSManagedObject {
     }
 
     var daysLeft: Int {
-        let calendar = Calendar.current.dateComponents([.day], from: Date(), to: dueDate)
-        return calendar.day ?? -1
+        guard let normalizedDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: dueDate) else { fatalError() }
+        guard let normalizedNow = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) else { fatalError() }
+        let secondsDiff = normalizedDate - normalizedNow
+        return Int(Int(secondsDiff / 60 / 60) / 24)
     }
     
     var completeDueDate: String {

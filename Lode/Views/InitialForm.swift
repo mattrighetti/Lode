@@ -26,7 +26,7 @@ struct InitialForm: View {
                     .padding(.vertical, 7)
                 }
                 .listRowBackground(Color.cardBackground)
-                Section(header: Text("Total CFUs of your study plan")) {
+                Section(header: Text("Laude value")) {
                     Stepper(value: self.$laudeValue, in: 30...35) {
                         Text("\(laudeValue)")
                             .font(.title)

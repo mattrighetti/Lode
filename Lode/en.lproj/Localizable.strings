@@ -43,6 +43,7 @@
 
 // MARK: - Marks View
 "Marks" = "Marks";
+"No data available to show" = "No data available to show";
 
 // MARK: - Settings View
 "Settings" = "Settings";
@@ -53,6 +54,8 @@
 "About" = "About";
 "Accent Color" = "Accent Color";
 "Laude value" = "Laude value";
+"Contribute" = "Contribuisci";
+"Github repository" = "Github repository";
 
 // MARK: - Exams View
 "Exams" = "Exams";
@@ -63,6 +66,7 @@
 "Select a course" = "Select a course";
 "In %d days" = "In %d days";
 "You have at least to provide a title" = "You have at least to provide a title";
+"General" = "General";
 
 // MARK: - Assignments View
 "Assignments" = "Assignments";
@@ -72,6 +76,7 @@
 "missing" = "missing";
 "Due soon" = "Due soon";
 "Title will be truncated to:" = "Title will be truncated to:";
+"days ago" = "days ago";
 
 // MARK: - Courses View
 "Courses" = "Courses";
@@ -79,11 +84,12 @@
 "Course title" = "Course title";
 "Total hours" = "Total hours";
 "Difficulty" = "Difficulty";
-"Mark expected" = "Mark expected";
-"Mark obtained" = "Mark obtained";
+"Expected mark" = "Expected mark";
+"Obtained mark" = "Obtained mark";
 "This will be used for further statistics" = "This will be used for further statistics";
 "The mark you got" = "The mark you got";
 "Final" = "Final";
+"Delete" = "Delete";
 
 // MARK: - SegmentedPicker Navbar
 "Past" = "Past";
@@ -121,13 +127,6 @@
 
 "Choose an action" = "Choose an action";
 
-// MARK: - SplashScreen
-"Keep track of everything" = "Keep track of everything";
-"All in a single place" = "All in a single place";
-"Save your marks, assignments and exams all in this app" = "Save your marks, assignments and exams all in this app";
-"Extremely simple to use" = "Extremely simple to use";
-"Designed with ease of use in mind to get you back to work as soon as possible" = "Designed with ease of use in mind to get you back to work as soon as possible";
-
 // MARK: - About View
 "Rate Lode" = "Rate Lode";
 "Developer info" = "Developer info";
@@ -140,3 +139,14 @@
 "Days to go" = "Days to go";
 "No exam in sight!" = "No exam in sight!";
 "Exams Countdown" = "Exams Countdown";
+
+// Mark: - Introduction View
+"Keep track of your courses" = "Keep track of your courses";
+"Save your marks and make expectations" = "Save your marks and make expectations";
+"All you need in a single app" = "All you need in a single app";
+"Save your marks, assignments and exams all in a single application" = "Save your marks, assignments and exams all in a single application";
+"Extremely simple to use" = "Extremely simple to use";
+"Designed with ease of use in mind with great care to user experience and design" = "Designed with ease of use in mind with great care to user experience and design";
+"Open source" = "Open source";
+"Contribute to the application and help us improve it" = "Contribute to the application and help us improve it";
+"Welcome To" = "Welcome To";
